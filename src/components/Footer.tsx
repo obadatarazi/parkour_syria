@@ -19,29 +19,32 @@ export function Footer() {
   const { navigate } = useNav();
 
   return (
-    <footer className="bg-[#111] text-[#999] pt-12 pb-7 mt-5 text-sm">
+    <footer className="bg-black border-t border-white/5 pt-20 pb-10">
       <div className="container-x">
-        <div className="disclaimer-strip">
-          ⚠️ الباركور رياضة تحمل مخاطر. تدرب بأمان.{' '}
-          <button onClick={() => navigate('disclaimer')} className="underline text-[#ccc]">
-            إخلاء المسؤولية
-          </button>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-9">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-1">
-            <h4 className="text-white text-sm font-bold mb-3.5 uppercase tracking-wide">
+            <div className="font-extrabold text-xl text-white flex items-center gap-2.5 mb-4">
+              <span className="bg-white text-black w-8 h-8 flex items-center justify-center font-extrabold text-sm">
+                ب
+              </span>
               باركور سوريا
-            </h4>
-            <p>موقع عربي يساعد المهتمين بالباركور في سوريا على التعلّم بأمان.</p>
+            </div>
+            <p className="text-white/40 text-sm leading-relaxed">
+              موقع عربي يساعد المهتمين بالباركور في سوريا على التعلّم بأمان.
+            </p>
           </div>
 
           <div>
-            <h4 className="text-white text-sm font-bold mb-3.5 uppercase tracking-wide">استكشف</h4>
-            <ul className="space-y-2">
+            <h4 className="text-white/30 text-xs font-bold mb-5 uppercase tracking-[0.15em]">
+              استكشف
+            </h4>
+            <ul className="space-y-3">
               {exploreLinks.map((l) => (
                 <li key={l.page}>
-                  <button onClick={() => navigate(l.page)} className="hover:text-white transition-colors">
+                  <button
+                    onClick={() => navigate(l.page)}
+                    className="text-white/60 hover:text-white transition-colors text-sm"
+                  >
                     {l.label}
                   </button>
                 </li>
@@ -50,11 +53,16 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-white text-sm font-bold mb-3.5 uppercase tracking-wide">المزيد</h4>
-            <ul className="space-y-2">
+            <h4 className="text-white/30 text-xs font-bold mb-5 uppercase tracking-[0.15em]">
+              المزيد
+            </h4>
+            <ul className="space-y-3">
               {moreLinks.map((l) => (
                 <li key={l.page}>
-                  <button onClick={() => navigate(l.page)} className="hover:text-white transition-colors">
+                  <button
+                    onClick={() => navigate(l.page)}
+                    className="text-white/60 hover:text-white transition-colors text-sm"
+                  >
                     {l.label}
                   </button>
                 </li>
@@ -63,20 +71,27 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-white text-sm font-bold mb-3.5 uppercase tracking-wide">تواصل</h4>
-            <ul className="space-y-2">
+            <h4 className="text-white/30 text-xs font-bold mb-5 uppercase tracking-[0.15em]">
+              تواصل
+            </h4>
+            <ul className="space-y-3">
               <li>
-                <a href="https://wa.me/963999000000" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">
+                <a
+                  href="https://wa.me/963999000000"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-white/60 hover:text-white transition-colors text-sm"
+                >
                   واتساب
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a href="#" className="text-white/60 hover:text-white transition-colors text-sm">
                   فيسبوك
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a href="#" className="text-white/60 hover:text-white transition-colors text-sm">
                   إنستغرام
                 </a>
               </li>
@@ -84,8 +99,13 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-[#333] pt-5 text-center text-xs">
-          <p>© 2026 باركور سوريا · مرتبط بـ Parkour.com · parkoursyria.com</p>
+        <div className="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-white/30 text-xs">
+            © 2026 باركور سوريا · مرتبط بـ Parkour.com · parkoursyria.com
+          </p>
+          <p className="text-white/20 text-xs uppercase tracking-widest">
+            تدرب بأمان
+          </p>
         </div>
       </div>
     </footer>

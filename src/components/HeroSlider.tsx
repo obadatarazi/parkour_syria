@@ -9,7 +9,7 @@ export function HeroSlider() {
   const touchStartX = useRef(0);
 
   useEffect(() => {
-    const timer = setInterval(() => setCurrent((c) => (c + 1) % slides.length), 5500);
+    const timer = setInterval(() => setCurrent((c) => (c + 1) % slides.length), 6000);
     return () => clearInterval(timer);
   }, []);
 
@@ -29,41 +29,57 @@ export function HeroSlider() {
 
   return (
     <div
-      className="relative w-full h-[60vh] sm:h-[72vh] min-h-[380px] sm:min-h-[420px] max-h-[620px] overflow-hidden bg-[#1a1a1a]"
+      className="relative w-full h-screen min-h-[560px] overflow-hidden bg-black"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
       {slides.map((slide, i) => (
         <div
           key={i}
-          className={`absolute inset-0 transition-opacity duration-500 ${
-            i === current ? 'opacity-100 z-[2]' : 'opacity-0 z-0'
+          className={`absolute inset-0 transition-all duration-[1.2s] ease-out ${
+            i === current
+              ? 'opacity-100 scale-100 z-[2]'
+              : 'opacity-0 scale-105 z-0'
           }`}
         >
-          <img src={slide.image} alt="" className="absolute inset-0 w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/75 z-[1]" />
-          <div className="relative z-[2] w-full h-full flex items-end pb-12">
-            <div className="container-x text-white pb-2">
-              <div className="text-xs font-bold tracking-widest opacity-85 mb-2.5 uppercase">
-                {slide.cat}
-              </div>
-              <h2 className="text-[1.85rem] sm:text-4xl lg:text-[2.5rem] font-extrabold leading-tight max-w-[560px] mb-3">
-                {slide.title}
-              </h2>
-              <p className="text-base opacity-90 max-w-[480px] mb-5 leading-relaxed">{slide.text}</p>
-              <div className="flex flex-wrap gap-2.5">
-                <button
-                  onClick={() => navigate(slide.primary.page)}
-                  className="btn bg-white text-black border border-white hover:bg-gray-100"
-                >
-                  {slide.primary.label}
-                </button>
-                <button
-                  onClick={() => navigate(slide.secondary.page)}
-                  className="btn bg-transparent text-white border border-white/55 hover:bg-white/10 hover:border-white"
-                >
-                  {slide.secondary.label}
-                </button>
+          <img
+            src={slide.image}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ filter: 'brightness(0.55) contrast(1.15) grayscale(15%)' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/40 z-[1]" />
+          <div className="relative z-[2] w-full h-full flex items-end pb-20 sm:pb-28">
+            <div className="container-x text-white w-full">
+              <div
+                className={`transition-all duration-700 ${
+                  i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
+                style={{ transitionDelay: i === current ? '0.3s' : '0s' }}
+              >
+                <div className="text-xs font-bold tracking-[0.2em] opacity-70 mb-4 uppercase">
+                  {slide.cat}
+                </div>
+                <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] max-w-[680px] mb-5 letter-spacing-tight">
+                  {slide.title}
+                </h2>
+                <p className="text-base sm:text-lg opacity-75 max-w-[500px] mb-8 leading-relaxed font-light">
+                  {slide.text}
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <button
+                    onClick={() => navigate(slide.primary.page)}
+                    className="btn btn-dark"
+                  >
+                    {slide.primary.label}
+                  </button>
+                  <button
+                    onClick={() => navigate(slide.secondary.page)}
+                    className="btn btn-outline"
+                  >
+                    {slide.secondary.label}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -72,30 +88,34 @@ export function HeroSlider() {
 
       <button
         onClick={() => show(current - 1)}
-        className="absolute top-1/2 -translate-y-1/2 z-[5] w-10 h-10 bg-black/35 border border-white/25 text-white flex items-center justify-center hover:bg-black/55 transition right-4"
+        className="absolute top-1/2 -translate-y-1/2 z-[5] w-12 h-12 text-white flex items-center justify-center hover:bg-white/10 transition border border-white/20 right-4 sm:right-6"
         aria-label="السابق"
       >
-        <ChevronRight size={18} />
+        <ChevronRight size={20} />
       </button>
       <button
         onClick={() => show(current + 1)}
-        className="absolute top-1/2 -translate-y-1/2 z-[5] w-10 h-10 bg-black/35 border border-white/25 text-white flex items-center justify-center hover:bg-black/55 transition left-4"
+        className="absolute top-1/2 -translate-y-1/2 z-[5] w-12 h-12 text-white flex items-center justify-center hover:bg-white/10 transition border border-white/20 left-4 sm:left-6"
         aria-label="التالي"
       >
-        <ChevronLeft size={18} />
+        <ChevronLeft size={20} />
       </button>
 
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-[5] flex gap-2 items-center">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[5] flex gap-2 items-center">
         {slides.map((_, i) => (
           <button
             key={i}
             onClick={() => show(i)}
             aria-label={`شريحة ${i + 1}`}
-            className={`h-2 rounded-full transition-all ${
-              i === current ? 'bg-white w-[22px] rounded' : 'w-2 bg-white/40'
+            className={`h-[3px] transition-all duration-300 ${
+              i === current ? 'w-8 bg-white' : 'w-4 bg-white/30'
             }`}
           />
         ))}
+      </div>
+
+      <div className="absolute bottom-8 right-6 z-[5] text-white/40 text-xs font-medium tracking-widest uppercase hidden sm:block">
+        {String(current + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
       </div>
     </div>
   );

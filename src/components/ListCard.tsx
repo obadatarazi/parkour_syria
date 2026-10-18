@@ -16,22 +16,25 @@ export function ListCard({
   return (
     <button
       onClick={onClick}
-      className="grid grid-cols-[120px_1fr] sm:grid-cols-[200px_1fr] gap-4 border-b border-[#e5e5e5] pb-6 text-right w-full last:border-none group"
+      className="grid grid-cols-[100px_1fr] sm:grid-cols-[220px_1fr] gap-5 border-b border-white/8 pb-8 text-right w-full last:border-none group"
     >
       {image && (
-        <div className="w-[120px] h-[90px] sm:w-[200px] sm:h-[130px] overflow-hidden">
+        <div className="w-[100px] h-[70px] sm:w-[220px] sm:h-[140px] overflow-hidden relative">
           <img
             src={image}
             alt={title}
             loading="lazy"
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="cinematic-img"
+            style={{ position: 'absolute', inset: 0 }}
           />
         </div>
       )}
-      <div>
-        <div className="text-xs text-[#888] mb-1 font-semibold uppercase tracking-wide">{meta}</div>
-        <h3 className="text-base sm:text-lg font-bold mb-1 leading-snug">{title}</h3>
-        {children && <div className="text-sm text-[#555] line-clamp-2">{children}</div>}
+      <div className="flex flex-col justify-center">
+        <div className="text-xs text-white/40 mb-2 font-semibold uppercase tracking-[0.1em]">{meta}</div>
+        <h3 className="text-base sm:text-xl font-bold mb-1 leading-snug text-white group-hover:text-white/80 transition-colors">
+          {title}
+        </h3>
+        {children && <div className="text-sm text-white/50 line-clamp-2">{children}</div>}
       </div>
     </button>
   );

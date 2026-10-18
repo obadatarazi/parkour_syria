@@ -5,6 +5,7 @@ import { Footer } from '@/components/Footer';
 import { Preloader } from '@/components/Preloader';
 import { PageLoader } from '@/components/PageLoader';
 import { MouseTrackerCanvas } from '@/components/MouseTrackerCanvas';
+import { CustomCursor } from '@/components/CustomCursor';
 import type { PageId } from '@/data/demo';
 import { HomePage } from '@/pages/HomePage';
 import { WhatPage } from '@/pages/WhatPage';
@@ -65,8 +66,10 @@ function App() {
     <NavProvider value={{ page, navigate }}>
       <Preloader />
       {loading && <PageLoader />}
+      <CustomCursor />
+      <div className="grain-overlay" aria-hidden="true" />
       <MouseTrackerCanvas />
-      <div className="min-h-screen flex flex-col relative z-10 bg-white/90 backdrop-blur-[1px]">
+      <div className="min-h-screen flex flex-col relative z-10 bg-[#0a0a0a]">
         <Header />
         <main className="flex-1">
           <div key={page} className="animate-fade-in">
