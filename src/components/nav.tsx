@@ -33,13 +33,17 @@ const detailOf: Partial<Record<PageId, PageId>> = {
   path: 'lesson',
 };
 
+// Site folder from vite.config base, e.g. "/parkour"
+const ROOT = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 export function pathFor(page: PageId, id?: string) {
   const base = paths[page];
-  return id ? `${base}/${encodeURIComponent(id)}` : base;
+  return ROOT + (id ? `${base}/${encodeURIComponent(id)}` : base);
 }
 
 export function parsePath(pathname: string): { page: PageId; id?: string } {
-  const [first = '', second] = pathname.replace(/\/+$/, '').split('/').filter(Boolean);
+  const local = pathname.startsWith(ROOT) ? pathname.slice(ROOT.length) : pathname;
+  const [first = '', second] = local.replace(/\/+$/, '').split('/').filter(Boolean);
   const list = (Object.keys(paths) as PageId[]).find(
     (p) => paths[p] === `/${first}` && !Object.values(detailOf).includes(p)
   );
