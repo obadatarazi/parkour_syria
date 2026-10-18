@@ -1,10 +1,8 @@
 import { useState, useCallback, useEffect } from 'react';
-import { NavProvider } from '@/components/nav';
+import { NavProvider, parsePath, pathFor } from '@/components/nav';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Preloader } from '@/components/Preloader';
-import { PageLoader } from '@/components/PageLoader';
-import { MouseTrackerCanvas } from '@/components/MouseTrackerCanvas';
 import { CustomCursor } from '@/components/CustomCursor';
 import type { PageId } from '@/data/demo';
 import { HomePage } from '@/pages/HomePage';
@@ -39,40 +37,54 @@ const pages: Record<PageId, React.FC> = {
   disclaimer: DisclaimerPage,
 };
 
-function App() {
-  const [page, setPage] = useState<PageId>('home');
-  const [loading, setLoading] = useState(false);
+const titles: Record<PageId, string> = {
+  home: 'تعلّم الباركور بأمان في دمشق',
+  what: 'ما هو الباركور',
+  path: 'مسار المبتدئ',
+  lesson: 'درس',
+  directory: 'الدليل',
+  'dir-detail': 'الدليل',
+  events: 'الفعاليات',
+  suggest: 'اقترح إضافة',
+  blog: 'المدونة',
+  article: 'المدونة',
+  book: 'الكتاب',
+  about: 'من نحن',
+  contact: 'تواصل معنا',
+  disclaimer: 'إخلاء المسؤولية',
+};
 
-  const navigate = useCallback(
-    (p: PageId) => {
-      if (p === page) return;
-      setLoading(true);
-      window.scrollTo(0, 0);
-      setTimeout(() => {
-        setPage(p);
-        setLoading(false);
-      }, 400);
-    },
-    [page]
-  );
+function App() {
+  const [route, setRoute] = useState(() => parsePath(window.location.pathname));
+  const { page, id } = route;
+
+  const navigate = useCallback((p: PageId, nextId?: string) => {
+    const url = pathFor(p, nextId);
+    if (url !== window.location.pathname) window.history.pushState(null, '', url);
+    setRoute({ page: p, id: nextId });
+  }, []);
+
+  useEffect(() => {
+    const onPop = () => setRoute(parsePath(window.location.pathname));
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [page]);
+    document.title = `${titles[page]} | باركور سوريا`;
+  }, [page, id]);
 
   const CurrentPage = pages[page];
 
   return (
-    <NavProvider value={{ page, navigate }}>
+    <NavProvider value={{ page, id, navigate }}>
       <Preloader />
-      {loading && <PageLoader />}
       <CustomCursor />
-      <div className="grain-overlay" aria-hidden="true" />
-      <MouseTrackerCanvas />
       <div className="min-h-screen flex flex-col relative z-10 bg-[#0a0a0a]">
         <Header />
         <main className="flex-1">
-          <div key={page} className="animate-fade-in">
+          <div key={`${page}/${id ?? ''}`} className="animate-fade-in">
             <CurrentPage />
           </div>
         </main>

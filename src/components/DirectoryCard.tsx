@@ -1,6 +1,7 @@
 import { MapPin, MessageCircle } from 'lucide-react';
 import { useNav } from '@/components/nav';
 import { dirCategoryLabels, type DirectoryItem } from '@/data/demo';
+import { photo, photoSet } from '@/lib/photo';
 
 export function DirectoryCard({ item }: { item: DirectoryItem }) {
   const { navigate } = useNav();
@@ -9,7 +10,9 @@ export function DirectoryCard({ item }: { item: DirectoryItem }) {
     <div className="group relative overflow-hidden bg-[#121212] border border-white/5 transition-all duration-500 hover:border-white/20">
       <div className="overflow-hidden h-56 relative">
         <img
-          src={item.image}
+          src={photo(item.image, 800)}
+          srcSet={photoSet(item.image, [480, 800])}
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           alt={item.name}
           loading="lazy"
           className="cinematic-img"
@@ -29,7 +32,7 @@ export function DirectoryCard({ item }: { item: DirectoryItem }) {
         <p className="text-sm text-white/55 mb-4 leading-relaxed line-clamp-2">{item.description}</p>
         <div className="flex gap-2 flex-wrap">
           <button
-            onClick={() => navigate('dir-detail')}
+            onClick={() => navigate('dir-detail', item.id)}
             className="btn btn-outline btn-sm"
           >
             التفاصيل

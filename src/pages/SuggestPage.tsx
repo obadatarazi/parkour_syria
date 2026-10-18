@@ -31,7 +31,7 @@ export function SuggestPage() {
                 <label className="block font-semibold text-[0.85rem] mb-1.5">نوع الاقتراح *</label>
                 <select
                   required
-                  className="w-full p-3 border border-[#e5e5e5] text-[0.9rem] outline-none focus:border-[#999] bg-white"
+                  className="w-full p-3 border border-white/10 text-[0.9rem] outline-none focus:border-white/40 bg-[#121212]"
                 >
                   <option value="">اختر...</option>
                   <option>مكان</option>
@@ -46,14 +46,14 @@ export function SuggestPage() {
                   type="text"
                   required
                   placeholder="الاسم"
-                  className="w-full p-3 border border-[#e5e5e5] text-[0.9rem] outline-none focus:border-[#999]"
+                  className="w-full p-3 border border-white/10 text-[0.9rem] outline-none focus:border-white/40 bg-[#121212]"
                 />
               </div>
               <div className="mb-4">
                 <label className="block font-semibold text-[0.85rem] mb-1.5">الحي *</label>
                 <select
                   required
-                  className="w-full p-3 border border-[#e5e5e5] text-[0.9rem] outline-none focus:border-[#999] bg-white"
+                  className="w-full p-3 border border-white/10 text-[0.9rem] outline-none focus:border-white/40 bg-[#121212]"
                 >
                   <option value="">اختر...</option>
                   {areas.map((a) => (
@@ -66,7 +66,7 @@ export function SuggestPage() {
                 <textarea
                   required
                   placeholder="وصف مختصر..."
-                  className="w-full p-3 border border-[#e5e5e5] text-[0.9rem] outline-none focus:border-[#999] min-h-[100px] resize-y"
+                  className="w-full p-3 border border-white/10 text-[0.9rem] outline-none focus:border-white/40 bg-[#121212] min-h-[100px] resize-y"
                 />
               </div>
               <div className="mb-4">
@@ -74,11 +74,11 @@ export function SuggestPage() {
                 <input
                   type="text"
                   placeholder="واتساب أو فيسبوك"
-                  className="w-full p-3 border border-[#e5e5e5] text-[0.9rem] outline-none focus:border-[#999]"
+                  className="w-full p-3 border border-white/10 text-[0.9rem] outline-none focus:border-white/40 bg-[#121212]"
                 />
               </div>
-              <div className="flex gap-2.5 items-start text-[0.875rem] text-[#555] mb-5">
-                <input type="checkbox" id="sc" required className="mt-1 w-4 h-4 accent-[#111]" />
+              <div className="flex gap-2.5 items-start text-[0.875rem] text-white/60 mb-5">
+                <input type="checkbox" id="sc" required className="mt-1 w-4 h-4 accent-[#c8102e]" />
                 <label htmlFor="sc">أقرّ بأن المكان آمن ولا يشمل مباني متضررة.</label>
               </div>
               <button type="submit" className="btn btn-dark btn-lg btn-block">

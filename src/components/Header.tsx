@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { useNav } from '@/components/nav';
+import { useNav, useLink } from '@/components/nav';
 import { navLinks, type PageId } from '@/data/demo';
 
 const extraLinks: { label: string; page: PageId }[] = [
@@ -11,14 +11,12 @@ const extraLinks: { label: string; page: PageId }[] = [
 ];
 
 export function Header() {
-  const { page, navigate } = useNav();
+  const { page } = useNav();
+  const link = useLink();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const go = (p: PageId) => {
-    navigate(p);
-    setOpen(false);
-  };
+  useEffect(() => setOpen(false), [page]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -36,8 +34,8 @@ export function Header() {
         }`}
       >
         <div className="container-x flex items-center justify-between gap-4">
-          <button
-            onClick={() => go('home')}
+          <a
+            {...link('home')}
             className="font-extrabold text-lg sm:text-xl tracking-tight flex items-center gap-2.5 text-white"
           >
             <span className="bg-white text-black w-8 h-8 flex items-center justify-center font-extrabold text-sm flex-shrink-0">
@@ -45,13 +43,13 @@ export function Header() {
             </span>
             <span className="hidden xs:inline">باركور سوريا</span>
             <span className="xs:hidden">باركور</span>
-          </button>
+          </a>
 
           <nav className="hidden lg:flex gap-8 text-sm font-medium">
             {navLinks.map((l) => (
-              <button
+              <a
                 key={l.page}
-                onClick={() => go(l.page)}
+                {...link(l.page)}
                 className={`transition-colors relative group ${
                   page === l.page ? 'text-white' : 'text-white/50 hover:text-white'
                 }`}
@@ -62,7 +60,7 @@ export function Header() {
                     page === l.page ? 'w-full' : 'w-0 group-hover:w-full'
                   }`}
                 />
-              </button>
+              </a>
             ))}
           </nav>
 
@@ -79,15 +77,15 @@ export function Header() {
       {open && (
         <div className="fixed inset-0 top-0 bg-black z-[99] p-6 pt-24 flex flex-col gap-1 overflow-y-auto lg:hidden animate-fade-in">
           {[...navLinks, ...extraLinks].map((l) => (
-            <button
+            <a
               key={l.page}
-              onClick={() => go(l.page)}
-              className={`py-4 text-2xl font-bold border-b border-white/5 text-right transition-colors ${
+              {...link(l.page)}
+              className={`block py-4 text-2xl font-bold border-b border-white/5 text-right transition-colors ${
                 page === l.page ? 'text-white' : 'text-white/50 hover:text-white'
               }`}
             >
               {l.label}
-            </button>
+            </a>
           ))}
         </div>
       )}

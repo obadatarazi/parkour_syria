@@ -4,8 +4,10 @@ import { DirectoryCard } from '@/components/DirectoryCard';
 import { ListCard } from '@/components/ListCard';
 import { Reveal } from '@/components/Reveal';
 import { ParallaxImage } from '@/components/ParallaxImage';
+import { LiquidImage } from '@/components/LiquidImage';
 import { useNav } from '@/components/nav';
 import { directoryItems, events, blogPosts, galleryImages } from '@/data/demo';
+import { photo, photoSet } from '@/lib/photo';
 
 export function HomePage() {
   const { navigate } = useNav();
@@ -17,25 +19,27 @@ export function HomePage() {
     <div>
       <HeroSlider />
 
-      <Reveal className="py-20 sm:py-28 border-b border-white/5 text-center">
-        <div className="container-x">
-          <div className="section-label">مرحباً بك</div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold mb-5 leading-[1.15] max-w-[800px] mx-auto">
-            تعلّم الباركور بأمان في دمشق
-          </h1>
-          <p className="text-white/50 max-w-[600px] mx-auto mb-8 text-base sm:text-lg font-light leading-relaxed">
-            منصة سورية مرتبطة بـ Parkour.com — دليل أماكن ومدربين، دروس للمبتدئين، فعاليات، ومقالات.
-          </p>
-          <div className="flex gap-3 justify-center flex-wrap">
-            <button onClick={() => navigate('path')} className="btn btn-dark btn-lg">
-              مسار المبتدئ
-            </button>
-            <button onClick={() => navigate('directory')} className="btn btn-outline btn-lg">
-              الدليل
-            </button>
+      <section className="section-light">
+        <Reveal className="py-20 sm:py-28 text-center">
+          <div className="container-x">
+            <div className="section-label">مرحباً بك</div>
+            <h2 className="text-3xl sm:text-5xl font-extrabold mb-5 leading-[1.15] max-w-[800px] mx-auto">
+              تعلّم الباركور بأمان في دمشق
+            </h2>
+            <p className="text-white/50 max-w-[600px] mx-auto mb-8 text-base sm:text-lg font-light leading-relaxed">
+              منصة سورية مرتبطة بـ Parkour.com — دليل أماكن ومدربين، دروس للمبتدئين، فعاليات، ومقالات.
+            </p>
+            <div className="flex gap-3 justify-center flex-wrap">
+              <button onClick={() => navigate('path')} className="btn btn-dark btn-lg">
+                مسار المبتدئ
+              </button>
+              <button onClick={() => navigate('directory')} className="btn btn-outline btn-lg">
+                الدليل
+              </button>
+            </div>
           </div>
-        </div>
-      </Reveal>
+        </Reveal>
+      </section>
 
       <Reveal as="section" className="section">
         <div className="container-x">
@@ -77,7 +81,7 @@ export function HomePage() {
         </ParallaxImage>
       </section>
 
-      <Reveal as="section" className="section bg-[#0d0d0d] border-t border-white/5">
+      <Reveal as="section" className="section section-light">
         <div className="container-x">
           <div className="flex items-end justify-between mb-12 gap-4 flex-wrap">
             <div>
@@ -127,7 +131,7 @@ export function HomePage() {
                 meta={`${post.category} · ${post.date}`}
                 title={post.title}
                 image={post.image}
-                onClick={() => navigate('article')}
+                onClick={() => navigate('article', post.id)}
               >
                 {post.excerpt}
               </ListCard>
@@ -150,10 +154,11 @@ export function HomePage() {
                 className="relative overflow-hidden group cursor-pointer"
                 style={{ aspectRatio: '4/5' }}
               >
-                <img
-                  src={img.url}
+                <LiquidImage
+                  src={photo(img.url, 700)}
+                  srcSet={photoSet(img.url, [400, 700])}
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
                   alt={img.caption}
-                  loading="lazy"
                   className="cinematic-img"
                   style={{ position: 'absolute', inset: 0 }}
                 />

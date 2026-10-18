@@ -1,17 +1,42 @@
 import { useEffect, useState } from 'react';
 
+const SEEN_KEY = 'ps-preloader-seen';
+
+function seenThisSession() {
+  try {
+    return sessionStorage.getItem(SEEN_KEY) === '1';
+  } catch {
+    return false;
+  }
+}
+
 export function Preloader() {
+  const [skip] = useState(seenThisSession);
   const [hidden, setHidden] = useState(false);
-  const [removed, setRemoved] = useState(false);
+  const [removed, setRemoved] = useState(skip);
 
   useEffect(() => {
-    const t1 = setTimeout(() => setHidden(true), 1800);
-    const t2 = setTimeout(() => setRemoved(true), 2400);
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
+    if (skip) return;
+    try {
+      sessionStorage.setItem(SEEN_KEY, '1');
+    } catch {
+      // storage blocked: the preloader just shows again next time
+    }
+
+    // Close once fonts are ready — at least 400ms so it doesn't flash, never more than 900ms.
+    let done = false;
+    const timers: number[] = [];
+    const close = () => {
+      if (done) return;
+      done = true;
+      setHidden(true);
+      timers.push(window.setTimeout(() => setRemoved(true), 500));
     };
-  }, []);
+    const minWait = new Promise((r) => timers.push(window.setTimeout(r, 400)));
+    Promise.all([document.fonts.ready, minWait]).then(close);
+    timers.push(window.setTimeout(close, 900));
+    return () => timers.forEach(clearTimeout);
+  }, [skip]);
 
   if (removed) return null;
 
@@ -66,7 +91,7 @@ export function Preloader() {
       <div className="w-48 h-[3px] bg-[#333] rounded-full overflow-hidden">
         <div
           className="h-full bg-[#c8102e] rounded-full"
-          style={{ animation: 'barFill 1.8s ease-out forwards' }}
+          style={{ animation: 'barFill 0.9s ease-out forwards' }}
         />
       </div>
 

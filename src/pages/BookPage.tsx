@@ -12,7 +12,7 @@ export function BookPage() {
       </div>
       <Reveal as="section" className="section">
         <div className="container-x max-w-[640px]">
-          <Reveal type="reveal-jump" className="grid grid-cols-1 sm:grid-cols-[160px_1fr] gap-8 items-center bg-[#111] text-white p-10 sm:px-7 mb-8 text-center sm:text-right">
+          <Reveal type="reveal-jump" className="grid grid-cols-1 sm:grid-cols-[160px_1fr] gap-8 items-center bg-[#121212] border border-white/10 text-white p-10 sm:px-7 mb-8 text-center sm:text-right">
             <div className="w-[140px] h-[190px] bg-[#333] flex items-center justify-center mx-auto">
               <BookOpen size={40} />
             </div>
@@ -28,7 +28,7 @@ export function BookPage() {
               <li>الأهالي</li>
               <li>الممارسون</li>
             </ul>
-            <p className="text-[#888] text-[0.9rem]">PDF. الطلب عبر واتساب فقط.</p>
+            <p className="text-white/50 text-[0.9rem]">PDF. الطلب عبر واتساب فقط.</p>
             <a
               href="https://wa.me/963999000000?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%B7%D9%84%D8%A8%20%D9%83%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D8%A8%D8%A7%D8%B1%D9%83%D9%88%D8%B1"
               target="_blank"

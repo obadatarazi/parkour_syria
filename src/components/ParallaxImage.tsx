@@ -1,4 +1,5 @@
 import { useEffect, useRef, type ReactNode } from 'react';
+import { photo, photoSet } from '@/lib/photo';
 
 export function ParallaxImage({
   src,
@@ -53,7 +54,9 @@ export function ParallaxImage({
     >
       <img
         ref={imgRef}
-        src={src}
+        src={photo(src, 1600)}
+        srcSet={photoSet(src, [940, 1600])}
+        sizes="100vw"
         alt={alt}
         loading="lazy"
         className="cinematic-img"

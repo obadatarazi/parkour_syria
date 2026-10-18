@@ -25,7 +25,7 @@ export function WhatPage() {
           <p>تعريف بسيط وواضح</p>
         </div>
       </div>
-      <Reveal as="section" className="section">
+      <Reveal as="section" className="section section-light">
         <div className="container-x prose">
           <div className="safety">
             <strong>تنبيه أمان</strong>الباركور رياضة تتطلب تدريباً تدريجياً. لا تحاول حركات متقدمة قبل
@@ -52,7 +52,7 @@ export function WhatPage() {
           <p>مثل أي رياضة. معظم الإصابات من التسرّع. مع الأمان والتدرّج يمكن ممارسته بأمان.</p>
           <h2>أسئلة شائعة</h2>
           {faqs.map((f, i) => (
-            <div key={i} className="border-b border-[#e5e5e5]">
+            <div key={i} className="border-b border-white/10">
               <button
                 onClick={() => setOpenIdx(openIdx === i ? null : i)}
                 className="py-4 font-semibold text-[0.95rem] w-full flex justify-between items-center gap-3"
@@ -64,7 +64,7 @@ export function WhatPage() {
                 />
               </button>
               {openIdx === i && (
-                <p className="pb-4 text-[0.9rem] text-[#555]">
+                <p className="pb-4 text-[0.9rem] text-white/60">
                   {f.a}{' '}
                   {i === 2 && (
                     <button onClick={() => navigate('directory')} className="underline">

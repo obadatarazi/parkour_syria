@@ -1,9 +1,13 @@
-import { MapPin, MessageCircle, Facebook } from 'lucide-react';
+import { MapPin, MessageCircle, Map as MapIcon } from 'lucide-react';
 import { Reveal } from '@/components/Reveal';
 import { useNav } from '@/components/nav';
+import { directoryItems, dirCategoryLabels } from '@/data/demo';
+import { photo, photoSet } from '@/lib/photo';
 
 export function DirDetailPage() {
-  const { navigate } = useNav();
+  const { navigate, id } = useNav();
+  const item = directoryItems.find((d) => d.id === id) ?? directoryItems[0];
+  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${item.name} ${item.area} دمشق`)}`;
 
   return (
     <div>
@@ -13,27 +17,35 @@ export function DirDetailPage() {
             → العودة للدليل
           </button>
           <div className="flex gap-2 mb-3">
-            <span className="tag">مكان</span>
-            <span className="tag tag-verified">تم التحقق</span>
+            <span className="tag">{dirCategoryLabels[item.category]}</span>
+            {item.verified && <span className="tag tag-verified">تم التحقق</span>}
           </div>
-          <h1 className="text-[1.6rem] font-extrabold mb-2">حديقة تشرين · منطقة التدريب</h1>
-          <div className="text-[#888] mb-4 flex items-center gap-1">
-            <MapPin size={14} /> المزة · دمشق
+          <h1 className="text-[1.6rem] font-extrabold mb-2">{item.name}</h1>
+          <div className="text-white/50 mb-4 flex items-center gap-1">
+            <MapPin size={14} /> {item.area} · دمشق
           </div>
-          <p className="mb-3">
-            مساحة مفتوحة مناسبة للمبتدئين والمتوسطين. أرضية عشبية ومنصات منخفضة.
-          </p>
-          <p className="text-[#888] text-[0.9rem] mb-6">
-            يُنصح بالتدريب صباحاً. تم التحقق — لا مبانٍ متضررة.
+          <Reveal type="reveal-scale" className="overflow-hidden mb-6">
+            <img
+              src={photo(item.image, 1280)}
+              srcSet={photoSet(item.image, [760, 1280])}
+              sizes="(min-width: 760px) 712px, 100vw"
+              alt={item.name}
+              className="w-full max-h-[380px] object-cover"
+            />
+          </Reveal>
+          <p className="mb-3">{item.description}</p>
+          <p className="text-white/50 text-[0.9rem] mb-6">
+            {item.verified ? 'تم التحقق — لا مبانٍ متضررة.' : 'لم يتم التحقق بعد. الإدراج ليس تزكية.'}
           </p>
           <div className="flex gap-2.5 flex-wrap">
-            <a href="https://wa.me/963999000111" target="_blank" rel="noreferrer" className="btn btn-dark">
+            <a href={`https://wa.me/${item.whatsapp}`} target="_blank" rel="noreferrer" className="btn btn-dark">
               <MessageCircle size={16} /> واتساب
             </a>
-            <button className="btn btn-outline">
-              <Facebook size={16} /> فيسبوك
-            </button>
-            <button className="btn btn-outline">خريطة Google</button>
+            {item.category === 'place' && (
+              <a href={mapsUrl} target="_blank" rel="noreferrer" className="btn btn-outline">
+                <MapIcon size={16} /> خريطة Google
+              </a>
+            )}
           </div>
         </div>
       </Reveal>

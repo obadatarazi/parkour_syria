@@ -1,4 +1,4 @@
-import { useNav } from '@/components/nav';
+import { useLink } from '@/components/nav';
 import type { PageId } from '@/data/demo';
 
 const exploreLinks: { label: string; page: PageId }[] = [
@@ -16,7 +16,7 @@ const moreLinks: { label: string; page: PageId }[] = [
 ];
 
 export function Footer() {
-  const { navigate } = useNav();
+  const link = useLink();
 
   return (
     <footer className="bg-black border-t border-white/5 pt-20 pb-10">
@@ -41,12 +41,12 @@ export function Footer() {
             <ul className="space-y-3">
               {exploreLinks.map((l) => (
                 <li key={l.page}>
-                  <button
-                    onClick={() => navigate(l.page)}
+                  <a
+                    {...link(l.page)}
                     className="text-white/60 hover:text-white transition-colors text-sm"
                   >
                     {l.label}
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -59,12 +59,12 @@ export function Footer() {
             <ul className="space-y-3">
               {moreLinks.map((l) => (
                 <li key={l.page}>
-                  <button
-                    onClick={() => navigate(l.page)}
+                  <a
+                    {...link(l.page)}
                     className="text-white/60 hover:text-white transition-colors text-sm"
                   >
                     {l.label}
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>

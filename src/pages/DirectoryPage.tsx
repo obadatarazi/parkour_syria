@@ -42,13 +42,13 @@ export function DirectoryPage() {
           </div>
           <div className="flex flex-wrap gap-2 mb-6 items-center">
             <div className="relative">
-              <Search size={15} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#888]" />
+              <Search size={15} className="absolute right-3 top-1/2 -translate-y-1/2 text-white/50" />
               <input
                 type="text"
                 placeholder="ابحث..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="pr-9 pl-3.5 py-2 border border-[#e5e5e5] text-sm outline-none focus:border-[#999] min-w-[140px] sm:min-w-[180px]"
+                className="pr-9 pl-3.5 py-2 border border-white/10 text-sm outline-none focus:border-white/40 bg-[#121212] min-w-[140px] sm:min-w-[180px]"
               />
             </div>
             {filters.map((f) => (
@@ -68,7 +68,7 @@ export function DirectoryPage() {
               ))}
             </Reveal>
           ) : (
-            <p className="text-[#888] text-center py-12">لا توجد نتائج مطابقة.</p>
+            <p className="text-white/50 text-center py-12">لا توجد نتائج مطابقة.</p>
           )}
         </div>
       </Reveal>

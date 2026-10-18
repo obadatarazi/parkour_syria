@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import { useNav } from '@/components/nav';
 import { slides } from '@/data/demo';
+import { photo, photoSet } from '@/lib/photo';
 
 export function HeroSlider() {
   const { navigate } = useNav();
@@ -43,7 +44,9 @@ export function HeroSlider() {
           }`}
         >
           <img
-            src={slide.image}
+            src={photo(slide.image, 1600)}
+            srcSet={photoSet(slide.image, [940, 1600, 1920])}
+            sizes="100vw"
             alt=""
             className="absolute inset-0 w-full h-full object-cover"
             style={{ filter: 'brightness(0.55) contrast(1.15) grayscale(15%)' }}

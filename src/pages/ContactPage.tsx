@@ -16,21 +16,21 @@ export function ContactPage() {
           <h1>تواصل معنا</h1>
         </div>
       </div>
-      <Reveal as="section" className="section">
+      <Reveal as="section" className="section section-light">
         <div className="container-x max-w-[560px]">
-          <Reveal type="stagger" className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[#e5e5e5]">
+          <Reveal type="stagger" className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/10">
             {contacts.map((c) => (
               <a
                 key={c.label}
                 href={c.href}
                 target={c.href.startsWith('http') ? '_blank' : undefined}
                 rel="noreferrer"
-                className="bg-white flex items-center gap-4 p-[18px] hover:bg-[#f5f5f5] transition-colors"
+                className="bg-white flex items-center gap-4 p-[18px] hover:bg-white/5 transition-colors"
               >
-                <c.icon size={22} className="text-[#555]" />
+                <c.icon size={22} className="text-white/60" />
                 <div>
                   <strong className="block text-[0.95rem]">{c.label}</strong>
-                  <span className="text-xs text-[#888]">{c.value}</span>
+                  <span className="text-xs text-white/50">{c.value}</span>
                 </div>
               </a>
             ))}

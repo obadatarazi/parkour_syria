@@ -88,7 +88,7 @@ export const events: ParkourEvent[] = [
   {
     id: 'safety-workshop',
     type: 'ورشة',
-    date: 'السبت 18 أكتوبر · 10:00 ص',
+    date: 'السبت 24 أكتوبر · 10:00 ص',
     title: 'ورشة أمان للمبتدئين',
     location: 'حديقة تشرين · المزة',
     whatsapp: '963999000111',
@@ -97,7 +97,7 @@ export const events: ParkourEvent[] = [
   {
     id: 'friday-gathering',
     type: 'تجمع',
-    date: 'الجمعة 17 أكتوبر · 4:00 م',
+    date: 'الجمعة 23 أكتوبر · 4:00 م',
     title: 'تجمع يوم الجمعة · جسر الرئيس',
     location: 'تجمع أسبوعي مفتوح. تدريب حر وتبادل خبرات.',
     whatsapp: '963999000333',
@@ -106,7 +106,7 @@ export const events: ParkourEvent[] = [
   {
     id: 'balance-workshop',
     type: 'ورشة',
-    date: 'الأحد 26 أكتوبر · 9:00 ص',
+    date: 'الأحد 1 نوفمبر · 9:00 ص',
     title: 'ورشة توازن وقفز دقيق',
     location: 'حديقة الجلاء · أبو رمانة',
     whatsapp: '963999000222',

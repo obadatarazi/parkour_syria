@@ -103,24 +103,6 @@
     100% { transform: scale(2.5); opacity: 0; }
   }
 
-  @keyframes bounceLoader {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-  }
-
-  @keyframes grainShift {
-    0%, 100% { transform: translate(0, 0); }
-    10% { transform: translate(-2%, -2%); }
-    20% { transform: translate(2%, 2%); }
-    30% { transform: translate(-1%, 1%); }
-    40% { transform: translate(1%, -1%); }
-    50% { transform: translate(-2%, 0); }
-    60% { transform: translate(2%, -1%); }
-    70% { transform: translate(-1%, 2%); }
-    80% { transform: translate(1%, 1%); }
-    90% { transform: translate(-2%, -1%); }
-  }
-
   @keyframes textReveal {
     from { opacity: 0; transform: translateY(100%); }
     to { opacity: 1; transform: translateY(0); }
@@ -165,18 +147,6 @@
     animation: textReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
-  .grain-overlay {
-    position: fixed;
-    inset: -150%;
-    width: 400%;
-    height: 400%;
-    pointer-events: none;
-    z-index: 9998;
-    opacity: 0.06;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
-    animation: grainShift 0.5s steps(3) infinite;
-  }
-
   .stagger > * { opacity: 0; }
   .stagger.revealed > *:nth-child(1) { animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0s forwards; }
   .stagger.revealed > *:nth-child(2) { animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.12s forwards; }
@@ -196,16 +166,41 @@
     pointer-events: none;
     z-index: 9997;
     mix-blend-mode: difference;
-    transition: width 0.2s, height 0.2s, opacity 0.2s;
+    transition: width 0.25s cubic-bezier(0.16,1,0.3,1), height 0.25s cubic-bezier(0.16,1,0.3,1), background 0.2s, opacity 0.2s;
     transform: translate(-50%, -50%);
   }
+  /* Over links/buttons: an outline ring so the label underneath stays readable */
   .custom-cursor.hovering {
-    width: 40px;
-    height: 40px;
-    opacity: 0.5;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: 1.5px solid var(--white);
+  }
+  .custom-cursor.typing,
+  .cursor-trail.typing {
+    opacity: 0;
+  }
+  .cursor-trail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.35) 45%, rgba(255,255,255,0) 72%);
+    filter: blur(4px);
+    pointer-events: none;
+    z-index: 9996;
+    mix-blend-mode: difference;
+    transition: opacity 0.25s;
+    will-change: transform;
+  }
+  .cursor-trail.hovering {
+    opacity: 0;
   }
   @media (hover: none) {
-    .custom-cursor { display: none; }
+    .custom-cursor,
+    .cursor-trail { display: none; }
   }
 }
 
@@ -322,7 +317,7 @@
 
   .page-hero {
     background: var(--dark);
-    padding: 48px 0;
+    padding: 120px 0 48px;
     border-bottom: 1px solid rgba(255,255,255,0.08);
   }
   .page-hero h1 {
@@ -365,6 +360,39 @@
   .section {
     padding: 80px 0;
   }
+
+  /* Light section to break up the dark page */
+  .section-light {
+    background: var(--light);
+    color: var(--black);
+  }
+  .section-light .section-label { color: var(--gray); }
+  .section-light .text-white { color: var(--black); }
+  .section-light .text-white\/40 { color: rgba(10,10,10,0.5); }
+  .section-light .text-white\/50 { color: rgba(10,10,10,0.6); }
+  .section-light .hover\:text-white:hover { color: var(--black); }
+  .section-light .group:hover .group-hover\:text-white\/80 { color: var(--accent); }
+  .section-light .border-white\/5,
+  .section-light .border-white\/8 { border-color: rgba(10,10,10,0.1); }
+  .section-light .btn-dark { background: var(--black); color: var(--white); }
+  .section-light .btn-dark:hover { background: transparent; color: var(--black); border: 1px solid var(--black); }
+  .section-light .btn-outline { border-color: rgba(10,10,10,0.3); color: var(--black); }
+  .section-light .btn-outline:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+  .section-light .text-white\/60 { color: rgba(10,10,10,0.65); }
+  .section-light .text-white\/75 { color: rgba(10,10,10,0.8); }
+  .section-light .border-white\/10 { border-color: rgba(10,10,10,0.12); }
+  .section-light .bg-white\/10 { background-color: rgba(10,10,10,0.1); }
+  .section-light .hover\:bg-white\/5:hover { background-color: rgba(10,10,10,0.04); }
+  .section-light .prose p,
+  .section-light .prose ul { color: rgba(10,10,10,0.78); }
+  .section-light .safety { background: rgba(249,168,37,0.16); color: #5c4400; }
+  .section-light .safety strong { color: #9a6200; }
+  .section-light .tag { background: rgba(10,10,10,0.05); color: rgba(10,10,10,0.7); border-color: rgba(10,10,10,0.12); }
+  .section-light .tag-verified { background: rgba(46,125,50,0.1); color: #2e7d32; border-color: rgba(46,125,50,0.3); }
+  .section-light .filter-btn { border-color: rgba(10,10,10,0.18); color: rgba(10,10,10,0.65); }
+  .section-light .filter-btn:hover,
+  .section-light .filter-btn.active { background: var(--black); color: var(--white); border-color: var(--black); }
+  .section-light .back-link:hover { color: var(--black); }
 
   .filter-btn {
     padding: 8px 16px;

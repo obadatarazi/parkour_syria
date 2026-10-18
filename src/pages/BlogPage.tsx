@@ -20,7 +20,7 @@ export function BlogPage() {
           <p>مقالات عن الباركور والأمان</p>
         </div>
       </div>
-      <Reveal as="section" className="section">
+      <Reveal as="section" className="section section-light">
         <div className="container-x">
           <div className="flex flex-wrap gap-2 mb-6">
             {filters.map((f) => (
@@ -40,7 +40,7 @@ export function BlogPage() {
                 meta={`${post.category} · ${post.date}`}
                 title={post.title}
                 image={post.image}
-                onClick={() => navigate('article')}
+                onClick={() => navigate('article', post.id)}
               >
                 {post.excerpt}
               </ListCard>

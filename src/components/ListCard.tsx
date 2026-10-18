@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { photo } from '@/lib/photo';
 
 export function ListCard({
   meta,
@@ -21,7 +22,7 @@ export function ListCard({
       {image && (
         <div className="w-[100px] h-[70px] sm:w-[220px] sm:h-[140px] overflow-hidden relative">
           <img
-            src={image}
+            src={photo(image, 480)}
             alt={title}
             loading="lazy"
             className="cinematic-img"
