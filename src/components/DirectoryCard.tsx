@@ -1,10 +1,15 @@
 import { MapPin, MessageCircle } from 'lucide-react';
 import { useNav } from '@/components/nav';
-import { dirCategoryLabels, type DirectoryItem } from '@/data/demo';
+import type { DirectoryItem } from '@/data/demo';
+import { useDemo } from '@/data/useDemo';
+import { useI18n } from '@/i18n/useI18n';
 import { photo, photoSet } from '@/lib/photo';
+import { whatsappLink } from '@/config/site';
 
 export function DirectoryCard({ item }: { item: DirectoryItem }) {
   const { navigate } = useNav();
+  const { dirCategoryLabels } = useDemo();
+  const { t } = useI18n();
 
   return (
     <div className="group relative overflow-hidden bg-[#121212] border border-white/5 transition-all duration-500 hover:border-white/20">
@@ -19,9 +24,11 @@ export function DirectoryCard({ item }: { item: DirectoryItem }) {
           style={{ position: 'absolute', inset: 0 }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-[1]" />
-        <div className="absolute top-3 right-3 z-[2] flex gap-2 flex-wrap">
+        <div className="absolute top-3 start-3 z-[2] flex gap-2 flex-wrap">
           <span className="tag">{dirCategoryLabels[item.category]}</span>
-          {item.verified && <span className="tag tag-verified">تم التحقق</span>}
+          {item.verified && (
+            <span className="tag tag-verified">{t('common.verified')}</span>
+          )}
         </div>
       </div>
       <div className="p-5">
@@ -29,21 +36,23 @@ export function DirectoryCard({ item }: { item: DirectoryItem }) {
         <div className="text-sm text-white/40 mb-3 flex items-center gap-1.5">
           <MapPin size={13} /> {item.area}
         </div>
-        <p className="text-sm text-white/55 mb-4 leading-relaxed line-clamp-2">{item.description}</p>
+        <p className="text-sm text-white/55 mb-4 leading-relaxed line-clamp-2">
+          {item.description}
+        </p>
         <div className="flex gap-2 flex-wrap">
           <button
             onClick={() => navigate('dir-detail', item.id)}
             className="btn btn-outline btn-sm"
           >
-            التفاصيل
+            {t('common.details')}
           </button>
           <a
-            href={`https://wa.me/${item.whatsapp}`}
+            href={whatsappLink(item.whatsapp)}
             target="_blank"
             rel="noreferrer"
             className="btn btn-dark btn-sm"
           >
-            <MessageCircle size={14} /> واتساب
+            <MessageCircle size={14} /> {t('common.whatsapp')}
           </a>
         </div>
       </div>

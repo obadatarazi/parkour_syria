@@ -2,62 +2,56 @@ import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { Reveal } from '@/components/Reveal';
 import { useNav } from '@/components/nav';
+import { useI18n } from '@/i18n/useI18n';
 
-const faqs = [
-  { q: 'ما العمر المناسب؟', a: 'من 12–14 مع إشراف، والبالغون في أي عمر.' },
-  { q: 'هل أحتاج معدات؟', a: 'حذاء بقبضة جيدة وملابس مريحة. لا حاجة لمعدات أخرى.' },
-  { q: 'أين أتدرّب في دمشق؟', a: 'راجع دليل الأماكن.' },
-  {
-    q: 'هل مرتبط بـ Parkour.com؟',
-    a: 'نعم. باركور سوريا مرتبط بـ Parkour.com ويعمل ضمن رؤيته لدعم مجتمع الباركور محلياً في سوريا.',
-  },
-];
+type Faq = { q: string; a: string };
 
 export function WhatPage() {
   const { navigate } = useNav();
+  const { t, tm } = useI18n();
+  const faqs = tm<Faq[]>('pages.what.faqs');
+  const whyList = tm<string[]>('pages.what.whyList');
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   return (
     <div>
       <div className="page-hero">
         <div className="container-x">
-          <h1>ما هو الباركور؟</h1>
-          <p>تعريف بسيط وواضح</p>
+          <h1>{t('pages.what.heroTitle')}</h1>
+          <p>{t('pages.what.heroSub')}</p>
         </div>
       </div>
       <Reveal as="section" className="section section-light">
         <div className="container-x prose">
           <div className="safety">
-            <strong>تنبيه أمان</strong>الباركور رياضة تتطلب تدريباً تدريجياً. لا تحاول حركات متقدمة قبل
-            إتقان الأساسيات.
+            <strong>{t('pages.what.safetyTitle')}</strong>
+            {t('pages.what.safetyText')}
           </div>
+          <p>{t('pages.what.intro')}</p>
+          <h2>{t('pages.what.originTitle')}</h2>
           <p>
-            الباركور (Parkour) هو فن وفلسفة التنقّل بكفاءة من نقطة إلى أخرى باستخدام الجسم فقط. الهدف
-            ليس العرض، بل التغلّب على العقبات بأمان وذكاء.
+            {t('pages.what.originBefore')}
+            <strong>{t('pages.what.originName')}</strong>
+            {t('pages.what.originAfter')}
           </p>
-          <h2>من أين جاء الباركور؟</h2>
-          <p>
-            وُلد في فرنسا في أواخر الثمانينيات على يد <strong>دافيد بيل (David Belle)</strong>، مستلهماً
-            والده رايمون بيل. الفلسفة: «كن قوياً لتكون نافعاً».
-          </p>
-          <p>في سوريا نركّز على نسخة آمنة ومناسبة للواقع المحلي — خاصة في دمشق.</p>
-          <h2>لماذا الباركور؟</h2>
+          <p>{t('pages.what.syriaFocus')}</p>
+          <h2>{t('pages.what.whyTitle')}</h2>
           <ul>
-            <li>يبني القوة والمرونة والتوازن</li>
-            <li>يُحسّن الثقة واتخاذ القرار</li>
-            <li>منخفضة التكلفة</li>
-            <li>مجتمع ودّي يشجّع التدرّج</li>
+            {whyList.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
           </ul>
-          <h2>هل هو خطر؟</h2>
-          <p>مثل أي رياضة. معظم الإصابات من التسرّع. مع الأمان والتدرّج يمكن ممارسته بأمان.</p>
-          <h2>أسئلة شائعة</h2>
+          <h2>{t('pages.what.dangerTitle')}</h2>
+          <p>{t('pages.what.dangerText')}</p>
+          <h2>{t('pages.what.faqsTitle')}</h2>
           {faqs.map((f, i) => (
             <div key={i} className="border-b border-white/10">
               <button
+                type="button"
                 onClick={() => setOpenIdx(openIdx === i ? null : i)}
-                className="py-4 font-semibold text-[0.95rem] w-full flex justify-between items-center gap-3"
+                className="py-4 font-semibold text-[0.95rem] w-full flex justify-between items-center gap-3 text-start"
               >
-                {f.q}{' '}
+                {f.q}
                 <ChevronDown
                   size={16}
                   className={openIdx === i ? 'rotate-180 transition-transform' : 'transition-transform'}
@@ -67,8 +61,8 @@ export function WhatPage() {
                 <p className="pb-4 text-[0.9rem] text-white/60">
                   {f.a}{' '}
                   {i === 2 && (
-                    <button onClick={() => navigate('directory')} className="underline">
-                      دليل الأماكن
+                    <button type="button" onClick={() => navigate('directory')} className="underline">
+                      {t('pages.what.directoryLink')}
                     </button>
                   )}
                 </p>

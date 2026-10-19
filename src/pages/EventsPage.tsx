@@ -1,15 +1,20 @@
 import { MessageCircle } from 'lucide-react';
 import { Reveal } from '@/components/Reveal';
-import { events } from '@/data/demo';
+import { whatsappLink } from '@/config/site';
+import { useDemo } from '@/data/useDemo';
+import { useI18n } from '@/i18n/useI18n';
 import { photo } from '@/lib/photo';
 
 export function EventsPage() {
+  const { t } = useI18n();
+  const { events } = useDemo();
+
   return (
     <div>
       <div className="page-hero">
         <div className="container-x">
-          <h1>الفعاليات القادمة</h1>
-          <p>ورشات وتجمعات — المنتهية تختفي تلقائياً</p>
+          <h1>{t('pages.events.heroTitle')}</h1>
+          <p>{t('pages.events.heroSub')}</p>
         </div>
       </div>
       <Reveal as="section" className="section section-light">
@@ -29,18 +34,18 @@ export function EventsPage() {
                   />
                 </div>
                 <div>
-                  <div className="text-xs text-white/50 mb-1 font-semibold uppercase tracking-wide">
+                  <div className="text-xs text-white/50 mb-1 font-semibold uppercase tracking-wide rtl:tracking-normal">
                     {ev.type} · {ev.date}
                   </div>
                   <h3 className="text-base sm:text-lg font-bold mb-1 leading-snug">{ev.title}</h3>
                   <p className="text-sm text-white/60 mb-2">{ev.location}</p>
                   <a
-                    href={`https://wa.me/${ev.whatsapp}`}
+                    href={whatsappLink(ev.whatsapp)}
                     target="_blank"
                     rel="noreferrer"
                     className="btn btn-dark btn-sm"
                   >
-                    <MessageCircle size={14} /> سجّل
+                    <MessageCircle size={14} /> {t('common.register')}
                   </a>
                 </div>
               </div>

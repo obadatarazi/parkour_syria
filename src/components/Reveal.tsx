@@ -1,6 +1,6 @@
 import { useEffect, useRef, type ReactNode } from 'react';
 
-type AnimationType = 'reveal' | 'reveal-left' | 'reveal-scale' | 'reveal-jump' | 'reveal-clip' | 'stagger';
+type AnimationType = 'reveal' | 'reveal-scale' | 'reveal-jump' | 'reveal-clip' | 'stagger';
 
 export function Reveal({
   children,

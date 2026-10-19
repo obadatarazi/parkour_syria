@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useI18n } from '@/i18n/useI18n';
 
 const SEEN_KEY = 'ps-preloader-seen';
 
@@ -11,6 +12,7 @@ function seenThisSession() {
 }
 
 export function Preloader() {
+  const { t } = useI18n();
   const [skip] = useState(seenThisSession);
   const [hidden, setHidden] = useState(false);
   const [removed, setRemoved] = useState(skip);
@@ -23,7 +25,6 @@ export function Preloader() {
       // storage blocked: the preloader just shows again next time
     }
 
-    // Close once fonts are ready — at least 400ms so it doesn't flash, never more than 900ms.
     let done = false;
     const timers: number[] = [];
     const close = () => {
@@ -81,11 +82,11 @@ export function Preloader() {
         </svg>
       </div>
 
-      <div className="text-white font-extrabold text-xl tracking-tight mb-6 flex items-center gap-2">
+      <div className="text-white font-extrabold text-xl tracking-tight rtl:tracking-normal mb-6 flex items-center gap-2">
         <span className="bg-white text-black w-7 h-7 flex items-center justify-center text-base font-extrabold">
-          ب
+          {t('brand.logoLetter')}
         </span>
-        باركور سوريا
+        {t('brand.name')}
       </div>
 
       <div className="w-48 h-[3px] bg-[#333] rounded-full overflow-hidden">
@@ -95,7 +96,7 @@ export function Preloader() {
         />
       </div>
 
-      <p className="text-[#666] text-xs mt-4">جاري التحميل...</p>
+      <p className="text-[#666] text-xs mt-4">{t('preloader.loading')}</p>
     </div>
   );
 }

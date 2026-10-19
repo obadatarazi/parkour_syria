@@ -1,25 +1,27 @@
 import { Reveal } from '@/components/Reveal';
 import { useNav } from '@/components/nav';
+import { useI18n } from '@/i18n/useI18n';
 
 export function AboutPage() {
   const { navigate } = useNav();
+  const { t } = useI18n();
 
   return (
     <div>
       <div className="page-hero">
         <div className="container-x">
-          <h1>من نحن</h1>
+          <h1>{t('pages.about.heroTitle')}</h1>
         </div>
       </div>
       <Reveal as="section" className="section section-light">
         <div className="container-x prose">
           <p>
-            <strong>باركور سوريا</strong> منصة سورية مرتبطة بـ Parkour.com تساعد المهتمين بالباركور
-            على التعلّم بأمان وإيجاد أماكن التدريب والمدربين في دمشق.
+            <strong>{t('pages.about.brandStrong')}</strong>
+            {t('pages.about.p1After')}
           </p>
-          <p className="text-white/50 text-[0.9rem]">مرتبط بـ Parkour.com — محتوى محلي لدمشق وسوريا.</p>
-          <button onClick={() => navigate('contact')} className="btn btn-dark mt-4">
-            تواصل معنا
+          <p className="text-white/50 text-[0.9rem]">{t('pages.about.p2')}</p>
+          <button type="button" onClick={() => navigate('contact')} className="btn btn-dark mt-4">
+            {t('pages.about.contactCta')}
           </button>
         </div>
       </Reveal>

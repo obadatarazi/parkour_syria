@@ -1,22 +1,15 @@
 import { useLink } from '@/components/nav';
-import type { PageId } from '@/data/demo';
+import type { NavPageId } from '@/data/demo';
+import { site, whatsappLink } from '@/config/site';
+import { useI18n } from '@/i18n/useI18n';
 
-const exploreLinks: { label: string; page: PageId }[] = [
-  { label: 'ما هو الباركور', page: 'what' },
-  { label: 'مسار المبتدئ', page: 'path' },
-  { label: 'الدليل', page: 'directory' },
-  { label: 'الفعاليات', page: 'events' },
-];
-
-const moreLinks: { label: string; page: PageId }[] = [
-  { label: 'الكتاب', page: 'book' },
-  { label: 'من نحن', page: 'about' },
-  { label: 'تواصل', page: 'contact' },
-  { label: 'إخلاء المسؤولية', page: 'disclaimer' },
-];
+const exploreLinks: NavPageId[] = ['what', 'path', 'directory', 'events'];
+const moreLinks: NavPageId[] = ['book', 'about', 'contact', 'disclaimer'];
 
 export function Footer() {
   const link = useLink();
+  const { t } = useI18n();
+  const year = new Date().getFullYear();
 
   return (
     <footer className="bg-black border-t border-white/5 pt-20 pb-10">
@@ -25,27 +18,27 @@ export function Footer() {
           <div className="md:col-span-1">
             <div className="font-extrabold text-xl text-white flex items-center gap-2.5 mb-4">
               <span className="bg-white text-black w-8 h-8 flex items-center justify-center font-extrabold text-sm">
-                ب
+                {t('brand.logoLetter')}
               </span>
-              باركور سوريا
+              {t('brand.name')}
             </div>
             <p className="text-white/40 text-sm leading-relaxed">
-              موقع عربي يساعد المهتمين بالباركور في سوريا على التعلّم بأمان.
+              {t('footer.tagline')}
             </p>
           </div>
 
           <div>
-            <h4 className="text-white/30 text-xs font-bold mb-5 uppercase tracking-[0.15em]">
-              استكشف
+            <h4 className="text-white/30 text-xs font-bold mb-5 uppercase tracking-[0.15em] rtl:tracking-normal">
+              {t('footer.explore')}
             </h4>
             <ul className="space-y-3">
-              {exploreLinks.map((l) => (
-                <li key={l.page}>
+              {exploreLinks.map((p) => (
+                <li key={p}>
                   <a
-                    {...link(l.page)}
+                    {...link(p)}
                     className="text-white/60 hover:text-white transition-colors text-sm"
                   >
-                    {l.label}
+                    {t(`nav.${p}`)}
                   </a>
                 </li>
               ))}
@@ -53,17 +46,17 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-white/30 text-xs font-bold mb-5 uppercase tracking-[0.15em]">
-              المزيد
+            <h4 className="text-white/30 text-xs font-bold mb-5 uppercase tracking-[0.15em] rtl:tracking-normal">
+              {t('footer.more')}
             </h4>
             <ul className="space-y-3">
-              {moreLinks.map((l) => (
-                <li key={l.page}>
+              {moreLinks.map((p) => (
+                <li key={p}>
                   <a
-                    {...link(l.page)}
+                    {...link(p)}
                     className="text-white/60 hover:text-white transition-colors text-sm"
                   >
-                    {l.label}
+                    {p === 'contact' ? t('footer.links.contact') : t(`nav.${p}`)}
                   </a>
                 </li>
               ))}
@@ -71,28 +64,34 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-white/30 text-xs font-bold mb-5 uppercase tracking-[0.15em]">
-              تواصل
+            <h4 className="text-white/30 text-xs font-bold mb-5 uppercase tracking-[0.15em] rtl:tracking-normal">
+              {t('footer.connect')}
             </h4>
             <ul className="space-y-3">
               <li>
                 <a
-                  href="https://wa.me/963999000000"
+                  href={whatsappLink(site.whatsappMain)}
                   target="_blank"
                   rel="noreferrer"
                   className="text-white/60 hover:text-white transition-colors text-sm"
                 >
-                  واتساب
+                  {t('common.whatsapp')}
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/60 hover:text-white transition-colors text-sm">
-                  فيسبوك
+                <a
+                  href={site.facebookUrl}
+                  className="text-white/60 hover:text-white transition-colors text-sm"
+                >
+                  {t('common.facebook')}
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/60 hover:text-white transition-colors text-sm">
-                  إنستغرام
+                <a
+                  href={site.instagramUrl}
+                  className="text-white/60 hover:text-white transition-colors text-sm"
+                >
+                  {t('common.instagram')}
                 </a>
               </li>
             </ul>
@@ -101,10 +100,10 @@ export function Footer() {
 
         <div className="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-white/30 text-xs">
-            © 2026 باركور سوريا · مرتبط بـ Parkour.com · parkoursyria.com
+            {t('footer.copyright', { year })}
           </p>
-          <p className="text-white/20 text-xs uppercase tracking-widest">
-            تدرب بأمان
+          <p className="text-white/20 text-xs uppercase tracking-widest rtl:tracking-normal">
+            {t('footer.slogan')}
           </p>
         </div>
       </div>

@@ -1,5 +1,7 @@
 import { MessageCircle, Mail } from 'lucide-react';
 import { Reveal } from '@/components/Reveal';
+import { site, whatsappLink } from '@/config/site';
+import { useI18n } from '@/i18n/useI18n';
 
 type IconProps = { size?: number; className?: string };
 
@@ -35,39 +37,79 @@ function InstagramIcon({ size = 24, className }: IconProps) {
   );
 }
 
-const contacts = [
-  { icon: MessageCircle, label: 'واتساب', value: '+963 999 000 000', href: 'https://wa.me/963999000000' },
-  { icon: FacebookIcon, label: 'فيسبوك', value: 'ParkourSyria', href: '#' },
-  { icon: InstagramIcon, label: 'إنستغرام', value: '@parkoursyria', href: '#' },
-  { icon: Mail, label: 'البريد', value: 'info@parkoursyria.com', href: 'mailto:info@parkoursyria.com' },
-];
+const CONTACT_IDS = ['whatsapp', 'facebook', 'instagram', 'email'] as const;
+type ContactId = (typeof CONTACT_IDS)[number];
+
+function contactHref(id: ContactId): string {
+  switch (id) {
+    case 'whatsapp':
+      return whatsappLink(site.whatsappMain);
+    case 'facebook':
+      return site.facebookUrl;
+    case 'instagram':
+      return site.instagramUrl;
+    case 'email':
+      return `mailto:${site.email}`;
+  }
+}
+
+function contactValue(id: ContactId): string {
+  switch (id) {
+    case 'whatsapp':
+      return site.whatsappDisplay;
+    case 'facebook':
+      return site.facebookHandle;
+    case 'instagram':
+      return site.instagramHandle;
+    case 'email':
+      return site.email;
+  }
+}
+
+function ContactIcon({ id, ...props }: { id: ContactId } & IconProps) {
+  switch (id) {
+    case 'whatsapp':
+      return <MessageCircle {...props} />;
+    case 'facebook':
+      return <FacebookIcon {...props} />;
+    case 'instagram':
+      return <InstagramIcon {...props} />;
+    case 'email':
+      return <Mail {...props} />;
+  }
+}
 
 export function ContactPage() {
+  const { t } = useI18n();
+
   return (
     <div>
       <div className="page-hero">
         <div className="container-x">
-          <h1>تواصل معنا</h1>
+          <h1>{t('pages.contact.heroTitle')}</h1>
         </div>
       </div>
       <Reveal as="section" className="section section-light">
         <div className="container-x max-w-[560px]">
           <Reveal type="stagger" className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/10">
-            {contacts.map((c) => (
-              <a
-                key={c.label}
-                href={c.href}
-                target={c.href.startsWith('http') ? '_blank' : undefined}
-                rel="noreferrer"
-                className="bg-white flex items-center gap-4 p-[18px] hover:bg-white/5 transition-colors"
-              >
-                <c.icon size={22} className="text-white/60" />
-                <div>
-                  <strong className="block text-[0.95rem]">{c.label}</strong>
-                  <span className="text-xs text-white/50">{c.value}</span>
-                </div>
-              </a>
-            ))}
+            {CONTACT_IDS.map((id) => {
+              const href = contactHref(id);
+              return (
+                <a
+                  key={id}
+                  href={href}
+                  target={href.startsWith('http') ? '_blank' : undefined}
+                  rel="noreferrer"
+                  className="bg-white flex items-center gap-4 p-[18px] hover:bg-white/5 transition-colors"
+                >
+                  <ContactIcon id={id} size={22} className="text-white/60" />
+                  <div>
+                    <strong className="block text-[0.95rem]">{t(`common.${id}`)}</strong>
+                    <span className="text-xs text-white/50">{contactValue(id)}</span>
+                  </div>
+                </a>
+              );
+            })}
           </Reveal>
         </div>
       </Reveal>

@@ -1,226 +1,7 @@
 export type DirCategory = 'place' | 'coach' | 'team';
-
-export interface DirectoryItem {
-  id: string;
-  category: DirCategory;
-  name: string;
-  area: string;
-  description: string;
-  verified: boolean;
-  whatsapp: string;
-  image: string;
-}
-
-export const directoryItems: DirectoryItem[] = [
-  {
-    id: 'tishreen-park',
-    category: 'place',
-    name: 'حديقة تشرين · منطقة التدريب',
-    area: 'المزة',
-    description: 'مساحة مفتوحة مناسبة للمبتدئين، أرضية عشبية ومنصات منخفضة.',
-    verified: true,
-    whatsapp: '963999000111',
-    image: 'https://images.pexels.com/photos/6008952/pexels-photo-6008952.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-  },
-  {
-    id: 'ahmad-halabi',
-    category: 'coach',
-    name: 'أحمد الحلبي',
-    area: 'أبو رمانة',
-    description: 'مدرب بخبرة 8 سنوات. دروس فردية وجماعية. يركز على الأمان والتقنية.',
-    verified: true,
-    whatsapp: '963999000222',
-    image: 'https://images.pexels.com/photos/6008894/pexels-photo-6008894.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-  },
-  {
-    id: 'damascus-freerun',
-    category: 'team',
-    name: 'فريق دمشق فري رانينغ',
-    area: 'كفرسوسة',
-    description: 'يجتمع كل جمعة وسبت. يستقبل مبتدئين ويُنظّم ورشات شهرية.',
-    verified: false,
-    whatsapp: '963999000333',
-    image: 'https://images.pexels.com/photos/6008975/pexels-photo-6008975.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-  },
-  {
-    id: 'sara-dimashqi',
-    category: 'coach',
-    name: 'سارة الدمشقي',
-    area: 'المزة',
-    description: 'مدربة متخصصة بالمبتدئين والنساء.',
-    verified: false,
-    whatsapp: '963999000444',
-    image: 'https://images.pexels.com/photos/9645058/pexels-photo-9645058.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-  },
-  {
-    id: 'shami-parkour',
-    category: 'team',
-    name: 'مجموعة الباركور الشامية',
-    area: 'المزة',
-    description: 'تدريبات أسبوعية ورحلات.',
-    verified: true,
-    whatsapp: '963999000555',
-    image: 'https://images.pexels.com/photos/6009162/pexels-photo-6009162.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-  },
-  {
-    id: 'jalaa-park',
-    category: 'place',
-    name: 'حديقة الجلاء',
-    area: 'أبو رمانة',
-    description: 'مساحة مناسبة لتمارين التوازن والقفز الدقيق. أرضية مستوية.',
-    verified: false,
-    whatsapp: '963999000666',
-    image: 'https://images.pexels.com/photos/6008986/pexels-photo-6008986.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-  },
-];
-
-export interface ParkourEvent {
-  id: string;
-  type: string;
-  date: string;
-  title: string;
-  location: string;
-  whatsapp: string;
-  image: string;
-}
-
-export const events: ParkourEvent[] = [
-  {
-    id: 'safety-workshop',
-    type: 'ورشة',
-    date: 'السبت 24 أكتوبر · 10:00 ص',
-    title: 'ورشة أمان للمبتدئين',
-    location: 'حديقة تشرين · المزة',
-    whatsapp: '963999000111',
-    image: 'https://images.pexels.com/photos/6008917/pexels-photo-6008917.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-  },
-  {
-    id: 'friday-gathering',
-    type: 'تجمع',
-    date: 'الجمعة 23 أكتوبر · 4:00 م',
-    title: 'تجمع يوم الجمعة · جسر الرئيس',
-    location: 'تجمع أسبوعي مفتوح. تدريب حر وتبادل خبرات.',
-    whatsapp: '963999000333',
-    image: 'https://images.pexels.com/photos/6009290/pexels-photo-6009290.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-  },
-  {
-    id: 'balance-workshop',
-    type: 'ورشة',
-    date: 'الأحد 1 نوفمبر · 9:00 ص',
-    title: 'ورشة توازن وقفز دقيق',
-    location: 'حديقة الجلاء · أبو رمانة',
-    whatsapp: '963999000222',
-    image: 'https://images.pexels.com/photos/6009176/pexels-photo-6009176.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-  },
-];
-
-export interface BlogPost {
-  id: string;
-  category: string;
-  date: string;
-  title: string;
-  excerpt: string;
-  image: string;
-  body?: { heading: string; text: string }[];
-}
-
-export const blogPosts: BlogPost[] = [
-  {
-    id: 'safety-rules',
-    category: 'أمان',
-    date: '5 أكتوبر 2026',
-    title: '5 قواعد أمان لا غنى عنها للمبتدئ',
-    excerpt: 'قبل أن تقفز أو تتدحرج — القواعد الأساسية لكل تدريب.',
-    image: 'https://images.pexels.com/photos/33938537/pexels-photo-33938537.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    body: [
-      { heading: '1. تدرّج دائماً', text: 'ابدأ من الأرض ثم ارتفاعات منخفضة جداً.' },
-      { heading: '2. افحص المكان', text: 'تأكد أن السطح جاف ومستقر.' },
-      { heading: '3. لا تتدرّب وحدك في البداية', text: 'وجود شخص آخر يساعد في الطوارئ.' },
-      { heading: '4. استمع لجسمك', text: 'الألم إشارة — توقف فوراً.' },
-      { heading: '5. تجنّب الأماكن الخطرة', text: 'لا مبانٍ متضررة. موقعنا لا يُدرجها.' },
-    ],
-  },
-  {
-    id: 'home-strength',
-    category: 'تدريب',
-    date: '1 أكتوبر 2026',
-    title: 'كيف تبني قوّة أساسية للباركور في المنزل',
-    excerpt: 'تمارين بلا معدات لتطوير القوة والمرونة.',
-    image: 'https://images.pexels.com/photos/6008881/pexels-photo-6008881.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-  },
-  {
-    id: 'damascus-places',
-    category: 'دمشق',
-    date: '28 سبتمبر 2026',
-    title: 'أفضل 3 أماكن آمنة للتدريب في دمشق',
-    excerpt: 'استعراض لأماكن مناسبة للمبتدئين في العاصمة.',
-    image: 'https://images.pexels.com/photos/6008979/pexels-photo-6008979.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-  },
-];
-
-export interface GalleryImage {
-  url: string;
-  caption: string;
-}
-
-export const galleryImages: GalleryImage[] = [
-  { url: 'https://images.pexels.com/photos/6008908/pexels-photo-6008908.jpeg?auto=compress&cs=tinysrgb&h=650&w=940', caption: 'قفزة في المدينة' },
-  { url: 'https://images.pexels.com/photos/6009002/pexels-photo-6009002.jpeg?auto=compress&cs=tinysrgb&h=650&w=940', caption: 'تدريب حر' },
-  { url: 'https://images.pexels.com/photos/32189329/pexels-photo-32189329.png?auto=compress&cs=tinysrgb&h=650&w=940', caption: 'تجاوز عقبة' },
-  { url: 'https://images.pexels.com/photos/6009260/pexels-photo-6009260.jpeg?auto=compress&cs=tinysrgb&h=650&w=940', caption: 'قفز من جدار' },
-  { url: 'https://images.pexels.com/photos/6008994/pexels-photo-6008994.jpeg?auto=compress&cs=tinysrgb&h=650&w=940', caption: 'تدريب في الشارع' },
-  { url: 'https://images.pexels.com/photos/6009001/pexels-photo-6009001.jpeg?auto=compress&cs=tinysrgb&h=650&w=940', caption: 'حركة دقيقة' },
-  { url: 'https://images.pexels.com/photos/6009275/pexels-photo-6009275.jpeg?auto=compress&cs=tinysrgb&h=650&w=940', caption: 'قفز من سور' },
-  { url: 'https://images.pexels.com/photos/6009011/pexels-photo-6009011.jpeg?auto=compress&cs=tinysrgb&h=650&w=940', caption: 'باركور حضري' },
-];
-
-export interface Lesson {
-  num: number;
-  title: string;
-  desc: string;
-  body?: { heading: string; text: string; list?: string[] }[];
-}
-
-export const lessons: Lesson[] = [
-  {
-    num: 1,
-    title: 'الأمان أولاً',
-    desc: 'قواعد أساسية · أماكن آمنة',
-    body: [
-      {
-        heading: 'لماذا الأمان أهم؟',
-        text: 'الباركور ليس عن القفز من أسطح عالية. الهدف هو التحكّم بالجسم. كل إصابة تُبعدك عن التدريب.',
-      },
-      {
-        heading: 'قواعد الأمان',
-        text: '',
-        list: [
-          'تدرّج دائماً: ابدأ من الأرض ثم ارتفاعات منخفضة جداً.',
-          'الهبوط أولاً: تعلّم الهبوط الهادئ قبل أي قفز.',
-          'افحص المكان: سطح جاف ومستقر.',
-          'لا تتدرّب وحدك في البداية.',
-          'استمع لجسمك: الألم إشارة — توقف.',
-          'تجنّب الأماكن الخطرة: لا مبانٍ متضررة.',
-        ],
-      },
-    ],
-  },
-  { num: 2, title: 'الهبوط الصحيح', desc: 'تقنية الهبوط من ارتفاعات منخفضة' },
-  { num: 3, title: 'الدحرجة (Roll)', desc: 'امتصاص الصدمة بعد القفز' },
-  { num: 4, title: 'التوازن الأساسي', desc: 'المشي على حواف منخفضة' },
-  { num: 5, title: 'القفز البسيط', desc: 'القفز من نقطة إلى نقطة بدقة' },
-  { num: 6, title: 'التسلق الآمن', desc: 'صعود ونزول الجدران المنخفضة' },
-  { num: 7, title: 'الجمع بين الحركات', desc: 'ربط الأساسيات في سلسلة' },
-];
-
-export interface Slide {
-  cat: string;
-  title: string;
-  text: string;
-  image: string;
-  primary: { label: string; page: PageId };
-  secondary: { label: string; page: PageId };
-}
+export type EventTypeId = 'workshop' | 'gathering';
+export type BlogCategoryId = 'safety' | 'training' | 'damascus';
+export type AreaId = 'mazzeh' | 'abu-rummaneh' | 'kafr-sousa' | 'other';
 
 export type PageId =
   | 'home'
@@ -238,47 +19,293 @@ export type PageId =
   | 'contact'
   | 'disclaimer';
 
-export const slides: Slide[] = [
+export interface DirectoryItemNeutral {
+  id: string;
+  category: DirCategory;
+  areaId: AreaId;
+  verified: boolean;
+  whatsapp: string;
+  image: string;
+}
+
+export const directoryItemsNeutral: DirectoryItemNeutral[] = [
   {
-    cat: 'تدريب · للجميع',
-    title: 'تدرّبوا معاً — ابدأوا من الأمان في دمشق',
-    text: 'مسار واضح للمبتدئين، أماكن تدريب، ومدربون موثوقون. باركور سوريا مرتبط بـ Parkour.com.',
-    image: 'https://images.pexels.com/photos/6008908/pexels-photo-6008908.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    primary: { label: 'مسار المبتدئ', page: 'path' },
-    secondary: { label: 'الدليل', page: 'directory' },
+    id: 'tishreen-park',
+    category: 'place',
+    areaId: 'mazzeh',
+    verified: true,
+    whatsapp: '963999000111',
+    image:
+      'https://images.pexels.com/photos/6008952/pexels-photo-6008952.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   },
   {
-    cat: 'دليل · دمشق',
-    title: 'أماكن ومدربون وفرق — اكتشف مجتمعك',
-    text: 'دليل محلي لأماكن التدريب والمدربين والفرق في أحياء دمشق، مع شارات تحقق وواتساب مباشر.',
-    image: 'https://images.pexels.com/photos/9645058/pexels-photo-9645058.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    primary: { label: 'تصفّح الدليل', page: 'directory' },
-    secondary: { label: 'اقترح إضافة', page: 'suggest' },
+    id: 'ahmad-halabi',
+    category: 'coach',
+    areaId: 'abu-rummaneh',
+    verified: true,
+    whatsapp: '963999000222',
+    image:
+      'https://images.pexels.com/photos/6008894/pexels-photo-6008894.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   },
   {
-    cat: 'فعاليات · ورشات',
-    title: 'ورشات وتجمّعات قادمة — انضم للتدريب',
-    text: 'فعاليات أمان للمبتدئين، جلسات تقنية، وتجمّعات مفتوحة. سجّل عبر واتساب.',
-    image: 'https://images.pexels.com/photos/6009260/pexels-photo-6009260.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    primary: { label: 'الفعاليات', page: 'events' },
-    secondary: { label: 'المدونة', page: 'blog' },
+    id: 'damascus-freerun',
+    category: 'team',
+    areaId: 'kafr-sousa',
+    verified: false,
+    whatsapp: '963999000333',
+    image:
+      'https://images.pexels.com/photos/6008975/pexels-photo-6008975.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  },
+  {
+    id: 'sara-dimashqi',
+    category: 'coach',
+    areaId: 'mazzeh',
+    verified: false,
+    whatsapp: '963999000444',
+    image:
+      'https://images.pexels.com/photos/9645058/pexels-photo-9645058.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  },
+  {
+    id: 'shami-parkour',
+    category: 'team',
+    areaId: 'mazzeh',
+    verified: true,
+    whatsapp: '963999000555',
+    image:
+      'https://images.pexels.com/photos/6009162/pexels-photo-6009162.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  },
+  {
+    id: 'jalaa-park',
+    category: 'place',
+    areaId: 'abu-rummaneh',
+    verified: false,
+    whatsapp: '963999000666',
+    image:
+      'https://images.pexels.com/photos/6008986/pexels-photo-6008986.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   },
 ];
 
-export const navLinks: { label: string; page: PageId }[] = [
-  { label: 'الرئيسية', page: 'home' },
-  { label: 'ما هو الباركور', page: 'what' },
-  { label: 'مسار المبتدئ', page: 'path' },
-  { label: 'الدليل', page: 'directory' },
-  { label: 'الفعاليات', page: 'events' },
-  { label: 'المدونة', page: 'blog' },
-  { label: 'الكتاب', page: 'book' },
+export interface ParkourEventNeutral {
+  id: string;
+  typeId: EventTypeId;
+  startsAt: string;
+  whatsapp: string;
+  image: string;
+}
+
+export const eventsNeutral: ParkourEventNeutral[] = [
+  {
+    id: 'safety-workshop',
+    typeId: 'workshop',
+    startsAt: '2026-10-24T10:00:00',
+    whatsapp: '963999000111',
+    image:
+      'https://images.pexels.com/photos/6008917/pexels-photo-6008917.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  },
+  {
+    id: 'friday-gathering',
+    typeId: 'gathering',
+    startsAt: '2026-10-23T16:00:00',
+    whatsapp: '963999000333',
+    image:
+      'https://images.pexels.com/photos/6009290/pexels-photo-6009290.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  },
+  {
+    id: 'balance-workshop',
+    typeId: 'workshop',
+    startsAt: '2026-11-01T09:00:00',
+    whatsapp: '963999000222',
+    image:
+      'https://images.pexels.com/photos/6009176/pexels-photo-6009176.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  },
 ];
 
-export const areas = ['المزة', 'أبو رمانة', 'كفرسوسة', 'أخرى'];
+export interface BlogPostNeutral {
+  id: string;
+  categoryId: BlogCategoryId;
+  publishedAt: string;
+  image: string;
+  hasBody: boolean;
+}
 
-export const dirCategoryLabels: Record<DirCategory, string> = {
-  place: 'مكان',
-  coach: 'مدرب',
-  team: 'فريق',
+export const blogPostsNeutral: BlogPostNeutral[] = [
+  {
+    id: 'safety-rules',
+    categoryId: 'safety',
+    publishedAt: '2026-10-05',
+    image:
+      'https://images.pexels.com/photos/33938537/pexels-photo-33938537.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    hasBody: true,
+  },
+  {
+    id: 'home-strength',
+    categoryId: 'training',
+    publishedAt: '2026-10-01',
+    image:
+      'https://images.pexels.com/photos/6008881/pexels-photo-6008881.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    hasBody: false,
+  },
+  {
+    id: 'damascus-places',
+    categoryId: 'damascus',
+    publishedAt: '2026-09-28',
+    image:
+      'https://images.pexels.com/photos/6008979/pexels-photo-6008979.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    hasBody: false,
+  },
+];
+
+export interface GalleryImageNeutral {
+  id: string;
+  url: string;
+}
+
+export const galleryImagesNeutral: GalleryImageNeutral[] = [
+  {
+    id: 'g1',
+    url: 'https://images.pexels.com/photos/6008908/pexels-photo-6008908.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  },
+  {
+    id: 'g2',
+    url: 'https://images.pexels.com/photos/6009002/pexels-photo-6009002.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  },
+  {
+    id: 'g3',
+    url: 'https://images.pexels.com/photos/32189329/pexels-photo-32189329.png?auto=compress&cs=tinysrgb&h=650&w=940',
+  },
+  {
+    id: 'g4',
+    url: 'https://images.pexels.com/photos/6009260/pexels-photo-6009260.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  },
+  {
+    id: 'g5',
+    url: 'https://images.pexels.com/photos/6008994/pexels-photo-6008994.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  },
+  {
+    id: 'g6',
+    url: 'https://images.pexels.com/photos/6009001/pexels-photo-6009001.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  },
+  {
+    id: 'g7',
+    url: 'https://images.pexels.com/photos/6009275/pexels-photo-6009275.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  },
+  {
+    id: 'g8',
+    url: 'https://images.pexels.com/photos/6009011/pexels-photo-6009011.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  },
+];
+
+export interface LessonNeutral {
+  num: number;
+  hasBody: boolean;
+}
+
+export const lessonsNeutral: LessonNeutral[] = [
+  { num: 1, hasBody: true },
+  { num: 2, hasBody: false },
+  { num: 3, hasBody: false },
+  { num: 4, hasBody: false },
+  { num: 5, hasBody: false },
+  { num: 6, hasBody: false },
+  { num: 7, hasBody: false },
+];
+
+export interface SlideNeutral {
+  id: string;
+  image: string;
+  primaryPage: PageId;
+  secondaryPage: PageId;
+}
+
+export const slidesNeutral: SlideNeutral[] = [
+  {
+    id: 's1',
+    image:
+      'https://images.pexels.com/photos/6008908/pexels-photo-6008908.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    primaryPage: 'path',
+    secondaryPage: 'directory',
+  },
+  {
+    id: 's2',
+    image:
+      'https://images.pexels.com/photos/9645058/pexels-photo-9645058.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    primaryPage: 'directory',
+    secondaryPage: 'suggest',
+  },
+  {
+    id: 's3',
+    image:
+      'https://images.pexels.com/photos/6009260/pexels-photo-6009260.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    primaryPage: 'events',
+    secondaryPage: 'blog',
+  },
+];
+
+/** Pages that have labels under `nav.*` in locales. */
+export type NavPageId =
+  | 'home'
+  | 'what'
+  | 'path'
+  | 'directory'
+  | 'events'
+  | 'blog'
+  | 'book'
+  | 'suggest'
+  | 'about'
+  | 'contact'
+  | 'disclaimer';
+
+export const navLinks: NavPageId[] = [
+  'home',
+  'what',
+  'path',
+  'directory',
+  'events',
+  'blog',
+  'book',
+];
+
+export const areas: AreaId[] = [
+  'mazzeh',
+  'abu-rummaneh',
+  'kafr-sousa',
+  'other',
+];
+
+/** @deprecated Prefer localized types from useDemo(). Kept for gradual migration. */
+export type DirectoryItem = DirectoryItemNeutral & {
+  name: string;
+  area: string;
+  description: string;
+};
+
+export type ParkourEvent = ParkourEventNeutral & {
+  type: string;
+  date: string;
+  title: string;
+  location: string;
+};
+
+export type BlogPost = BlogPostNeutral & {
+  category: string;
+  date: string;
+  title: string;
+  excerpt: string;
+  body?: { heading: string; text: string }[];
+};
+
+export type GalleryImage = GalleryImageNeutral & { caption: string };
+
+export type Lesson = LessonNeutral & {
+  title: string;
+  desc: string;
+  body?: { heading: string; text: string; list?: string[] }[];
+};
+
+export type Slide = SlideNeutral & {
+  cat: string;
+  title: string;
+  text: string;
+  primary: { label: string; page: PageId };
+  secondary: { label: string; page: PageId };
 };

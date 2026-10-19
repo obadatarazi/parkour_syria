@@ -1,27 +1,29 @@
 import { Reveal } from '@/components/Reveal';
+import { useI18n } from '@/i18n/useI18n';
 
 export function DisclaimerPage() {
+  const { t, tm } = useI18n();
+  const safetyPolicyList = tm<string[]>('pages.disclaimer.safetyPolicyList');
+
   return (
     <div>
       <div className="page-hero">
         <div className="container-x">
-          <h1>إخلاء المسؤولية والأمان</h1>
+          <h1>{t('pages.disclaimer.heroTitle')}</h1>
         </div>
       </div>
       <Reveal as="section" className="section section-light">
         <div className="container-x prose">
-          <h2>إخلاء المسؤولية</h2>
-          <p>
-            المحتوى لأغراض تثقيفية فقط. لسنا مسؤولين عن أي إصابة. الممارس يتحمّل المسؤولية الكاملة.
-          </p>
-          <h2>سياسة الأمان</h2>
+          <h2>{t('pages.disclaimer.disclaimerTitle')}</h2>
+          <p>{t('pages.disclaimer.disclaimerText')}</p>
+          <h2>{t('pages.disclaimer.safetyPolicyTitle')}</h2>
           <ul>
-            <li>لا نُدرج مباني متضررة أو مناطق خطرة</li>
-            <li>كل اقتراح يُراجع قبل النشر</li>
-            <li>الإدراج ليس تزكية</li>
+            {safetyPolicyList.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
           </ul>
-          <h2>الارتباط بـ Parkour.com</h2>
-          <p>باركور سوريا مرتبط بـ Parkour.com ويعمل كمحتوى محلي للمجتمع السوري.</p>
+          <h2>{t('pages.disclaimer.affiliationTitle')}</h2>
+          <p>{t('pages.disclaimer.affiliationText')}</p>
         </div>
       </Reveal>
     </div>

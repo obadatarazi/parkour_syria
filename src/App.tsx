@@ -4,6 +4,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Preloader } from '@/components/Preloader';
 import { CustomCursor } from '@/components/CustomCursor';
+import { useI18n } from '@/i18n/useI18n';
 import type { PageId } from '@/data/demo';
 import { HomePage } from '@/pages/HomePage';
 import { WhatPage } from '@/pages/WhatPage';
@@ -37,24 +38,8 @@ const pages: Record<PageId, React.FC> = {
   disclaimer: DisclaimerPage,
 };
 
-const titles: Record<PageId, string> = {
-  home: 'تعلّم الباركور بأمان في دمشق',
-  what: 'ما هو الباركور',
-  path: 'مسار المبتدئ',
-  lesson: 'درس',
-  directory: 'الدليل',
-  'dir-detail': 'الدليل',
-  events: 'الفعاليات',
-  suggest: 'اقترح إضافة',
-  blog: 'المدونة',
-  article: 'المدونة',
-  book: 'الكتاب',
-  about: 'من نحن',
-  contact: 'تواصل معنا',
-  disclaimer: 'إخلاء المسؤولية',
-};
-
 function App() {
+  const { t, lang } = useI18n();
   const [route, setRoute] = useState(() => parsePath(window.location.pathname));
   const { page, id } = route;
 
@@ -72,8 +57,8 @@ function App() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = `${titles[page]} | باركور سوريا`;
-  }, [page, id]);
+    document.title = `${t(`meta.titles.${page}`)} | ${t('meta.titleSuffix')}`;
+  }, [page, id, lang, t]);
 
   const CurrentPage = pages[page];
 

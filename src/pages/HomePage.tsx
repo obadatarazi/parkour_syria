@@ -1,4 +1,4 @@
-import { ArrowLeft } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { HeroSlider } from '@/components/HeroSlider';
 import { DirectoryCard } from '@/components/DirectoryCard';
 import { ListCard } from '@/components/ListCard';
@@ -6,14 +6,19 @@ import { Reveal } from '@/components/Reveal';
 import { ParallaxImage } from '@/components/ParallaxImage';
 import { LiquidImage } from '@/components/LiquidImage';
 import { useNav } from '@/components/nav';
-import { directoryItems, events, blogPosts, galleryImages } from '@/data/demo';
+import { site, whatsappLink } from '@/config/site';
+import { useDemo } from '@/data/useDemo';
+import { useI18n } from '@/i18n/useI18n';
 import { photo, photoSet } from '@/lib/photo';
 
 export function HomePage() {
   const { navigate } = useNav();
+  const { t } = useI18n();
+  const { directoryItems, events, blogPosts, galleryImages } = useDemo();
   const featuredDir = directoryItems.slice(0, 3);
   const upcomingEvents = events.slice(0, 2);
   const recentPosts = blogPosts.slice(0, 3);
+  const bookWa = whatsappLink(site.whatsappMain, t('book.whatsappMessage'));
 
   return (
     <div>
@@ -22,19 +27,19 @@ export function HomePage() {
       <section className="section-light">
         <Reveal className="py-20 sm:py-28 text-center">
           <div className="container-x">
-            <div className="section-label">مرحباً بك</div>
+            <div className="section-label">{t('pages.home.welcomeLabel')}</div>
             <h2 className="text-3xl sm:text-5xl font-extrabold mb-5 leading-[1.15] max-w-[800px] mx-auto">
-              تعلّم الباركور بأمان في دمشق
+              {t('pages.home.introTitle')}
             </h2>
             <p className="text-white/50 max-w-[600px] mx-auto mb-8 text-base sm:text-lg font-light leading-relaxed">
-              منصة سورية مرتبطة بـ Parkour.com — دليل أماكن ومدربين، دروس للمبتدئين، فعاليات، ومقالات.
+              {t('pages.home.introText')}
             </p>
             <div className="flex gap-3 justify-center flex-wrap">
               <button onClick={() => navigate('path')} className="btn btn-dark btn-lg">
-                مسار المبتدئ
+                {t('nav.path')}
               </button>
               <button onClick={() => navigate('directory')} className="btn btn-outline btn-lg">
-                الدليل
+                {t('nav.directory')}
               </button>
             </div>
           </div>
@@ -45,14 +50,14 @@ export function HomePage() {
         <div className="container-x">
           <div className="flex items-end justify-between mb-12 gap-4 flex-wrap">
             <div>
-              <div className="section-label">الدليل</div>
-              <h2 className="section-title">من الدليل · دمشق</h2>
+              <div className="section-label">{t('pages.home.directoryLabel')}</div>
+              <h2 className="section-title">{t('pages.home.directoryHeading')}</h2>
             </div>
             <button
               onClick={() => navigate('directory')}
               className="text-sm font-semibold text-white/50 hover:text-white transition-colors flex items-center gap-1"
             >
-              عرض الكل <ArrowLeft size={16} />
+              {t('common.viewAll')} <ArrowRight size={16} className="flip-rtl" />
             </button>
           </div>
           <Reveal type="stagger" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -66,15 +71,15 @@ export function HomePage() {
       <section className="relative h-[50vh] min-h-[360px] overflow-hidden">
         <ParallaxImage
           src="https://images.pexels.com/photos/6008979/pexels-photo-6008979.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-          alt="parkour action"
+          alt={t('pages.home.parallaxAlt')}
           ratio="auto"
           className="h-full"
         >
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
             <Reveal className="text-center">
-              <div className="section-label text-white/60">فلسفة</div>
+              <div className="section-label text-white/60">{t('pages.home.philosophyLabel')}</div>
               <p className="text-2xl sm:text-4xl font-extrabold text-white max-w-[700px] px-6 leading-[1.3]">
-                كن قوياً لتكون نافعاً
+                {t('pages.home.quote')}
               </p>
             </Reveal>
           </div>
@@ -85,14 +90,14 @@ export function HomePage() {
         <div className="container-x">
           <div className="flex items-end justify-between mb-12 gap-4 flex-wrap">
             <div>
-              <div className="section-label">الفعاليات</div>
-              <h2 className="section-title">الفعاليات القادمة</h2>
+              <div className="section-label">{t('pages.home.eventsLabel')}</div>
+              <h2 className="section-title">{t('pages.home.eventsHeading')}</h2>
             </div>
             <button
               onClick={() => navigate('events')}
               className="text-sm font-semibold text-white/50 hover:text-white transition-colors flex items-center gap-1"
             >
-              عرض الكل <ArrowLeft size={16} />
+              {t('common.viewAll')} <ArrowRight size={16} className="flip-rtl" />
             </button>
           </div>
           <Reveal type="stagger" className="grid grid-cols-1 gap-8">
@@ -114,14 +119,14 @@ export function HomePage() {
         <div className="container-x">
           <div className="flex items-end justify-between mb-12 gap-4 flex-wrap">
             <div>
-              <div className="section-label">المدونة</div>
-              <h2 className="section-title">من المدونة</h2>
+              <div className="section-label">{t('pages.home.blogLabel')}</div>
+              <h2 className="section-title">{t('pages.home.blogHeading')}</h2>
             </div>
             <button
               onClick={() => navigate('blog')}
               className="text-sm font-semibold text-white/50 hover:text-white transition-colors flex items-center gap-1"
             >
-              عرض الكل <ArrowLeft size={16} />
+              {t('common.viewAll')} <ArrowRight size={16} className="flip-rtl" />
             </button>
           </div>
           <Reveal type="stagger" className="grid grid-cols-1 gap-8">
@@ -143,14 +148,14 @@ export function HomePage() {
       <Reveal as="section" className="section bg-black pt-16 pb-16">
         <div className="container-x">
           <div className="text-center mb-12">
-            <div className="section-label">معرض</div>
-            <h2 className="section-title">معرض الصور</h2>
-            <p className="text-white/40 mt-3 text-sm">لقطات من تدريبات الباركور</p>
+            <div className="section-label">{t('pages.home.galleryLabel')}</div>
+            <h2 className="section-title">{t('pages.home.galleryHeading')}</h2>
+            <p className="text-white/40 mt-3 text-sm">{t('pages.home.gallerySub')}</p>
           </div>
           <Reveal type="stagger" className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1">
-            {galleryImages.map((img, i) => (
+            {galleryImages.map((img) => (
               <div
-                key={i}
+                key={img.id}
                 className="relative overflow-hidden group cursor-pointer"
                 style={{ aspectRatio: '4/5' }}
               >
@@ -174,27 +179,22 @@ export function HomePage() {
       <Reveal as="section" type="reveal-clip" className="relative h-[60vh] min-h-[420px] overflow-hidden">
         <ParallaxImage
           src="https://images.pexels.com/photos/6009011/pexels-photo-6009011.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-          alt="parkour book"
+          alt={t('pages.home.bookAlt')}
           ratio="auto"
           className="h-full"
         >
           <div className="absolute inset-0 bg-black/70 flex items-center">
             <div className="container-x">
               <div className="max-w-[560px]">
-                <div className="section-label">الكتاب</div>
+                <div className="section-label">{t('pages.home.bookLabel')}</div>
                 <h2 className="text-3xl sm:text-5xl font-extrabold mb-4 leading-[1.15]">
-                  كتاب الباركور
+                  {t('pages.home.bookHeading')}
                 </h2>
                 <p className="text-white/60 mb-8 text-base sm:text-lg font-light leading-relaxed">
-                  دليل عملي بالعربية يشرح أساسيات الباركور بأسلوب بسيط وآمن. الطلب عبر واتساب فقط.
+                  {t('pages.home.bookText')}
                 </p>
-                <a
-                  href="https://wa.me/963999000000?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%B7%D9%84%D8%A8%20%D9%83%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D8%A8%D8%A7%D8%B1%D9%83%D9%88%D8%B1"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn btn-accent btn-lg"
-                >
-                  اطلب الكتاب عبر واتساب
+                <a href={bookWa} target="_blank" rel="noreferrer" className="btn btn-accent btn-lg">
+                  {t('pages.home.bookCta')}
                 </a>
               </div>
             </div>

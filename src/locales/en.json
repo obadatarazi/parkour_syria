@@ -1,0 +1,415 @@
+{
+  "brand": {
+    "name": "Parkour Syria",
+    "shortName": "Parkour",
+    "logoLetter": "P"
+  },
+  "meta": {
+    "siteTitle": "Parkour Syria | Learn parkour safely in Damascus",
+    "description": "Parkour Syria — learn parkour safely, a directory of places, coaches, and teams in Damascus, events, articles, and the parkour book.",
+    "ogDescription": "A directory of places, coaches, and teams in Damascus, a beginner path, events, and articles.",
+    "titleSuffix": "Parkour Syria",
+    "titles": {
+      "home": "Learn parkour safely in Damascus",
+      "what": "What is parkour",
+      "path": "Beginner path",
+      "lesson": "Lesson",
+      "directory": "Directory",
+      "dir-detail": "Directory",
+      "events": "Events",
+      "suggest": "Suggest an entry",
+      "blog": "Blog",
+      "article": "Blog",
+      "book": "The book",
+      "about": "About us",
+      "contact": "Contact",
+      "disclaimer": "Disclaimer"
+    }
+  },
+  "common": {
+    "whatsapp": "WhatsApp",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "verified": "Verified",
+    "details": "Details",
+    "viewAll": "View all",
+    "all": "All",
+    "choose": "Choose",
+    "choosePlaceholder": "Choose...",
+    "email": "Email",
+    "back": "Back",
+    "comingSoon": "Coming soon",
+    "register": "Register via WhatsApp",
+    "search": "Search...",
+    "maps": "Google Maps",
+    "place": "Place",
+    "next": "Next",
+    "prev": "Previous"
+  },
+  "nav": {
+    "home": "Home",
+    "what": "What is parkour",
+    "path": "Beginner path",
+    "directory": "Directory",
+    "events": "Events",
+    "blog": "Blog",
+    "book": "The book",
+    "suggest": "Suggest",
+    "about": "About",
+    "contact": "Contact",
+    "disclaimer": "Disclaimer"
+  },
+  "header": {
+    "menu": "Menu"
+  },
+  "footer": {
+    "tagline": "An Arabic site helping parkour enthusiasts in Syria learn safely.",
+    "explore": "Explore",
+    "more": "More",
+    "connect": "Connect",
+    "links": {
+      "contact": "Contact"
+    },
+    "copyright": "© {year} Parkour Syria · Affiliated with Parkour.com · parkoursyria.com",
+    "slogan": "Train safely"
+  },
+  "preloader": {
+    "loading": "Loading..."
+  },
+  "hero": {
+    "prev": "Previous",
+    "next": "Next",
+    "slideLabel": "Slide {n}"
+  },
+  "toggle": {
+    "switchTo": "ع",
+    "ariaLabel": "التبديل إلى العربية"
+  },
+  "book": {
+    "whatsappMessage": "Hello, I would like to order the parkour book"
+  },
+  "demo": {
+    "city": "Damascus",
+    "categories": {
+      "place": "Place",
+      "coach": "Coach",
+      "team": "Team"
+    },
+    "categoriesPlural": {
+      "all": "All",
+      "place": "Places",
+      "coach": "Coaches",
+      "team": "Teams"
+    },
+    "areas": {
+      "mazzeh": "Mazzeh",
+      "abu-rummaneh": "Abu Rummaneh",
+      "kafr-sousa": "Kafr Sousa",
+      "other": "Other"
+    },
+    "directory": {
+      "tishreen-park": {
+        "name": "Tishreen Park · Training area",
+        "description": "An open space suitable for beginners, with grass and low platforms."
+      },
+      "ahmad-halabi": {
+        "name": "Ahmad Al-Halabi",
+        "description": "Coach with 8 years of experience. Individual and group lessons. Focuses on safety and technique."
+      },
+      "damascus-freerun": {
+        "name": "Damascus Freerunning Team",
+        "description": "Meets every Friday and Saturday. Welcomes beginners and runs monthly workshops."
+      },
+      "sara-dimashqi": {
+        "name": "Sara Al-Dimashqi",
+        "description": "Coach specializing in beginners and women."
+      },
+      "shami-parkour": {
+        "name": "Shami Parkour Group",
+        "description": "Weekly training and trips."
+      },
+      "jalaa-park": {
+        "name": "Al-Jalaa Park",
+        "description": "A space suited to balance and precision jumps. Level ground."
+      }
+    },
+    "eventTypes": {
+      "workshop": "Workshop",
+      "gathering": "Gathering"
+    },
+    "events": {
+      "safety-workshop": {
+        "title": "Beginner safety workshop",
+        "location": "Tishreen Park · Mazzeh"
+      },
+      "friday-gathering": {
+        "title": "Friday gathering · Presidential Bridge",
+        "location": "Open weekly gathering. Free training and experience sharing."
+      },
+      "balance-workshop": {
+        "title": "Balance and precision jump workshop",
+        "location": "Al-Jalaa Park · Abu Rummaneh"
+      }
+    },
+    "blogCategories": {
+      "safety": "Safety",
+      "training": "Training",
+      "damascus": "Damascus"
+    },
+    "blog": {
+      "safety-rules": {
+        "title": "5 essential safety rules for beginners",
+        "excerpt": "Before you jump or roll — the basics for every session.",
+        "body": [
+          { "heading": "1. Always progress gradually", "text": "Start on the ground, then very low heights." },
+          { "heading": "2. Check the spot", "text": "Make sure the surface is dry and stable." },
+          { "heading": "3. Don't train alone at first", "text": "Having someone else helps in an emergency." },
+          { "heading": "4. Listen to your body", "text": "Pain is a signal — stop immediately." },
+          { "heading": "5. Avoid dangerous places", "text": "No damaged buildings. We do not list them." }
+        ]
+      },
+      "home-strength": {
+        "title": "How to build parkour base strength at home",
+        "excerpt": "No-equipment exercises for strength and mobility."
+      },
+      "damascus-places": {
+        "title": "Top 3 safe training spots in Damascus",
+        "excerpt": "A look at beginner-friendly places in the capital."
+      }
+    },
+    "gallery": {
+      "g1": "City jump",
+      "g2": "Free training",
+      "g3": "Obstacle transit",
+      "g4": "Wall jump",
+      "g5": "Street training",
+      "g6": "Precision move",
+      "g7": "Fence jump",
+      "g8": "Urban parkour"
+    },
+    "lessons": {
+      "1": {
+        "title": "Safety first",
+        "desc": "Basic rules · Safe places",
+        "body": [
+          {
+            "heading": "Why safety matters most",
+            "text": "Parkour is not about jumping from high roofs. The goal is body control. Every injury keeps you from training."
+          },
+          {
+            "heading": "Safety rules",
+            "text": "",
+            "list": [
+              "Always progress gradually: start on the ground, then very low heights.",
+              "Landing first: learn a quiet landing before any jump.",
+              "Check the spot: dry, stable surface.",
+              "Don't train alone at first.",
+              "Listen to your body: pain is a signal — stop.",
+              "Avoid dangerous places: no damaged buildings."
+            ]
+          }
+        ]
+      },
+      "2": { "title": "Proper landing", "desc": "Landing technique from low heights" },
+      "3": { "title": "The roll", "desc": "Absorbing impact after a jump" },
+      "4": { "title": "Basic balance", "desc": "Walking on low edges" },
+      "5": { "title": "Simple jumps", "desc": "Jumping point to point with precision" },
+      "6": { "title": "Safe climbing", "desc": "Ascending and descending low walls" },
+      "7": { "title": "Combining moves", "desc": "Linking basics into a sequence" }
+    },
+    "slides": {
+      "s1": {
+        "cat": "Training · For everyone",
+        "title": "Train together — start with safety in Damascus",
+        "text": "A clear beginner path, training spots, and trusted coaches. Parkour Syria is affiliated with Parkour.com.",
+        "primary": "Beginner path",
+        "secondary": "Directory"
+      },
+      "s2": {
+        "cat": "Directory · Damascus",
+        "title": "Places, coaches, and teams — find your community",
+        "text": "A local directory of training spots, coaches, and teams across Damascus neighborhoods, with verification badges and direct WhatsApp.",
+        "primary": "Browse directory",
+        "secondary": "Suggest an entry"
+      },
+      "s3": {
+        "cat": "Events · Workshops",
+        "title": "Upcoming workshops and gatherings — join the training",
+        "text": "Beginner safety events, technique sessions, and open gatherings. Register via WhatsApp.",
+        "primary": "Events",
+        "secondary": "Blog"
+      }
+    }
+  },
+  "pages": {
+    "home": {
+      "welcomeLabel": "Welcome",
+      "introTitle": "Learn parkour safely in Damascus",
+      "introText": "A Syrian platform affiliated with Parkour.com — a directory of places and coaches, beginner lessons, events, and articles.",
+      "directoryLabel": "Directory",
+      "directoryHeading": "From the directory · Damascus",
+      "directorySub": "Trusted places, coaches, and teams",
+      "philosophyLabel": "Philosophy",
+      "quote": "Be strong to be useful",
+      "eventsLabel": "Events",
+      "eventsHeading": "Upcoming events",
+      "eventsSub": "Workshops and gatherings",
+      "blogLabel": "Blog",
+      "blogHeading": "From the blog",
+      "blogSub": "Safety and training articles",
+      "galleryLabel": "Gallery",
+      "galleryHeading": "Photo gallery",
+      "gallerySub": "Shots from parkour training",
+      "bookLabel": "Book",
+      "bookHeading": "The parkour book",
+      "bookText": "A practical Arabic guide that explains parkour basics simply and safely. Orders via WhatsApp only.",
+      "bookCta": "Order the book via WhatsApp",
+      "parallaxAlt": "parkour action",
+      "bookAlt": "parkour book",
+      "verifiedNote": "Verified — no damaged buildings."
+    },
+    "what": {
+      "heroTitle": "What is parkour?",
+      "heroSub": "A simple, clear definition",
+      "safetyTitle": "Safety notice",
+      "safetyText": "Parkour is a sport that requires gradual training. Do not attempt advanced moves before mastering the basics.",
+      "intro": "Parkour is an art and philosophy of moving efficiently from point to point using only the body. The goal is not showmanship, but overcoming obstacles safely and intelligently.",
+      "originTitle": "Where did parkour come from?",
+      "originBefore": "It was born in France in the late 1980s through ",
+      "originName": "David Belle",
+      "originAfter": ", inspired by his father Raymond Belle. The philosophy: “Be strong to be useful.”",
+      "syriaFocus": "In Syria we focus on a safe version suited to local reality — especially in Damascus.",
+      "whyTitle": "Why parkour?",
+      "whyList": [
+        "Builds strength, flexibility, and balance",
+        "Improves confidence and decision-making",
+        "Low cost",
+        "A friendly community that encourages gradual progress"
+      ],
+      "dangerTitle": "Is it dangerous?",
+      "dangerText": "Like any sport. Most injuries come from rushing. With safety and gradual progress it can be practiced safely.",
+      "faqsTitle": "Common questions",
+      "directoryLink": "Places directory",
+      "faqs": [
+        {
+          "q": "What age is appropriate?",
+          "a": "From 12–14 with supervision; adults at any age."
+        },
+        {
+          "q": "Do I need equipment?",
+          "a": "Shoes with good grip and comfortable clothes. No other gear needed."
+        },
+        {
+          "q": "Where do I train in Damascus?",
+          "a": "See the places directory."
+        },
+        {
+          "q": "Are you affiliated with Parkour.com?",
+          "a": "Yes. Parkour Syria is affiliated with Parkour.com and works within its vision to support the local parkour community in Syria."
+        }
+      ]
+    },
+    "path": {
+      "heroTitle": "Beginner path",
+      "heroSub": "Start with safety, then the basics",
+      "safetyTitle": "Safety first",
+      "safetyText": "Lesson one is mandatory. Do not move on before you understand the rules."
+    },
+    "lesson": {
+      "back": "Back to path",
+      "heading": "Lesson {num}: {title}",
+      "safetyTitle": "Notice",
+      "safetyText": "A light theory and practice lesson. Do not attempt advanced moves.",
+      "comingSoon": "This lesson content is coming soon.",
+      "next": "Next lesson"
+    },
+    "directory": {
+      "heroTitle": "Directory · Damascus",
+      "heroSub": "Places · Coaches · Teams",
+      "noteTitle": "Note",
+      "noteText": "A listing is not an endorsement. We do not list damaged buildings.",
+      "empty": "No matching results."
+    },
+    "dirDetail": {
+      "back": "Back to directory",
+      "verifiedNote": "Verified — no damaged buildings.",
+      "unverifiedNote": "Not verified yet. A listing is not an endorsement."
+    },
+    "events": {
+      "heroTitle": "Upcoming events",
+      "heroSub": "Workshops and gatherings — past events drop off automatically"
+    },
+    "blog": {
+      "heroTitle": "Blog",
+      "heroSub": "Articles on parkour and safety",
+      "filters": {
+        "all": "All",
+        "safety": "Safety",
+        "training": "Training",
+        "damascus": "Damascus"
+      }
+    },
+    "article": {
+      "back": "Back to blog",
+      "byline": "{date} · {team}",
+      "team": "Parkour Syria team",
+      "comingSoon": "Full article coming soon."
+    },
+    "book": {
+      "heroTitle": "The book",
+      "heroSub": "Safe beginner guide",
+      "cardTitle": "The parkour book · Safe beginner guide",
+      "cardDesc": "A practical guide in Arabic.",
+      "forWhomTitle": "For whom?",
+      "forWhomList": ["Beginners", "Parents", "Practitioners"],
+      "formatNote": "PDF. Orders via WhatsApp only.",
+      "cta": "Order the book via WhatsApp"
+    },
+    "suggest": {
+      "heroTitle": "Suggest an entry",
+      "heroSub": "We review every suggestion before publishing",
+      "successTitle": "Submitted",
+      "successText": "Thank you! We will review your suggestion before publishing.",
+      "typeLabel": "Suggestion type",
+      "types": {
+        "place": "Place",
+        "coach": "Coach",
+        "team": "Team",
+        "event": "Event"
+      },
+      "nameLabel": "Name",
+      "namePlaceholder": "Name",
+      "areaLabel": "Neighborhood",
+      "descLabel": "Description",
+      "descPlaceholder": "Brief description...",
+      "contactLabel": "Contact link",
+      "contactPlaceholder": "WhatsApp or Facebook",
+      "consent": "I confirm the place is safe and does not include damaged buildings.",
+      "submit": "Submit suggestion"
+    },
+    "about": {
+      "heroTitle": "About us",
+      "p1Before": "",
+      "brandStrong": "Parkour Syria",
+      "p1After": " is a Syrian platform affiliated with Parkour.com that helps parkour enthusiasts learn safely and find training spots and coaches in Damascus.",
+      "p2": "Affiliated with Parkour.com — local content for Damascus and Syria.",
+      "contactCta": "Contact us"
+    },
+    "contact": {
+      "heroTitle": "Contact us"
+    },
+    "disclaimer": {
+      "heroTitle": "Disclaimer and safety",
+      "disclaimerTitle": "Disclaimer",
+      "disclaimerText": "Content is for educational purposes only. We are not responsible for any injury. The practitioner bears full responsibility.",
+      "safetyPolicyTitle": "Safety policy",
+      "safetyPolicyList": [
+        "We do not list damaged buildings or dangerous areas",
+        "Every suggestion is reviewed before publishing",
+        "A listing is not an endorsement"
+      ],
+      "affiliationTitle": "Affiliation with Parkour.com",
+      "affiliationText": "Parkour Syria is affiliated with Parkour.com and serves as local content for the Syrian community."
+    }
+  }
+}

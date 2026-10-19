@@ -2,34 +2,42 @@ import { useState } from 'react';
 import { ListCard } from '@/components/ListCard';
 import { Reveal } from '@/components/Reveal';
 import { useNav } from '@/components/nav';
-import { blogPosts } from '@/data/demo';
+import type { BlogCategoryId } from '@/data/demo';
+import { useDemo } from '@/data/useDemo';
+import { useI18n } from '@/i18n/useI18n';
 
-const filters = ['الكل', 'أمان', 'تدريب', 'دمشق'];
+type BlogFilter = 'all' | BlogCategoryId;
+
+const FILTER_IDS: BlogFilter[] = ['all', 'safety', 'training', 'damascus'];
 
 export function BlogPage() {
   const { navigate } = useNav();
-  const [filter, setFilter] = useState('الكل');
+  const { t } = useI18n();
+  const { blogPosts } = useDemo();
+  const [filter, setFilter] = useState<BlogFilter>('all');
 
-  const posts = filter === 'الكل' ? blogPosts : blogPosts.filter((p) => p.category === filter);
+  const posts =
+    filter === 'all' ? blogPosts : blogPosts.filter((p) => p.categoryId === filter);
 
   return (
     <div>
       <div className="page-hero">
         <div className="container-x">
-          <h1>المدونة</h1>
-          <p>مقالات عن الباركور والأمان</p>
+          <h1>{t('pages.blog.heroTitle')}</h1>
+          <p>{t('pages.blog.heroSub')}</p>
         </div>
       </div>
       <Reveal as="section" className="section section-light">
         <div className="container-x">
           <div className="flex flex-wrap gap-2 mb-6">
-            {filters.map((f) => (
+            {FILTER_IDS.map((id) => (
               <button
-                key={f}
-                onClick={() => setFilter(f)}
-                className={`filter-btn ${filter === f ? 'active' : ''}`}
+                key={id}
+                type="button"
+                onClick={() => setFilter(id)}
+                className={`filter-btn ${filter === id ? 'active' : ''}`}
               >
-                {f}
+                {t(`pages.blog.filters.${id}`)}
               </button>
             ))}
           </div>

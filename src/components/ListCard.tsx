@@ -17,7 +17,7 @@ export function ListCard({
   return (
     <button
       onClick={onClick}
-      className="grid grid-cols-[100px_1fr] sm:grid-cols-[220px_1fr] gap-5 border-b border-white/8 pb-8 text-right w-full last:border-none group"
+      className="grid grid-cols-[100px_1fr] sm:grid-cols-[220px_1fr] gap-5 border-b border-white/8 pb-8 text-start w-full last:border-none group"
     >
       {image && (
         <div className="w-[100px] h-[70px] sm:w-[220px] sm:h-[140px] overflow-hidden relative">
@@ -31,7 +31,7 @@ export function ListCard({
         </div>
       )}
       <div className="flex flex-col justify-center">
-        <div className="text-xs text-white/40 mb-2 font-semibold uppercase tracking-[0.1em]">{meta}</div>
+        <div className="text-xs text-white/40 mb-2 font-semibold uppercase tracking-[0.1em] rtl:tracking-normal">{meta}</div>
         <h3 className="text-base sm:text-xl font-bold mb-1 leading-snug text-white group-hover:text-white/80 transition-colors">
           {title}
         </h3>
