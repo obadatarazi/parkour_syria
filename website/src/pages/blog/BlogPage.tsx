@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { ListCard } from '@/components/ListCard';
-import { Reveal } from '@/components/Reveal';
+import { ListCard } from '@/features/list-card/ListCard';
+import { Reveal } from '@/components/motion/Reveal';
 import { useNav } from '@/components/nav';
 import type { BlogCategoryId } from '@/data/demo';
 import { useDemo } from '@/data/useDemo';

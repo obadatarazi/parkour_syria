@@ -1,5 +1,5 @@
 import { MessageCircle, Mail } from 'lucide-react';
-import { Reveal } from '@/components/Reveal';
+import { Reveal } from '@/components/motion/Reveal';
 import { site, whatsappLink } from '@/config/site';
 import { useI18n } from '@/i18n/useI18n';
 

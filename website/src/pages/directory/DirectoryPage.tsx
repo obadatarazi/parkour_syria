@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Search } from 'lucide-react';
-import { DirectoryCard } from '@/components/DirectoryCard';
-import { Reveal } from '@/components/Reveal';
+import { DirectoryCard } from '@/features/directory/DirectoryCard';
+import { Reveal } from '@/components/motion/Reveal';
 import type { DirCategory } from '@/data/demo';
 import { useDemo } from '@/data/useDemo';
 import { localeOf } from '@/i18n/config';

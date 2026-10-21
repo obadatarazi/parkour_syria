@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { Reveal } from '@/components/Reveal';
+import { Reveal } from '@/components/motion/Reveal';
 import { useDemo } from '@/data/useDemo';
 import { useI18n } from '@/i18n/useI18n';
 

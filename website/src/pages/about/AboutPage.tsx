@@ -1,4 +1,4 @@
-import { Reveal } from '@/components/Reveal';
+import { Reveal } from '@/components/motion/Reveal';
 import { useNav } from '@/components/nav';
 import { useI18n } from '@/i18n/useI18n';
 

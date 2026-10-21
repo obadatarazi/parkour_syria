@@ -1,10 +1,10 @@
 import { ArrowRight } from 'lucide-react';
-import { HeroSlider } from '@/components/HeroSlider';
-import { DirectoryCard } from '@/components/DirectoryCard';
-import { ListCard } from '@/components/ListCard';
-import { Reveal } from '@/components/Reveal';
-import { ParallaxImage } from '@/components/ParallaxImage';
-import { LiquidImage } from '@/components/LiquidImage';
+import { HeroSlider } from '@/features/hero-slider/HeroSlider';
+import { DirectoryCard } from '@/features/directory/DirectoryCard';
+import { ListCard } from '@/features/list-card/ListCard';
+import { Reveal } from '@/components/motion/Reveal';
+import { ParallaxImage } from '@/components/motion/ParallaxImage';
+import { LiquidImage } from '@/components/motion/LiquidImage';
 import { useNav } from '@/components/nav';
 import { site, whatsappLink } from '@/config/site';
 import { useDemo } from '@/data/useDemo';

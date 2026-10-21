@@ -1,5 +1,5 @@
 import { ChevronLeft, MapPin, MessageCircle, Map as MapIcon } from 'lucide-react';
-import { Reveal } from '@/components/Reveal';
+import { Reveal } from '@/components/motion/Reveal';
 import { useNav } from '@/components/nav';
 import { whatsappLink } from '@/config/site';
 import { useDemo } from '@/data/useDemo';

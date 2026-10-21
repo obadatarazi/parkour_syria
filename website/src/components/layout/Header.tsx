@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useNav, useLink } from '@/components/nav';
-import { LanguageToggle } from '@/components/LanguageToggle';
+import { LanguageToggle } from '@/components/layout/LanguageToggle';
 import { navLinks, type NavPageId } from '@/data/demo';
 import { useI18n } from '@/i18n/useI18n';
 
