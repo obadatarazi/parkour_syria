@@ -53,7 +53,7 @@ export function DirectoryEntryForm({
 
   const fields: LocaleFieldDefinition<DirectoryEntryLocaleField>[] = [
     { key: "name", label: t.fieldName, required: true, maxLength: 255 },
-    { key: "description", label: t.fieldDescription, multiline: true, rows: 5 },
+    { key: "description", label: t.fieldDescription, richText: true, rows: 6 },
   ];
 
   return (

@@ -78,6 +78,24 @@ it('strips scripts and handlers from admin html before serving it', function () 
     expect($html)->not->toContain('steal()')->not->toContain('alert(1)')->toContain('<p>نص</p>');
 });
 
+it('keeps the editor colors and alignment but drops other inline styles', function () {
+    $post = BlogPost::query()->where('publish', true)->firstOrFail();
+    $post->translateOrNew('ar')->body = '<h2 style="text-align: center">عنوان</h2>'
+        .'<p><span style="color: #dc2626">أحمر</span> <mark data-color="#fef08a" style="background-color: #fef08a; color: inherit">مظلل</mark></p>'
+        .'<p style="position: fixed; background-image: url(https://evil.test/x.png)">نص</p>';
+    $post->save();
+
+    $html = $this->get('/blog/'.rawurlencode($post->slug))->assertOk()->getContent();
+
+    expect($html)
+        ->toContain('<h2 style="text-align: center">عنوان</h2>')
+        ->toContain('<span style="color: #dc2626">أحمر</span>')
+        ->toContain('style="background-color: #fef08a; color: inherit"')
+        ->toContain('<p>نص</p>')
+        ->not->toContain('position: fixed')
+        ->not->toContain('evil.test');
+});
+
 it('shows a content edit on the next request', function () {
     $this->get('/about')->assertOk();
 

@@ -74,7 +74,7 @@ export function EventViewDialog({ event, ...props }: EventViewDialogProps) {
               fields={[
                 { key: "title", label: t.fieldTitle },
                 { key: "location_label", label: t.fieldLocationLabel },
-                { key: "description", label: t.fieldDescription, multiline: true },
+                { key: "description", label: t.fieldDescription, richText: true },
               ]}
             />
           ),

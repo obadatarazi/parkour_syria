@@ -81,7 +81,7 @@ export function DirectoryEntryViewDialog({ entry, ...props }: DirectoryEntryView
               translations={entry.translations}
               fields={[
                 { key: "name", label: t.fieldName },
-                { key: "description", label: t.fieldDescription, multiline: true },
+                { key: "description", label: t.fieldDescription, richText: true },
               ]}
             />
           ),

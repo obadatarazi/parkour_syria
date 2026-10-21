@@ -1,3 +1,4 @@
+import { RichTextContent } from "@/shared/components/data/RichTextContent";
 import { CrudDetailField } from "@/shared/crud/components/CrudDetailField";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import type { LocaleCode } from "@/shared/lib/api/form-data.utils";
@@ -5,7 +6,7 @@ import { LOCALE_ORDER } from "@/shared/lib/api/locale-fields.utils";
 
 type CrudLocaleFieldsViewProps = {
   translations: unknown;
-  fields: { key: string; label: string; multiline?: boolean }[];
+  fields: { key: string; label: string; multiline?: boolean; richText?: boolean }[];
 };
 
 /** Read-only Arabic / English values of a record's translated fields, for a view dialog. */
@@ -20,13 +21,22 @@ export function CrudLocaleFieldsView({ translations, fields }: CrudLocaleFieldsV
   return (
     <div className="space-y-4">
       {fields.map((field) => (
-        <div key={field.key} className="grid gap-4 sm:grid-cols-2">
+        <div
+          key={field.key}
+          className={field.richText ? "grid gap-4" : "grid gap-4 sm:grid-cols-2"}
+        >
           {LOCALE_ORDER.map((locale) => {
             const value = source[locale]?.[field.key];
             const text = typeof value === "string" ? value.trim() : "";
             return (
               <CrudDetailField key={locale} label={`${field.label} · ${localeLabel[locale]}`}>
-                {text ? (
+                {text && field.richText ? (
+                  <RichTextContent
+                    value={text}
+                    dir={locale === "ar" ? "rtl" : "ltr"}
+                    className="rounded-lg border border-border/60 bg-background p-4"
+                  />
+                ) : text ? (
                   <span
                     dir={locale === "ar" ? "rtl" : "ltr"}
                     className={field.multiline ? "block whitespace-pre-line" : "block"}

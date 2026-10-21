@@ -66,7 +66,7 @@ export function BlogPostViewDialog({ post, ...props }: BlogPostViewDialogProps) 
                 { key: "title", label: t.fieldTitle },
                 { key: "author", label: t.fieldAuthor },
                 { key: "excerpt", label: t.fieldExcerpt, multiline: true },
-                { key: "body", label: t.fieldBody, multiline: true },
+                { key: "body", label: t.fieldBody, richText: true },
               ]}
             />
           ),

@@ -57,8 +57,8 @@ export function LessonViewDialog({ lesson, ...props }: LessonViewDialogProps) {
               fields={[
                 { key: "title", label: t.fieldTitle },
                 { key: "summary", label: t.fieldSummary, multiline: true },
-                { key: "body", label: t.fieldBody, multiline: true },
-                { key: "safety_note", label: t.fieldSafetyNote, multiline: true },
+                { key: "body", label: t.fieldBody, richText: true },
+                { key: "safety_note", label: t.fieldSafetyNote, richText: true },
               ]}
             />
           ),

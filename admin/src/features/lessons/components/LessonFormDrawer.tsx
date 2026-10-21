@@ -27,7 +27,7 @@ export function LessonFormDrawer({
       open={open}
       mode={mode}
       title={mode === "create" ? t.addLesson : t.editLesson}
-      size="xl"
+      size="full"
       isLoading={isSaving}
       onOpenChange={onOpenChange}
     >

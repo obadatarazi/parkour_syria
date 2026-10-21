@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
 
+import { RichTextField } from "@/shared/components/forms/RichTextField";
 import { TextAreaField } from "@/shared/components/forms/TextAreaField";
 import { TextField } from "@/shared/components/forms/TextField";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shared/design-system/components/ui/tabs";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/shared/design-system/components/ui/tabs";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import type { LocaleCode } from "@/shared/lib/api/form-data.utils";
 import { LOCALE_ORDER, type LocaleFieldValues } from "@/shared/lib/api/locale-fields.utils";
@@ -13,6 +19,8 @@ export type LocaleFieldDefinition<TField extends string = string> = {
   key: TField;
   label: string;
   multiline?: boolean;
+  /** Long formatted text (headings, colors, lists) edited with the rich text editor. */
+  richText?: boolean;
   rows?: number;
   maxLength?: number;
   /** Required in Arabic. English rows are optional, but once started they need this field too. */
@@ -40,7 +48,9 @@ export function LocaleFieldsTabs<TField extends string>({
   const [activeLocale, setActiveLocale] = useState<LocaleCode>("ar");
 
   useEffect(() => {
-    const failing = LOCALE_ORDER.find((locale) => Object.values(errors?.[locale] ?? {}).some(Boolean));
+    const failing = LOCALE_ORDER.find((locale) =>
+      Object.values(errors?.[locale] ?? {}).some(Boolean),
+    );
     if (failing) setActiveLocale(failing);
   }, [errors]);
 
@@ -74,6 +84,21 @@ export function LocaleFieldsTabs<TField extends string>({
               required: field.required && locale === "ar",
               dir: locale === "ar" ? ("rtl" as const) : ("ltr" as const),
             };
+            if (field.richText) {
+              return (
+                <RichTextField
+                  key={field.key}
+                  label={common.label}
+                  value={common.value}
+                  error={common.error}
+                  helperText={common.helperText}
+                  required={common.required}
+                  dir={common.dir}
+                  rows={field.rows}
+                  onChange={(html) => updateField(locale, field.key, html)}
+                />
+              );
+            }
             return field.multiline ? (
               <TextAreaField
                 key={field.key}

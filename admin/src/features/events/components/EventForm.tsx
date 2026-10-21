@@ -55,7 +55,7 @@ export function EventForm({
   const fields: LocaleFieldDefinition<EventLocaleField>[] = [
     { key: "title", label: t.fieldTitle, required: true, maxLength: 255 },
     { key: "location_label", label: t.fieldLocationLabel, maxLength: 255 },
-    { key: "description", label: t.fieldDescription, multiline: true, rows: 5 },
+    { key: "description", label: t.fieldDescription, richText: true, rows: 6 },
   ];
 
   return (

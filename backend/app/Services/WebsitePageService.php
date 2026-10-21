@@ -20,7 +20,10 @@ use Illuminate\Support\Str;
 class WebsitePageService
 {
     /** Tags kept in prerendered admin HTML. Everything else, scripts included, is stripped. */
-    private const ALLOWED_TAGS = '<h1><h2><h3><h4><p><br><strong><b><em><i><u><ul><ol><li><a><blockquote><img><figure><figcaption><table><thead><tbody><tr><th><td>';
+    private const ALLOWED_TAGS = '<h1><h2><h3><h4><p><br><strong><b><em><i><u><s><span><mark><code><hr><ul><ol><li><a><blockquote><img><figure><figcaption><table><thead><tbody><tr><th><td>';
+
+    /** Inline styles the admin editor writes (text color, highlight, alignment). Others are dropped. */
+    private const ALLOWED_STYLES = ['color', 'background-color', 'text-align'];
 
     public function __construct(
         protected MultiTypeSettingService $settingService,
@@ -432,7 +435,20 @@ class WebsitePageService
         $html = preg_replace('/\s+on[a-z]+\s*=\s*("[^"]*"|\'[^\']*\'|[^\s>]+)/i', '', $html);
         $html = preg_replace('/(href|src)\s*=\s*(["\']?)\s*(javascript|vbscript|data):[^"\'>\s]*\2/i', '$1="#"', $html);
 
-        return $html;
+        return preg_replace_callback('/\sstyle\s*=\s*("([^"]*)"|\'([^\']*)\')/i', fn ($match) => $this->style($match[3] ?? $match[2]), $html);
+    }
+
+    /** A style attribute trimmed to the editor's presentational properties, or nothing. */
+    private function style(string $style): string
+    {
+        $rules = array_filter(array_map('trim', explode(';', $style)), function ($rule) {
+            [$property, $value] = array_pad(explode(':', $rule, 2), 2, '');
+
+            return in_array(strtolower(trim($property)), self::ALLOWED_STYLES, true)
+                && ! preg_match('/url\(|expression|[<>"]/i', $value);
+        });
+
+        return $rules ? ' style="'.e(implode('; ', $rules)).'"' : '';
     }
 
     private function formatDate($value): string

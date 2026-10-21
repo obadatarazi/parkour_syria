@@ -20,7 +20,7 @@ export function PageFormDrawer({ open, page, onOpenChange, onSuccess }: PageForm
       open={open && Boolean(page)}
       mode="edit"
       title={page ? `${t.editPage} · ${pageKeyLabel(t, page.key)}` : t.editPage}
-      size="2xl"
+      size="full"
       isLoading={isSaving}
       onOpenChange={onOpenChange}
     >
