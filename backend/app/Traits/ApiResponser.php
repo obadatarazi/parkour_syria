@@ -36,10 +36,7 @@ trait ApiResponser
     /**
      * success response method.
      *
-     * @param $data
-     * @param int $code
-     * @param null $message
-     * @return JsonResponse
+     * @param  null  $message
      */
     protected function successResponse($data, int $code = 200, $message = null): JsonResponse
     {
@@ -57,9 +54,8 @@ trait ApiResponser
     /**
      * error response method.
      *
-     * @param null $error
-     * @param int $code
-     * @return JsonResponse
+     * @param  null  $error
+     * @param  int  $code
      */
     protected function errorResponse($error = null, $code = 500): JsonResponse
     {

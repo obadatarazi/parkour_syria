@@ -163,7 +163,7 @@ return [
     'uuid' => 'The :attribute field must be a valid UUID.',
     'success_change_password' => 'Password has been changed successfully.',
     'incorrect_password' => 'Incorrect password Please try again.',
-    'send_otp' => 'Your One-Time Verification Code', 
+    'send_otp' => 'Your One-Time Verification Code',
     'logout' => 'You have been successfully logged out.',
     'new_contact_us_request_form' => 'New Contact Us Form Message 💬',
     'success_reset_password' => 'You have been successfully reset password.',

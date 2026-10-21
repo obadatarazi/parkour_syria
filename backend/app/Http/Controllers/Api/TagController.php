@@ -24,8 +24,8 @@ class TagController extends ApiController
         summary: 'get all tags',
         tags: ['Tag'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
-    #[OA\Parameter(ref: "#/components/parameters/direction")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
+    #[OA\Parameter(ref: '#/components/parameters/direction')]
     #[OA\Parameter(
         name: 'sort',
         description: 'Specify sorting order.',
@@ -34,8 +34,8 @@ class TagController extends ApiController
         schema: new OA\Schema(type: 'string', enum: ['id', 'created_at', 'title']),
         example: 'created_at'
     )]
-    #[OA\Parameter(ref: "#/components/parameters/page")]
-    #[OA\Parameter(ref: "#/components/parameters/limit")]
+    #[OA\Parameter(ref: '#/components/parameters/page')]
+    #[OA\Parameter(ref: '#/components/parameters/limit')]
     #[OA\Parameter(
         name: 'search',
         description: 'Apply filter by title.',
@@ -88,7 +88,7 @@ class TagController extends ApiController
         summary: 'Get one tag',
         tags: ['Tag'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'tag',
         description: 'the tag to retrieve',
@@ -121,7 +121,7 @@ class TagController extends ApiController
         summary: 'Get one tag by slug',
         tags: ['Tag'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'slug',
         description: 'the tag by slug to retrieve',

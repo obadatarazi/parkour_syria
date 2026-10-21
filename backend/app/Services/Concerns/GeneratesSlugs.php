@@ -24,12 +24,12 @@ trait GeneratesSlugs
     }
 
     /**
-     * @param array<string, mixed> $data validated input, translations already split per locale
-     * @param string $titleAttribute the translated attribute the slug falls back to
+     * @param  array<string, mixed>  $data  validated input, translations already split per locale
+     * @param  string  $titleAttribute  the translated attribute the slug falls back to
      */
     protected function resolveSlug(array $data, ?Model $object = null, string $titleAttribute = 'title'): ?string
     {
-        if (!empty($data['slug'])) {
+        if (! empty($data['slug'])) {
             return $this->uniqueSlug($this->slugify($data['slug']), $object);
         }
 
@@ -58,7 +58,7 @@ trait GeneratesSlugs
             ->where('slug', $slug)
             ->when($object, fn ($query) => $query->whereKeyNot($object->getKey()))
             ->exists()) {
-            $slug = Str::limit($base, 140, '') . '-' . $suffix++;
+            $slug = Str::limit($base, 140, '').'-'.$suffix++;
         }
 
         return $slug;
@@ -67,7 +67,7 @@ trait GeneratesSlugs
     /**
      * Fills `slug` into the data about to be saved, when there is one to fill.
      *
-     * @param array<string, mixed> $data
+     * @param  array<string, mixed>  $data
      * @return array<string, mixed>
      */
     protected function withSlug(array $data, ?Model $object = null, string $titleAttribute = 'title'): array

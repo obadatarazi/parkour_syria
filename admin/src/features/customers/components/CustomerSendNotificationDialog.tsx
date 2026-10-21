@@ -4,8 +4,8 @@ import type { CrmSendNotificationInput } from "@/features/customers/types/custom
 import { NotificationTranslationFields } from "@/features/notifications/components/NotificationTranslationFields";
 import type { NotificationTranslations } from "@/features/notifications/types/notifications.types";
 import { AppButton, AppDialog, SelectField } from "@/shared/components";
-import { useNotificationTypeOptions } from "@/shared/hooks/use-options";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
+import { useNotificationTypeOptions } from "@/shared/hooks/use-options";
 
 type CustomerSendNotificationDialogProps = {
   open: boolean;

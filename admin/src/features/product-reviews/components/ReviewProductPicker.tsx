@@ -12,9 +12,9 @@ import type { Product } from "@/features/products/types/products.types";
 import { FormField } from "@/shared/components";
 import { Button } from "@/shared/design-system/components/ui/button";
 import { Input } from "@/shared/design-system/components/ui/input";
+import { cn } from "@/shared/design-system/components/ui/utils";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import { resolveServiceErrorMessage } from "@/shared/errors";
-import { cn } from "@/shared/design-system/components/ui/utils";
 
 type ReviewProductPickerProps = {
   value: number | null;

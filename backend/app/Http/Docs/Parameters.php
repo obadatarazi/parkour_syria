@@ -25,7 +25,7 @@ use OpenApi\Attributes as OA;
 #[OA\Parameter(
     name: 'limit',
     description: 'Determine number of items per page. Any value from 1 to 200 is '
-        . 'accepted (e.g. 10, 20, 50, 100, 200); a larger page is served at 200 rather than refused. Read the page you actually got back off `pagination.limit`.',
+        .'accepted (e.g. 10, 20, 50, 100, 200); a larger page is served at 200 rather than refused. Read the page you actually got back off `pagination.limit`.',
     in: 'query',
     required: false,
     schema: new OA\Schema(type: 'integer', minimum: 1, maximum: 200),
@@ -42,6 +42,5 @@ use OpenApi\Attributes as OA;
 #[Attribute(Attribute::TARGET_CLASS)]
 class Parameters
 {
-    public function __construct()
-    {}
+    public function __construct() {}
 }

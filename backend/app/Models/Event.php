@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 #[EventSchema]
 class Event extends BaseModel implements TranslatableContract
 {
-    use HasFactory, Filterable, Translatable;
+    use Filterable, HasFactory, Translatable;
 
     protected $fillable = [
         'slug',

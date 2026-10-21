@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Navigate, useBlocker, useNavigate, useParams, useSearchParams } from "react-router";
 
-import { prescriptionEditPath, decodeAdminRouteKey, ROUTES } from "@/app/router/routes";
+import { decodeAdminRouteKey, prescriptionEditPath, ROUTES } from "@/app/router/routes";
 import { useCrudPermissions } from "@/features/auth";
 import { PrescriptionForm } from "@/features/prescriptions/components/PrescriptionForm";
 import { usePrescriptionMutations } from "@/features/prescriptions/hooks/use-prescription-mutations";

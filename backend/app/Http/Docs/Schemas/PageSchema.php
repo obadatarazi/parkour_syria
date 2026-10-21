@@ -49,6 +49,5 @@ use OpenApi\Attributes as OA;
 #[Attribute(Attribute::TARGET_CLASS)]
 class PageSchema
 {
-    public function __construct()
-    {}
+    public function __construct() {}
 }

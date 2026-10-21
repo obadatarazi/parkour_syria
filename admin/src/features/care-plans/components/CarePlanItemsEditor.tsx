@@ -2,8 +2,8 @@ import { Plus, Trash2 } from "lucide-react";
 
 import { CarePlanItemVariantSelect } from "@/features/care-plans/components/CarePlanItemVariantSelect";
 import {
-  createEmptyCarePlanItem,
   type CarePlanItemFormData,
+  createEmptyCarePlanItem,
 } from "@/features/care-plans/types/care-plans.types";
 import { OrderProductPicker } from "@/features/orders/components/OrderProductPicker";
 import { AppButton, TextField } from "@/shared/components";

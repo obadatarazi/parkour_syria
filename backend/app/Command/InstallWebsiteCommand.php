@@ -22,7 +22,7 @@ class InstallWebsiteCommand extends Command
         $dist = rtrim($this->argument('dist'), '/');
         $dist = str_starts_with($dist, '/') ? $dist : base_path($dist);
 
-        if (!is_file("{$dist}/index.html")) {
+        if (! is_file("{$dist}/index.html")) {
             $this->error("No index.html in {$dist}. Build the website first (npm run build).");
 
             return self::FAILURE;
@@ -43,7 +43,7 @@ class InstallWebsiteCommand extends Command
                 continue;
             }
 
-            $destination = $publicRoot . '/' . $relative;
+            $destination = $publicRoot.'/'.$relative;
             File::ensureDirectoryExists(dirname($destination));
             File::copy($file->getPathname(), $destination);
             $copied++;

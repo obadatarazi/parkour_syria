@@ -11,22 +11,22 @@ import {
 import { useOrderPackingSlipDownload } from "@/features/orders/hooks/use-order-packing-slip-download";
 import type { Order } from "@/features/orders/types/orders.types";
 import { getOrderAmountDue } from "@/features/orders/types/orders.types";
+import { getOrderPaymentLabel } from "@/features/orders/utils/map-order-from-api";
 import {
   mapOrderToPartyDisplay,
   orderCreatedByBadge,
   orderCustomerHref,
   orderPartyDisplayName,
 } from "@/features/orders/utils/order-customer-display";
-import { getOrderPaymentLabel } from "@/features/orders/utils/map-order-from-api";
 import { getOrderStatusVariant } from "@/features/orders/utils/order-status.utils";
 import { formatKwd } from "@/features/products/utils/product-display.utils";
 import { AppButton, PhoneNumberText, StatusBadge, UserLabelText } from "@/shared/components";
 import { CrudDetailField, CrudRecordSection, CrudRecordWorkspace } from "@/shared/crud";
-import { ORDER_FORM_ANCHORS } from "@/shared/guidance/constants/guidance.constants";
 import {
   useLocalization,
   useTranslation,
 } from "@/shared/design-system/localization/contexts/LocalizationContext";
+import { ORDER_FORM_ANCHORS } from "@/shared/guidance/constants/guidance.constants";
 import { formatDateTime } from "@/shared/lib/datetime.utils";
 
 type OrderViewSectionId = "details" | "items" | "coupons" | "delivery" | "invoice";

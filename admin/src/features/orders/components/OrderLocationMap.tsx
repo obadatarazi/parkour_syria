@@ -1,15 +1,14 @@
+import "leaflet/dist/leaflet.css";
+
 import L from "leaflet";
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
 import { useMemo, useState } from "react";
 import { MapContainer, Marker, Polyline, TileLayer } from "react-leaflet";
 
 import { AppButton } from "@/shared/components";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
-
-import "leaflet/dist/leaflet.css";
-
-import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
-import markerIcon from "leaflet/dist/images/marker-icon.png";
-import markerShadow from "leaflet/dist/images/marker-shadow.png";
 
 const DefaultIcon = L.icon({
   iconUrl: markerIcon,

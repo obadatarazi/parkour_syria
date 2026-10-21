@@ -16,13 +16,13 @@ class EventRequest extends TranslationFormRequest
 
         if ($this->method() === 'POST') {
             $rules = [
-                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:' . Upload::MAX_IMAGE_KB, new SafeSvg()],
+                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:'.Upload::MAX_IMAGE_KB, new SafeSvg],
                 'slug' => ['nullable', 'string', 'max:140', 'regex:/^[\\p{L}\\p{N}-]+$/u', Rule::unique('events', 'slug')->ignore($this->routeKey())],
                 'type' => ['required', 'string', 'in:workshop,gathering'],
                 'starts_at' => ['required', 'date'],
                 'area_id' => ['nullable', 'integer', 'exists:areas,id'],
                 'contact' => ['nullable', 'string', 'max:255'],
-                'publish' => ['nullable', new BooleanValidationRule()],
+                'publish' => ['nullable', new BooleanValidationRule],
                 'translations' => ['required', 'array'],
                 // Arabic is the live language and is required, English is optional until it goes public.
                 'translations.ar' => ['required', 'array'],
@@ -36,13 +36,13 @@ class EventRequest extends TranslationFormRequest
 
         if ($this->method() === 'PUT' || $this->method() === 'PATCH') {
             $rules = [
-                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:' . Upload::MAX_IMAGE_KB, new SafeSvg()],
+                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:'.Upload::MAX_IMAGE_KB, new SafeSvg],
                 'slug' => ['nullable', 'string', 'max:140', 'regex:/^[\\p{L}\\p{N}-]+$/u', Rule::unique('events', 'slug')->ignore($this->routeKey())],
                 'type' => ['nullable', 'string', 'in:workshop,gathering'],
                 'starts_at' => ['nullable', 'date'],
                 'area_id' => ['nullable', 'integer', 'exists:areas,id'],
                 'contact' => ['nullable', 'string', 'max:255'],
-                'publish' => ['nullable', new BooleanValidationRule()],
+                'publish' => ['nullable', new BooleanValidationRule],
                 'translations' => ['nullable', 'array'],
                 'translations.ar' => ['nullable', 'array'],
                 'translations.en' => ['nullable', 'array'],

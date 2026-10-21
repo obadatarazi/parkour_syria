@@ -16,8 +16,8 @@ import {
   useLocalization,
   useTranslation,
 } from "@/shared/design-system/localization/contexts/LocalizationContext";
-import { getLoyaltyDisplayName } from "@/shared/lib/loyalty/loyalty-translations.utils";
 import { formatDateTime } from "@/shared/lib/datetime.utils";
+import { getLoyaltyDisplayName } from "@/shared/lib/loyalty/loyalty-translations.utils";
 
 type LoyaltyLedgerViewDialogProps = {
   open: boolean;

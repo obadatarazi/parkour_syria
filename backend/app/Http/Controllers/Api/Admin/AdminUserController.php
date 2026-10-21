@@ -31,10 +31,10 @@ class AdminUserController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin User'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
-    #[OA\Parameter(ref: "#/components/parameters/direction")]
-    #[OA\Parameter(ref: "#/components/parameters/page")]
-    #[OA\Parameter(ref: "#/components/parameters/limit")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
+    #[OA\Parameter(ref: '#/components/parameters/direction')]
+    #[OA\Parameter(ref: '#/components/parameters/page')]
+    #[OA\Parameter(ref: '#/components/parameters/limit')]
     #[OA\Parameter(
         name: 'sort',
         description: 'Specify sorting order.',
@@ -140,7 +140,7 @@ class AdminUserController extends ApiController
         summary: 'create user',
         security: [['Bearer' => []]],
         tags: ['Admin User'],
-        parameters: [new OA\Parameter(ref: "#/components/parameters/x-locale")],
+        parameters: [new OA\Parameter(ref: '#/components/parameters/x-locale')],
     )]
     #[OA\RequestBody(
         content: new OA\MediaType(
@@ -173,7 +173,7 @@ class AdminUserController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin User'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'user',
         description: 'the user to retrieve',
@@ -209,7 +209,7 @@ class AdminUserController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin User'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'user',
         description: 'the user to update',
@@ -249,7 +249,7 @@ class AdminUserController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin User'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'user',
         description: 'the user to delete',
@@ -283,7 +283,7 @@ class AdminUserController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin User'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\RequestBody(
         content: new OA\MediaType(
             mediaType: 'application/json',
@@ -306,14 +306,14 @@ class AdminUserController extends ApiController
     #[OA\Get(
         path: '/api/admin/users/export',
         description: 'download every users the current filters select as a csv file. The file carries all '
-            . 'the columns of the record, its translated fields written in the language the x-locale header '
-            . 'asks for, and the names behind its relations — a brand, a category, a product, never a bare '
-            . 'id. It takes the same filters index() takes, without the paging.',
+            .'the columns of the record, its translated fields written in the language the x-locale header '
+            .'asks for, and the names behind its relations — a brand, a category, a product, never a bare '
+            .'id. It takes the same filters index() takes, without the paging.',
         summary: 'export users as csv',
         security: [['Bearer' => []]],
         tags: ['Admin User'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Response(
         response: 200,
         description: 'The csv file, as a download',

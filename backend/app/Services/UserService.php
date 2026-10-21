@@ -63,11 +63,10 @@ class UserService extends BaseService
             $this->roleService->assignRoleUser($user, $data['roles']);
         }
 
-
         return $user->load(['roles']);
     }
 
-    public function update($data, User | Model $user): User
+    public function update($data, User|Model $user): User
     {
         $this->assertCanManageUser(auth()->user(), $user);
 
@@ -88,7 +87,7 @@ class UserService extends BaseService
         $user->update($data);
 
         $keyFileMaps = [
-            'avatar_file_url' => 'avatar'
+            'avatar_file_url' => 'avatar',
         ];
 
         if (isset($data['avatar'])) {
@@ -110,19 +109,19 @@ class UserService extends BaseService
 
         // A new password, a deactivation or a new set of roles ends every session the account has,
         // so nobody keeps working on what the change was meant to take away.
-        if (isset($data['password']) || ($wasActive && !$user->active) || $rolesBefore !== $rolesAfter) {
+        if (isset($data['password']) || ($wasActive && ! $user->active) || $rolesBefore !== $rolesAfter) {
             $this->tokenRevocationService->revokeAll($user);
         }
 
         return $user->load(['roles']);
     }
 
-    public function updateProfile($data, Model | User $user): User
+    public function updateProfile($data, Model|User $user): User
     {
         $user->update($data);
 
         $keyFileMaps = [
-            'avatar_file_url' => 'avatar'
+            'avatar_file_url' => 'avatar',
         ];
 
         if (isset($data['avatar'])) {
@@ -137,18 +136,17 @@ class UserService extends BaseService
 
         $user->save();
 
-
         return $user;
     }
 
-    public function findByEmail($email) : ?User
+    public function findByEmail($email): ?User
     {
         return User::query()->where('email', $email)->firstOrFail();
     }
 
     public function changePassword($data, $user): string
     {
-        if (!Hash::check($data['current_password'], $user->password)) {
+        if (! Hash::check($data['current_password'], $user->password)) {
             throw new BadRequestHttpException(__('validation.incorrect_password'));
         }
 
@@ -173,7 +171,7 @@ class UserService extends BaseService
     {
         if ($user->type === UserType::ADMIN->value) {
             throw ValidationException::withMessages([
-                __('exceptions.delete_ensure_account')
+                __('exceptions.delete_ensure_account'),
             ]);
         }
 

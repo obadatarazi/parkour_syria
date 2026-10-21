@@ -7,7 +7,7 @@ import {
   pickStaticPromotionFormChanges,
   staticPromotionToFormData,
 } from "@/features/static-promotions/types/static-promotions.types";
-import { useCrudMutation, useCrudQuickBooleanMutation, type CrudSaveResult } from "@/shared/crud";
+import { type CrudSaveResult,useCrudMutation, useCrudQuickBooleanMutation } from "@/shared/crud";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 
 type UseStaticPromotionMutationsOptions = {

@@ -54,7 +54,7 @@ it('ends every session when a super admin deactivates the account', function () 
     $session = supervisorSession($this);
 
     $this->actingAsSuperAdmin();
-    $this->putJson('/api/admin/users/' . supervisor()->id, ['active' => false])->assertOk();
+    $this->putJson('/api/admin/users/'.supervisor()->id, ['active' => false])->assertOk();
 
     supervisor()->update(['active' => true]);
     freshAuth($this, $session['token'])->getJson('/api/admin/lessons')->assertUnauthorized();
@@ -65,7 +65,7 @@ it('ends every session when a super admin sets a new password', function () {
     $session = supervisorSession($this);
 
     $this->actingAsSuperAdmin();
-    $this->putJson('/api/admin/users/' . supervisor()->id, ['password' => 'Changed123!', 'password_confirmation' => 'Changed123!'])->assertOk();
+    $this->putJson('/api/admin/users/'.supervisor()->id, ['password' => 'Changed123!', 'password_confirmation' => 'Changed123!'])->assertOk();
 
     freshAuth($this, $session['token'])->getJson('/api/admin/lessons')->assertUnauthorized();
 });
@@ -75,7 +75,7 @@ it('ends every session when the account gets new roles', function () {
     $superAdmin = Role::query()->where('code', RoleCode::SuperAdmin->value)->value('id');
 
     $this->actingAsSuperAdmin();
-    $this->putJson('/api/admin/users/' . supervisor()->id, ['roles' => [$superAdmin]])->assertOk();
+    $this->putJson('/api/admin/users/'.supervisor()->id, ['roles' => [$superAdmin]])->assertOk();
 
     freshAuth($this, $session['token'])->getJson('/api/admin/lessons')->assertUnauthorized();
 });
@@ -85,7 +85,7 @@ it('keeps sessions when nothing about access changes', function () {
     $roles = supervisor()->roles->pluck('id')->all();
 
     $this->actingAsSuperAdmin();
-    $this->putJson('/api/admin/users/' . supervisor()->id, ['full_name' => 'Renamed', 'roles' => $roles])->assertOk();
+    $this->putJson('/api/admin/users/'.supervisor()->id, ['full_name' => 'Renamed', 'roles' => $roles])->assertOk();
 
     freshAuth($this, $session['token'])->getJson('/api/admin/lessons')->assertOk();
 });

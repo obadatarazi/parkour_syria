@@ -23,8 +23,8 @@ class BlogPostController extends ApiController
         summary: 'get all blog posts',
         tags: ['Blog Post'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
-    #[OA\Parameter(ref: "#/components/parameters/direction")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
+    #[OA\Parameter(ref: '#/components/parameters/direction')]
     #[OA\Parameter(
         name: 'sort',
         description: 'Specify sorting order.',
@@ -33,8 +33,8 @@ class BlogPostController extends ApiController
         schema: new OA\Schema(type: 'string', enum: ['id', 'published_at', 'created_at']),
         example: 'published_at'
     )]
-    #[OA\Parameter(ref: "#/components/parameters/page")]
-    #[OA\Parameter(ref: "#/components/parameters/limit")]
+    #[OA\Parameter(ref: '#/components/parameters/page')]
+    #[OA\Parameter(ref: '#/components/parameters/limit')]
     #[OA\Parameter(
         name: 'search',
         description: 'Free text search on title / excerpt.',
@@ -94,7 +94,7 @@ class BlogPostController extends ApiController
         summary: 'Get one blog post',
         tags: ['Blog Post'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'slug',
         description: 'the blog post slug',
@@ -129,7 +129,7 @@ class BlogPostController extends ApiController
         summary: 'Related blog posts',
         tags: ['Blog Post'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'slug',
         description: 'the blog post slug',

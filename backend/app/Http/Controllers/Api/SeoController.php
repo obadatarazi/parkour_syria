@@ -8,14 +8,12 @@ use OpenApi\Attributes as OA;
 
 class SeoController extends ApiController
 {
-    public function __construct(protected SeoService $seoService)
-    {
-    }
+    public function __construct(protected SeoService $seoService) {}
 
     #[OA\Get(
         path: '/api/seo/sitemap.xml',
         description: 'Every published page of the website: the fixed pages plus each published lesson, directory '
-            . 'entry and blog post. The website host serves it as /sitemap.xml.',
+            .'entry and blog post. The website host serves it as /sitemap.xml.',
         summary: 'sitemap',
         tags: ['SEO'],
     )]

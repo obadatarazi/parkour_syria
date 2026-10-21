@@ -8,15 +8,10 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class FileSystemService
 {
-    public function __construct(protected ImageOptimizer $imageOptimizer)
-    {
-    }
+    public function __construct(protected ImageOptimizer $imageOptimizer) {}
 
     /**
      * Get the relative path for the upload.
-     *
-     * @param string $entityPath
-     * @return string
      */
     public function getUploadRelativePath(string $entityPath): string
     {
@@ -27,10 +22,6 @@ class FileSystemService
 
     /**
      * Upload a file to the specified entity path.
-     *
-     * @param UploadedFile $uploadedFile
-     * @param string $entityPath
-     * @return array
      */
     public function uploadFile(UploadedFile $uploadedFile, string $entityPath): array
     {
@@ -51,16 +42,17 @@ class FileSystemService
 
         Storage::disk('public')->makeDirectory($relativePath);
 
-        $filePath = '/storage' . '/' . $relativePath . $fileName;
+        $filePath = '/storage'.'/'.$relativePath.$fileName;
         if ($optimized !== null) {
-            Storage::disk('public')->put($relativePath . $fileName, $optimized['contents']);
+            Storage::disk('public')->put($relativePath.$fileName, $optimized['contents']);
         } else {
             Storage::disk('public')->putFileAs($relativePath, $uploadedFile, $fileName);
         }
+
         return [
-            "fileName" => $fileName,
-            "fileSize" => $fileSize,
-            "fileUrl" => $filePath,
+            'fileName' => $fileName,
+            'fileSize' => $fileSize,
+            'fileUrl' => $filePath,
         ];
     }
 
@@ -98,7 +90,7 @@ class FileSystemService
 
     protected function extensionFromFileContents(?string $path): ?string
     {
-        if ($path === null || $path === '' || !is_file($path)) {
+        if ($path === null || $path === '' || ! is_file($path)) {
             return null;
         }
 
@@ -110,7 +102,7 @@ class FileSystemService
         $header = fread($handle, 16);
         fclose($handle);
 
-        if (!is_string($header) || $header === '') {
+        if (! is_string($header) || $header === '') {
             return null;
         }
 
@@ -147,25 +139,22 @@ class FileSystemService
 
         $source = Str::after($fileUrl, '/storage/');
         $disk = Storage::disk('public');
-        if (!$disk->exists($source)) {
+        if (! $disk->exists($source)) {
             return null;
         }
 
         $relativePath = $this->getUploadRelativePath($entityPath);
         $extension = pathinfo($source, PATHINFO_EXTENSION);
-        $fileName = (string) Str::uuid() . ($extension !== '' ? ".{$extension}" : '');
+        $fileName = (string) Str::uuid().($extension !== '' ? ".{$extension}" : '');
 
         $disk->makeDirectory($relativePath);
-        $disk->copy($source, $relativePath . $fileName);
+        $disk->copy($source, $relativePath.$fileName);
 
-        return '/storage/' . $relativePath . $fileName;
+        return '/storage/'.$relativePath.$fileName;
     }
 
     /**
      * Remove a file from storage.
-     *
-     * @param string $filePath
-     * @return void
      */
     public function removeFile(string $filePath): void
     {

@@ -15,7 +15,7 @@ class EnsureAccountIsActive
     {
         $user = $request->user();
 
-        abort_if($user !== null && !$user->active, 403, __('exceptions.account_inactive'));
+        abort_if($user !== null && ! $user->active, 403, __('exceptions.account_inactive'));
 
         return $next($request);
     }

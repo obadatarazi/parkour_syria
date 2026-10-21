@@ -12,11 +12,11 @@ import {
 import { inventoryService } from "@/features/inventory/services/inventory.service";
 import type { InventoryListParams } from "@/features/inventory/services/inventory.service.types";
 import type { InventorySummary, StockStatus } from "@/features/inventory/types/inventory.types";
-import type { Product } from "@/features/products/types/products.types";
 import {
   filterInventoryRows,
   flattenProductVariants,
 } from "@/features/inventory/utils/flatten-product-variants";
+import type { Product } from "@/features/products/types/products.types";
 import {
   type CrudFilterDefinition,
   mapBooleanFilterValue,

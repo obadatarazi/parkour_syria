@@ -1,11 +1,11 @@
+import type { LocaleImageUploadValue } from "@/shared/components/forms/LocaleImageUploadFields";
+import type { PromotionTypeOption, PromotionTypeValue } from "@/shared/constants/promotion-type";
+import type { LocaleCode } from "@/shared/lib/api/form-data.utils";
 import {
   hasFormChanges,
   pickChangedScalar,
 } from "@/shared/lib/form/pick-changed-fields";
-import type { LocaleCode } from "@/shared/lib/api/form-data.utils";
-import type { PromotionTypeOption, PromotionTypeValue } from "@/shared/constants/promotion-type";
 import type { PaginatedResult } from "@/shared/types";
-import type { LocaleImageUploadValue } from "@/shared/components/forms/LocaleImageUploadFields";
 
 export type StaticPromotionTranslation = {
   imageFileUrl?: string | null;

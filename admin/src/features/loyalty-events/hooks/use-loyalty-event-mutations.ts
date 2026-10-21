@@ -10,7 +10,7 @@ import {
   loyaltyEventToFormData,
   pickLoyaltyEventFormChanges,
 } from "@/features/loyalty-events/types/loyalty-events.types";
-import { useCrudMutation, useCrudQuickBooleanMutation, type CrudSaveResult } from "@/shared/crud";
+import { type CrudSaveResult,useCrudMutation, useCrudQuickBooleanMutation } from "@/shared/crud";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 
 type UseLoyaltyEventMutationsOptions = {

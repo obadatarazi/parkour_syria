@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 #[GalleryImageSchema]
 class GalleryImage extends BaseModel implements TranslatableContract
 {
-    use HasFactory, Filterable, Translatable;
+    use Filterable, HasFactory, Translatable;
 
     protected $fillable = [
         'sort_order',

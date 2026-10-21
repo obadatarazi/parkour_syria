@@ -30,8 +30,8 @@ class AdminPageController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Page'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
-    #[OA\Parameter(ref: "#/components/parameters/direction")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
+    #[OA\Parameter(ref: '#/components/parameters/direction')]
     #[OA\Parameter(
         name: 'sort',
         description: 'Specify sorting order.',
@@ -40,8 +40,8 @@ class AdminPageController extends ApiController
         schema: new OA\Schema(type: 'string', enum: ['id', 'key', 'created_at']),
         example: 'key'
     )]
-    #[OA\Parameter(ref: "#/components/parameters/page")]
-    #[OA\Parameter(ref: "#/components/parameters/limit")]
+    #[OA\Parameter(ref: '#/components/parameters/page')]
+    #[OA\Parameter(ref: '#/components/parameters/limit')]
     #[OA\Parameter(
         name: 'search',
         description: 'Free text search on title / key.',
@@ -102,7 +102,7 @@ class AdminPageController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Page'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'page',
         description: 'the page to retrieve',
@@ -136,7 +136,7 @@ class AdminPageController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Page'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'page',
         description: 'the page to update',
@@ -172,12 +172,12 @@ class AdminPageController extends ApiController
     #[OA\Get(
         path: '/api/admin/pages/export',
         description: 'download every page the current filters select as a csv file, translated fields in '
-            . 'the language the x-locale header asks for. Takes the same filters as index(), without the paging.',
+            .'the language the x-locale header asks for. Takes the same filters as index(), without the paging.',
         summary: 'export pages as csv',
         security: [['Bearer' => []]],
         tags: ['Admin Page'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Response(
         response: 200,
         description: 'The csv file, as a download',

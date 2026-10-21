@@ -11,8 +11,8 @@ use App\Support\Features;
  *
  * Permission names must match the dashboard's `shared/constants/permissions.ts`.
  */
-enum PermissionType: string {
-
+enum PermissionType: string
+{
     /**
      * Sections the Supervisor role is given: the site's content, never its settings or accounts.
      */
@@ -27,24 +27,28 @@ enum PermissionType: string {
     public function getSection(): string
     {
         $slices = explode(',', $this->value);
+
         return $slices[0];
     }
 
     public function getName(): string
     {
         $slices = explode(',', $this->value);
+
         return str_replace('_', ' ', $slices[1]);
     }
 
     public function getDesc(): string
     {
         $slices = explode(',', $this->value);
+
         return str_replace('_', ' ', $slices[1]);
     }
 
     public function getPermission(): string
     {
         $slices = explode(',', $this->value);
+
         return $slices[1];
     }
 
@@ -64,7 +68,7 @@ enum PermissionType: string {
 
         return array_values(array_filter(
             self::cases(),
-            static fn (self $case) => $ecommerce || !$case->isShop()
+            static fn (self $case) => $ecommerce || ! $case->isShop()
         ));
     }
 

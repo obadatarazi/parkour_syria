@@ -76,8 +76,8 @@ class MultiTypeSettingService extends BaseService
     {
         $setting = $this->allCached()->firstWhere('setting_key', $settingKey);
 
-        if (!$setting instanceof MultiTypeSetting) {
-            throw (new ModelNotFoundException())->setModel(MultiTypeSetting::class, [$settingKey]);
+        if (! $setting instanceof MultiTypeSetting) {
+            throw (new ModelNotFoundException)->setModel(MultiTypeSetting::class, [$settingKey]);
         }
 
         return $setting;
@@ -96,12 +96,12 @@ class MultiTypeSettingService extends BaseService
 
         $items = $this->allCached();
 
-        if (!empty($filters['type'])) {
+        if (! empty($filters['type'])) {
             $type = (string) $filters['type'];
             $items = $items->where('type', $type)->values();
         }
 
-        if (!empty($filters['search']) && is_string($filters['search'])) {
+        if (! empty($filters['search']) && is_string($filters['search'])) {
             $needle = mb_strtolower(trim($filters['search']));
             $items = $items
                 ->filter(function (MultiTypeSetting $setting) use ($needle) {
@@ -118,7 +118,7 @@ class MultiTypeSettingService extends BaseService
         }
 
         $allowed = ['id', 'setting_key', 'type', 'created_at'];
-        if (!in_array($sort, $allowed, true)) {
+        if (! in_array($sort, $allowed, true)) {
             $sort = 'id';
         }
 

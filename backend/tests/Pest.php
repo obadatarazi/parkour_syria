@@ -25,4 +25,3 @@ pest()->extend(TestCase::class)
         Event::query()->update(['starts_at' => now()->addWeek()]);
     })
     ->in('Feature/Parkour');
-

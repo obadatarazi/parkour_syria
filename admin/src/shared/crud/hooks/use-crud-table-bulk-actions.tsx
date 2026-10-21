@@ -1,10 +1,10 @@
 import { Trash2 } from "lucide-react";
-import { useCallback, useState, type ReactNode } from "react";
+import { type ReactNode,useCallback, useState } from "react";
 
 import { AppButton } from "@/shared/components/buttons/AppButton";
 import { CrudBulkActionBar } from "@/shared/crud/components/CrudBulkActionBar";
-import type { CrudBulkMutationResult } from "@/shared/crud/utils/bulk-mutation.utils";
 import type { CrudSelectionState } from "@/shared/crud/types/crud.types";
+import type { CrudBulkMutationResult } from "@/shared/crud/utils/bulk-mutation.utils";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 
 type UseCrudTableBulkActionsOptions = {

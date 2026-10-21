@@ -10,7 +10,7 @@ import {
   hasDeliveryZonesPriceFormChanges,
   pickDeliveryZonesPriceFormChanges,
 } from "@/features/delivery-zones-prices/types/delivery-zones-prices.types";
-import { useCrudMutation, useCrudQuickBooleanMutation, type CrudSaveResult } from "@/shared/crud";
+import { type CrudSaveResult,useCrudMutation, useCrudQuickBooleanMutation } from "@/shared/crud";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import { getServiceErrorCode, resolveServiceErrorMessage } from "@/shared/errors";
 import { notify } from "@/shared/lib/notifications";

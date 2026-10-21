@@ -37,13 +37,13 @@ import type {
   CrmStaffNoteType,
   CrmTimelineType,
 } from "@/features/customers/types/customers.types";
+import { visibleTags } from "@/features/customers/utils/crm-segments";
 import {
   customerCarePlansListHref,
   customerOrdersListHref,
   customerPrescriptionsListHref,
   customerProductReviewsListHref,
 } from "@/features/customers/utils/customer-links";
-import { visibleTags } from "@/features/customers/utils/crm-segments";
 import { formatKwd } from "@/features/products/utils/product-display.utils";
 import {
   AppButton,

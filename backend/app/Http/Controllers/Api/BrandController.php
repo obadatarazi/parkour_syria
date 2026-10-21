@@ -24,8 +24,8 @@ class BrandController extends ApiController
         summary: 'get all brands',
         tags: ['Brand'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
-    #[OA\Parameter(ref: "#/components/parameters/direction")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
+    #[OA\Parameter(ref: '#/components/parameters/direction')]
     #[OA\Parameter(
         name: 'sort',
         description: 'Specify sorting order.',
@@ -34,8 +34,8 @@ class BrandController extends ApiController
         schema: new OA\Schema(type: 'string', enum: ['id', 'created_at', 'title']),
         example: 'created_at'
     )]
-    #[OA\Parameter(ref: "#/components/parameters/page")]
-    #[OA\Parameter(ref: "#/components/parameters/limit")]
+    #[OA\Parameter(ref: '#/components/parameters/page')]
+    #[OA\Parameter(ref: '#/components/parameters/limit')]
     #[OA\Parameter(
         name: 'search',
         description: 'Apply filter by title.',
@@ -81,7 +81,7 @@ class BrandController extends ApiController
         summary: 'Get one brand',
         tags: ['Brand'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'brand',
         description: 'the brand to retrieve',
@@ -114,7 +114,7 @@ class BrandController extends ApiController
         summary: 'Get one brand by slug',
         tags: ['Brand'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'slug',
         description: 'the brand by slug to retrieve',

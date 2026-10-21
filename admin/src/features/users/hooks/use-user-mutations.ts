@@ -7,7 +7,7 @@ import {
   pickUserFormChanges,
   userToFormData,
 } from "@/features/users/types/users.types";
-import { useCrudMutation, useCrudQuickBooleanMutation, type CrudSaveResult } from "@/shared/crud";
+import { type CrudSaveResult,useCrudMutation, useCrudQuickBooleanMutation } from "@/shared/crud";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 
 type UseUserMutationsOptions = {

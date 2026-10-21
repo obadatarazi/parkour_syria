@@ -24,8 +24,8 @@ class CategoryController extends ApiController
         summary: 'get all categories',
         tags: ['Category'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
-    #[OA\Parameter(ref: "#/components/parameters/direction")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
+    #[OA\Parameter(ref: '#/components/parameters/direction')]
     #[OA\Parameter(
         name: 'sort',
         description: 'Specify sorting order.',
@@ -34,8 +34,8 @@ class CategoryController extends ApiController
         schema: new OA\Schema(type: 'string', enum: ['id', 'created_at', 'title']),
         example: 'created_at'
     )]
-    #[OA\Parameter(ref: "#/components/parameters/page")]
-    #[OA\Parameter(ref: "#/components/parameters/limit")]
+    #[OA\Parameter(ref: '#/components/parameters/page')]
+    #[OA\Parameter(ref: '#/components/parameters/limit')]
     #[OA\Parameter(
         name: 'search',
         description: 'Apply filter by title.',
@@ -123,7 +123,7 @@ class CategoryController extends ApiController
         summary: 'Get one category',
         tags: ['Category'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'category',
         description: 'the category to retrieve',
@@ -156,7 +156,7 @@ class CategoryController extends ApiController
         summary: 'Get one category by slug',
         tags: ['Category'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'slug',
         description: 'the category by slug to retrieve',

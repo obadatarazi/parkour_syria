@@ -21,6 +21,5 @@ use OpenApi\Attributes as OA;
 #[Attribute(Attribute::TARGET_CLASS)]
 class HomeCmsSchema
 {
-    public function __construct()
-    {}
+    public function __construct() {}
 }

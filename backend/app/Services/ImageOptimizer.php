@@ -19,11 +19,11 @@ class ImageOptimizer
      */
     public function optimize(string $path, string $extension): ?array
     {
-        if (!config('uploads.optimize_images') || !extension_loaded('gd')) {
+        if (! config('uploads.optimize_images') || ! extension_loaded('gd')) {
             return null;
         }
 
-        if (!in_array($extension, ['jpg', 'jpeg', 'png', 'webp'], true)) {
+        if (! in_array($extension, ['jpg', 'jpeg', 'png', 'webp'], true)) {
             return null;
         }
 
@@ -47,7 +47,7 @@ class ImageOptimizer
             IMAGETYPE_WEBP => function_exists('imagecreatefromwebp') ? @imagecreatefromwebp($path) : false,
             default => false,
         };
-        if (!$image instanceof GdImage) {
+        if (! $image instanceof GdImage) {
             return null;
         }
 
@@ -128,7 +128,7 @@ class ImageOptimizer
     /** Phone photos are often stored sideways with an EXIF flag; GD drops the flag, so apply it. */
     private function applyExifOrientation(GdImage $image, string $path): GdImage
     {
-        if (!function_exists('exif_read_data')) {
+        if (! function_exists('exif_read_data')) {
             return $image;
         }
 

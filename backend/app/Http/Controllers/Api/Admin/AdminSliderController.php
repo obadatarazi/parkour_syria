@@ -31,8 +31,8 @@ class AdminSliderController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Slider'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
-    #[OA\Parameter(ref: "#/components/parameters/direction")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
+    #[OA\Parameter(ref: '#/components/parameters/direction')]
     #[OA\Parameter(
         name: 'sort',
         description: 'Specify sorting order.',
@@ -41,8 +41,8 @@ class AdminSliderController extends ApiController
         schema: new OA\Schema(type: 'string', enum: ['id', 'sort_order', 'created_at']),
         example: 'sort_order'
     )]
-    #[OA\Parameter(ref: "#/components/parameters/page")]
-    #[OA\Parameter(ref: "#/components/parameters/limit")]
+    #[OA\Parameter(ref: '#/components/parameters/page')]
+    #[OA\Parameter(ref: '#/components/parameters/limit')]
     #[OA\Parameter(
         name: 'search',
         description: 'Free text search on badge / title.',
@@ -95,7 +95,7 @@ class AdminSliderController extends ApiController
         summary: 'create slider',
         security: [['Bearer' => []]],
         tags: ['Admin Slider'],
-        parameters: [new OA\Parameter(ref: "#/components/parameters/x-locale")],
+        parameters: [new OA\Parameter(ref: '#/components/parameters/x-locale')],
     )]
     #[OA\RequestBody(
         content: new OA\MediaType(
@@ -128,7 +128,7 @@ class AdminSliderController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Slider'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'slider',
         description: 'the slider to retrieve',
@@ -162,7 +162,7 @@ class AdminSliderController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Slider'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'slider',
         description: 'the slider to update',
@@ -202,7 +202,7 @@ class AdminSliderController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Slider'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'slider',
         description: 'the slider to delete',
@@ -236,7 +236,7 @@ class AdminSliderController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Slider'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\RequestBody(
         content: new OA\MediaType(
             mediaType: 'application/json',
@@ -259,12 +259,12 @@ class AdminSliderController extends ApiController
     #[OA\Get(
         path: '/api/admin/sliders/export',
         description: 'download every slider the current filters select as a csv file, translated fields in '
-            . 'the language the x-locale header asks for. Takes the same filters as index(), without the paging.',
+            .'the language the x-locale header asks for. Takes the same filters as index(), without the paging.',
         summary: 'export sliders as csv',
         security: [['Bearer' => []]],
         tags: ['Admin Slider'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Response(
         response: 200,
         description: 'The csv file, as a download',

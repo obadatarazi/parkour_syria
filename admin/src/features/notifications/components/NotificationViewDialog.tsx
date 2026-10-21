@@ -12,11 +12,11 @@ import {
 import { getNotificationTargetHref } from "@/features/notifications/utils/notification-target.utils";
 import { AppButton, StatusBadge, UserLabelText } from "@/shared/components";
 import { CrudDetailField, CrudViewDialog, type CrudViewDialogSection } from "@/shared/crud";
+import { cn } from "@/shared/design-system/components/ui/utils";
 import {
   useLocalization,
   useTranslation,
 } from "@/shared/design-system/localization/contexts/LocalizationContext";
-import { cn } from "@/shared/design-system/components/ui/utils";
 import { formatDateTime } from "@/shared/lib/datetime.utils";
 import { getBilingualTitle } from "@/shared/lib/translation-display.utils";
 

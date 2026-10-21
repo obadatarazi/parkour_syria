@@ -22,8 +22,8 @@ class ProductController extends ApiController
         summary: 'get all products',
         tags: ['Product'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
-    #[OA\Parameter(ref: "#/components/parameters/direction")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
+    #[OA\Parameter(ref: '#/components/parameters/direction')]
     #[OA\Parameter(
         name: 'sort',
         description: 'Specify sorting order.',
@@ -32,8 +32,8 @@ class ProductController extends ApiController
         schema: new OA\Schema(type: 'string', enum: ['id', 'price', 'created_at']),
         example: 'price'
     )]
-    #[OA\Parameter(ref: "#/components/parameters/page")]
-    #[OA\Parameter(ref: "#/components/parameters/limit")]
+    #[OA\Parameter(ref: '#/components/parameters/page')]
+    #[OA\Parameter(ref: '#/components/parameters/limit')]
     #[OA\Parameter(
         name: 'search',
         description: 'Free text search on title / slug / sku_code.',
@@ -93,7 +93,7 @@ class ProductController extends ApiController
         summary: 'Get one product',
         tags: ['Product'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'slug',
         description: 'the product slug',

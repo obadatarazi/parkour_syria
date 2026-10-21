@@ -44,7 +44,7 @@ class BlogPostService extends BaseService
 
         $related = $post->blog_category_id
             ? $base()->where('blog_category_id', $post->blog_category_id)->limit($limit)->get()
-            : new Collection();
+            : new Collection;
 
         if ($related->count() < $limit) {
             $related = $related->concat(

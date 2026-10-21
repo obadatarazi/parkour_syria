@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { type ComponentType, type CSSProperties, type ReactNode,useState } from "react";
 
+import { formatKwd } from "@/features/products/utils/product-display.utils";
 import {
   AppButton,
   DataTable,
@@ -29,7 +30,6 @@ import {
   UserAvatar,
 } from "@/shared/components";
 import type { DataTableColumn } from "@/shared/components/data/DataTable.types";
-import { formatKwd } from "@/features/products/utils/product-display.utils";
 import { AdminStatusBadge, DemoSkeleton } from "@/shared/demo";
 import { Button } from "@/shared/design-system/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/shared/design-system/components/ui/card";

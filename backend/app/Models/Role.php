@@ -53,7 +53,7 @@ class Role extends abstractRole
 
     protected $filterable = [
         'name' => 'like',
-        'code' => '='
+        'code' => '=',
     ];
 
     protected $sorterable = ['id', 'name', 'guard_name', 'created_at'];
@@ -66,6 +66,7 @@ class Role extends abstractRole
         foreach ($attributes as $key => $value) {
             $camelCaseAttributes[Str::camel($key)] = $value;
         }
+
         return $camelCaseAttributes;
     }
 }

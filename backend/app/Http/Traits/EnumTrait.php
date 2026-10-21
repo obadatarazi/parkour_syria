@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Traits;
 
 use Illuminate\Support\Facades\Lang;
@@ -10,8 +11,8 @@ trait EnumTrait
     {
         return array_map(function ($item) use ($translator) {
             return [
-                "label" => $item->trans($translator),
-                "value" => $item->value,
+                'label' => $item->trans($translator),
+                'value' => $item->value,
             ];
         }, self::cases());
     }
@@ -31,7 +32,7 @@ trait EnumTrait
 
     public function trans($translator): string
     {
-        return Lang::get("enum." . $this->value, [], $translator);
+        return Lang::get('enum.'.$this->value, [], $translator);
     }
 
     public static function getValues(): array

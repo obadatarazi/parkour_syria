@@ -5,6 +5,7 @@ import type {
   PrescriptionListParams,
 } from "@/features/prescriptions/types/prescriptions.types";
 import { mapPrescriptionFromApi } from "@/features/prescriptions/utils/map-prescription-from-api";
+import { ServiceError } from "@/shared/errors";
 import {
   apiRequest,
   appendFile,
@@ -19,7 +20,6 @@ import {
   decodeAdminRouteKey,
   isNumericAdminRouteKey,
 } from "@/shared/lib/routing/admin-route-keys.utils";
-import { ServiceError } from "@/shared/errors";
 
 function buildPrescriptionFormData(data: Partial<PrescriptionFormData>): FormData {
   const formData = new FormData();

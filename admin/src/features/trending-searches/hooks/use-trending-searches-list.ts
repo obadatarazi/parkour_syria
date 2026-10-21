@@ -3,9 +3,9 @@ import { useCallback, useMemo } from "react";
 import { trendingSearchesService } from "@/features/trending-searches/services/trending-searches.service";
 import type { TrendingSearchListParams } from "@/features/trending-searches/types/trending-searches.types";
 import {
+  CRUD_FILTER_ALL_VALUE,
   type CrudFilterDefinition,
   type CrudSortDefinition,
-  CRUD_FILTER_ALL_VALUE,
   mapBooleanFilterValue,
   useServerPaginatedList,
 } from "@/shared/crud";

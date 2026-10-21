@@ -36,8 +36,8 @@ class CurrencyRequest extends TranslationFormRequest
             $rules = [
                 'symbol' => ['required', 'string', 'max:255'],
                 'code' => ['required', 'string', 'max:255', 'unique:currencies,code'],
-                'publish' => ['nullable', new BooleanValidationRule()],
-                'is_default' => ['nullable', new BooleanValidationRule()],
+                'publish' => ['nullable', new BooleanValidationRule],
+                'is_default' => ['nullable', new BooleanValidationRule],
                 'translations' => ['required', 'array'],
                 'translations.*.title' => ['required', 'string', 'max:255'],
             ];
@@ -46,9 +46,9 @@ class CurrencyRequest extends TranslationFormRequest
         if ($this->method() === 'PUT' || $this->method() === 'PATCH') {
             $rules = [
                 'symbol' => ['nullable', 'string', 'max:255'],
-                'code' => ['nullable', 'string', 'max:255', 'unique:currencies,code,' . $this->route('currency')?->id],
-                'publish' => ['nullable', new BooleanValidationRule()],
-                'is_default' => ['nullable', new BooleanValidationRule()],
+                'code' => ['nullable', 'string', 'max:255', 'unique:currencies,code,'.$this->route('currency')?->id],
+                'publish' => ['nullable', new BooleanValidationRule],
+                'is_default' => ['nullable', new BooleanValidationRule],
                 'translations' => ['nullable', 'array'],
                 'translations.*.title' => ['nullable', 'string', 'max:255'],
             ];
@@ -62,7 +62,7 @@ class CurrencyRequest extends TranslationFormRequest
         $validator->after(function ($validator) {
             $currency = $this->route('currency');
 
-            if (!$currency instanceof Currency) {
+            if (! $currency instanceof Currency) {
                 return;
             }
 

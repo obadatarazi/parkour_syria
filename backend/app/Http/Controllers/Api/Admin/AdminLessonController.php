@@ -31,8 +31,8 @@ class AdminLessonController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Lesson'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
-    #[OA\Parameter(ref: "#/components/parameters/direction")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
+    #[OA\Parameter(ref: '#/components/parameters/direction')]
     #[OA\Parameter(
         name: 'sort',
         description: 'Specify sorting order.',
@@ -41,8 +41,8 @@ class AdminLessonController extends ApiController
         schema: new OA\Schema(type: 'string', enum: ['id', 'sort_order', 'created_at']),
         example: 'sort_order'
     )]
-    #[OA\Parameter(ref: "#/components/parameters/page")]
-    #[OA\Parameter(ref: "#/components/parameters/limit")]
+    #[OA\Parameter(ref: '#/components/parameters/page')]
+    #[OA\Parameter(ref: '#/components/parameters/limit')]
     #[OA\Parameter(
         name: 'search',
         description: 'Free text search on title / slug.',
@@ -95,7 +95,7 @@ class AdminLessonController extends ApiController
         summary: 'create lesson',
         security: [['Bearer' => []]],
         tags: ['Admin Lesson'],
-        parameters: [new OA\Parameter(ref: "#/components/parameters/x-locale")],
+        parameters: [new OA\Parameter(ref: '#/components/parameters/x-locale')],
     )]
     #[OA\RequestBody(
         content: new OA\MediaType(
@@ -128,7 +128,7 @@ class AdminLessonController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Lesson'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'lesson',
         description: 'the lesson to retrieve',
@@ -162,7 +162,7 @@ class AdminLessonController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Lesson'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'lesson',
         description: 'the lesson to update',
@@ -202,7 +202,7 @@ class AdminLessonController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Lesson'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'lesson',
         description: 'the lesson to delete',
@@ -236,7 +236,7 @@ class AdminLessonController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Lesson'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\RequestBody(
         content: new OA\MediaType(
             mediaType: 'application/json',
@@ -259,12 +259,12 @@ class AdminLessonController extends ApiController
     #[OA\Get(
         path: '/api/admin/lessons/export',
         description: 'download every lesson the current filters select as a csv file, translated fields in '
-            . 'the language the x-locale header asks for. Takes the same filters as index(), without the paging.',
+            .'the language the x-locale header asks for. Takes the same filters as index(), without the paging.',
         summary: 'export lessons as csv',
         security: [['Bearer' => []]],
         tags: ['Admin Lesson'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Response(
         response: 200,
         description: 'The csv file, as a download',

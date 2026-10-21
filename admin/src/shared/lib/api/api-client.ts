@@ -1,11 +1,11 @@
 import { isAccessTokenNearingExpiry } from "@/features/auth/utils/access-token-expiry";
 import { readStoredSession } from "@/features/auth/utils/auth-storage";
-import { getAuthSessionRecoveryHandlers } from "@/shared/lib/api/auth-session-recovery-bridge";
 import { ServiceError } from "@/shared/errors";
+import { getAuthSessionRecoveryHandlers } from "@/shared/lib/api/auth-session-recovery-bridge";
 import { readAccessToken } from "@/shared/lib/api/token";
 import { env } from "@/shared/lib/env";
 
-import { resolveApiLocale, type ApiLocale } from "./api-locale";
+import { type ApiLocale,resolveApiLocale } from "./api-locale";
 import { buildQueryString, mapLaravelError } from "./laravel.utils";
 
 export type { ApiLocale } from "./api-locale";

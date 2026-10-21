@@ -27,8 +27,8 @@ class AdminOrderController extends ApiController
     }
 
     #[OA\Get(path: '/api/admin/orders', description: 'Shop only (FEATURE_ECOMMERCE).', summary: 'get all orders', security: [['Bearer' => []]], tags: ['Admin Order'])]
-    #[OA\Parameter(ref: "#/components/parameters/page")]
-    #[OA\Parameter(ref: "#/components/parameters/limit")]
+    #[OA\Parameter(ref: '#/components/parameters/page')]
+    #[OA\Parameter(ref: '#/components/parameters/limit')]
     #[OA\Parameter(name: 'status', in: 'query', required: false, schema: new OA\Schema(type: 'string', enum: ['PENDING', 'CONFIRMED', 'SHIPPED', 'COMPLETED', 'CANCELLED']))]
     #[OA\Response(response: 200, description: 'Paginated orders', content: new OA\JsonContent(ref: '#/components/schemas/Pagination'))]
     public function index(OrderFilter $filter): JsonResponse

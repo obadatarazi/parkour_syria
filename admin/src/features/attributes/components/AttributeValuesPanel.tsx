@@ -1,25 +1,25 @@
 import { ListTree, Pencil, Plus, Trash2 } from "lucide-react";
 import { useCallback, useMemo, useState } from "react";
 
-import { AttributeValueInlineForm } from "@/features/attributes/components/AttributeValueInlineForm";
-import { getAttributeValueLabel } from "@/features/attributes/utils/attribute-display.utils";
 import {
   type AttributeValueQuickToggleField,
   useAttributeValueMutations,
 } from "@/features/attribute-values/hooks/use-attribute-value-mutations";
 import { attributeValuesService } from "@/features/attribute-values/services/attribute-values.service";
 import type { AttributeValue } from "@/features/attribute-values/types/attribute-values.types";
+import { AttributeValueInlineForm } from "@/features/attributes/components/AttributeValueInlineForm";
+import { getAttributeValueLabel } from "@/features/attributes/utils/attribute-display.utils";
 import { AppBadge, AppButton } from "@/shared/components";
 import {
   CrudDeleteDialog,
   CrudTableBooleanToggle,
   useCrudDialog,
-  useCrudQuickToggle,
   useCrudQuery,
+  useCrudQuickToggle,
 } from "@/shared/crud";
 import { Skeleton } from "@/shared/design-system/components/ui/skeleton";
-import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import { cn } from "@/shared/design-system/components/ui/utils";
+import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import {
   formatBilingualLabel,
   getBilingualTitle,

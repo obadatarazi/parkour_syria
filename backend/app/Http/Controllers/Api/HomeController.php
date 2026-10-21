@@ -10,19 +10,17 @@ use OpenApi\Attributes as OA;
 
 class HomeController extends ApiController
 {
-    public function __construct(protected HomeCmsService $homeCmsService)
-    {
-    }
+    public function __construct(protected HomeCmsService $homeCmsService) {}
 
     #[OA\Get(
         path: '/api/home',
         description: 'Everything the home page draws in one request: the hero sliders, the latest blog posts, '
-            . 'the upcoming events, a slice of verified directory entries, the gallery and the `home` page copy. Published '
-            . 'content only, cached for 90 seconds per locale and flushed whenever one of the rails is edited.',
+            .'the upcoming events, a slice of verified directory entries, the gallery and the `home` page copy. Published '
+            .'content only, cached for 90 seconds per locale and flushed whenever one of the rails is edited.',
         summary: 'home page payload',
         tags: ['Home'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Response(
         response: 200,
         description: 'The home payload',

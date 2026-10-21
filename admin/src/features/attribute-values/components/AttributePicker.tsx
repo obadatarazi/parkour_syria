@@ -8,13 +8,13 @@ import { FormField } from "@/shared/components";
 import { useCrudQuery } from "@/shared/crud";
 import { Button } from "@/shared/design-system/components/ui/button";
 import { Input } from "@/shared/design-system/components/ui/input";
+import { cn } from "@/shared/design-system/components/ui/utils";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import { resolveServiceErrorMessage } from "@/shared/errors";
 import {
   formatBilingualLabel,
   getBilingualTitle,
 } from "@/shared/lib/translation-display.utils";
-import { cn } from "@/shared/design-system/components/ui/utils";
 
 type AttributePickerProps = {
   value: number | null;

@@ -19,11 +19,11 @@ import {
 import type { CrudRowAction } from "@/shared/crud/types/crud.types";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import { resolveServiceErrorMessage } from "@/shared/errors";
+import { useCrudPageGuidance } from "@/shared/guidance";
 import {
   getBilingualDescription,
   getBilingualTitle,
 } from "@/shared/lib/translation-display.utils";
-import { useCrudPageGuidance } from "@/shared/guidance";
 
 export function VisualSettingsPage() {
   const t = useTranslation();

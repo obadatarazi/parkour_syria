@@ -7,6 +7,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
+use Laravel\Passport\Exceptions\OAuthServerException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
 
@@ -17,10 +18,10 @@ class Handler extends ExceptionHandler
     /**
      * Expected client-auth noise (expired/revoked Bearer). Do not flood logs.
      *
-     * @var array<int, class-string<\Throwable>>
+     * @var array<int, class-string<Throwable>>
      */
     protected $dontReport = [
-        \Laravel\Passport\Exceptions\OAuthServerException::class,
+        OAuthServerException::class,
         \League\OAuth2\Server\Exception\OAuthServerException::class,
     ];
 
@@ -48,7 +49,7 @@ class Handler extends ExceptionHandler
             }
             // An unexpected error's message carries SQL, file paths and hosts. It goes to the log
             // (report() still runs), the client only reads it while debugging.
-            if ($statusCode === 500 && !config('app.debug')) {
+            if ($statusCode === 500 && ! config('app.debug')) {
                 return $this->errorResponse(__('exceptions.server_error'), 500);
             }
 
@@ -61,7 +62,7 @@ class Handler extends ExceptionHandler
 
     private function isOAuthAccessDenied(Throwable $exception): bool
     {
-        return $exception instanceof \Laravel\Passport\Exceptions\OAuthServerException
+        return $exception instanceof OAuthServerException
             || $exception instanceof \League\OAuth2\Server\Exception\OAuthServerException;
     }
 }

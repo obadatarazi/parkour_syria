@@ -18,7 +18,7 @@ use Spatie\Permission\Traits\HasRoles;
 #[UserSchema]
 class User extends Authenticatable implements OAuthenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens, Filterable, HasRoles;
+    use Filterable, HasApiTokens, HasFactory, HasRoles, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -63,7 +63,7 @@ class User extends Authenticatable implements OAuthenticatable
         'email' => 'like',
         'type' => '=',
         'gender' => '=',
-        'active' => '='
+        'active' => '=',
     ];
 
     protected $sorterable = ['id', 'full_name', 'email', 'created_at', 'gender'];
@@ -79,7 +79,6 @@ class User extends Authenticatable implements OAuthenticatable
             ->timezone(config('app.timezone', 'Asia/Damascus'))
             ->format('Y-m-d H:i:s');
     }
-
 
     public function getGenderValueAttribute(): ?string
     {
@@ -109,6 +108,7 @@ class User extends Authenticatable implements OAuthenticatable
         foreach ($attributes as $key => $value) {
             $camelCaseAttributes[Str::camel($key)] = $value;
         }
+
         return $camelCaseAttributes;
     }
 

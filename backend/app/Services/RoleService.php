@@ -58,20 +58,21 @@ class RoleService extends BaseService
         foreach ($roles as $role) {
             $section = $role->getSection();
             if (count($rolesArray) == 0
-                || $rolesArray[count($rolesArray) - 1]['section'] != $section)
+                || $rolesArray[count($rolesArray) - 1]['section'] != $section) {
                 $rolesArray[] = [
                     'section' => $section,
-                    'roles' => []
+                    'roles' => [],
                 ];
+            }
             $rolesArray[count($rolesArray) - 1]['roles'][] = [
                 'role' => $role->getSection(),
                 'name' => $role->getPermission(),
                 'description' => $role->getDesc(),
             ];
         }
+
         return $rolesArray;
     }
-
 
     public function getSuperAdminRoleGroup()
     {
@@ -111,7 +112,7 @@ class RoleService extends BaseService
         }
 
         // A system role keeps its code whatever it is renamed to, everything that looks it up uses it.
-        if (isset($data['name']) && !$role->isSystemRole()) {
+        if (isset($data['name']) && ! $role->isSystemRole()) {
             $role->code = strtoupper(str_replace(' ', '_', $data['name']));
         }
 
@@ -151,7 +152,7 @@ class RoleService extends BaseService
      * A change needs MANAGE_ROLE, never applies to the actor's own account, needs the Super Admin
      * role to hand out Super Admin, and cannot carry a permission the actor does not hold.
      *
-     * @param array<int, int|string> $roleIds
+     * @param  array<int, int|string>  $roleIds
      */
     public function assertCanAssignRoles(User $actor, ?User $target, array $roleIds): void
     {
@@ -170,7 +171,7 @@ class RoleService extends BaseService
         $roles = Role::query()->with('permissions')->whereIn('id', $requested)->get();
 
         $grantsSuperAdmin = $roles->contains(fn (Role $role) => $role->code === RoleCode::SuperAdmin->value);
-        abort_if($grantsSuperAdmin && !$actor->hasRole($this->getSuperAdminRoleGroup()), 403, __('exceptions.super_admin_grant_forbidden'));
+        abort_if($grantsSuperAdmin && ! $actor->hasRole($this->getSuperAdminRoleGroup()), 403, __('exceptions.super_admin_grant_forbidden'));
 
         $granted = $roles->flatMap(fn (Role $role) => $role->permissions->pluck('name'))->unique()->all();
         abort_if(array_diff($granted, $actorPermissions) !== [], 403, __('exceptions.permission_escalation_forbidden'));
@@ -180,7 +181,7 @@ class RoleService extends BaseService
      * Whether `$actor` may build a role carrying the permissions in `$permissionIds`: only out of
      * permissions the actor holds.
      *
-     * @param array<int, int|string> $permissionIds
+     * @param  array<int, int|string>  $permissionIds
      */
     public function assertCanGrantPermissions(User $actor, array $permissionIds): void
     {
@@ -193,7 +194,7 @@ class RoleService extends BaseService
      * The Super Admin role always carries every permission, so its set is not editable. A role the
      * actor holds is not editable by them either, or they could widen their own access.
      *
-     * @param array<int, int|string> $permissionIds
+     * @param  array<int, int|string>  $permissionIds
      */
     public function assertCanChangeRolePermissions(User $actor, Role $role, array $permissionIds): void
     {
@@ -218,7 +219,7 @@ class RoleService extends BaseService
     }
 
     /**
-     * @param array<int, int|string> $ids
+     * @param  array<int, int|string>  $ids
      * @return list<int>
      */
     private function normaliseIds(array $ids): array

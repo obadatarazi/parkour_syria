@@ -1,16 +1,16 @@
 import { Check, ChevronDown, X } from "lucide-react";
 import { useEffect, useId, useState } from "react";
 
-import { getBrandLabel, useBrandPicker } from "@/features/products/hooks/use-brand-picker";
-import { RelationPickerPanel } from "@/features/products/components/RelationPickerPanel";
-import type { RelationPickerSeed } from "@/features/products/types/products.types";
 import type { Brand } from "@/features/brands/types/brands.types";
+import { RelationPickerPanel } from "@/features/products/components/RelationPickerPanel";
+import { getBrandLabel, useBrandPicker } from "@/features/products/hooks/use-brand-picker";
+import type { RelationPickerSeed } from "@/features/products/types/products.types";
 import { FormField } from "@/shared/components";
 import { Button } from "@/shared/design-system/components/ui/button";
 import { Input } from "@/shared/design-system/components/ui/input";
+import { cn } from "@/shared/design-system/components/ui/utils";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import { resolveServiceErrorMessage } from "@/shared/errors";
-import { cn } from "@/shared/design-system/components/ui/utils";
 
 type BrandPickerProps = {
   value: number | null;

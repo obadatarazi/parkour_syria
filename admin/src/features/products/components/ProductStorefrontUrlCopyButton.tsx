@@ -2,9 +2,9 @@ import { Copy, ExternalLink } from "lucide-react";
 
 import type { Product } from "@/features/products/types/products.types";
 import {
+  formatProductStorefrontUrlForCopy,
   getProductStorefrontUrlForLocale,
   getProductStorefrontUrlFromTranslations,
-  formatProductStorefrontUrlForCopy,
   type StorefrontLocale,
 } from "@/features/products/utils/product-storefront-url.utils";
 import { AppButton } from "@/shared/components";

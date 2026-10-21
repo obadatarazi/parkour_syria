@@ -23,8 +23,8 @@ import {
   CrudListPage,
   CrudListSection,
   CrudListTable,
-  CrudTableActions,
   type CrudRowAction,
+  CrudTableActions,
 } from "@/shared/crud";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import { resolveServiceErrorMessage } from "@/shared/errors";

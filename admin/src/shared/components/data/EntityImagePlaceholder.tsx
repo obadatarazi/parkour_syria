@@ -1,5 +1,5 @@
-import { type ReactNode, useEffect, useState } from "react";
 import { Folder, Tag } from "lucide-react";
+import { type ReactNode, useEffect, useState } from "react";
 
 import { MediaImage } from "@/shared/components/data/MediaImage";
 import { cn } from "@/shared/design-system/components/ui/utils";

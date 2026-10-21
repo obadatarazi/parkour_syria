@@ -13,7 +13,7 @@ trait HasTranslatedOptions
      */
     public static function getOptions(string $locale): array
     {
-        $model = new static();
+        $model = new static;
         $label = $model->optionLabel ?? 'title';
 
         return static::query()

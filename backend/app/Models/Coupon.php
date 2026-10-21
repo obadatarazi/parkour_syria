@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Coupon extends BaseModel
 {
-    use HasFactory, Filterable;
+    use Filterable, HasFactory;
 
     protected $fillable = ['code', 'type', 'value', 'starts_at', 'ends_at', 'usage_limit', 'publish'];
 

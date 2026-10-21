@@ -31,8 +31,8 @@ class AdminBlogPostController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Blog Post'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
-    #[OA\Parameter(ref: "#/components/parameters/direction")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
+    #[OA\Parameter(ref: '#/components/parameters/direction')]
     #[OA\Parameter(
         name: 'sort',
         description: 'Specify sorting order.',
@@ -41,8 +41,8 @@ class AdminBlogPostController extends ApiController
         schema: new OA\Schema(type: 'string', enum: ['id', 'published_at', 'created_at']),
         example: 'published_at'
     )]
-    #[OA\Parameter(ref: "#/components/parameters/page")]
-    #[OA\Parameter(ref: "#/components/parameters/limit")]
+    #[OA\Parameter(ref: '#/components/parameters/page')]
+    #[OA\Parameter(ref: '#/components/parameters/limit')]
     #[OA\Parameter(
         name: 'search',
         description: 'Free text search on title / excerpt.',
@@ -109,7 +109,7 @@ class AdminBlogPostController extends ApiController
         summary: 'create blog post',
         security: [['Bearer' => []]],
         tags: ['Admin Blog Post'],
-        parameters: [new OA\Parameter(ref: "#/components/parameters/x-locale")],
+        parameters: [new OA\Parameter(ref: '#/components/parameters/x-locale')],
     )]
     #[OA\RequestBody(
         content: new OA\MediaType(
@@ -142,7 +142,7 @@ class AdminBlogPostController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Blog Post'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'blog_post',
         description: 'the blog post to retrieve',
@@ -176,7 +176,7 @@ class AdminBlogPostController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Blog Post'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'blog_post',
         description: 'the blog post to update',
@@ -216,7 +216,7 @@ class AdminBlogPostController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Blog Post'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'blog_post',
         description: 'the blog post to delete',
@@ -250,7 +250,7 @@ class AdminBlogPostController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Blog Post'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\RequestBody(
         content: new OA\MediaType(
             mediaType: 'application/json',
@@ -273,12 +273,12 @@ class AdminBlogPostController extends ApiController
     #[OA\Get(
         path: '/api/admin/blog-posts/export',
         description: 'download every blog post the current filters select as a csv file, translated fields in '
-            . 'the language the x-locale header asks for. Takes the same filters as index(), without the paging.',
+            .'the language the x-locale header asks for. Takes the same filters as index(), without the paging.',
         summary: 'export blog posts as csv',
         security: [['Bearer' => []]],
         tags: ['Admin Blog Post'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Response(
         response: 200,
         description: 'The csv file, as a download',

@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Api\Admin;
 use App\Constant\SerializedGroup;
 use App\Exceptions\Custom\UnauthorizedException;
 use App\Http\Controllers\Api\ApiController;
+use App\Http\Requests\Admin\ChangePasswordRequest;
 use App\Http\Requests\Admin\LoginRequest;
 use App\Http\Requests\Admin\RefreshTokenRequest;
 use App\Http\Requests\Admin\UpdateProfileRequest;
-use App\Http\Requests\Admin\ChangePasswordRequest;
 use App\Http\Resources\UserResource;
 use App\Services\AuthService;
 use App\Services\UserService;
@@ -58,7 +58,7 @@ class AdminAuthController extends ApiController
             ),
         ]
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     public function login(LoginRequest $request): JsonResponse
     {
         try {
@@ -112,7 +112,7 @@ class AdminAuthController extends ApiController
             ),
         ]
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     public function refreshToken(RefreshTokenRequest $request): JsonResponse
     {
         try {
@@ -147,7 +147,7 @@ class AdminAuthController extends ApiController
             ),
         ]
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     public function getAccountStatus(): JsonResponse
     {
         $user = auth()->user();
@@ -157,7 +157,7 @@ class AdminAuthController extends ApiController
         return $this
             ->setSerializedGroup(SerializedGroup::Details->value)
             ->successResponse([
-                'status'    => $isActive,
+                'status' => $isActive,
                 'message' => $isActive ? 'Your Account is Active.' : 'Your Account is Inactive. Please Contact Super Admin For Support And Assistance.',
             ]);
     }
@@ -185,7 +185,7 @@ class AdminAuthController extends ApiController
             ),
         ]
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     public function logout(): JsonResponse
     {
         $user = auth()->user();
@@ -203,7 +203,7 @@ class AdminAuthController extends ApiController
         summary: 'Get admin profile',
         security: [['Bearer' => []]],
         tags: ['Admin Auth'],
-        parameters: [new OA\Parameter(ref: "#/components/parameters/x-locale")],
+        parameters: [new OA\Parameter(ref: '#/components/parameters/x-locale')],
         responses: [
             new OA\Response(
                 response: 200,
@@ -223,6 +223,7 @@ class AdminAuthController extends ApiController
     public function me(): JsonResponse
     {
         $data = $this->authService->me();
+
         return $this
             ->setSerializedGroup(SerializedGroup::Details->value)
             ->successResponse([
@@ -269,7 +270,7 @@ class AdminAuthController extends ApiController
             ),
         ]
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     public function updateProfileAdmin(UpdateProfileRequest $updateProfileRequest): JsonResponse
     {
         $user = auth()->user();
@@ -362,7 +363,7 @@ class AdminAuthController extends ApiController
             ),
         ]
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     public function changePassword(ChangePasswordRequest $changePasswordRequest): JsonResponse
     {
         $user = auth()->user();

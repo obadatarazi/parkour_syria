@@ -41,6 +41,5 @@ use OpenApi\Attributes as OA;
 #[Attribute(Attribute::TARGET_CLASS)]
 class GalleryImageSchema
 {
-    public function __construct()
-    {}
+    public function __construct() {}
 }

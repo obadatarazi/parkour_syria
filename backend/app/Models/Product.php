@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 #[ProductSchema]
 class Product extends BaseModel implements TranslatableContract
 {
-    use HasFactory, Filterable, Translatable, SoftDeletes;
+    use Filterable, HasFactory, SoftDeletes, Translatable;
 
     protected $fillable = [
         'slug',

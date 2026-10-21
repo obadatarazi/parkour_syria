@@ -25,8 +25,7 @@ class WebsitePageService
     public function __construct(
         protected MultiTypeSettingService $settingService,
         protected BlogPostService $blogPostService,
-    ) {
-    }
+    ) {}
 
     /**
      * @return array{
@@ -49,7 +48,7 @@ class WebsitePageService
 
         $paths = config('site.website_paths');
         $segments = array_values(array_filter(explode('/', trim($path, '/')), 'strlen'));
-        $first = '/' . ($segments[0] ?? '');
+        $first = '/'.($segments[0] ?? '');
         $slug = isset($segments[1]) ? rawurldecode($segments[1]) : null;
         $key = array_search($first, $paths, true);
 
@@ -73,7 +72,7 @@ class WebsitePageService
     {
         $page = Page::query()->with('translations')->where('key', $key)->where('publish', true)->first();
         $title = $page?->title ?: $this->siteName();
-        $body = '<h1>' . e($title) . '</h1>' . $this->richText($page?->body);
+        $body = '<h1>'.e($title).'</h1>'.$this->richText($page?->body);
         $jsonLd = [];
 
         switch ($key) {
@@ -101,10 +100,10 @@ class WebsitePageService
             case 'events':
                 $events = $this->upcomingEvents();
                 $body .= $events->isEmpty()
-                    ? '<p>' . e(__('website.no_events')) . '</p>'
-                    : '<ul>' . $events->map(fn (Event $event) => '<li><h2>' . e($event->title) . '</h2><p>'
-                        . e($this->formatDate($event->starts_at)) . ($event->location_label ? ' · ' . e($event->location_label) : '')
-                        . '</p>' . $this->richText($event->description) . '</li>')->implode('') . '</ul>';
+                    ? '<p>'.e(__('website.no_events')).'</p>'
+                    : '<ul>'.$events->map(fn (Event $event) => '<li><h2>'.e($event->title).'</h2><p>'
+                        .e($this->formatDate($event->starts_at)).($event->location_label ? ' · '.e($event->location_label) : '')
+                        .'</p>'.$this->richText($event->description).'</li>')->implode('').'</ul>';
                 foreach ($events as $event) {
                     $jsonLd[] = $this->eventJsonLd($event);
                 }
@@ -127,15 +126,15 @@ class WebsitePageService
     private function lesson(string $slug): array
     {
         $lesson = Lesson::query()->with('translations')->where('publish', true)->where('slug', $slug)->first();
-        if (!$lesson) {
+        if (! $lesson) {
             return $this->notFound($this->path('path', $slug));
         }
 
-        $body = '<h1>' . e($lesson->title) . '</h1>'
-            . ($lesson->summary ? '<p>' . e($lesson->summary) . '</p>' : '')
-            . $this->richText($lesson->body)
-            . ($lesson->safety_note ? '<aside><strong>' . e(__('website.safety')) . '</strong> ' . e($lesson->safety_note) . '</aside>' : '')
-            . ($lesson->youtube_url ? '<p><a href="' . e($lesson->youtube_url) . '">' . e(__('website.watch_video')) . '</a></p>' : '');
+        $body = '<h1>'.e($lesson->title).'</h1>'
+            .($lesson->summary ? '<p>'.e($lesson->summary).'</p>' : '')
+            .$this->richText($lesson->body)
+            .($lesson->safety_note ? '<aside><strong>'.e(__('website.safety')).'</strong> '.e($lesson->safety_note).'</aside>' : '')
+            .($lesson->youtube_url ? '<p><a href="'.e($lesson->youtube_url).'">'.e(__('website.watch_video')).'</a></p>' : '');
 
         return $this->result(
             title: $this->pageTitle($lesson->title),
@@ -165,19 +164,19 @@ class WebsitePageService
     {
         $entry = DirectoryEntry::query()->with(['translations', 'area.translations'])
             ->where('publish', true)->where('slug', $slug)->first();
-        if (!$entry) {
+        if (! $entry) {
             return $this->notFound($this->path('directory', $slug));
         }
 
         $sameAs = array_values(array_filter([$entry->facebook_url, $entry->instagram_url]));
-        $body = '<h1>' . e($entry->name) . '</h1>'
-            . ($entry->area ? '<p>' . e($entry->area->name) . ' · ' . e(__('website.city')) . '</p>' : '')
-            . $this->richText($entry->description)
-            . '<ul>'
-            . ($entry->whatsapp ? '<li><a href="https://wa.me/' . e($entry->whatsapp) . '">' . e(__('website.whatsapp')) . '</a></li>' : '')
-            . implode('', array_map(fn ($link) => '<li><a href="' . e($link) . '">' . e($link) . '</a></li>', $sameAs))
-            . ($entry->map_url ? '<li><a href="' . e($entry->map_url) . '">' . e(__('website.map')) . '</a></li>' : '')
-            . '</ul>';
+        $body = '<h1>'.e($entry->name).'</h1>'
+            .($entry->area ? '<p>'.e($entry->area->name).' · '.e(__('website.city')).'</p>' : '')
+            .$this->richText($entry->description)
+            .'<ul>'
+            .($entry->whatsapp ? '<li><a href="https://wa.me/'.e($entry->whatsapp).'">'.e(__('website.whatsapp')).'</a></li>' : '')
+            .implode('', array_map(fn ($link) => '<li><a href="'.e($link).'">'.e($link).'</a></li>', $sameAs))
+            .($entry->map_url ? '<li><a href="'.e($entry->map_url).'">'.e(__('website.map')).'</a></li>' : '')
+            .'</ul>';
 
         $schemaType = match ($entry->type) {
             'coach' => 'Person',
@@ -205,7 +204,7 @@ class WebsitePageService
                 'url' => $this->url($this->path('directory', $entry->slug)),
                 'image' => $this->absolute($entry->image_file_url),
                 'sameAs' => $sameAs ?: null,
-                'telephone' => $entry->whatsapp && $schemaType !== 'Person' ? '+' . $entry->whatsapp : null,
+                'telephone' => $entry->whatsapp && $schemaType !== 'Person' ? '+'.$entry->whatsapp : null,
                 'hasMap' => $schemaType === 'SportsActivityLocation' ? $entry->map_url : null,
                 'address' => $schemaType === 'SportsActivityLocation' ? $address : null,
                 'homeLocation' => $schemaType === 'Person' ? ['@type' => 'Place', 'address' => $address] : null,
@@ -220,17 +219,17 @@ class WebsitePageService
     {
         $post = BlogPost::query()->with(['translations', 'category.translations'])
             ->where('publish', true)->where('slug', $slug)->first();
-        if (!$post) {
+        if (! $post) {
             return $this->notFound($this->path('blog', $slug));
         }
 
         $author = $post->author ?: (string) __('website.team');
-        $body = '<article><h1>' . e($post->title) . '</h1>'
-            . '<p>' . e($this->formatDate($post->published_at)) . ' · ' . e($author) . '</p>'
-            . ($post->excerpt ? '<p>' . e($post->excerpt) . '</p>' : '')
-            . $this->richText($post->body)
-            . '</article>'
-            . $this->linkList(__('website.related_posts'), $this->blogPostService->related($post), 'blog', 'title', 'excerpt');
+        $body = '<article><h1>'.e($post->title).'</h1>'
+            .'<p>'.e($this->formatDate($post->published_at)).' · '.e($author).'</p>'
+            .($post->excerpt ? '<p>'.e($post->excerpt).'</p>' : '')
+            .$this->richText($post->body)
+            .'</article>'
+            .$this->linkList(__('website.related_posts'), $this->blogPostService->related($post), 'blog', 'title', 'excerpt');
 
         return $this->result(
             title: $this->pageTitle($post->seo_title ?: $post->title),
@@ -293,7 +292,7 @@ class WebsitePageService
             description: (string) __('website.description'),
             path: $path,
             image: null,
-            body: '<h1>' . e(__('website.not_found')) . '</h1>',
+            body: '<h1>'.e(__('website.not_found')).'</h1>',
             status: 404,
             noindex: true,
         );
@@ -355,12 +354,12 @@ class WebsitePageService
         }
 
         $tag = $ordered ? 'ol' : 'ul';
-        $items = $rows->map(fn ($row) => '<li><a href="' . e($this->sitePath($this->path($list, $row->slug))) . '">'
-            . e($row->{$titleField}) . '</a>'
-            . ($row->{$textField} ? '<p>' . e($this->summary($row->{$textField})) . '</p>' : '')
-            . '</li>')->implode('');
+        $items = $rows->map(fn ($row) => '<li><a href="'.e($this->sitePath($this->path($list, $row->slug))).'">'
+            .e($row->{$titleField}).'</a>'
+            .($row->{$textField} ? '<p>'.e($this->summary($row->{$textField})).'</p>' : '')
+            .'</li>')->implode('');
 
-        return ($heading ? '<h2>' . e($heading) . '</h2>' : '') . "<{$tag}>{$items}</{$tag}>";
+        return ($heading ? '<h2>'.e($heading).'</h2>' : '')."<{$tag}>{$items}</{$tag}>";
     }
 
     private function organization(): array
@@ -370,12 +369,12 @@ class WebsitePageService
         return array_filter([
             '@context' => 'https://schema.org',
             '@type' => 'SportsOrganization',
-            '@id' => $this->url('/') . '#organization',
+            '@id' => $this->url('/').'#organization',
             'name' => $this->siteName(),
             'url' => $this->url('/'),
             'sport' => 'Parkour',
             'email' => $settings['email'] ?? null,
-            'telephone' => !empty($settings['whatsapp_number']) ? '+' . ltrim((string) $settings['whatsapp_number'], '+') : null,
+            'telephone' => ! empty($settings['whatsapp_number']) ? '+'.ltrim((string) $settings['whatsapp_number'], '+') : null,
             'sameAs' => array_values(array_filter([
                 $this->realUrl($settings['facebook_url'] ?? null),
                 $this->realUrl($settings['instagram_url'] ?? null),
@@ -386,7 +385,7 @@ class WebsitePageService
 
     private function organizationRef(): array
     {
-        return ['@type' => 'Organization', '@id' => $this->url('/') . '#organization', 'name' => $this->siteName()];
+        return ['@type' => 'Organization', '@id' => $this->url('/').'#organization', 'name' => $this->siteName()];
     }
 
     private function siteName(): string
@@ -397,7 +396,7 @@ class WebsitePageService
     private function pageTitle(?string $title, bool $isHome = false): string
     {
         $siteName = $this->siteName();
-        if (!$title || $title === $siteName) {
+        if (! $title || $title === $siteName) {
             return $siteName;
         }
 
@@ -424,8 +423,8 @@ class WebsitePageService
             return '';
         }
 
-        if (!str_contains($html, '<')) {
-            return implode('', array_map(fn ($paragraph) => '<p>' . nl2br(e(trim($paragraph))) . '</p>', preg_split('/\n{2,}/', $html)));
+        if (! str_contains($html, '<')) {
+            return implode('', array_map(fn ($paragraph) => '<p>'.nl2br(e(trim($paragraph))).'</p>', preg_split('/\n{2,}/', $html)));
         }
 
         $html = preg_replace('#<(script|style|iframe)\b[^>]*>.*?</\1>#is', '', $html);
@@ -438,7 +437,7 @@ class WebsitePageService
 
     private function formatDate($value): string
     {
-        if (!$value) {
+        if (! $value) {
             return '';
         }
 
@@ -447,7 +446,7 @@ class WebsitePageService
 
     private function path(string $list, string $slug): string
     {
-        return config("site.website_paths.{$list}") . '/' . rawurlencode($slug);
+        return config("site.website_paths.{$list}").'/'.rawurlencode($slug);
     }
 
     /** A path as the browser sees it, under the site's folder on this host. */
@@ -455,12 +454,12 @@ class WebsitePageService
     {
         $base = rtrim((string) config('site.website.base_path'), '/');
 
-        return $base . ($path === '/' ? '/' : $path);
+        return $base.($path === '/' ? '/' : $path);
     }
 
     private function url(string $path): string
     {
-        return rtrim((string) config('app.website_base_url'), '/') . ($path === '/' ? '/' : $path);
+        return rtrim((string) config('app.website_base_url'), '/').($path === '/' ? '/' : $path);
     }
 
     /** Uploaded files are stored as `/storage/...`, which crawlers need on the API's own host. */
@@ -470,7 +469,7 @@ class WebsitePageService
             return null;
         }
 
-        return preg_match('#^https?://#i', $fileUrl) ? $fileUrl : rtrim((string) config('app.url'), '/') . $fileUrl;
+        return preg_match('#^https?://#i', $fileUrl) ? $fileUrl : rtrim((string) config('app.url'), '/').$fileUrl;
     }
 
     /** The seeded social links are "#" placeholders until the client sends the real ones. */

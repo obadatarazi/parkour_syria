@@ -26,7 +26,7 @@ class GateApiDocs
         $granted = hash_equals($user, (string) $request->getUser())
             && hash_equals($password, (string) $request->getPassword());
 
-        if (!$granted) {
+        if (! $granted) {
             return response('', 401, ['WWW-Authenticate' => 'Basic realm="API documentation"']);
         }
 

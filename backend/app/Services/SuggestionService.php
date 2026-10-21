@@ -66,7 +66,7 @@ class SuggestionService extends BaseService
      * Promotes the suggestion into the directory (place / coach / team) or the events, in one
      * transaction with the status change so a failure leaves the suggestion pending.
      *
-     * @param array<string, mixed> $overrides validated SuggestionAcceptRequest
+     * @param  array<string, mixed>  $overrides  validated SuggestionAcceptRequest
      */
     public function accept(Suggestion $suggestion, array $overrides, User $reviewer): Suggestion
     {

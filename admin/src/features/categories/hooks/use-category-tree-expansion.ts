@@ -9,9 +9,9 @@ import {
   getCategoryChildren,
   patchCategoryInLoadedMap,
 } from "@/features/categories/utils/category-tree.utils";
-import { notify } from "@/shared/lib/notifications";
-import { resolveServiceErrorMessage } from "@/shared/errors";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
+import { resolveServiceErrorMessage } from "@/shared/errors";
+import { notify } from "@/shared/lib/notifications";
 
 type UseCategoryTreeExpansionOptions = {
   /** When true, expand every parent that already has embedded children (e.g. search results). */

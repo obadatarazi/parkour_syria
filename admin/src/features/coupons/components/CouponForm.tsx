@@ -1,4 +1,3 @@
-import { useEffect, useMemo, useRef, useState } from "react";
 import {
   BadgeDollarSign,
   CalendarRange,
@@ -10,6 +9,7 @@ import {
   Truck,
   Users,
 } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { ROUTES } from "@/app/router/routes";
 import { BrandMultiPicker } from "@/features/coupons/components/BrandMultiPicker";
@@ -19,14 +19,14 @@ import { CouponUserBindings } from "@/features/coupons/components/CouponUserBind
 import { ProductMultiPicker } from "@/features/coupons/components/ProductMultiPicker";
 import type { Coupon, CouponFormData, CouponScopeValue } from "@/features/coupons/types/coupons.types";
 import {
-  createEmptyCouponForm,
   couponToFormData,
+  createEmptyCouponForm,
 } from "@/features/coupons/types/coupons.types";
 import { normalizeCouponFormForApi } from "@/features/coupons/utils/coupon-admin-scope";
 import {
+  type CouponFormSectionId,
   formatCouponOfferOneLiner,
   getCouponFormCompleteness,
-  type CouponFormSectionId,
 } from "@/features/coupons/utils/coupon-form-completeness";
 import { getCouponShareUrl } from "@/features/coupons/utils/coupon-share-url";
 import { CategoryMultiPicker } from "@/features/products/components/CategoryMultiPicker";
@@ -41,17 +41,17 @@ import {
   TranslationFields,
 } from "@/shared/components";
 import { CrudRecordSection, CrudRecordWorkspace } from "@/shared/crud";
+import { cn } from "@/shared/design-system/components/ui/utils";
+import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import {
   COUPON_FORM_ANCHORS,
   CRUD_FORM_FIELD_ANCHORS,
 } from "@/shared/guidance/constants/guidance.constants";
-import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import {
   useCouponApplicableToOptions,
   useCouponAudienceOptions,
   useCouponStatusOptions,
 } from "@/shared/hooks/use-options";
-import { cn } from "@/shared/design-system/components/ui/utils";
 import { notify } from "@/shared/lib/notifications";
 
 type CouponFormProps = {

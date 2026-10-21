@@ -17,7 +17,7 @@ class SuggestionController extends ApiController
     #[OA\Post(
         path: '/api/suggestions',
         description: 'Send a suggestion from the website. No account needed, rate limited per visitor. It is '
-            . 'never published as is: an admin reviews it first.',
+            .'never published as is: an admin reviews it first.',
         summary: 'suggest a place, coach, team or event',
         tags: ['Suggestion'],
     )]

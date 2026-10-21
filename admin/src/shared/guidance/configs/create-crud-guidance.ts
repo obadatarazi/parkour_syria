@@ -1,4 +1,4 @@
-import { CRUD_FORM_DRAWER_ANCHORS, CRUD_FORM_FIELD_ANCHORS, createStandardAnchors } from "@/shared/guidance/constants/guidance.constants";
+import { createStandardAnchors,CRUD_FORM_DRAWER_ANCHORS, CRUD_FORM_FIELD_ANCHORS } from "@/shared/guidance/constants/guidance.constants";
 import type {
   GuidancePageId,
   PageGuidanceConfig,

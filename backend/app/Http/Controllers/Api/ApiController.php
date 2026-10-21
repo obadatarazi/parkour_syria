@@ -13,29 +13,32 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
-use Symfony\Component\HttpFoundation\StreamedResponse;
 use OpenApi\Attributes as OA;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 #[OA\Info(
-    version: "1.0.0",
-    title: "Parkour Syria API"
+    version: '1.0.0',
+    title: 'Parkour Syria API'
 )]
 #[OA\SecurityScheme(
-    securityScheme: "Bearer",
-    type: "http",
-    name: "Bearer",
-    in: "header",
-    bearerFormat: "JWT",
-    scheme: "Bearer"
+    securityScheme: 'Bearer',
+    type: 'http',
+    name: 'Bearer',
+    in: 'header',
+    bearerFormat: 'JWT',
+    scheme: 'Bearer'
 )]
 class ApiController extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     use ApiResponser;
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     protected $permissionPrefix;
+
     protected $service;
+
     protected $resource;
+
     public function __construct()
     {
         $this->appendGeneralPermissions();
@@ -52,7 +55,7 @@ class ApiController extends BaseController
     public function baseIndex(QueryFilter $queryFilter, $isOnlyPublished = false, array $extra = []): JsonResponse
     {
         $items = $isOnlyPublished ? $this->service->findAllPublished($queryFilter)
-            :  $this->service->findAllPaginated($queryFilter);
+            : $this->service->findAllPaginated($queryFilter);
 
         return $this
             ->setResourceClass($this->resource)
@@ -79,8 +82,8 @@ class ApiController extends BaseController
      * rather than the keys that point at them; CsvExportService reads all of that off the schema
      * so nothing is missing from it.
      *
-     * @param string $name The base of the downloaded file name, the timestamp is appended to it.
-     * @param list<string>|null $columns Csv headers to keep. Null keeps every column.
+     * @param  string  $name  The base of the downloaded file name, the timestamp is appended to it.
+     * @param  list<string>|null  $columns  Csv headers to keep. Null keeps every column.
      */
     public function baseExport(QueryFilter $queryFilter, string $name, ?array $columns = null): StreamedResponse
     {
@@ -123,7 +126,7 @@ class ApiController extends BaseController
      * The answer is the outcome of the delete rather than the deleted records: a selection of a few
      * hundred rows serialised back through the resource is a response nobody reads.
      *
-     * @param array<string, mixed> $scope
+     * @param  array<string, mixed>  $scope
      */
     public function baseBulkDestroy(Request $request, array $scope = []): JsonResponse
     {

@@ -11,10 +11,10 @@ import {
   appendOptional,
   appendTranslations,
   buildLaravelListParams,
-  submitMultipartFormData,
   type LaravelPaginatedResponse,
   type LaravelSuccessResponse,
   mapPaginatedFromApi,
+  submitMultipartFormData,
 } from "@/shared/lib/api";
 
 function buildVisualSettingFormData(data: Partial<VisualSettingFormData>): FormData {

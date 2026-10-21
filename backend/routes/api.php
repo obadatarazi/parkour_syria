@@ -1,53 +1,48 @@
 <?php
 
+use App\Http\Controllers\Api\Admin\AdminAreaController;
+use App\Http\Controllers\Api\Admin\AdminAuthController;
+use App\Http\Controllers\Api\Admin\AdminBlogCategoryController;
+use App\Http\Controllers\Api\Admin\AdminBlogPostController;
+use App\Http\Controllers\Api\Admin\AdminBrandController;
+use App\Http\Controllers\Api\Admin\AdminCategoryController;
+use App\Http\Controllers\Api\Admin\AdminCouponController;
+use App\Http\Controllers\Api\Admin\AdminCurrencyController;
+use App\Http\Controllers\Api\Admin\AdminDirectoryEntryController;
+use App\Http\Controllers\Api\Admin\AdminEventController;
+use App\Http\Controllers\Api\Admin\AdminGalleryImageController;
+use App\Http\Controllers\Api\Admin\AdminLessonController;
+use App\Http\Controllers\Api\Admin\AdminMultiTypeSettingController;
+use App\Http\Controllers\Api\Admin\AdminOrderController;
+use App\Http\Controllers\Api\Admin\AdminPageController;
+use App\Http\Controllers\Api\Admin\AdminPermissionController;
+use App\Http\Controllers\Api\Admin\AdminProductController;
+use App\Http\Controllers\Api\Admin\AdminRoleController;
+use App\Http\Controllers\Api\Admin\AdminRolesController;
+use App\Http\Controllers\Api\Admin\AdminSliderController;
+use App\Http\Controllers\Api\Admin\AdminSuggestionController;
+use App\Http\Controllers\Api\Admin\AdminTagController;
+use App\Http\Controllers\Api\Admin\AdminUserController;
+use App\Http\Controllers\Api\AreaController;
+use App\Http\Controllers\Api\BlogCategoryController;
+use App\Http\Controllers\Api\BlogPostController;
+use App\Http\Controllers\Api\BrandController;
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\DirectoryEntryController;
+use App\Http\Controllers\Api\EventController;
+use App\Http\Controllers\Api\GalleryImageController;
+use App\Http\Controllers\Api\HomeController;
+use App\Http\Controllers\Api\LessonController;
+use App\Http\Controllers\Api\OptionController;
+use App\Http\Controllers\Api\PageController;
+use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\SeoController;
+use App\Http\Controllers\Api\SiteSettingController;
+use App\Http\Controllers\Api\SliderController;
+use App\Http\Controllers\Api\SuggestionController;
+use App\Http\Controllers\Api\TagController;
 use App\Support\Features;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\{
-    AreaController,
-    BlogCategoryController,
-    BlogPostController,
-    BrandController,
-    CategoryController,
-    DirectoryEntryController,
-    EventController,
-    GalleryImageController,
-    HomeController,
-    LessonController,
-    OptionController,
-    PageController,
-    ProductController,
-    SeoController,
-    SiteSettingController,
-    SliderController,
-    SuggestionController,
-    TagController
-};
-
-use App\Http\Controllers\Api\Admin\{
-    AdminAreaController,
-    AdminAuthController,
-    AdminBlogCategoryController,
-    AdminBlogPostController,
-    AdminBrandController,
-    AdminCategoryController,
-    AdminCouponController,
-    AdminCurrencyController,
-    AdminDirectoryEntryController,
-    AdminEventController,
-    AdminGalleryImageController,
-    AdminLessonController,
-    AdminMultiTypeSettingController,
-    AdminOrderController,
-    AdminPageController,
-    AdminPermissionController,
-    AdminProductController,
-    AdminRoleController,
-    AdminRolesController,
-    AdminSliderController,
-    AdminSuggestionController,
-    AdminTagController,
-    AdminUserController
-};
 
 /*
 |--------------------------------------------------------------------------

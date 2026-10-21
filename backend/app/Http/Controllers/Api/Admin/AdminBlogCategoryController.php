@@ -31,8 +31,8 @@ class AdminBlogCategoryController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Blog Category'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
-    #[OA\Parameter(ref: "#/components/parameters/direction")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
+    #[OA\Parameter(ref: '#/components/parameters/direction')]
     #[OA\Parameter(
         name: 'sort',
         description: 'Specify sorting order.',
@@ -41,8 +41,8 @@ class AdminBlogCategoryController extends ApiController
         schema: new OA\Schema(type: 'string', enum: ['id', 'sort_order', 'created_at']),
         example: 'sort_order'
     )]
-    #[OA\Parameter(ref: "#/components/parameters/page")]
-    #[OA\Parameter(ref: "#/components/parameters/limit")]
+    #[OA\Parameter(ref: '#/components/parameters/page')]
+    #[OA\Parameter(ref: '#/components/parameters/limit')]
     #[OA\Parameter(
         name: 'search',
         description: 'Free text search on title / slug.',
@@ -95,7 +95,7 @@ class AdminBlogCategoryController extends ApiController
         summary: 'create blog category',
         security: [['Bearer' => []]],
         tags: ['Admin Blog Category'],
-        parameters: [new OA\Parameter(ref: "#/components/parameters/x-locale")],
+        parameters: [new OA\Parameter(ref: '#/components/parameters/x-locale')],
     )]
     #[OA\RequestBody(
         content: new OA\MediaType(
@@ -128,7 +128,7 @@ class AdminBlogCategoryController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Blog Category'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'blog_category',
         description: 'the blog category to retrieve',
@@ -162,7 +162,7 @@ class AdminBlogCategoryController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Blog Category'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'blog_category',
         description: 'the blog category to update',
@@ -202,7 +202,7 @@ class AdminBlogCategoryController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Blog Category'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'blog_category',
         description: 'the blog category to delete',
@@ -236,7 +236,7 @@ class AdminBlogCategoryController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Blog Category'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\RequestBody(
         content: new OA\MediaType(
             mediaType: 'application/json',
@@ -259,12 +259,12 @@ class AdminBlogCategoryController extends ApiController
     #[OA\Get(
         path: '/api/admin/blog-categories/export',
         description: 'download every blog category the current filters select as a csv file, translated fields in '
-            . 'the language the x-locale header asks for. Takes the same filters as index(), without the paging.',
+            .'the language the x-locale header asks for. Takes the same filters as index(), without the paging.',
         summary: 'export blog categories as csv',
         security: [['Bearer' => []]],
         tags: ['Admin Blog Category'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Response(
         response: 200,
         description: 'The csv file, as a download',

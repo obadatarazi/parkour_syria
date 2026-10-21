@@ -16,8 +16,8 @@ import type {
 } from "@/features/products/types/product-import.types";
 import {
   formatImportRowRange,
-  parseProductImportCsvFile,
   type ParsedProductImportCsv,
+  parseProductImportCsvFile,
 } from "@/features/products/utils/parse-product-import-csv";
 import { AppButton, SelectField, StatusBadge, TextField } from "@/shared/components";
 import { CrudEntityDialog, CrudFileUpload } from "@/shared/crud";

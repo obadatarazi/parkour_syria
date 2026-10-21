@@ -29,8 +29,8 @@ class UpdateProfileRequest extends CustomFormRequest
                 'full_name' => ['nullable', 'max:255'],
                 'gender' => ['nullable', 'string', 'in:MALE,FEMALE'],
                 'phone_number' => ['nullable', 'string', 'max:30', Rule::unique('users', 'phone_number')->ignore($this->user()?->id)],
-                'avatar' => ['nullable', 'file', 'mimes:jpg,jpeg,png,gif,webp,svg', 'max:' . Upload::MAX_IMAGE_KB, new SafeSvg()],
-                'email' => ['nullable', 'email', new NoLineBreaksRule(), Rule::unique('users', 'email')->ignore($this->user()?->id)],
+                'avatar' => ['nullable', 'file', 'mimes:jpg,jpeg,png,gif,webp,svg', 'max:'.Upload::MAX_IMAGE_KB, new SafeSvg],
+                'email' => ['nullable', 'email', new NoLineBreaksRule, Rule::unique('users', 'email')->ignore($this->user()?->id)],
             ];
         }
 

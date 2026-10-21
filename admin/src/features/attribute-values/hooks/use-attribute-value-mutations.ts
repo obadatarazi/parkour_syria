@@ -10,7 +10,7 @@ import {
   hasAttributeValueFormChanges,
   pickAttributeValueFormChanges,
 } from "@/features/attribute-values/types/attribute-values.types";
-import { useCrudMutation, useCrudQuickBooleanMutation, type CrudSaveResult } from "@/shared/crud";
+import { type CrudSaveResult,useCrudMutation, useCrudQuickBooleanMutation } from "@/shared/crud";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 
 type UseAttributeValueMutationsOptions = {

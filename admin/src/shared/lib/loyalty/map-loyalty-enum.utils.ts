@@ -1,4 +1,4 @@
-import { normalizeEnumLabelValue, type EnumLabelValue } from "@/shared/lib/api/normalize-enum.utils";
+import { type EnumLabelValue,normalizeEnumLabelValue } from "@/shared/lib/api/normalize-enum.utils";
 
 export function mapLoyaltyEnumOption(
   option: { label?: string | null; value?: string | null } | string | null | undefined,

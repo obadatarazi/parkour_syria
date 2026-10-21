@@ -1,8 +1,8 @@
 import { useCallback, useMemo } from "react";
 
-import { attributesService } from "@/features/attributes/services/attributes.service";
 import { attributeValuesService } from "@/features/attribute-values/services/attribute-values.service";
 import type { AttributeValueListParams } from "@/features/attribute-values/types/attribute-values.types";
+import { attributesService } from "@/features/attributes/services/attributes.service";
 import {
   type CrudFilterDefinition,
   type CrudSortDefinition,

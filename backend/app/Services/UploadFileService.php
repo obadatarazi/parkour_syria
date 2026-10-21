@@ -4,11 +4,7 @@ namespace App\Services;
 
 class UploadFileService
 {
-
-    public function __construct(protected FileSystemService $fileSystemService)
-    {
-
-    }
+    public function __construct(protected FileSystemService $fileSystemService) {}
 
     public function uploadFiles($data, $keyFileMaps, $object, $folder): void
     {
@@ -27,7 +23,7 @@ class UploadFileService
     {
         foreach ($keyFileMaps as $fileModelKey => $fileRequestKey) {
 
-            if (!array_key_exists($fileRequestKey, $data)) {
+            if (! array_key_exists($fileRequestKey, $data)) {
                 continue;
             }
 
@@ -37,7 +33,7 @@ class UploadFileService
                 $this->removeFiles($oldFilePath);
             }
 
-             if (is_object($file)) {
+            if (is_object($file)) {
                 $fileField = $this->fileSystemService->uploadFile($file, $folder);
                 $object->setAttribute($fileModelKey, $fileField['fileUrl']);
             } else {
@@ -83,7 +79,7 @@ class UploadFileService
             $translation = $object->translateOrNew($locale);
 
             foreach ($keyFileMaps as $fileModelKey => $fileRequestKey) {
-                if (!array_key_exists($fileRequestKey, $localeData)) {
+                if (! array_key_exists($fileRequestKey, $localeData)) {
                     continue;
                 }
 
@@ -105,5 +101,4 @@ class UploadFileService
 
         $object->save();
     }
-
 }

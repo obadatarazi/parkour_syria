@@ -2,9 +2,9 @@ export { AdminPaginationBar } from "@/shared/demo/components/AdminPaginationBar"
 export { AdminRowActions } from "@/shared/demo/components/AdminRowActions";
 export { AdminStatusBadge } from "@/shared/demo/components/AdminStatusBadge";
 export { AdminTableToolbar } from "@/shared/demo/components/AdminTableToolbar";
-export { ChevronBack, ChevronForward } from "@/shared/demo/components/DirectionalChevrons";
 export { DemoDataBanner } from "@/shared/demo/components/DemoDataBanner";
 export { DemoSkeleton } from "@/shared/demo/components/DemoSkeleton";
+export { ChevronBack, ChevronForward } from "@/shared/demo/components/DirectionalChevrons";
 export { TierBadge } from "@/shared/demo/components/TierBadge";
 export { usePaged } from "@/shared/demo/hooks/usePaged";
 export * from "@/shared/demo/mocks/admin-demo.mocks";

@@ -12,7 +12,7 @@ class TagRequest extends TranslationFormRequest
         $rules = [];
         if ($this->method() === 'POST') {
             $rules = [
-                'publish' => ['nullable', new BooleanValidationRule()],
+                'publish' => ['nullable', new BooleanValidationRule],
                 'translations' => ['required', 'array'],
                 'translations.*.title' => ['required', 'string', 'max:255'],
             ];
@@ -20,7 +20,7 @@ class TagRequest extends TranslationFormRequest
 
         if ($this->method() === 'PUT' || $this->method() === 'PATCH') {
             $rules = [
-                'publish' => ['nullable', new BooleanValidationRule()],
+                'publish' => ['nullable', new BooleanValidationRule],
                 'translations' => ['nullable', 'array'],
                 'translations.*.title' => ['nullable', 'string', 'max:255'],
             ];

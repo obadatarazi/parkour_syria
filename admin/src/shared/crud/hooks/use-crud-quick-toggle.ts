@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 
-import { isCrudMutationSuccess, type CrudMutationResult } from "@/shared/crud/types/crud.types";
+import { type CrudMutationResult,isCrudMutationSuccess } from "@/shared/crud/types/crud.types";
 
 type UseCrudQuickToggleOptions<T extends { id: string | number }> = {
   patchItems: (updater: (items: T[]) => T[]) => void;

@@ -31,8 +31,8 @@ class AdminCurrencyController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Currency'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
-    #[OA\Parameter(ref: "#/components/parameters/direction")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
+    #[OA\Parameter(ref: '#/components/parameters/direction')]
     #[OA\Parameter(
         name: 'sort',
         description: 'Specify sorting order.',
@@ -41,8 +41,8 @@ class AdminCurrencyController extends ApiController
         schema: new OA\Schema(type: 'string', enum: ['id', 'created_at', 'title', 'code']),
         example: 'created_at'
     )]
-    #[OA\Parameter(ref: "#/components/parameters/page")]
-    #[OA\Parameter(ref: "#/components/parameters/limit")]
+    #[OA\Parameter(ref: '#/components/parameters/page')]
+    #[OA\Parameter(ref: '#/components/parameters/limit')]
     #[OA\Parameter(
         name: 'search',
         description: 'Apply filter by title currency.',
@@ -109,7 +109,7 @@ class AdminCurrencyController extends ApiController
         summary: 'create currency',
         security: [['Bearer' => []]],
         tags: ['Admin Currency'],
-        parameters: [new OA\Parameter(ref: "#/components/parameters/x-locale")],
+        parameters: [new OA\Parameter(ref: '#/components/parameters/x-locale')],
     )]
     #[OA\RequestBody(
         content: new OA\MediaType(
@@ -142,7 +142,7 @@ class AdminCurrencyController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Currency'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'currency',
         description: 'the currency to retrieve',
@@ -176,7 +176,7 @@ class AdminCurrencyController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Currency'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'currency',
         description: 'the currency to update',
@@ -216,7 +216,7 @@ class AdminCurrencyController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Currency'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'currency',
         description: 'the currency to delete',
@@ -250,7 +250,7 @@ class AdminCurrencyController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Currency'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\RequestBody(
         content: new OA\MediaType(
             mediaType: 'application/json',
@@ -273,14 +273,14 @@ class AdminCurrencyController extends ApiController
     #[OA\Get(
         path: '/api/admin/currencies/export',
         description: 'download every currencies the current filters select as a csv file. The file carries all '
-            . 'the columns of the record, its translated fields written in the language the x-locale header '
-            . 'asks for, and the names behind its relations — a brand, a category, a product, never a bare '
-            . 'id. It takes the same filters index() takes, without the paging.',
+            .'the columns of the record, its translated fields written in the language the x-locale header '
+            .'asks for, and the names behind its relations — a brand, a category, a product, never a bare '
+            .'id. It takes the same filters index() takes, without the paging.',
         summary: 'export currencies as csv',
         security: [['Bearer' => []]],
         tags: ['Admin Currency'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Response(
         response: 200,
         description: 'The csv file, as a download',

@@ -27,8 +27,8 @@ import {
 import { resolveServiceErrorMessage } from "@/shared/errors";
 import { useCrudPageGuidance } from "@/shared/guidance";
 import { useLoyaltyLedgerTypeOptions } from "@/shared/hooks/use-options";
-import { getLoyaltyDisplayName } from "@/shared/lib/loyalty/loyalty-translations.utils";
 import { formatDateTime } from "@/shared/lib/datetime.utils";
+import { getLoyaltyDisplayName } from "@/shared/lib/loyalty/loyalty-translations.utils";
 
 export function LoyaltyLedgerPage() {
   const t = useTranslation();

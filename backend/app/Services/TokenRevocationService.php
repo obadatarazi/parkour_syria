@@ -13,8 +13,8 @@ use Laravel\Passport\Token;
 class TokenRevocationService
 {
     /**
-     * @param string|null $keepTokenId An access token to leave alone, the session the user is
-     *                                 changing their own password from.
+     * @param  string|null  $keepTokenId  An access token to leave alone, the session the user is
+     *                                    changing their own password from.
      */
     public function revokeAll(User $user, ?string $keepTokenId = null): void
     {

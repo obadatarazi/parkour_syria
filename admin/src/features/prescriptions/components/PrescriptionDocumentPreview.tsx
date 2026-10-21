@@ -1,8 +1,8 @@
 import { FileText } from "lucide-react";
 
 import { MediaImage } from "@/shared/components";
-import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import { cn } from "@/shared/design-system/components/ui/utils";
+import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import { resolveMediaUrl } from "@/shared/lib/resolve-media-url";
 
 type PrescriptionDocumentPreviewProps = {

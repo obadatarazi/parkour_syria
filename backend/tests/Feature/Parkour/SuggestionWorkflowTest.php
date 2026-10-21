@@ -27,7 +27,7 @@ it('takes a suggestion from a visitor and never publishes it on its own', functi
     $id = suggestPlace();
 
     expect(Suggestion::find($id)->status)->toBe('pending');
-    $this->getJson('/api/directory-entries?search=' . urlencode('السبكي'))->assertJsonPath('pagination.totalItems', 0);
+    $this->getJson('/api/directory-entries?search='.urlencode('السبكي'))->assertJsonPath('pagination.totalItems', 0);
 });
 
 it('refuses a suggestion without the safety consent, in arabic', function () {

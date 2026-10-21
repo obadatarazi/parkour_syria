@@ -2,6 +2,7 @@
 
 use App\Models\BlogPost;
 use App\Models\Lesson;
+use App\Models\Page;
 
 // A stand-in for the SPA build, so the tests never depend on `npm run build` having run.
 beforeEach(function () {
@@ -29,11 +30,11 @@ it('serves a blog post with its own meta, open graph, json-ld and content', func
     $post->translateOrNew('ar')->author = 'سامر الحلبي';
     $post->save();
 
-    $html = $this->get('/blog/' . rawurlencode($post->slug))->assertOk()->getContent();
+    $html = $this->get('/blog/'.rawurlencode($post->slug))->assertOk()->getContent();
 
     expect($html)
-        ->toContain('<title>' . e($post->translate('ar')->seo_title ?: $post->translate('ar')->title))
-        ->toContain('<link rel="canonical" href="https://parkoursyria.com/blog/' . rawurlencode($post->slug) . '" />')
+        ->toContain('<title>'.e($post->translate('ar')->seo_title ?: $post->translate('ar')->title))
+        ->toContain('<link rel="canonical" href="https://parkoursyria.com/blog/'.rawurlencode($post->slug).'" />')
         ->toContain('<meta property="og:type" content="article" />')
         ->toContain('"@type":"BlogPosting"')
         ->toContain('"author":{"@type":"Person","name":"سامر الحلبي"}')
@@ -46,7 +47,7 @@ it('prerenders the beginner path with every published lesson', function () {
     $html = $this->get('/path')->assertOk()->getContent();
 
     Lesson::query()->where('publish', true)->get()->each(
-        fn (Lesson $lesson) => expect($html)->toContain('href="/path/' . rawurlencode($lesson->slug) . '"')
+        fn (Lesson $lesson) => expect($html)->toContain('href="/path/'.rawurlencode($lesson->slug).'"')
     );
 });
 
@@ -72,7 +73,7 @@ it('strips scripts and handlers from admin html before serving it', function () 
     $post->translateOrNew('ar')->body = '<p onclick="steal()">نص</p><script>alert(1)</script><a href="javascript:alert(1)">x</a>';
     $post->save();
 
-    $html = $this->get('/blog/' . rawurlencode($post->slug))->assertOk()->getContent();
+    $html = $this->get('/blog/'.rawurlencode($post->slug))->assertOk()->getContent();
 
     expect($html)->not->toContain('steal()')->not->toContain('alert(1)')->toContain('<p>نص</p>');
 });
@@ -80,7 +81,7 @@ it('strips scripts and handlers from admin html before serving it', function () 
 it('shows a content edit on the next request', function () {
     $this->get('/about')->assertOk();
 
-    $page = \App\Models\Page::query()->where('key', 'about')->firstOrFail();
+    $page = Page::query()->where('key', 'about')->firstOrFail();
     $page->translateOrNew('ar')->seo_title = 'عنوان جديد للصفحة';
     $page->save();
 

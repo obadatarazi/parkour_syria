@@ -1,11 +1,11 @@
 import { Pencil, Trash2 } from "lucide-react";
 
-import type { Attribute } from "@/features/attributes/types/attributes.types";
 import { AttributeValuesPanel } from "@/features/attributes/components/AttributeValuesPanel";
+import type { Attribute } from "@/features/attributes/types/attributes.types";
 import { useCrudPermissions } from "@/features/auth";
 import { AppButton, StatusBadge } from "@/shared/components";
-import { CrudEntityDrawer } from "@/shared/crud";
 import { PERMISSIONS } from "@/shared/constants/permissions";
+import { CrudEntityDrawer } from "@/shared/crud";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import { getBilingualTitle } from "@/shared/lib/translation-display.utils";
 

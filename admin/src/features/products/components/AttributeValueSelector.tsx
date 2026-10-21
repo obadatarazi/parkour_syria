@@ -1,6 +1,8 @@
 import { ChevronDown, Info, Plus, X } from "lucide-react";
 import { useCallback, useEffect, useId, useMemo, useState } from "react";
 
+import { attributeValuesService } from "@/features/attribute-values/services/attribute-values.service";
+import type { AttributeValue } from "@/features/attribute-values/types/attribute-values.types";
 import { CreateAttributeValueDialog } from "@/features/attributes/components/CreateAttributeValueDialog";
 import { CreateAttributeWithValuesDialog } from "@/features/attributes/components/CreateAttributeWithValuesDialog";
 import { attributesService } from "@/features/attributes/services/attributes.service";
@@ -8,8 +10,6 @@ import type {
   Attribute,
   AttributeValueSummary,
 } from "@/features/attributes/types/attributes.types";
-import { attributeValuesService } from "@/features/attribute-values/services/attribute-values.service";
-import type { AttributeValue } from "@/features/attribute-values/types/attribute-values.types";
 import { RelationPickerPanel } from "@/features/products/components/RelationPickerPanel";
 import {
   buildAttributeSeedsFromPoolIds,
@@ -26,8 +26,8 @@ import {
 import { useCrudQuery } from "@/shared/crud";
 import { Button } from "@/shared/design-system/components/ui/button";
 import { Input } from "@/shared/design-system/components/ui/input";
-import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import { cn } from "@/shared/design-system/components/ui/utils";
+import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import { resolveServiceErrorMessage } from "@/shared/errors";
 import {
   formatBilingualLabel,

@@ -1,5 +1,5 @@
 import { Camera, Check } from "lucide-react";
-import { useRef, type ChangeEvent } from "react";
+import { type ChangeEvent,useRef } from "react";
 
 import type { AuthUser } from "@/features/auth/types/auth.types";
 import {

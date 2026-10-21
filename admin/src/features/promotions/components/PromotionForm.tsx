@@ -1,5 +1,5 @@
 import { CalendarRange, Gift, TicketPercent } from "lucide-react";
-import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
+import { type FormEvent,useEffect, useMemo, useRef, useState } from "react";
 
 import { ROUTES } from "@/app/router/routes";
 import { BogoDealsPanel } from "@/features/promotions/components/BogoDealsPanel";

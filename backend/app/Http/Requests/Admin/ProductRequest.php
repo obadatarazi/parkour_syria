@@ -16,14 +16,14 @@ class ProductRequest extends TranslationFormRequest
 
         if ($this->method() === 'POST') {
             $rules = [
-                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:' . Upload::MAX_IMAGE_KB, new SafeSvg()],
+                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:'.Upload::MAX_IMAGE_KB, new SafeSvg],
                 'slug' => ['nullable', 'string', 'max:140', 'regex:/^[\\p{L}\\p{N}-]+$/u', Rule::unique('products', 'slug')->ignore($this->routeKey())],
                 'sku_code' => ['nullable', 'string', 'max:100', Rule::unique('products', 'sku_code')->ignore($this->routeKey())],
                 'brand_id' => ['nullable', 'integer', 'exists:brands,id'],
                 'category_id' => ['nullable', 'integer', 'exists:categories,id'],
                 'price' => ['nullable', 'numeric', 'min:0'],
                 'stock' => ['nullable', 'integer', 'min:0'],
-                'publish' => ['nullable', new BooleanValidationRule()],
+                'publish' => ['nullable', new BooleanValidationRule],
                 'translations' => ['required', 'array'],
                 // Arabic is the live language and is required, English is optional until it goes public.
                 'translations.ar' => ['required', 'array'],
@@ -36,14 +36,14 @@ class ProductRequest extends TranslationFormRequest
 
         if ($this->method() === 'PUT' || $this->method() === 'PATCH') {
             $rules = [
-                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:' . Upload::MAX_IMAGE_KB, new SafeSvg()],
+                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:'.Upload::MAX_IMAGE_KB, new SafeSvg],
                 'slug' => ['nullable', 'string', 'max:140', 'regex:/^[\\p{L}\\p{N}-]+$/u', Rule::unique('products', 'slug')->ignore($this->routeKey())],
                 'sku_code' => ['nullable', 'string', 'max:100', Rule::unique('products', 'sku_code')->ignore($this->routeKey())],
                 'brand_id' => ['nullable', 'integer', 'exists:brands,id'],
                 'category_id' => ['nullable', 'integer', 'exists:categories,id'],
                 'price' => ['nullable', 'numeric', 'min:0'],
                 'stock' => ['nullable', 'integer', 'min:0'],
-                'publish' => ['nullable', new BooleanValidationRule()],
+                'publish' => ['nullable', new BooleanValidationRule],
                 'translations' => ['nullable', 'array'],
                 'translations.ar' => ['nullable', 'array'],
                 'translations.en' => ['nullable', 'array'],

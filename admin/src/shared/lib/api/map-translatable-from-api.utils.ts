@@ -1,7 +1,7 @@
 import {
   getTitleFromApiTranslations,
-  normalizeTranslationsFromApi,
   type LocaleTranslations,
+  normalizeTranslationsFromApi,
 } from "@/shared/lib/api/normalize-translations.utils";
 
 export type TranslatableApiEntity<TFields extends Record<string, unknown> = { title?: string }> = {

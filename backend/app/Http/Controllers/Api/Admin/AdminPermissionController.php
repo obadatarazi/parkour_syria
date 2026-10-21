@@ -17,7 +17,7 @@ class AdminPermissionController extends ApiController
         $permissionRoleList = PermissionType::PermissionList->getPermission();
         $this->resource = PermissionResource::class;
         $this->service = $permissionService;
-        $this->middleware(['permission:' . $permissionRoleList], ['only' => ['index']]);
+        $this->middleware(['permission:'.$permissionRoleList], ['only' => ['index']]);
     }
 
     #[OA\Get(
@@ -27,9 +27,9 @@ class AdminPermissionController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Permission'],
         parameters: [
-            new OA\Parameter(ref: "#/components/parameters/direction"),
-            new OA\Parameter(ref: "#/components/parameters/page"),
-            new OA\Parameter(ref: "#/components/parameters/limit"),
+            new OA\Parameter(ref: '#/components/parameters/direction'),
+            new OA\Parameter(ref: '#/components/parameters/page'),
+            new OA\Parameter(ref: '#/components/parameters/limit'),
             new OA\Parameter(
                 name: 'sort',
                 description: 'Specify sorting order.',

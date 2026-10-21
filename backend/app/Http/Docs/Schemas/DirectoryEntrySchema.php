@@ -70,6 +70,5 @@ use OpenApi\Attributes as OA;
 #[Attribute(Attribute::TARGET_CLASS)]
 class DirectoryEntrySchema
 {
-    public function __construct()
-    {}
+    public function __construct() {}
 }

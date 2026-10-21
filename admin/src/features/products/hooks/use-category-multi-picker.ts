@@ -1,14 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 
-import type { RelationPickerSeed } from "@/features/products/types/products.types";
+import { categoriesService } from "@/features/categories/services/categories.service";
+import type { Category } from "@/features/categories/types/categories.types";
+import { flattenCategoryTreeUnique } from "@/features/categories/utils/category-tree.utils";
 import {
   getMissingRelationPickerIds,
   resolveRelationPickerItems,
   useRelationPickerKnownItems,
 } from "@/features/products/hooks/relation-picker.utils";
-import { categoriesService } from "@/features/categories/services/categories.service";
-import type { Category } from "@/features/categories/types/categories.types";
-import { flattenCategoryTreeUnique } from "@/features/categories/utils/category-tree.utils";
+import type { RelationPickerSeed } from "@/features/products/types/products.types";
 import { useCrudQuery } from "@/shared/crud";
 import {
   formatBilingualLabel,

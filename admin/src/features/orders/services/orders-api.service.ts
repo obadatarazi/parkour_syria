@@ -11,6 +11,7 @@ import {
   buildOrderUpdatePayload,
 } from "@/features/orders/types/orders.types";
 import { mapOrderFromApi } from "@/features/orders/utils/map-order-from-api";
+import { ServiceError } from "@/shared/errors";
 import {
   apiRequest,
   buildLaravelListParams,
@@ -22,7 +23,6 @@ import {
   decodeAdminRouteKey,
   isNumericAdminRouteKey,
 } from "@/shared/lib/routing/admin-route-keys.utils";
-import { ServiceError } from "@/shared/errors";
 
 function createApiOrdersService(): OrdersService {
   const service: OrdersService = {

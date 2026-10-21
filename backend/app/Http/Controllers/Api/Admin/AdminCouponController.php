@@ -27,8 +27,8 @@ class AdminCouponController extends ApiController
     }
 
     #[OA\Get(path: '/api/admin/coupons', description: 'Shop only (FEATURE_ECOMMERCE).', summary: 'get all coupons', security: [['Bearer' => []]], tags: ['Admin Coupon'])]
-    #[OA\Parameter(ref: "#/components/parameters/page")]
-    #[OA\Parameter(ref: "#/components/parameters/limit")]
+    #[OA\Parameter(ref: '#/components/parameters/page')]
+    #[OA\Parameter(ref: '#/components/parameters/limit')]
     #[OA\Parameter(name: 'search', in: 'query', required: false, schema: new OA\Schema(type: 'string'))]
     #[OA\Response(response: 200, description: 'Paginated coupons', content: new OA\JsonContent(ref: '#/components/schemas/Pagination'))]
     public function index(CouponFilter $filter): JsonResponse

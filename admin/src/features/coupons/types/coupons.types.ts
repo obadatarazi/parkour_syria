@@ -1,12 +1,12 @@
+import { getCouponShareUrl } from "@/features/coupons/utils/coupon-share-url";
+import type { TranslationsInput } from "@/shared/lib/api/form-data.utils";
 import {
   areNumberArraysEqual,
   hasFormChanges,
   pickChangedScalar,
   pickChangedTranslations,
 } from "@/shared/lib/form/pick-changed-fields";
-import type { TranslationsInput } from "@/shared/lib/api/form-data.utils";
 import type { PaginatedResult } from "@/shared/types";
-import { getCouponShareUrl } from "@/features/coupons/utils/coupon-share-url";
 
 export type CouponEnumOption = {
   label: string;

@@ -26,13 +26,13 @@ class UserRequest extends CustomFormRequest
             case 'POST':
                 return [
                     'full_name' => 'nullable|max:100',
-                    'email' => ['required', 'email', new NoLineBreaksRule(), 'unique:users,email'],
+                    'email' => ['required', 'email', new NoLineBreaksRule, 'unique:users,email'],
                     'phone_number' => ['nullable', 'string', 'max:30', 'unique:users,phone_number'],
                     'password' => ['required', 'confirmed', Password::defaults()],
-                    'avatar' => ['nullable', 'file', 'mimes:jpg,jpeg,png,gif,webp,svg', 'max:' . Upload::MAX_IMAGE_KB, new SafeSvg()],
+                    'avatar' => ['nullable', 'file', 'mimes:jpg,jpeg,png,gif,webp,svg', 'max:'.Upload::MAX_IMAGE_KB, new SafeSvg],
                     'gender' => 'nullable|string|in:MALE,FEMALE',
                     'type' => 'required|string|in:ADMIN',
-                    'active' => ['nullable', new BooleanValidationRule()],
+                    'active' => ['nullable', new BooleanValidationRule],
                     'roles' => ['sometimes', 'array'],
                     'roles.*' => 'required|exists:roles,id',
                 ];
@@ -40,19 +40,20 @@ class UserRequest extends CustomFormRequest
             case 'PATCH':
                 return [
                     'full_name' => 'nullable|max:100',
-                    'email' => ['nullable', 'email', new NoLineBreaksRule(), Rule::unique('users', 'email')->ignore($this->userId())],
+                    'email' => ['nullable', 'email', new NoLineBreaksRule, Rule::unique('users', 'email')->ignore($this->userId())],
                     'phone_number' => ['nullable', 'string', 'max:30', Rule::unique('users', 'phone_number')->ignore($this->userId())],
                     'password' => ['nullable', 'confirmed', Password::defaults()],
-                    'avatar' => ['nullable', 'file', 'mimes:jpg,jpeg,png,gif,webp,svg', 'max:' . Upload::MAX_IMAGE_KB, new SafeSvg()],
+                    'avatar' => ['nullable', 'file', 'mimes:jpg,jpeg,png,gif,webp,svg', 'max:'.Upload::MAX_IMAGE_KB, new SafeSvg],
                     'gender' => 'nullable|string|in:MALE,FEMALE',
                     'type' => 'nullable|string|in:ADMIN',
-                    'active' => ['nullable', new BooleanValidationRule()],
+                    'active' => ['nullable', new BooleanValidationRule],
                     'roles' => ['sometimes', 'array'],
                     'roles.*' => 'nullable|exists:roles,id',
                 ];
             default:
                 break;
         }
+
         return [];
     }
 

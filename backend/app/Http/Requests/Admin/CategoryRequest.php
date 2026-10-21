@@ -15,14 +15,14 @@ class CategoryRequest extends TranslationFormRequest
         $required = $this->method() === 'POST' ? 'required' : 'nullable';
 
         $rules = [
-            'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:' . Upload::MAX_IMAGE_KB, new SafeSvg()],
-            'publish' => ['nullable', new BooleanValidationRule()],
+            'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:'.Upload::MAX_IMAGE_KB, new SafeSvg],
+            'publish' => ['nullable', new BooleanValidationRule],
             'parent_category_id' => [
                 'nullable',
                 'integer',
                 'exists:categories,id',
                 // A category can't be its own parent.
-                is_object($category) ? 'not_in:' . $category->id : 'nullable',
+                is_object($category) ? 'not_in:'.$category->id : 'nullable',
             ],
             'translations' => [$required, 'array'],
             'translations.*.title' => [$required, 'string', 'max:255'],

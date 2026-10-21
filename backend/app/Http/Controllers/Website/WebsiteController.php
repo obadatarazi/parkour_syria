@@ -17,12 +17,11 @@ class WebsiteController extends Controller
     public function __construct(
         protected WebsiteHtmlService $websiteHtmlService,
         protected SeoService $seoService,
-    ) {
-    }
+    ) {}
 
     public function show(Request $request, ?string $path = null): Response
     {
-        [$html, $status] = $this->websiteHtmlService->html('/' . ltrim((string) $path, '/'));
+        [$html, $status] = $this->websiteHtmlService->html('/'.ltrim((string) $path, '/'));
 
         return response($html, $status, [
             'Content-Type' => 'text/html; charset=UTF-8',

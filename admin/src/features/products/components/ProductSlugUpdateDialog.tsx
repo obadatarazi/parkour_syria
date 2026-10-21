@@ -1,3 +1,4 @@
+import type { ProductSlugUpdatePrompt } from "@/features/products/utils/product-slug.utils";
 import { TextField } from "@/shared/components";
 import {
   AlertDialog,
@@ -7,8 +8,6 @@ import {
 } from "@/shared/design-system/components/ui/alert-dialog";
 import { Button } from "@/shared/design-system/components/ui/button";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
-
-import type { ProductSlugUpdatePrompt } from "@/features/products/utils/product-slug.utils";
 
 type ProductSlugUpdateDialogProps = {
   open: boolean;

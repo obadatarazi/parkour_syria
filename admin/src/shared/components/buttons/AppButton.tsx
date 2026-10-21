@@ -1,6 +1,6 @@
 import type { VariantProps } from "class-variance-authority";
 import { Loader2 } from "lucide-react";
-import { forwardRef, type ComponentProps } from "react";
+import { type ComponentProps,forwardRef } from "react";
 
 import { Button, type buttonVariants } from "@/shared/design-system/components/ui/button";
 import { cn } from "@/shared/design-system/components/ui/utils";

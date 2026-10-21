@@ -9,8 +9,6 @@ class CurrencySeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run(): void
     {
@@ -26,8 +24,8 @@ class CurrencySeeder extends Seeder
                     ],
                     'ar' => [
                         'title' => 'ليرة سورية',
-                    ]
-                ]
+                    ],
+                ],
             ],
         ];
 

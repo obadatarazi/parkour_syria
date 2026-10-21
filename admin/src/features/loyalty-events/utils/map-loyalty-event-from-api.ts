@@ -1,6 +1,6 @@
 import type { LoyaltyEvent } from "@/features/loyalty-events/types/loyalty-events.types";
-import { mapLoyaltyEnumOption } from "@/shared/lib/loyalty/map-loyalty-enum.utils";
 import { mapLoyaltyTranslationsFromApi } from "@/shared/lib/loyalty/loyalty-translations.utils";
+import { mapLoyaltyEnumOption } from "@/shared/lib/loyalty/map-loyalty-enum.utils";
 
 function firstBoolean(...values: unknown[]): boolean {
   for (const value of values) {

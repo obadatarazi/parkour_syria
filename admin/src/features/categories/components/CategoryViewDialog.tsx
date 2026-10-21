@@ -1,5 +1,5 @@
-import type { Category } from "@/features/categories/types/categories.types";
 import { useCategoryPathIndex } from "@/features/categories/hooks/use-category-path-index";
+import type { Category } from "@/features/categories/types/categories.types";
 import { getCategoryDepthLabel } from "@/features/categories/utils/category-display.utils";
 import { categoryAllowsMerchandisingFlags } from "@/features/categories/utils/category-tree.utils";
 import {

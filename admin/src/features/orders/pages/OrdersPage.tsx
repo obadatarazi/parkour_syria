@@ -16,8 +16,8 @@ import { useOrderPackingSlipDownload } from "@/features/orders/hooks/use-order-p
 import { useOrdersList } from "@/features/orders/hooks/use-orders-list";
 import type { Order } from "@/features/orders/types/orders.types";
 import { getOrderAmountDue } from "@/features/orders/types/orders.types";
-import { mapOrderToPartyDisplay } from "@/features/orders/utils/order-customer-display";
 import { getOrderPaymentLabel } from "@/features/orders/utils/map-order-from-api";
+import { mapOrderToPartyDisplay } from "@/features/orders/utils/order-customer-display";
 import { getOrderStatusVariant } from "@/features/orders/utils/order-status.utils";
 import { formatKwd } from "@/features/products/utils/product-display.utils";
 import { AppButton, TableCellText } from "@/shared/components";

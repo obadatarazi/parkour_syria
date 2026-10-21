@@ -9,7 +9,7 @@ use Laravel\Passport\Passport;
 /**
  * A role named after its permissions, for the accounts these tests sign in with.
  *
- * @param list<string> $permissions
+ * @param  list<string>  $permissions
  */
 function roleWith(string $code, array $permissions): Role
 {
@@ -91,7 +91,7 @@ it('never lets a role carry a permission its author lacks', function () {
     $foreign = Permission::query()->where('name', 'MANAGE_USER')->value('id');
 
     $this->postJson('/api/admin/roles', ['name' => 'sneaky', 'standard' => true, 'permissions' => [$foreign]])->assertForbidden();
-    $this->putJson('/api/admin/roles/' . $roleAdmin->roles->first()->id, ['permissions' => [$foreign]])->assertForbidden();
+    $this->putJson('/api/admin/roles/'.$roleAdmin->roles->first()->id, ['permissions' => [$foreign]])->assertForbidden();
 });
 
 it('lets the super admin assign roles to others but not to itself', function () {

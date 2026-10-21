@@ -1,4 +1,4 @@
-import { useEffect, useState, type KeyboardEvent } from "react";
+import { type KeyboardEvent,useEffect, useState } from "react";
 
 import { PromotionItemTargetPicker } from "@/features/promotions/components/PromotionItemTargetPicker";
 import type {

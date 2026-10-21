@@ -27,8 +27,8 @@ class SuggestionAcceptRequest extends CustomFormRequest
     public function rules(): array
     {
         return [
-            'publish' => ['nullable', new BooleanValidationRule()],
-            'verified' => ['nullable', new BooleanValidationRule()],
+            'publish' => ['nullable', new BooleanValidationRule],
+            'verified' => ['nullable', new BooleanValidationRule],
             'slug' => ['nullable', 'string', 'max:140', 'regex:/^[\p{L}\p{N}-]+$/u'],
             // Only read for an event: overrides the date the visitor proposed.
             'event_type' => ['nullable', 'string', 'in:workshop,gathering'],

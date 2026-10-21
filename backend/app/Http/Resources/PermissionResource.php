@@ -10,9 +10,6 @@ class PermissionResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
-     *
-     * @param Request $request
-     * @return array
      */
     public function toArray(Request $request): array
     {
@@ -20,7 +17,7 @@ class PermissionResource extends JsonResource
 
         return [
             'id' => $this->when($serializedGroup === SerializedGroup::List->value, $this->id),
-            'name' => $this->when($serializedGroup === SerializedGroup::List->value, $this->name)
+            'name' => $this->when($serializedGroup === SerializedGroup::List->value, $this->name),
         ];
     }
-};
+}

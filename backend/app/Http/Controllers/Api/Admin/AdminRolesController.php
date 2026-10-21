@@ -27,7 +27,7 @@ class AdminRolesController extends ApiController
         summary: 'get all roles',
         security: [['Bearer' => []]],
         tags: ['Admin Roles Section'],
-        parameters: [new OA\Parameter(ref: "#/components/parameters/x-locale")],
+        parameters: [new OA\Parameter(ref: '#/components/parameters/x-locale')],
         responses: [
             new OA\Response(
                 response: 200,
@@ -71,7 +71,7 @@ class AdminRolesController extends ApiController
         summary: 'Get role  by section',
         security: [['Bearer' => []]],
         tags: ['Admin Roles Section'],
-        parameters: [new OA\Parameter(ref: "#/components/parameters/x-locale")],
+        parameters: [new OA\Parameter(ref: '#/components/parameters/x-locale')],
         responses: [
             new OA\Response(
                 response: 200,

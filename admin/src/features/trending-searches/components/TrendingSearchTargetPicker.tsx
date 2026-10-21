@@ -1,7 +1,7 @@
+import { ReviewProductPicker } from "@/features/product-reviews/components/ReviewProductPicker";
 import { BrandPicker } from "@/features/products/components/BrandPicker";
 import { CategoryMultiPicker } from "@/features/products/components/CategoryMultiPicker";
 import { TagMultiPicker } from "@/features/products/components/TagMultiPicker";
-import { ReviewProductPicker } from "@/features/product-reviews/components/ReviewProductPicker";
 import type { TrendingSearchTargetTypeValue } from "@/features/trending-searches/types/trending-searches.types";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 

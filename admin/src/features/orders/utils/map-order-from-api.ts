@@ -9,8 +9,8 @@ import {
   resolveStaticEnumLabel,
   type StaticEnumLocale,
 } from "@/shared/constants/static-enum-options";
+import { type EnumLabelValue,normalizeEnumLabelValue } from "@/shared/lib/api/normalize-enum.utils";
 import { getTitleFromApiTranslations } from "@/shared/lib/api/normalize-translations.utils";
-import { normalizeEnumLabelValue, type EnumLabelValue } from "@/shared/lib/api/normalize-enum.utils";
 
 type RawOrderInvoice = Omit<
   OrderInvoice,

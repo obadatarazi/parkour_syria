@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
-import { TextAreaField, TextField } from "@/shared/components";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shared/design-system/components/ui/tabs";
-import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
-import type { ProductTranslationsInput } from "@/shared/lib/api/form-data.utils";
 import {
   getPredictedProductSlug,
   shouldAutoSuggestProductSlug,
 } from "@/features/products/utils/product-slug.utils";
+import { TextAreaField, TextField } from "@/shared/components";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shared/design-system/components/ui/tabs";
+import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
+import type { ProductTranslationsInput } from "@/shared/lib/api/form-data.utils";
 
 type ProductTranslationFieldsProps = {
   value: ProductTranslationsInput;

@@ -10,9 +10,6 @@ class MultiTypeSettingResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
-     *
-     * @param Request $request
-     * @return array
      */
     public function toArray(Request $request): array
     {
@@ -30,8 +27,7 @@ class MultiTypeSettingResource extends JsonResource
                 $this->description),
             'createdAt' => $this->when(
                 $serializedGroup === SerializedGroup::List->value || $serializedGroup === SerializedGroup::Details->value, $this->created_at),
-            'updatedAt' =>
-                $this->when($serializedGroup === SerializedGroup::List->value || $serializedGroup === SerializedGroup::Details->value, $this->updated_at)
+            'updatedAt' => $this->when($serializedGroup === SerializedGroup::List->value || $serializedGroup === SerializedGroup::Details->value, $this->updated_at),
         ];
     }
 }

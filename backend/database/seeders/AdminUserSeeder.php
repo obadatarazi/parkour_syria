@@ -33,7 +33,7 @@ class AdminUserSeeder extends Seeder
 
         foreach ($accounts as $account) {
             // The fallback is a known word. Anywhere but a developer machine the env has to set a real one.
-            if (!app()->environment(['local', 'testing']) && (blank($account['password']) || $account['password'] === 'password')) {
+            if (! app()->environment(['local', 'testing']) && (blank($account['password']) || $account['password'] === 'password')) {
                 throw new \RuntimeException("Set the seeded account passwords (SEED_*_PASSWORD) before seeding {$account['email']}.");
             }
 

@@ -9,6 +9,7 @@ import type {
   ProfileUpdateInput,
   ResetPasswordInput,
 } from "@/features/auth/types/auth.types";
+import { isAccessTokenNearingExpiry } from "@/features/auth/utils/access-token-expiry";
 import {
   clearStoredSession,
   readStoredSession,
@@ -16,7 +17,6 @@ import {
   readStoredUser,
   writeStoredSession,
 } from "@/features/auth/utils/auth-storage";
-import { isAccessTokenNearingExpiry } from "@/features/auth/utils/access-token-expiry";
 import { mapApiRolesToAuthRoles, mapApiUserToAuthUser } from "@/features/auth/utils/map-api-user";
 import { invalidateQueryCache } from "@/shared/crud/query-cache";
 import { getServiceErrorCode, ServiceError } from "@/shared/errors";

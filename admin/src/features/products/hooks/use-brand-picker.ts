@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 
-import type { RelationPickerSeed } from "@/features/products/types/products.types";
+import { brandsService } from "@/features/brands/services/brands.service";
+import type { Brand } from "@/features/brands/types/brands.types";
 import {
   getMissingRelationPickerIds,
   resolveRelationPickerItems,
   useRelationPickerKnownItems,
 } from "@/features/products/hooks/relation-picker.utils";
-import { brandsService } from "@/features/brands/services/brands.service";
-import type { Brand } from "@/features/brands/types/brands.types";
+import type { RelationPickerSeed } from "@/features/products/types/products.types";
 import { useCrudQuery } from "@/shared/crud";
 import {
   formatBilingualLabel,

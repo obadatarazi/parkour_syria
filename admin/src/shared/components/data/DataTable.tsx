@@ -18,6 +18,7 @@ import { EmptyState } from "@/shared/components/feedback/EmptyState";
 import { ErrorState } from "@/shared/components/feedback/ErrorState";
 import { TableSkeleton } from "@/shared/components/feedback/LoadingState";
 import { CaptionText } from "@/shared/components/typography/Typography";
+import { PAGE_SIZE_OPTIONS } from "@/shared/constants/pagination";
 import { Checkbox } from "@/shared/design-system/components/ui/checkbox";
 import {
   Select,
@@ -35,7 +36,6 @@ import {
   TableRow,
 } from "@/shared/design-system/components/ui/table";
 import { cn } from "@/shared/design-system/components/ui/utils";
-import { PAGE_SIZE_OPTIONS } from "@/shared/constants/pagination";
 import {
   useLocalization,
   useTranslation,

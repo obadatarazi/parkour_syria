@@ -19,7 +19,6 @@ class QueryFilter
 
     /**
      * QueryFilter contractor.
-     * @param Request $request
      */
     public function __construct(Request $request)
     {
@@ -39,9 +38,7 @@ class QueryFilter
     }
 
     /**
-     * @param Builder $query
-     * @param array $filterable
-     * @return mixed
+     * @param  array  $filterable
      */
     public function applyFilter(Builder $query, $filterable = []): mixed
     {
@@ -56,6 +53,7 @@ class QueryFilter
                 $this->query->where($snakeName, $filterable[$snakeName], $value);
             }
         }
+
         return $this->query;
     }
 
@@ -66,7 +64,7 @@ class QueryFilter
         $sort = $this->getSortField();
         $direction = $this->getSortDirection();
 
-        if (!empty($sort)) {
+        if (! empty($sort)) {
             if (in_array($sort, $sorterable)) {
                 $this->query->orderBy($sort, $direction);
             }
@@ -115,7 +113,7 @@ class QueryFilter
         $tokens = preg_split('/\s+/u', $term) ?: [];
 
         foreach ($tokens as $token) {
-            $like = '%' . addcslashes($token, '%_\\') . '%';
+            $like = '%'.addcslashes($token, '%_\\').'%';
 
             $this->query->where(function ($query) use ($like, $translated) {
                 foreach ($this->searchColumns as $column) {

@@ -34,6 +34,7 @@ class MultiTypeSettingRequest extends CustomFormRequest
             default:
                 break;
         }
+
         return [];
     }
 }

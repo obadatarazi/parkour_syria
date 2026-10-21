@@ -31,8 +31,8 @@ class AdminEventController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Event'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
-    #[OA\Parameter(ref: "#/components/parameters/direction")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
+    #[OA\Parameter(ref: '#/components/parameters/direction')]
     #[OA\Parameter(
         name: 'sort',
         description: 'Specify sorting order.',
@@ -41,8 +41,8 @@ class AdminEventController extends ApiController
         schema: new OA\Schema(type: 'string', enum: ['id', 'starts_at', 'created_at']),
         example: 'starts_at'
     )]
-    #[OA\Parameter(ref: "#/components/parameters/page")]
-    #[OA\Parameter(ref: "#/components/parameters/limit")]
+    #[OA\Parameter(ref: '#/components/parameters/page')]
+    #[OA\Parameter(ref: '#/components/parameters/limit')]
     #[OA\Parameter(
         name: 'search',
         description: 'Free text search on title / location_label.',
@@ -123,7 +123,7 @@ class AdminEventController extends ApiController
         summary: 'create event',
         security: [['Bearer' => []]],
         tags: ['Admin Event'],
-        parameters: [new OA\Parameter(ref: "#/components/parameters/x-locale")],
+        parameters: [new OA\Parameter(ref: '#/components/parameters/x-locale')],
     )]
     #[OA\RequestBody(
         content: new OA\MediaType(
@@ -156,7 +156,7 @@ class AdminEventController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Event'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'event',
         description: 'the event to retrieve',
@@ -190,7 +190,7 @@ class AdminEventController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Event'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'event',
         description: 'the event to update',
@@ -230,7 +230,7 @@ class AdminEventController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Event'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'event',
         description: 'the event to delete',
@@ -264,7 +264,7 @@ class AdminEventController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Event'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\RequestBody(
         content: new OA\MediaType(
             mediaType: 'application/json',
@@ -287,12 +287,12 @@ class AdminEventController extends ApiController
     #[OA\Get(
         path: '/api/admin/events/export',
         description: 'download every event the current filters select as a csv file, translated fields in '
-            . 'the language the x-locale header asks for. Takes the same filters as index(), without the paging.',
+            .'the language the x-locale header asks for. Takes the same filters as index(), without the paging.',
         summary: 'export events as csv',
         security: [['Bearer' => []]],
         tags: ['Admin Event'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Response(
         response: 200,
         description: 'The csv file, as a download',

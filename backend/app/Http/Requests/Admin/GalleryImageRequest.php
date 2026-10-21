@@ -15,9 +15,9 @@ class GalleryImageRequest extends TranslationFormRequest
 
         if ($this->method() === 'POST') {
             $rules = [
-                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:' . Upload::MAX_IMAGE_KB, new SafeSvg()],
+                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:'.Upload::MAX_IMAGE_KB, new SafeSvg],
                 'sort_order' => ['nullable', 'integer', 'min:0'],
-                'publish' => ['nullable', new BooleanValidationRule()],
+                'publish' => ['nullable', new BooleanValidationRule],
                 'translations' => ['required', 'array'],
                 // Arabic is the live language and is required, English is optional until it goes public.
                 'translations.ar' => ['required', 'array'],
@@ -29,9 +29,9 @@ class GalleryImageRequest extends TranslationFormRequest
 
         if ($this->method() === 'PUT' || $this->method() === 'PATCH') {
             $rules = [
-                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:' . Upload::MAX_IMAGE_KB, new SafeSvg()],
+                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:'.Upload::MAX_IMAGE_KB, new SafeSvg],
                 'sort_order' => ['nullable', 'integer', 'min:0'],
-                'publish' => ['nullable', new BooleanValidationRule()],
+                'publish' => ['nullable', new BooleanValidationRule],
                 'translations' => ['nullable', 'array'],
                 'translations.ar' => ['nullable', 'array'],
                 'translations.en' => ['nullable', 'array'],

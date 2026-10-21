@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Carbon\Carbon;
@@ -17,6 +18,7 @@ class BaseModel extends Model
             ->timezone(config('app.timezone', 'Asia/Damascus'))
             ->format('Y-m-d H:i:s');
     }
+
     /**
      * Get an attribute from the model.
      *
@@ -27,6 +29,7 @@ class BaseModel extends Model
     {
         // Convert the key from camelCase to snake_case
         $key = Str::snake($key);
+
         return parent::getAttribute($key);
     }
 
@@ -34,7 +37,7 @@ class BaseModel extends Model
      * Set a given attribute on the model.
      *
      * @param  string  $key
-     * @param  mixed   $value
+     * @param  mixed  $value
      * @return void
      */
     public function setAttribute($key, $value)
@@ -73,7 +76,6 @@ class BaseModel extends Model
     /**
      * Convert array keys to camelCase.
      *
-     * @param  array  $array
      * @return array
      */
     protected function convertToCamelCase(array $array)
@@ -83,17 +85,19 @@ class BaseModel extends Model
             $camelCaseKey = Str::camel($key);
             $camelCaseArray[$camelCaseKey] = $value;
         }
+
         return $camelCaseArray;
     }
 
     public function getCustomTranslationsAttribute()
     {
-        if($this->translations) {
+        if ($this->translations) {
             $data = [];
             foreach ($this->translations as $translation) {
                 $data[$translation->locale] = $translation;
                 unset($translation->locale);
             }
+
             return $data;
         }
     }
