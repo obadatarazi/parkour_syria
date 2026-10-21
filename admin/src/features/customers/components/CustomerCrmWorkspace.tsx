@@ -142,7 +142,7 @@ export function CustomerCrmWorkspace({
   const reviews = customer.reviews ?? [];
   const addresses = customer.addresses ?? [];
   const staffNotesList = customer.staffNotes ?? [];
-  const timeline = customer.timeline ?? [];
+  const timeline = useMemo(() => customer.timeline ?? [], [customer.timeline]);
 
   const timelineFilters = useMemo(
     (): { value: TimelineEventFilter; label: string }[] => [

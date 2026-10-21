@@ -17,7 +17,7 @@ export { ImageReplaceHoverOverlay } from "./data/ImageReplaceHoverOverlay";
 export { InfoCard } from "./data/InfoCard";
 export { MediaImage, MediaVideo } from "./data/MediaImage";
 export { MetricCard, MetricCardGrid } from "./data/MetricCard";
-export { looksLikePhoneNumber,PhoneNumberText, UserLabelText } from "./data/PhoneNumberText";
+export { PhoneNumberText, UserLabelText } from "./data/PhoneNumberText";
 export { PriceCell } from "./data/PriceCell";
 export { StatCard, StatCardGrid } from "./data/StatCard";
 export type { StatusBadgeVariant } from "./data/StatusBadge";
@@ -34,8 +34,9 @@ export { DatePickerField } from "./forms/DatePickerField";
 export { EmailField } from "./forms/EmailField";
 export { FieldGroup } from "./forms/FieldGroup";
 export { FileUploadField } from "./forms/FileUploadField";
+export { getFormFieldDescribedBy } from "./forms/form-field.utils";
 export { FormActions } from "./forms/FormActions";
-export { FormField, getFormFieldDescribedBy } from "./forms/FormField";
+export { FormField } from "./forms/FormField";
 export { FormRow } from "./forms/FormRow";
 export { FormSection } from "./forms/FormSection";
 export { ImageField } from "./forms/ImageField";
@@ -83,3 +84,4 @@ export {
   PageTitle,
   SectionTitle,
 } from "./typography/Typography";
+export { looksLikePhoneNumber } from "@/shared/lib/phone-number.utils";

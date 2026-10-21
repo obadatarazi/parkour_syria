@@ -105,7 +105,7 @@ export function ProductExportDialog({
   const [isExporting, setIsExporting] = useState(false);
   const [columnsError, setColumnsError] = useState<string | undefined>();
 
-  const columnOptions = columnsQuery.data ?? [];
+  const columnOptions = useMemo(() => columnsQuery.data ?? [], [columnsQuery.data]);
 
   const scopeOptions = useMemo(
     () => [

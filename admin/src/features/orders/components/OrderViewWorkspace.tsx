@@ -4,10 +4,7 @@ import { Link } from "react-router";
 
 import { orderEditPath, ROUTES } from "@/app/router/routes";
 import { useInvoicePdfDownload } from "@/features/invoices/hooks/use-invoice-pdf-download";
-import {
-  hasOrderLocationCoords,
-  OrderLocationMap,
-} from "@/features/orders/components/OrderLocationMap";
+import { OrderLocationMap } from "@/features/orders/components/OrderLocationMap";
 import { useOrderPackingSlipDownload } from "@/features/orders/hooks/use-order-packing-slip-download";
 import type { Order } from "@/features/orders/types/orders.types";
 import { getOrderAmountDue } from "@/features/orders/types/orders.types";
@@ -18,6 +15,7 @@ import {
   orderCustomerHref,
   orderPartyDisplayName,
 } from "@/features/orders/utils/order-customer-display";
+import { hasOrderLocationCoords } from "@/features/orders/utils/order-location.utils";
 import { getOrderStatusVariant } from "@/features/orders/utils/order-status.utils";
 import { formatKwd } from "@/features/products/utils/product-display.utils";
 import { AppButton, PhoneNumberText, StatusBadge, UserLabelText } from "@/shared/components";

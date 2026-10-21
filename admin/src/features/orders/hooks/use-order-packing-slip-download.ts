@@ -24,12 +24,15 @@ export function useOrderPackingSlipDownload() {
     },
   });
 
+  // useCrudMutation's mutate is a stable callback; depend on it, not on the object around it.
+  const { mutate } = mutation;
+
   const downloadPackingSlip = useCallback(
     async (orderRefNumber: string | null | undefined) => {
       if (!orderRefNumber) return;
-      await mutation.mutate(orderRefNumber);
+      await mutate(orderRefNumber);
     },
-    [mutation.mutate],
+    [mutate],
   );
 
   return {

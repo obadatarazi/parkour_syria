@@ -127,7 +127,9 @@ export function useCrudQuery<T>({
       return;
     }
 
-    const cached = getCachedQueryData<T>(scopedQueryKey);
+    // A new array every render: the signature decides when this runs, the ref gives the key.
+    const key = queryKeyRef.current;
+    const cached = getCachedQueryData<T>(key);
 
     if (cached !== undefined) {
       setData(cached);
@@ -135,7 +137,7 @@ export function useCrudQuery<T>({
       setError(null);
 
       // Fresh cache: skip network until staleTime expires (or refetch / key change).
-      if (!isQueryCacheStale(scopedQueryKey, staleTimeRef.current)) {
+      if (!isQueryCacheStale(key, staleTimeRef.current)) {
         return;
       }
 

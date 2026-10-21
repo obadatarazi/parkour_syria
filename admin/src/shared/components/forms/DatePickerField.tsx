@@ -3,7 +3,8 @@ import { Calendar as CalendarIcon, XIcon } from "lucide-react";
 import { useEffect, useId, useMemo, useState } from "react";
 import { type Matcher } from "react-day-picker";
 
-import { FormField, getFormFieldDescribedBy } from "@/shared/components/forms/FormField";
+import { getFormFieldDescribedBy } from "@/shared/components/forms/form-field.utils";
+import { FormField } from "@/shared/components/forms/FormField";
 import { Button } from "@/shared/design-system/components/ui/button";
 import { Calendar } from "@/shared/design-system/components/ui/calendar";
 import { Input } from "@/shared/design-system/components/ui/input";

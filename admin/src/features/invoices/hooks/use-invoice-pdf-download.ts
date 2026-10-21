@@ -24,12 +24,15 @@ export function useInvoicePdfDownload() {
     },
   });
 
+  // useCrudMutation's mutate is a stable callback; depend on it, not on the object around it.
+  const { mutate } = mutation;
+
   const downloadPdf = useCallback(
     async (invoiceNumber: string | null | undefined) => {
       if (!invoiceNumber) return;
-      await mutation.mutate(invoiceNumber);
+      await mutate(invoiceNumber);
     },
-    [mutation.mutate],
+    [mutate],
   );
 
   return {

@@ -36,7 +36,7 @@ export function CarePlanItemVariantSelect({
 
   const isVariable =
     query.data != null && normalizeProductType(query.data.type) === "VARIABLE_PRODUCT";
-  const variants = query.data?.variants ?? [];
+  const variants = useMemo(() => query.data?.variants ?? [], [query.data?.variants]);
 
   useEffect(() => {
     if (productId == null) {

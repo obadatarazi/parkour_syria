@@ -1,4 +1,4 @@
-import { type KeyboardEvent,useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { PromotionItemTargetPicker } from "@/features/promotions/components/PromotionItemTargetPicker";
 import type {
@@ -13,22 +13,9 @@ import {
   createEmptyBogoRewardForm,
   rewardToFormData,
 } from "@/features/promotions/types/promotions.types";
+import { handleNestedFormEnter } from "@/features/promotions/utils/nested-form-enter.utils";
 import { AppButton, TextField } from "@/shared/components";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
-
-/** Nested forms inside the promotion workspace are invalid HTML and reload the page. */
-export function handleNestedFormEnter(
-  event: KeyboardEvent<HTMLElement>,
-  submit: () => void,
-  disabled = false,
-) {
-  if (disabled || event.key !== "Enter") return;
-  const target = event.target;
-  if (target instanceof HTMLTextAreaElement || target instanceof HTMLButtonElement) return;
-  event.preventDefault();
-  event.stopPropagation();
-  submit();
-}
 
 type ConditionFormProps = {
   bogoPromotionId: number;

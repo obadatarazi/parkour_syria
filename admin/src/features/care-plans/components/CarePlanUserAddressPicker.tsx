@@ -39,7 +39,7 @@ async function fetchUserAddresses(
   return response.data ?? [];
 }
 
-export function getCarePlanUserAddressLabel(address: CarePlanUserAddressOption): string {
+function getCarePlanUserAddressLabel(address: CarePlanUserAddressOption): string {
   const title = address.title?.trim() || `#${address.id}`;
   const line = [address.streetTitle?.trim(), address.block?.trim()].filter(Boolean).join(", ");
   const suffix = address.isDefault ? " · default" : "";

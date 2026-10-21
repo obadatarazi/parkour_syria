@@ -1,5 +1,5 @@
 import { Plus, Star } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 
 import { productViewPath } from "@/app/router/routes";
@@ -115,14 +115,18 @@ export function ProductReviewsPage() {
     },
   });
 
-  const handleViewReview = async (row: ProductReviewRow) => {
-    const refreshed = await productReviewsService.getById(row.productId, row.id);
-    reviewDialog.openView({
-      ...refreshed,
-      productId: row.productId,
-      productTitle: row.productTitle ?? refreshed.productTitle,
-    });
-  };
+  const { openView: openReviewView } = reviewDialog;
+  const handleViewReview = useCallback(
+    async (row: ProductReviewRow) => {
+      const refreshed = await productReviewsService.getById(row.productId, row.id);
+      openReviewView({
+        ...refreshed,
+        productId: row.productId,
+        productTitle: row.productTitle ?? refreshed.productTitle,
+      });
+    },
+    [openReviewView],
+  );
 
   const hydratedReviewKeyRef = useRef<string | null>(null);
   useEffect(() => {
@@ -135,11 +139,14 @@ export function ProductReviewsPage() {
     if (hydratedReviewKeyRef.current === key) return;
     hydratedReviewKeyRef.current = key;
     void handleViewReview(entity);
-  }, [reviewDialog.entity, reviewDialog.mode]);
+  }, [handleViewReview, reviewDialog.entity, reviewDialog.mode]);
 
-  const handleViewProduct = (row: ProductReviewRow) => {
-    navigate(productViewPath(String(row.productId)));
-  };
+  const handleViewProduct = useCallback(
+    (row: ProductReviewRow) => {
+      navigate(productViewPath(String(row.productId)));
+    },
+    [navigate],
+  );
 
   const handleApprove = async (row: ProductReviewRow) => {
     if (updatingKey !== null || isUpdating || row.publish === true) return;
@@ -233,7 +240,7 @@ export function ProductReviewsPage() {
         ),
       },
     ],
-    [language, t],
+    [handleViewProduct, handleViewReview, language, t],
   );
 
   return (

@@ -79,7 +79,24 @@ export default tseslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
-      "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+      // Context modules keep their provider, context and hook together on purpose. Fast refresh
+      // falls back to a full reload for these files, which is fine for what changes there.
+      "react-refresh/only-export-components": [
+        "warn",
+        {
+          allowConstantExport: true,
+          allowExportNames: [
+            "AbilityContext",
+            "useAbility",
+            "useAuth",
+            "useLocalization",
+            "useTranslation",
+            "useGuidanceContext",
+            "useOptionalGuidanceContext",
+            "buttonVariants",
+          ],
+        },
+      ],
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
       "unused-imports/no-unused-imports": "error",

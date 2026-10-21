@@ -164,19 +164,21 @@ export function useServerPaginatedList<T>({
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
   const items = query.data?.data ?? [];
 
+  const { patchData } = query;
   const patchItems = useCallback(
     (updater: (items: T[]) => T[]) => {
-      query.patchData((previous) => ({
+      patchData((previous) => ({
         ...previous,
         data: updater(previous.data),
       }));
     },
-    [query.patchData],
+    [patchData],
   );
 
+  const { clearSelection } = selection;
   useEffect(() => {
-    selection.clearSelection();
-  }, [page, limit, debouncedSearch, filterSignature, sort, selection.clearSelection]);
+    clearSelection();
+  }, [page, limit, debouncedSearch, filterSignature, sort, clearSelection]);
 
   useEffect(() => {
     if (!query.data) return;

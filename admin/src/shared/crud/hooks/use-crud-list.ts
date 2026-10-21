@@ -77,13 +77,16 @@ export function useCrudList<T extends { id: string | number }>({
     [items.length, filteredItems.length, search.hasSearch, filters.hasActiveFilters],
   );
 
-  useEffect(() => {
-    pagination.resetPage();
-  }, [search.debouncedSearch, filters.hasActiveFilters, pagination.resetPage]);
+  const { resetPage } = pagination;
+  const { clearSelection } = selection;
 
   useEffect(() => {
-    selection.clearSelection();
-  }, [filteredItems.length, pagination.page, search.debouncedSearch, selection.clearSelection]);
+    resetPage();
+  }, [search.debouncedSearch, filters.hasActiveFilters, resetPage]);
+
+  useEffect(() => {
+    clearSelection();
+  }, [filteredItems.length, pagination.page, search.debouncedSearch, clearSelection]);
 
   return {
     search,

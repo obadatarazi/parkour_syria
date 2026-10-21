@@ -5,7 +5,6 @@ import { formatKwd } from "@/features/products/utils/product-display.utils";
 import {
   BogoConditionForm,
   BogoRewardForm,
-  handleNestedFormEnter,
 } from "@/features/promotions/components/BogoItemForms";
 import { useBogoDealMutations } from "@/features/promotions/hooks/use-bogo-deal-mutations";
 import { bogoPromotionsService } from "@/features/promotions/services/bogo-promotions.service";
@@ -19,6 +18,7 @@ import {
   bogoDealToFormData,
   createEmptyBogoDealForm,
 } from "@/features/promotions/types/promotions.types";
+import { handleNestedFormEnter } from "@/features/promotions/utils/nested-form-enter.utils";
 import { AppButton, TextField } from "@/shared/components";
 import { CrudDeleteDialog, useCrudDialog, useCrudQuery } from "@/shared/crud";
 import { Skeleton } from "@/shared/design-system/components/ui/skeleton";

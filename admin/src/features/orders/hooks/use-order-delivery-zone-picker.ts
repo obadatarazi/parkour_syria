@@ -55,7 +55,7 @@ export function useOrderDeliveryZonePicker({
     enabled: enabled && (active || selectedId != null),
   });
 
-  const zones = listQuery.data?.data ?? [];
+  const zones = useMemo(() => listQuery.data?.data ?? [], [listQuery.data?.data]);
 
   const selectedOnPage = useMemo(() => {
     if (selectedId == null) return null;

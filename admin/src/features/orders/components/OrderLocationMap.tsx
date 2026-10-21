@@ -7,6 +7,7 @@ import markerShadow from "leaflet/dist/images/marker-shadow.png";
 import { useMemo, useState } from "react";
 import { MapContainer, Marker, Polyline, TileLayer } from "react-leaflet";
 
+import { parseCoord } from "@/features/orders/utils/order-location.utils";
 import { AppButton } from "@/shared/components";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 
@@ -35,21 +36,6 @@ export type OrderLocationMapProps = {
 };
 
 type LatLngTuple = [number, number];
-
-function parseCoord(value: string | number): number | null {
-  const n = typeof value === "number" ? value : Number.parseFloat(String(value).trim());
-  return Number.isFinite(n) ? n : null;
-}
-
-export function hasOrderLocationCoords(
-  latitude?: string | number | null,
-  longitude?: string | number | null,
-): boolean {
-  if (latitude == null || longitude == null || latitude === "" || longitude === "") {
-    return false;
-  }
-  return parseCoord(latitude) != null && parseCoord(longitude) != null;
-}
 
 export function OrderLocationMap({
   latitude,
