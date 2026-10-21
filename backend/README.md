@@ -17,6 +17,10 @@ ApiController kernel) with the pharmacy modules removed and the Parkour Phase 1 
 
 ## Getting started
 
+MySQL has to be running before anything below, and before `pest`. On macOS with Homebrew,
+`brew services start mysql` starts it now and at every login; `mysql.server start` starts it until
+the next reboot only. A "Connection refused" from artisan or the tests means it is not running.
+
 ```bash
 cp .env.example .env
 composer install
@@ -31,7 +35,11 @@ php artisan l5-swagger:generate     # docs at /api/doc
 php artisan serve
 ```
 
-Seeded accounts (change via `SEED_*` in `.env`):
+Seeded accounts (change via `SEED_*` in `.env`; outside local the seeder refuses blank or default
+passwords). A dashboard user who forgets their password resets it from the login page: the link is
+mailed with the `MAIL_*` settings (the `log` mailer writes it to `storage/logs` locally).
+
+Accounts:
 
 | Role | Email | Can do |
 |---|---|---|
