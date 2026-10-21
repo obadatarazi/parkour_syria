@@ -2,12 +2,11 @@
 
 use App\Command\InstallWebsiteCommand;
 use App\Command\UpdateRolesCommand;
+use App\Http\Middleware\SecurityHeaders;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull;
-use Illuminate\Http\Middleware\HandleCors;
 use Illuminate\Support\Facades\Route;
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -21,10 +20,19 @@ return Application::configure(basePath: dirname(__DIR__))
         },
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->use([HandleCors::class]);
-        // `use()` replaces Laravel's global stack. Multipart forms cannot send null, so a cleared
-        // nullable field (area_id, published_at, ...) arrives as '' and must become null here.
-        $middleware->append(ConvertEmptyStringsToNull::class);
+        // Laravel's default global stack stays: trusted proxies (config/trustedproxy.php), CORS,
+        // maintenance mode, post size, trimming, and ConvertEmptyStringsToNull, which turns a cleared
+        // multipart field (area_id, published_at, ...) from '' into null.
+        // Passwords are taken exactly as typed. The dashboard sends these keys in camelCase.
+        $middleware->trimStrings(except: [
+            'currentPassword',
+            'newPassword',
+            'newPasswordConfirmation',
+            'current_password',
+            'new_password',
+            'new_password_confirmation',
+        ]);
+        $middleware->append(SecurityHeaders::class);
         $middleware->append(SetLocale::class);
         $middleware->alias([
             'active' => \App\Http\Middleware\EnsureAccountIsActive::class,
