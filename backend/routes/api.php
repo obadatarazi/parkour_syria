@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\Admin\AdminLessonController;
 use App\Http\Controllers\Api\Admin\AdminMultiTypeSettingController;
 use App\Http\Controllers\Api\Admin\AdminOrderController;
 use App\Http\Controllers\Api\Admin\AdminPageController;
+use App\Http\Controllers\Api\Admin\AdminPasswordResetController;
 use App\Http\Controllers\Api\Admin\AdminPermissionController;
 use App\Http\Controllers\Api\Admin\AdminProductController;
 use App\Http\Controllers\Api\Admin\AdminRoleController;
@@ -57,6 +58,13 @@ Route::prefix('/admin/auth')->group(function () {
     Route::get('/me/profile', [AdminAuthController::class, 'me'])->middleware(['auth:api', 'active']);
     // Left open to a deactivated account on purpose: it is how the dashboard tells them why.
     Route::get('/account/status', [AdminAuthController::class, 'getAccountStatus'])->middleware(['auth:api']);
+});
+
+// Password reset by email. Public, so held to a handful of attempts a minute; the broker also keeps
+// one email to one link a minute.
+Route::prefix('/admin/me/password')->middleware('throttle:5,1')->group(function () {
+    Route::post('/forgot', [AdminPasswordResetController::class, 'forgot']);
+    Route::post('/reset', [AdminPasswordResetController::class, 'reset']);
 });
 
 Route::prefix('/admin')->middleware(['auth:api', 'active'])->group(function () {

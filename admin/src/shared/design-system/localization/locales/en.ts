@@ -278,7 +278,7 @@ export const en = {
   sendResetLink: "Send Reset Link",
   backToLogin: "Back to Sign In",
   checkEmail: "Check your email",
-  resetSent: "We've sent a password reset link to your email address.",
+  resetSent: "If an active account uses this email, a reset link is on its way. It expires in 60 minutes.",
   showPassword: "Show",
   hidePassword: "Hide",
 

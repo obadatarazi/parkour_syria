@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Http\Docs\Schemas\UserSchema;
 use App\Http\Traits\Filterable;
+use App\Notifications\AdminResetPasswordNotification;
 use Carbon\Carbon;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -93,6 +94,14 @@ class User extends Authenticatable implements OAuthenticatable
             'FEMALE' => __('enum.FEMALE'),
             default => $gender,
         };
+    }
+
+    /**
+     * The broker's reset link points at the dashboard's reset page, not at a web route of the API.
+     */
+    public function sendPasswordResetNotification($token): void
+    {
+        $this->notify(new AdminResetPasswordNotification($token));
     }
 
     public function getMyRoles()

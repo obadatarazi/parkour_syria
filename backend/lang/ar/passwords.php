@@ -2,23 +2,17 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Password Reset Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are the default lines which match reasons
-    | that are given by the password broker for a password update attempt
-    | outcome such as failure due to an invalid password / reset token.
-    |
-     */
-
-    'reset' => 'Your password has been reset.',
-    'sent' => 'We have emailed your password reset link.',
+    // Messages of the dashboard's password reset (PasswordResetService) and its email.
+    'reset' => 'تمت إعادة تعيين كلمة المرور. يمكنك تسجيل الدخول الآن.',
+    'sent' => 'إذا كان هذا البريد مرتبطاً بحساب لوحة تحكم مفعّل، فسيصلك رابط إعادة التعيين قريباً.',
+    'throttled' => 'يرجى الانتظار قبل المحاولة مرة أخرى.',
+    'token' => 'رابط إعادة تعيين كلمة المرور غير صالح أو منتهي الصلاحية.',
+    'user' => 'لا يوجد مستخدم بهذا البريد الإلكتروني.',
+    'mail_subject' => 'إعادة تعيين كلمة مرور لوحة تحكم باركور سوريا',
+    'mail_intro' => 'تلقّينا طلباً لإعادة تعيين كلمة مرور حسابك في لوحة التحكم.',
+    'mail_action' => 'إعادة تعيين كلمة المرور',
+    'mail_expiry' => 'تنتهي صلاحية هذا الرابط خلال :count دقيقة ويعمل مرة واحدة فقط.',
+    'mail_ignore' => 'إذا لم تطلب ذلك، تجاهل هذه الرسالة وستبقى كلمة المرور كما هي.',
     'otp_sent' => 'تم إرسال رمز التحقق إلى رقم هاتفك المحمول. ستنتهي صلاحيته خلال 30 دقيقة.',
-    // UCS-2 SMS ≈ 70 chars/segment. Keep ≤65 so 1 kwtSMS credit. Brand fixed (not APP_NAME).
-    'throttled' => 'Please wait before retrying.',
-    'token' => 'This password reset token is invalid.',
-    'user' => "We can't find a user with that email address.",
 
 ];
