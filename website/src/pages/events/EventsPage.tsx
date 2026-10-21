@@ -1,5 +1,7 @@
 import { MessageCircle } from 'lucide-react';
 import { Reveal } from '@/components/motion/Reveal';
+import { Container, PageHero } from '@/components/ui';
+import { cn } from '@/lib/cn';
 import { whatsappLink } from '@/config/site';
 import { useDemo } from '@/data/useDemo';
 import { useI18n } from '@/i18n/useI18n';
@@ -11,14 +13,9 @@ export function EventsPage() {
 
   return (
     <div>
-      <div className="page-hero">
-        <div className="container-x">
-          <h1>{t('pages.events.heroTitle')}</h1>
-          <p>{t('pages.events.heroSub')}</p>
-        </div>
-      </div>
+      <PageHero title={t('pages.events.heroTitle')} description={t('pages.events.heroSub')} />
       <Reveal as="section" className="section section-light">
-        <div className="container-x">
+        <Container>
           <Reveal type="stagger" className="grid grid-cols-1 gap-6">
             {events.map((ev) => (
               <div
@@ -43,7 +40,7 @@ export function EventsPage() {
                     href={whatsappLink(ev.whatsapp)}
                     target="_blank"
                     rel="noreferrer"
-                    className="btn btn-dark btn-sm"
+                    className={cn('btn', 'btn-dark', 'btn-sm')}
                   >
                     <MessageCircle size={14} /> {t('common.register')}
                   </a>
@@ -51,7 +48,7 @@ export function EventsPage() {
               </div>
             ))}
           </Reveal>
-        </div>
+        </Container>
       </Reveal>
     </div>
   );

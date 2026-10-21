@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ListCard } from '@/features/list-card/ListCard';
 import { Reveal } from '@/components/motion/Reveal';
 import { useNav } from '@/components/nav';
+import { Container, FilterButton, PageHero } from '@/components/ui';
 import type { BlogCategoryId } from '@/data/demo';
 import { useDemo } from '@/data/useDemo';
 import { useI18n } from '@/i18n/useI18n';
@@ -21,24 +22,14 @@ export function BlogPage() {
 
   return (
     <div>
-      <div className="page-hero">
-        <div className="container-x">
-          <h1>{t('pages.blog.heroTitle')}</h1>
-          <p>{t('pages.blog.heroSub')}</p>
-        </div>
-      </div>
+      <PageHero title={t('pages.blog.heroTitle')} description={t('pages.blog.heroSub')} />
       <Reveal as="section" className="section section-light">
-        <div className="container-x">
+        <Container>
           <div className="flex flex-wrap gap-2 mb-6">
             {FILTER_IDS.map((id) => (
-              <button
-                key={id}
-                type="button"
-                onClick={() => setFilter(id)}
-                className={`filter-btn ${filter === id ? 'active' : ''}`}
-              >
+              <FilterButton key={id} active={filter === id} onClick={() => setFilter(id)}>
                 {t(`pages.blog.filters.${id}`)}
-              </button>
+              </FilterButton>
             ))}
           </div>
           <Reveal type="stagger" className="grid grid-cols-1 gap-6">
@@ -54,7 +45,7 @@ export function BlogPage() {
               </ListCard>
             ))}
           </Reveal>
-        </div>
+        </Container>
       </Reveal>
     </div>
   );

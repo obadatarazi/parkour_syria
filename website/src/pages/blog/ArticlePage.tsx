@@ -1,6 +1,7 @@
 import { ChevronLeft } from 'lucide-react';
 import { Reveal } from '@/components/motion/Reveal';
 import { useNav } from '@/components/nav';
+import { BackButton, Container, Tag } from '@/components/ui';
 import { useDemo } from '@/data/useDemo';
 import { useI18n } from '@/i18n/useI18n';
 import { photo, photoSet } from '@/lib/photo';
@@ -14,17 +15,13 @@ export function ArticlePage() {
   return (
     <div>
       <Reveal as="section" className="section">
-        <div className="container-x max-w-[760px]">
-          <button
-            type="button"
-            onClick={() => navigate('blog')}
-            className="back-link inline-flex items-center gap-1.5"
-          >
+        <Container className="max-w-[760px]">
+          <BackButton type="button" onClick={() => navigate('blog')}>
             <ChevronLeft size={16} className="flip-rtl" />
             {t('pages.article.back')}
-          </button>
+          </BackButton>
           <div className="flex gap-2 mb-3">
-            <span className="tag">{post.category}</span>
+            <Tag>{post.category}</Tag>
           </div>
           <h1 className="text-2xl font-extrabold mb-3">{post.title}</h1>
           <div className="text-sm text-white/50 mb-6 pb-4 border-b border-white/10">
@@ -50,7 +47,7 @@ export function ArticlePage() {
               <p className="mb-4 text-white/75">{section.text}</p>
             </div>
           ))}
-        </div>
+        </Container>
       </Reveal>
     </div>
   );

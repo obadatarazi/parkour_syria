@@ -1,6 +1,9 @@
 import { ChevronLeft, MapPin, MessageCircle, Map as MapIcon } from 'lucide-react';
 import { Reveal } from '@/components/motion/Reveal';
 import { useNav } from '@/components/nav';
+import { BackButton, Container, Tag } from '@/components/ui';
+import { tagVariant } from '@/components/ui/variants';
+import { cn } from '@/lib/cn';
 import { whatsappLink } from '@/config/site';
 import { useDemo } from '@/data/useDemo';
 import { useI18n } from '@/i18n/useI18n';
@@ -16,18 +19,14 @@ export function DirDetailPage() {
   return (
     <div>
       <Reveal as="section" className="section">
-        <div className="container-x max-w-[720px]">
-          <button
-            type="button"
-            onClick={() => navigate('directory')}
-            className="back-link inline-flex items-center gap-1.5"
-          >
+        <Container className="max-w-[720px]">
+          <BackButton type="button" onClick={() => navigate('directory')}>
             <ChevronLeft size={16} className="flip-rtl" />
             {t('pages.dirDetail.back')}
-          </button>
+          </BackButton>
           <div className="flex gap-2 mb-3">
-            <span className="tag">{dirCategoryLabels[item.category]}</span>
-            {item.verified && <span className="tag tag-verified">{t('common.verified')}</span>}
+            <Tag>{dirCategoryLabels[item.category]}</Tag>
+            {item.verified && <Tag variant={tagVariant.verified}>{t('common.verified')}</Tag>}
           </div>
           <h1 className="text-[1.6rem] font-extrabold mb-2">{item.name}</h1>
           <div className="text-white/50 mb-4 flex items-center gap-1">
@@ -51,17 +50,17 @@ export function DirDetailPage() {
               href={whatsappLink(item.whatsapp)}
               target="_blank"
               rel="noreferrer"
-              className="btn btn-dark"
+              className={cn('btn', 'btn-dark')}
             >
               <MessageCircle size={16} /> {t('common.whatsapp')}
             </a>
             {item.category === 'place' && (
-              <a href={mapsUrl} target="_blank" rel="noreferrer" className="btn btn-outline">
+              <a href={mapsUrl} target="_blank" rel="noreferrer" className={cn('btn', 'btn-outline')}>
                 <MapIcon size={16} /> {t('common.maps')}
               </a>
             )}
           </div>
-        </div>
+        </Container>
       </Reveal>
     </div>
   );

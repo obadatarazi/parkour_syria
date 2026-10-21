@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 import { Reveal } from '@/components/motion/Reveal';
 import { useNav } from '@/components/nav';
+import { Container, PageHero, Safety } from '@/components/ui';
 import { useDemo } from '@/data/useDemo';
 import { useI18n } from '@/i18n/useI18n';
 
@@ -11,18 +12,10 @@ export function PathPage() {
 
   return (
     <div>
-      <div className="page-hero">
-        <div className="container-x">
-          <h1>{t('pages.path.heroTitle')}</h1>
-          <p>{t('pages.path.heroSub')}</p>
-        </div>
-      </div>
+      <PageHero title={t('pages.path.heroTitle')} description={t('pages.path.heroSub')} />
       <Reveal as="section" className="section section-light">
-        <div className="container-x max-w-[680px]">
-          <div className="safety">
-            <strong>{t('pages.path.safetyTitle')}</strong>
-            {t('pages.path.safetyText')}
-          </div>
+        <Container className="max-w-[680px]">
+          <Safety title={t('pages.path.safetyTitle')}>{t('pages.path.safetyText')}</Safety>
           <Reveal type="stagger" className="border-t border-white/10">
             {lessons.map((lesson) => (
               <button
@@ -47,7 +40,7 @@ export function PathPage() {
               </button>
             ))}
           </Reveal>
-        </div>
+        </Container>
       </Reveal>
     </div>
   );

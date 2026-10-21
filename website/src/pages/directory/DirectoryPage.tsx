@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Search } from 'lucide-react';
 import { DirectoryCard } from '@/features/directory/DirectoryCard';
 import { Reveal } from '@/components/motion/Reveal';
+import { Container, FilterButton, PageHero, Safety } from '@/components/ui';
 import type { DirCategory } from '@/data/demo';
 import { useDemo } from '@/data/useDemo';
 import { localeOf } from '@/i18n/config';
@@ -31,18 +32,10 @@ export function DirectoryPage() {
 
   return (
     <div>
-      <div className="page-hero">
-        <div className="container-x">
-          <h1>{t('pages.directory.heroTitle')}</h1>
-          <p>{t('pages.directory.heroSub')}</p>
-        </div>
-      </div>
+      <PageHero title={t('pages.directory.heroTitle')} description={t('pages.directory.heroSub')} />
       <Reveal as="section" className="section">
-        <div className="container-x">
-          <div className="safety">
-            <strong>{t('pages.directory.noteTitle')}</strong>
-            {t('pages.directory.noteText')}
-          </div>
+        <Container>
+          <Safety title={t('pages.directory.noteTitle')}>{t('pages.directory.noteText')}</Safety>
           <div className="flex flex-wrap gap-2 mb-6 items-center">
             <div className="relative">
               <Search
@@ -58,14 +51,9 @@ export function DirectoryPage() {
               />
             </div>
             {FILTER_IDS.map((id) => (
-              <button
-                key={id}
-                type="button"
-                onClick={() => setFilter(id)}
-                className={`filter-btn ${filter === id ? 'active' : ''}`}
-              >
+              <FilterButton key={id} active={filter === id} onClick={() => setFilter(id)}>
                 {id === 'all' ? t('common.all') : categoriesPlural[id]}
-              </button>
+              </FilterButton>
             ))}
           </div>
           {items.length > 0 ? (
@@ -77,7 +65,7 @@ export function DirectoryPage() {
           ) : (
             <p className="text-white/50 text-center py-12">{t('pages.directory.empty')}</p>
           )}
-        </div>
+        </Container>
       </Reveal>
     </div>
   );

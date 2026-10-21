@@ -6,6 +6,9 @@ import { Reveal } from '@/components/motion/Reveal';
 import { ParallaxImage } from '@/components/motion/ParallaxImage';
 import { LiquidImage } from '@/components/motion/LiquidImage';
 import { useNav } from '@/components/nav';
+import { Button, Container, SectionHeading } from '@/components/ui';
+import { btnSize, btnVariant } from '@/components/ui/variants';
+import { cn } from '@/lib/cn';
 import { site, whatsappLink } from '@/config/site';
 import { useDemo } from '@/data/useDemo';
 import { useI18n } from '@/i18n/useI18n';
@@ -26,7 +29,7 @@ export function HomePage() {
 
       <section className="section-light">
         <Reveal className="py-20 sm:py-28 text-center">
-          <div className="container-x">
+          <Container>
             <div className="section-label">{t('pages.home.welcomeLabel')}</div>
             <h2 className="text-3xl sm:text-5xl font-extrabold mb-5 leading-[1.15] max-w-[800px] mx-auto">
               {t('pages.home.introTitle')}
@@ -35,25 +38,26 @@ export function HomePage() {
               {t('pages.home.introText')}
             </p>
             <div className="flex gap-3 justify-center flex-wrap">
-              <button onClick={() => navigate('path')} className="btn btn-dark btn-lg">
+              <Button type="button" variant={btnVariant.dark} size={btnSize.lg} onClick={() => navigate('path')}>
                 {t('nav.path')}
-              </button>
-              <button onClick={() => navigate('directory')} className="btn btn-outline btn-lg">
+              </Button>
+              <Button type="button" variant={btnVariant.outline} size={btnSize.lg} onClick={() => navigate('directory')}>
                 {t('nav.directory')}
-              </button>
+              </Button>
             </div>
-          </div>
+          </Container>
         </Reveal>
       </section>
 
       <Reveal as="section" className="section">
-        <div className="container-x">
+        <Container>
           <div className="flex items-end justify-between mb-12 gap-4 flex-wrap">
-            <div>
-              <div className="section-label">{t('pages.home.directoryLabel')}</div>
-              <h2 className="section-title">{t('pages.home.directoryHeading')}</h2>
-            </div>
+            <SectionHeading
+              label={t('pages.home.directoryLabel')}
+              title={t('pages.home.directoryHeading')}
+            />
             <button
+              type="button"
               onClick={() => navigate('directory')}
               className="text-sm font-semibold text-white/50 hover:text-white transition-colors flex items-center gap-1"
             >
@@ -65,7 +69,7 @@ export function HomePage() {
               <DirectoryCard key={item.id} item={item} />
             ))}
           </Reveal>
-        </div>
+        </Container>
       </Reveal>
 
       <section className="relative h-[50vh] min-h-[360px] overflow-hidden">
@@ -87,13 +91,14 @@ export function HomePage() {
       </section>
 
       <Reveal as="section" className="section section-light">
-        <div className="container-x">
+        <Container>
           <div className="flex items-end justify-between mb-12 gap-4 flex-wrap">
-            <div>
-              <div className="section-label">{t('pages.home.eventsLabel')}</div>
-              <h2 className="section-title">{t('pages.home.eventsHeading')}</h2>
-            </div>
+            <SectionHeading
+              label={t('pages.home.eventsLabel')}
+              title={t('pages.home.eventsHeading')}
+            />
             <button
+              type="button"
               onClick={() => navigate('events')}
               className="text-sm font-semibold text-white/50 hover:text-white transition-colors flex items-center gap-1"
             >
@@ -112,17 +117,18 @@ export function HomePage() {
               </ListCard>
             ))}
           </Reveal>
-        </div>
+        </Container>
       </Reveal>
 
       <Reveal as="section" className="section">
-        <div className="container-x">
+        <Container>
           <div className="flex items-end justify-between mb-12 gap-4 flex-wrap">
-            <div>
-              <div className="section-label">{t('pages.home.blogLabel')}</div>
-              <h2 className="section-title">{t('pages.home.blogHeading')}</h2>
-            </div>
+            <SectionHeading
+              label={t('pages.home.blogLabel')}
+              title={t('pages.home.blogHeading')}
+            />
             <button
+              type="button"
               onClick={() => navigate('blog')}
               className="text-sm font-semibold text-white/50 hover:text-white transition-colors flex items-center gap-1"
             >
@@ -142,14 +148,16 @@ export function HomePage() {
               </ListCard>
             ))}
           </Reveal>
-        </div>
+        </Container>
       </Reveal>
 
       <Reveal as="section" className="section bg-black pt-16 pb-16">
-        <div className="container-x">
+        <Container>
           <div className="text-center mb-12">
-            <div className="section-label">{t('pages.home.galleryLabel')}</div>
-            <h2 className="section-title">{t('pages.home.galleryHeading')}</h2>
+            <SectionHeading
+              label={t('pages.home.galleryLabel')}
+              title={t('pages.home.galleryHeading')}
+            />
             <p className="text-white/40 mt-3 text-sm">{t('pages.home.gallerySub')}</p>
           </div>
           <Reveal type="stagger" className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1">
@@ -173,7 +181,7 @@ export function HomePage() {
               </div>
             ))}
           </Reveal>
-        </div>
+        </Container>
       </Reveal>
 
       <Reveal as="section" type="reveal-clip" className="relative h-[60vh] min-h-[420px] overflow-hidden">
@@ -184,7 +192,7 @@ export function HomePage() {
           className="h-full"
         >
           <div className="absolute inset-0 bg-black/70 flex items-center">
-            <div className="container-x">
+            <Container>
               <div className="max-w-[560px]">
                 <div className="section-label">{t('pages.home.bookLabel')}</div>
                 <h2 className="text-3xl sm:text-5xl font-extrabold mb-4 leading-[1.15]">
@@ -193,11 +201,16 @@ export function HomePage() {
                 <p className="text-white/60 mb-8 text-base sm:text-lg font-light leading-relaxed">
                   {t('pages.home.bookText')}
                 </p>
-                <a href={bookWa} target="_blank" rel="noreferrer" className="btn btn-accent btn-lg">
+                <a
+                  href={bookWa}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={cn('btn', 'btn-accent', 'btn-lg')}
+                >
                   {t('pages.home.bookCta')}
                 </a>
               </div>
-            </div>
+            </Container>
           </div>
         </ParallaxImage>
       </Reveal>

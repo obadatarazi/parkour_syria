@@ -1,5 +1,7 @@
 import { BookOpen } from 'lucide-react';
 import { Reveal } from '@/components/motion/Reveal';
+import { Container, PageHero } from '@/components/ui';
+import { cn } from '@/lib/cn';
 import { site, whatsappLink } from '@/config/site';
 import { useI18n } from '@/i18n/useI18n';
 
@@ -10,14 +12,9 @@ export function BookPage() {
 
   return (
     <div>
-      <div className="page-hero">
-        <div className="container-x">
-          <h1>{t('pages.book.heroTitle')}</h1>
-          <p>{t('pages.book.heroSub')}</p>
-        </div>
-      </div>
+      <PageHero title={t('pages.book.heroTitle')} description={t('pages.book.heroSub')} />
       <Reveal as="section" className="section">
-        <div className="container-x max-w-[640px]">
+        <Container className="max-w-[640px]">
           <Reveal
             type="reveal-jump"
             className="grid grid-cols-1 sm:grid-cols-[160px_1fr] gap-8 items-center bg-ps-dark border border-white/10 text-white p-10 sm:px-7 mb-8 text-center sm:text-start"
@@ -42,12 +39,12 @@ export function BookPage() {
               href={bookWa}
               target="_blank"
               rel="noreferrer"
-              className="btn btn-accent btn-lg btn-block mt-5"
+              className={cn('btn', 'btn-accent', 'btn-lg', 'btn-block', 'mt-5')}
             >
               {t('pages.book.cta')}
             </a>
           </div>
-        </div>
+        </Container>
       </Reveal>
     </div>
   );

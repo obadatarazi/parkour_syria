@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { Reveal } from '@/components/motion/Reveal';
 import { useNav } from '@/components/nav';
+import { Container, PageHero, Safety } from '@/components/ui';
 import { useI18n } from '@/i18n/useI18n';
 
 type Faq = { q: string; a: string };
@@ -15,18 +16,10 @@ export function WhatPage() {
 
   return (
     <div>
-      <div className="page-hero">
-        <div className="container-x">
-          <h1>{t('pages.what.heroTitle')}</h1>
-          <p>{t('pages.what.heroSub')}</p>
-        </div>
-      </div>
+      <PageHero title={t('pages.what.heroTitle')} description={t('pages.what.heroSub')} />
       <Reveal as="section" className="section section-light">
-        <div className="container-x prose">
-          <div className="safety">
-            <strong>{t('pages.what.safetyTitle')}</strong>
-            {t('pages.what.safetyText')}
-          </div>
+        <Container className="prose">
+          <Safety title={t('pages.what.safetyTitle')}>{t('pages.what.safetyText')}</Safety>
           <p>{t('pages.what.intro')}</p>
           <h2>{t('pages.what.originTitle')}</h2>
           <p>
@@ -69,7 +62,7 @@ export function WhatPage() {
               )}
             </div>
           ))}
-        </div>
+        </Container>
       </Reveal>
     </div>
   );

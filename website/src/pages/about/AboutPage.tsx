@@ -1,5 +1,6 @@
 import { Reveal } from '@/components/motion/Reveal';
 import { useNav } from '@/components/nav';
+import { Button, Container, PageHero } from '@/components/ui';
 import { useI18n } from '@/i18n/useI18n';
 
 export function AboutPage() {
@@ -8,22 +9,18 @@ export function AboutPage() {
 
   return (
     <div>
-      <div className="page-hero">
-        <div className="container-x">
-          <h1>{t('pages.about.heroTitle')}</h1>
-        </div>
-      </div>
+      <PageHero title={t('pages.about.heroTitle')} />
       <Reveal as="section" className="section section-light">
-        <div className="container-x prose">
+        <Container className="prose">
           <p>
             <strong>{t('pages.about.brandStrong')}</strong>
             {t('pages.about.p1After')}
           </p>
           <p className="text-white/50 text-[0.9rem]">{t('pages.about.p2')}</p>
-          <button type="button" onClick={() => navigate('contact')} className="btn btn-dark mt-4">
+          <Button type="button" onClick={() => navigate('contact')} className="mt-4">
             {t('pages.about.contactCta')}
-          </button>
-        </div>
+          </Button>
+        </Container>
       </Reveal>
     </div>
   );

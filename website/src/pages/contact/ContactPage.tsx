@@ -1,5 +1,6 @@
 import { MessageCircle, Mail } from 'lucide-react';
 import { Reveal } from '@/components/motion/Reveal';
+import { Container, PageHero } from '@/components/ui';
 import { site, whatsappLink } from '@/config/site';
 import { useI18n } from '@/i18n/useI18n';
 
@@ -84,13 +85,9 @@ export function ContactPage() {
 
   return (
     <div>
-      <div className="page-hero">
-        <div className="container-x">
-          <h1>{t('pages.contact.heroTitle')}</h1>
-        </div>
-      </div>
+      <PageHero title={t('pages.contact.heroTitle')} />
       <Reveal as="section" className="section section-light">
-        <div className="container-x max-w-[560px]">
+        <Container className="max-w-[560px]">
           <Reveal type="stagger" className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/10">
             {CONTACT_IDS.map((id) => {
               const href = contactHref(id);
@@ -111,7 +108,7 @@ export function ContactPage() {
               );
             })}
           </Reveal>
-        </div>
+        </Container>
       </Reveal>
     </div>
   );
