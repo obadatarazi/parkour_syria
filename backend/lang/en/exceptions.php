@@ -2,6 +2,7 @@
 
 return [
 
+    'account_inactive' => 'This account is inactive. Please contact a Super Admin.',
     'brand_has_products' => 'The brand ":name" cannot be deleted because it is linked to :count product(s). Move these products to another brand or delete them first.',
     'can_not_delete_default_currency' => 'You cannot delete the default currency. Please set another currency as default first.',
     'can_not_delete_system_role' => 'You cannot delete this role because it is a system role.',

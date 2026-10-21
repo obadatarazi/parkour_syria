@@ -59,11 +59,12 @@ Route::prefix('/admin/auth')->group(function () {
     Route::post('/login', [AdminAuthController::class, 'login'])->middleware('throttle:10,1');
     Route::get('/logout', [AdminAuthController::class, 'logout'])->middleware(['auth:api']);
     Route::post('/refresh-token', [AdminAuthController::class, 'refreshToken'])->middleware('throttle:30,1');
-    Route::get('/me/profile', [AdminAuthController::class, 'me'])->middleware('auth:api');
+    Route::get('/me/profile', [AdminAuthController::class, 'me'])->middleware(['auth:api', 'active']);
+    // Left open to a deactivated account on purpose: it is how the dashboard tells them why.
     Route::get('/account/status', [AdminAuthController::class, 'getAccountStatus'])->middleware(['auth:api']);
 });
 
-Route::prefix('/admin')->middleware('auth:api')->group(function () {
+Route::prefix('/admin')->middleware(['auth:api', 'active'])->group(function () {
     Route::get('/me/profile', [AdminAuthController::class, 'me']);
     Route::put('/me/profile/update', [AdminAuthController::class, 'updateProfileAdmin']);
     Route::get('/me/roles', [AdminAuthController::class, 'getMyRoles']);

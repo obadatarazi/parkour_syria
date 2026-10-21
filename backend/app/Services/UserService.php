@@ -14,8 +14,11 @@ class UserService extends BaseService
 {
     const UPLOAD_FOLDER = 'users';
 
-    public function __construct(UploadFileService $uploadFileService, protected RoleService $roleService)
-    {
+    public function __construct(
+        UploadFileService $uploadFileService,
+        protected RoleService $roleService,
+        protected TokenRevocationService $tokenRevocationService,
+    ) {
         $this->model = User::class;
         $this->withRelations = ['roles'];
         $this->uploadFileService = $uploadFileService;
@@ -30,6 +33,10 @@ class UserService extends BaseService
         if (array_key_exists('roles', $data)) {
             $this->roleService->assertCanAssignRoles(auth()->user(), null, $data['roles'] ?? []);
         }
+
+        // The dashboard shows a new account as active unless the switch is turned off, while the
+        // column defaults to inactive. An account created without the field is the active one it showed.
+        $data['active'] ??= true;
 
         $user = new User($data);
 
@@ -68,6 +75,9 @@ class UserService extends BaseService
             $this->roleService->assertCanAssignRoles(auth()->user(), $user, $data['roles'] ?? []);
         }
 
+        $wasActive = (bool) $user->active;
+        $rolesBefore = $user->roles()->pluck('roles.id')->sort()->values()->all();
+
         if (isset($data['password'])) {
             $data['password'] = bcrypt($data['password']);
         }
@@ -91,6 +101,14 @@ class UserService extends BaseService
 
         if (isset($data['roles'])) {
             $this->roleService->assignRoleUser($user, $data['roles']);
+        }
+
+        $rolesAfter = $user->roles()->pluck('roles.id')->sort()->values()->all();
+
+        // A new password, a deactivation or a new set of roles ends every session the account has,
+        // so nobody keeps working on what the change was meant to take away.
+        if (isset($data['password']) || ($wasActive && !$user->active) || $rolesBefore !== $rolesAfter) {
+            $this->tokenRevocationService->revokeAll($user);
         }
 
         return $user->load(['roles']);
@@ -134,6 +152,9 @@ class UserService extends BaseService
         $user->update([
             'password' => Hash::make($data['new_password']),
         ]);
+
+        // Every other session ends, the one the password was changed from stays signed in.
+        $this->tokenRevocationService->revokeAll($user, $user->token()?->getKey());
 
         return __('validation.success_change_password');
     }

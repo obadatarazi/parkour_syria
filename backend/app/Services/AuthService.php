@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enum\UserType;
 use App\Exceptions\Custom\UnauthorizedException;
 use App\Models\User;
 use Illuminate\Auth\AuthenticationException;
@@ -24,6 +25,11 @@ class AuthService
     {
         if (auth()->attempt($credentials)) {
             $user = auth()->user();
+
+            // Checked only once the password is right, so it reveals nothing about other accounts.
+            if (!$user->active) {
+                throw new UnauthorizedException(__('exceptions.account_inactive'), null, 403);
+            }
 
             $token = $this->createToken($user);
 
@@ -102,10 +108,15 @@ class AuthService
                     throw new AuthenticationException(__('Invalid access token.'));
                 }
 
+                $user = User::find($accessToken->user_id);
+
+                // A refresh is a new sign-in, held to the same account rules as login().
+                if (!$user || !$user->active || $user->type !== UserType::ADMIN->value) {
+                    throw new AuthenticationException(__('Invalid or expired refresh token.'));
+                }
+
                 $accessToken->revoke();
                 $refreshTokenRecord->revoke();
-
-                $user = User::find($accessToken->user_id);
 
                 $newAccessToken = $user->createToken('API Token');
                 $newAccessTokenId = $newAccessToken->token->id;
