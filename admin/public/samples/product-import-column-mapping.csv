@@ -1,0 +1,45 @@
+﻿Company column (fill this),Database / import column
+Name EN,translations_en_title
+Name AR,translations_ar_title
+Type (SIMPLE or VARIABLE_PRODUCT),type
+Brand EN,brand_en
+Brand AR,brand_ar
+Categories EN (Parent > Child > Grandchild),categories_en
+Categories AR (Parent > Child > Grandchild),categories_ar
+Tags EN (| separated),tags_en
+Tags AR (| separated),tags_ar
+SKU Code,sku_code
+EAN Code,ean_code
+Price,price
+Stock,stock
+Expiry Start Date (YYYY-MM-DD),expiry_start_date
+Expiry End Date (YYYY-MM-DD),expiry_end_date
+Description EN,translations_en_description
+Description AR,translations_ar_description
+Benefits EN (| separated),translations_en_benefits
+Benefits AR (| separated),translations_ar_benefits
+Ingredients EN,translations_en_ingredients
+Ingredients AR,translations_ar_ingredients
+Usage Method EN,translations_en_usage_method
+Usage Method AR,translations_ar_usage_method
+Warnings EN,translations_en_warnings
+Warnings AR,translations_ar_warnings
+Country of Origin EN,translations_en_country_of_origin
+Country of Origin AR,translations_ar_country_of_origin
+Featured Image URL,featured_image_url
+Gallery Image URLs (| separated),gallery_image_urls
+Video URL,video_url
+Attribute Names EN,attribute_names_en
+Attribute Names AR,attribute_names_ar
+Attribute Value Names EN,attribute_value_names_en
+Attribute Value Names AR,attribute_value_names_ar
+Variant SKU Code,variant_sku_code
+Variant EAN Code,variant_ean_code
+Variant Price,variant_price
+Variant Stock,variant_stock
+Variant Attribute Names EN,variant_attribute_names_en
+Variant Attribute Names AR,variant_attribute_names_ar
+Variant Attribute Value Names EN,variant_attribute_value_names_en
+Variant Attribute Value Names AR,variant_attribute_value_names_ar
+Variant Featured Image URL,variant_featured_image_url
+Variant Gallery Image URLs (| separated),variant_gallery_image_urls

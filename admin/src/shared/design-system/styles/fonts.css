@@ -1,0 +1,11 @@
+/*
+ * Same type stack as the public site: Noto Sans Arabic for the live Arabic UI, Inter first for English.
+ * The font files are linked (non-blocking) from index.html.
+ */
+:root {
+  --font-family-sans: "Noto Sans Arabic", system-ui, sans-serif;
+}
+
+:root:lang(en) {
+  --font-family-sans: "Inter", "Noto Sans Arabic", system-ui, sans-serif;
+}
