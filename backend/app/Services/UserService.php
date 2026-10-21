@@ -27,6 +27,10 @@ class UserService extends BaseService
      */
     public function create($data): User
     {
+        if (array_key_exists('roles', $data)) {
+            $this->roleService->assertCanAssignRoles(auth()->user(), null, $data['roles'] ?? []);
+        }
+
         $user = new User($data);
 
         $keyFileMaps = [
@@ -58,6 +62,12 @@ class UserService extends BaseService
 
     public function update($data, User | Model $user): User
     {
+        $this->assertCanManageUser(auth()->user(), $user);
+
+        if (array_key_exists('roles', $data)) {
+            $this->roleService->assertCanAssignRoles(auth()->user(), $user, $data['roles'] ?? []);
+        }
+
         if (isset($data['password'])) {
             $data['password'] = bcrypt($data['password']);
         }
@@ -153,7 +163,22 @@ class UserService extends BaseService
     public function delete(Model $object): void
     {
         abort_if((int) auth()->id() === (int) $object->getKey(), 422, __('exceptions.delete_own_account'));
+        $this->assertCanManageUser(auth()->user(), $object);
 
         parent::delete($object);
+    }
+
+    /**
+     * An admin only edits or deletes accounts that hold no permission they lack themselves.
+     * Otherwise a user editor could reset a Super Admin's password and sign in as them.
+     */
+    public function assertCanManageUser(User $actor, User $target): void
+    {
+        $missing = array_diff(
+            $this->roleService->permissionNamesOf($target),
+            $this->roleService->permissionNamesOf($actor),
+        );
+
+        abort_if($missing !== [], 403, __('exceptions.user_outranks_actor'));
     }
 }

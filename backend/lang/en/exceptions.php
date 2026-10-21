@@ -16,4 +16,12 @@ return [
     'tag_has_products' => 'The tag ":name" cannot be deleted because it is assigned to :count product(s). Remove it from these products first.',
     'unauthenticated' => 'Unauthenticated',
 
+    'own_role_permissions_forbidden' => 'You cannot change the permissions of a role you hold.',
+    'own_roles_change_forbidden' => 'You cannot change the roles of the account you are signed in with.',
+    'permission_escalation_forbidden' => 'You cannot grant a permission you do not hold yourself.',
+    'role_change_forbidden' => 'Changing a user\'s roles requires the role management permission.',
+    'super_admin_grant_forbidden' => 'Only a Super Admin can grant the Super Admin role.',
+    'super_admin_permissions_locked' => 'The Super Admin role always carries every permission and cannot be edited.',
+    'user_outranks_actor' => 'You cannot change an account that holds permissions you do not have.',
+
 ];

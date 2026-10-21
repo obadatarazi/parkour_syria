@@ -16,4 +16,12 @@ return [
     'tag_has_products' => 'لا يمكن حذف الوسم «:name» لأنه مرتبط بـ :count منتج. أزل هذا الوسم من هذه المنتجات أولاً.',
     'unauthenticated' => 'JWT Token not found',
 
+    'own_role_permissions_forbidden' => 'لا يمكنك تعديل صلاحيات دور تملكه.',
+    'own_roles_change_forbidden' => 'لا يمكنك تعديل أدوار الحساب الذي سجّلت الدخول به.',
+    'permission_escalation_forbidden' => 'لا يمكنك منح صلاحية لا تملكها.',
+    'role_change_forbidden' => 'تعديل أدوار المستخدم يتطلب صلاحية إدارة الأدوار.',
+    'super_admin_grant_forbidden' => 'وحده المشرف الرئيسي يمكنه منح دور المشرف الرئيسي.',
+    'super_admin_permissions_locked' => 'دور المشرف الرئيسي يملك كل الصلاحيات دائماً ولا يمكن تعديله.',
+    'user_outranks_actor' => 'لا يمكنك تعديل حساب يملك صلاحيات لا تملكها.',
+
 ];

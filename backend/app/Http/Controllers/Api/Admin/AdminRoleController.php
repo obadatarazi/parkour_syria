@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Constant\PermissionType;
-use App\Constant\RoleCode;
 use App\Constant\SerializedGroup;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\QueryFilter\RoleFilter;
@@ -266,10 +265,7 @@ class AdminRoleController extends ApiController
     )]
     public function destroy(Role $role): JsonResponse
     {
-        if (in_array($role->code, [RoleCode::SuperAdmin->value, RoleCode::Supervisor->value, RoleCode::Customer->value], true)) {
-            return $this->errorResponse(__('exceptions.can_not_delete_system_role'), 422);
-        }
-
+        // RoleService::delete() refuses the system roles, for this route and for bulk-delete alike.
         return parent::baseDestroy($role);
     }
 

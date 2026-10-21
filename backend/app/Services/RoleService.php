@@ -5,8 +5,10 @@ namespace App\Services;
 use App\Constant\PermissionType;
 use App\Constant\RoleCode;
 use App\Http\QueryFilter\QueryFilter;
+use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
 
 class RoleService extends BaseService
 {
@@ -83,6 +85,10 @@ class RoleService extends BaseService
 
     public function add($data): Role
     {
+        if (isset($data['permissions'])) {
+            $this->assertCanGrantPermissions(auth()->user(), $data['permissions']);
+        }
+
         $role = new Role($data);
         $role->guard_name = 'api';
         $role->code = strtoupper(str_replace(' ', '_', $data['name']));
@@ -98,7 +104,12 @@ class RoleService extends BaseService
 
     public function update($data, $role)
     {
-        if (isset($data['name'])) {
+        if (isset($data['permissions'])) {
+            $this->assertCanChangeRolePermissions(auth()->user(), $role, $data['permissions']);
+        }
+
+        // A system role keeps its code whatever it is renamed to, everything that looks it up uses it.
+        if (isset($data['name']) && !$role->isSystemRole()) {
             $role->code = strtoupper(str_replace(' ', '_', $data['name']));
         }
 
@@ -112,10 +123,107 @@ class RoleService extends BaseService
         return $role;
     }
 
+    /**
+     * System roles are never deleted. The guard lives here rather than in the controller so a bulk
+     * delete, which goes through this method for every row, is held to it too.
+     */
+    public function delete(Model $object): void
+    {
+        abort_if($object->isSystemRole(), 422, __('exceptions.can_not_delete_system_role'));
+
+        parent::delete($object);
+    }
+
     public function assignRoleUser(User $user, $roles): void
     {
         $roles = Role::whereIn('id', $roles)->pluck('name')->toArray();
 
         $user->syncRoles($roles);
+    }
+
+    /**
+     * Whether `$actor` may give `$target` exactly the roles in `$roleIds`. Resubmitting the roles a
+     * user already has is not a change and always passes, so editing a user's other fields does not
+     * need role rights.
+     *
+     * A change needs MANAGE_ROLE, never applies to the actor's own account, needs the Super Admin
+     * role to hand out Super Admin, and cannot carry a permission the actor does not hold.
+     *
+     * @param array<int, int|string> $roleIds
+     */
+    public function assertCanAssignRoles(User $actor, ?User $target, array $roleIds): void
+    {
+        $requested = $this->normaliseIds($roleIds);
+        $current = $target?->exists ? $this->normaliseIds($target->roles()->pluck('roles.id')->all()) : [];
+
+        if ($requested === $current) {
+            return;
+        }
+
+        $actorPermissions = $this->permissionNamesOf($actor);
+
+        abort_unless(in_array(PermissionType::PermissionManageRole->getPermission(), $actorPermissions, true), 403, __('exceptions.role_change_forbidden'));
+        abort_if($target?->exists && (int) $target->getKey() === (int) $actor->getKey(), 403, __('exceptions.own_roles_change_forbidden'));
+
+        $roles = Role::query()->with('permissions')->whereIn('id', $requested)->get();
+
+        $grantsSuperAdmin = $roles->contains(fn (Role $role) => $role->code === RoleCode::SuperAdmin->value);
+        abort_if($grantsSuperAdmin && !$actor->hasRole($this->getSuperAdminRoleGroup()), 403, __('exceptions.super_admin_grant_forbidden'));
+
+        $granted = $roles->flatMap(fn (Role $role) => $role->permissions->pluck('name'))->unique()->all();
+        abort_if(array_diff($granted, $actorPermissions) !== [], 403, __('exceptions.permission_escalation_forbidden'));
+    }
+
+    /**
+     * Whether `$actor` may build a role carrying the permissions in `$permissionIds`: only out of
+     * permissions the actor holds.
+     *
+     * @param array<int, int|string> $permissionIds
+     */
+    public function assertCanGrantPermissions(User $actor, array $permissionIds): void
+    {
+        $granted = Permission::query()->whereIn('id', $this->normaliseIds($permissionIds))->pluck('name')->all();
+
+        abort_if(array_diff($granted, $this->permissionNamesOf($actor)) !== [], 403, __('exceptions.permission_escalation_forbidden'));
+    }
+
+    /**
+     * The Super Admin role always carries every permission, so its set is not editable. A role the
+     * actor holds is not editable by them either, or they could widen their own access.
+     *
+     * @param array<int, int|string> $permissionIds
+     */
+    public function assertCanChangeRolePermissions(User $actor, Role $role, array $permissionIds): void
+    {
+        $current = $this->normaliseIds($role->permissions()->pluck('permissions.id')->all());
+
+        if ($current === $this->normaliseIds($permissionIds)) {
+            return;
+        }
+
+        abort_if($role->code === RoleCode::SuperAdmin->value, 422, __('exceptions.super_admin_permissions_locked'));
+        abort_if($actor->hasRole($role), 403, __('exceptions.own_role_permissions_forbidden'));
+
+        $this->assertCanGrantPermissions($actor, $permissionIds);
+    }
+
+    /**
+     * @return list<string>
+     */
+    public function permissionNamesOf(User $user): array
+    {
+        return $user->getAllPermissions()->pluck('name')->unique()->values()->all();
+    }
+
+    /**
+     * @param array<int, int|string> $ids
+     * @return list<int>
+     */
+    private function normaliseIds(array $ids): array
+    {
+        $ids = array_values(array_unique(array_map('intval', $ids)));
+        sort($ids);
+
+        return $ids;
     }
 }

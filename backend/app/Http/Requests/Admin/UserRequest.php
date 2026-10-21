@@ -32,6 +32,7 @@ class UserRequest extends CustomFormRequest
                     'gender' => 'nullable|string|in:MALE,FEMALE',
                     'type' => 'required|string|in:ADMIN',
                     'active' => ['nullable', new BooleanValidationRule()],
+                    'roles' => ['sometimes', 'array'],
                     'roles.*' => 'required|exists:roles,id',
                 ];
             case 'PUT':
@@ -45,6 +46,7 @@ class UserRequest extends CustomFormRequest
                     'gender' => 'nullable|string|in:MALE,FEMALE',
                     'type' => 'nullable|string|in:ADMIN',
                     'active' => ['nullable', new BooleanValidationRule()],
+                    'roles' => ['sometimes', 'array'],
                     'roles.*' => 'nullable|exists:roles,id',
                 ];
             default:
