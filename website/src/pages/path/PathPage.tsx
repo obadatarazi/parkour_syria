@@ -33,7 +33,7 @@ export function PathPage() {
               >
                 <div
                   className={`w-9 h-9 flex items-center justify-center font-bold text-[0.9rem] flex-shrink-0 ${
-                    lesson.num === 1 ? 'bg-[#c8102e]' : 'bg-[#0a0a0a]'
+                    lesson.num === 1 ? 'bg-ps-accent' : 'bg-ps-black'
                   }`}
                   style={{ color: '#fff' }}
                 >

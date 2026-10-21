@@ -12,7 +12,7 @@ export function DirectoryCard({ item }: { item: DirectoryItem }) {
   const { t } = useI18n();
 
   return (
-    <div className="group relative overflow-hidden bg-[#121212] border border-white/5 transition-all duration-500 hover:border-white/20">
+    <div className="group relative overflow-hidden bg-ps-dark border border-white/5 transition-all duration-500 hover:border-white/20">
       <div className="overflow-hidden h-56 relative">
         <img
           src={photo(item.image, 800)}

@@ -20,7 +20,7 @@ export function BookPage() {
         <div className="container-x max-w-[640px]">
           <Reveal
             type="reveal-jump"
-            className="grid grid-cols-1 sm:grid-cols-[160px_1fr] gap-8 items-center bg-[#121212] border border-white/10 text-white p-10 sm:px-7 mb-8 text-center sm:text-start"
+            className="grid grid-cols-1 sm:grid-cols-[160px_1fr] gap-8 items-center bg-ps-dark border border-white/10 text-white p-10 sm:px-7 mb-8 text-center sm:text-start"
           >
             <div className="w-[140px] h-[190px] bg-[#333] flex items-center justify-center mx-auto sm:mx-0">
               <BookOpen size={40} />

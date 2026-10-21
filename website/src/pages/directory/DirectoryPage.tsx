@@ -54,7 +54,7 @@ export function DirectoryPage() {
                 placeholder={t('common.search')}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="ps-9 pe-3.5 py-2 border border-white/10 text-sm outline-none focus:border-white/40 bg-[#121212] min-w-[140px] sm:min-w-[180px]"
+                className="ps-9 pe-3.5 py-2 border border-white/10 text-sm outline-none focus:border-white/40 bg-ps-dark min-w-[140px] sm:min-w-[180px]"
               />
             </div>
             {FILTER_IDS.map((id) => (

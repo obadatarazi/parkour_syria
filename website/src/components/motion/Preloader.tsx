@@ -51,7 +51,7 @@ export function Preloader() {
         {[0, 1, 2].map((i) => (
           <span
             key={i}
-            className="absolute rounded-full border-2 border-[#c8102e]"
+            className="absolute rounded-full border-2 border-ps-accent"
             style={{
               width: '48px',
               height: '48px',
@@ -69,7 +69,7 @@ export function Preloader() {
           <circle cx="28" cy="28" r="26" stroke="#333" strokeWidth="2" />
           <path
             d="M16 40 L28 12 L40 40"
-            stroke="#c8102e"
+            stroke="var(--accent)"
             strokeWidth="3"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -91,7 +91,7 @@ export function Preloader() {
 
       <div className="w-48 h-[3px] bg-[#333] rounded-full overflow-hidden">
         <div
-          className="h-full bg-[#c8102e] rounded-full"
+          className="h-full bg-ps-accent rounded-full"
           style={{ animation: 'barFill 0.9s ease-out forwards' }}
         />
       </div>
