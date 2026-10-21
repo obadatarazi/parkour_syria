@@ -3,10 +3,11 @@ import { Search } from 'lucide-react';
 import { DirectoryCard } from '@/features/directory/DirectoryCard';
 import { Reveal } from '@/components/motion/Reveal';
 import { Container, FilterButton, PageHero, Safety } from '@/components/ui';
-import type { DirCategory } from '@/data/demo';
-import { useDemo } from '@/data/useDemo';
+import { useDirectory } from '@/hooks/useDirectory';
+import { useSiteMeta } from '@/hooks/useSiteMeta';
 import { localeOf } from '@/i18n/config';
 import { useI18n } from '@/i18n/useI18n';
+import type { DirCategory } from '@/types';
 
 type Filter = 'all' | DirCategory;
 
@@ -14,7 +15,9 @@ const FILTER_IDS: Filter[] = ['all', 'place', 'coach', 'team'];
 
 export function DirectoryPage() {
   const { t, lang } = useI18n();
-  const { directoryItems, categoriesPlural, dirCategoryLabels } = useDemo();
+  const { data: directoryItems } = useDirectory();
+  const { data: meta } = useSiteMeta();
+  const { categoriesPlural, dirCategoryLabels } = meta;
   const [filter, setFilter] = useState<Filter>('all');
   const [query, setQuery] = useState('');
 

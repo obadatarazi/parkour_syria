@@ -3,13 +3,13 @@ import { Reveal } from '@/components/motion/Reveal';
 import { Container, PageHero } from '@/components/ui';
 import { cn } from '@/lib/cn';
 import { whatsappLink } from '@/config/site';
-import { useDemo } from '@/data/useDemo';
+import { useEvents } from '@/hooks/useEvents';
 import { useI18n } from '@/i18n/useI18n';
 import { photo } from '@/lib/photo';
 
 export function EventsPage() {
   const { t } = useI18n();
-  const { events } = useDemo();
+  const { data: events } = useEvents();
 
   return (
     <div>

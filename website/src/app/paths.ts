@@ -1,4 +1,4 @@
-import type { PageId } from '@/data/demo';
+import type { PageId } from '@/types';
 
 export const paths: Record<PageId, string> = {
   home: '/',

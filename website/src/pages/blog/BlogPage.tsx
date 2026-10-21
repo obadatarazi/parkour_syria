@@ -3,9 +3,9 @@ import { ListCard } from '@/features/list-card/ListCard';
 import { Reveal } from '@/components/motion/Reveal';
 import { useNav } from '@/components/nav';
 import { Container, FilterButton, PageHero } from '@/components/ui';
-import type { BlogCategoryId } from '@/data/demo';
-import { useDemo } from '@/data/useDemo';
+import { usePosts } from '@/hooks/usePosts';
 import { useI18n } from '@/i18n/useI18n';
+import type { BlogCategoryId } from '@/types';
 
 type BlogFilter = 'all' | BlogCategoryId;
 
@@ -14,7 +14,7 @@ const FILTER_IDS: BlogFilter[] = ['all', 'safety', 'training', 'damascus'];
 export function BlogPage() {
   const { navigate } = useNav();
   const { t } = useI18n();
-  const { blogPosts } = useDemo();
+  const { data: blogPosts } = usePosts();
   const [filter, setFilter] = useState<BlogFilter>('all');
 
   const posts =

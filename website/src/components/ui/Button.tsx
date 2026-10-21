@@ -1,5 +1,5 @@
 import { forwardRef, type ButtonHTMLAttributes, type AnchorHTMLAttributes, type ReactNode } from 'react';
-import type { PageId } from '@/data/demo';
+import type { PageId } from '@/types';
 import { useLink } from '@/components/nav';
 import { cn } from '@/lib/cn';
 

@@ -1,5 +1,5 @@
 import { useLink } from '@/components/nav';
-import type { NavPageId } from '@/data/demo';
+import type { NavPageId } from '@/types';
 import { site, whatsappLink } from '@/config/site';
 import { useI18n } from '@/i18n/useI18n';
 

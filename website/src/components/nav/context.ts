@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import type { PageId } from '@/data/demo';
+import type { PageId } from '@/types';
 
 export interface NavContextValue {
   page: PageId;

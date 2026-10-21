@@ -1,5 +1,5 @@
 import { useContext, useCallback } from 'react';
-import type { PageId } from '@/data/demo';
+import type { PageId } from '@/types';
 import { pathFor } from '@/app/paths';
 import { NavContext } from './context';
 

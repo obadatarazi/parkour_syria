@@ -12,19 +12,31 @@ import {
   Textarea,
 } from '@/components/ui';
 import { btnSize, btnVariant } from '@/components/ui/variants';
-import { useDemo } from '@/data/useDemo';
+import { useSiteMeta } from '@/hooks/useSiteMeta';
 import { useI18n } from '@/i18n/useI18n';
+import { submitSuggestion } from '@/services/suggest';
+import type { SuggestionPayload } from '@/types';
 
 const TYPE_IDS = ['place', 'coach', 'team', 'event'] as const;
 
 export function SuggestPage() {
   const { t } = useI18n();
-  const { areaLabels } = useDemo();
+  const { data: meta } = useSiteMeta();
+  const { areaLabels } = meta;
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    const form = e.currentTarget as HTMLFormElement;
+    const fd = new FormData(form);
+    const payload: SuggestionPayload = {
+      type: String(fd.get('type') ?? ''),
+      name: String(fd.get('name') ?? ''),
+      area: String(fd.get('area') ?? ''),
+      description: String(fd.get('description') ?? ''),
+      contact: String(fd.get('contact') ?? '') || undefined,
+    };
+    void submitSuggestion(payload).then(() => setSubmitted(true));
   };
 
   return (

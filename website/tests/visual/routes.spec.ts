@@ -14,7 +14,7 @@ if (!demoSource.includes("id: 'safety-rules'")) {
   throw new Error('demo.ts is missing id safety-rules — aborting visual suite');
 }
 
-const WIDTHS = [375, 768, 1440] as const;
+const WIDTHS = [375, 768, 1024, 1440, 1920] as const;
 
 /** Paths relative to Vite base (/parkour). */
 const ROUTES: { name: string; path: string }[] = [
@@ -88,4 +88,15 @@ test.describe('visual baseline', () => {
       });
     }
   }
+
+  test('menu-open@375', async ({ page }) => {
+    await preparePage(page, '/', 375);
+    await page.getByRole('button', { name: /القائمة|menu/i }).click();
+    await page.waitForTimeout(200);
+    await expect(page).toHaveScreenshot('menu-open-375.png', {
+      fullPage: true,
+      maxDiffPixelRatio: 0.001,
+      animations: 'disabled',
+    });
+  });
 });

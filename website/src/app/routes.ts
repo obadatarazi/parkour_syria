@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import type { PageId } from '@/data/demo';
+import type { PageId } from '@/types';
 import { HomePage } from '@/pages/home/HomePage';
 import { WhatPage } from '@/pages/what/WhatPage';
 import { PathPage } from '@/pages/path/PathPage';

@@ -1,13 +1,13 @@
 import { useEffect, useState, useRef } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import { useNav } from '@/components/nav';
-import { useDemo } from '@/data/useDemo';
+import { useSlides } from '@/hooks/useSlides';
 import { useI18n } from '@/i18n/useI18n';
 import { photo, photoSet } from '@/lib/photo';
 
 export function HeroSlider() {
   const { navigate } = useNav();
-  const { slides } = useDemo();
+  const { data: slides } = useSlides();
   const { t, dir } = useI18n();
   const [current, setCurrent] = useState(0);
   const touchStartX = useRef(0);

@@ -7,7 +7,7 @@ import { Footer } from '@/components/layout/Footer';
 import { Preloader } from '@/components/motion/Preloader';
 import { CustomCursor } from '@/components/motion/CustomCursor';
 import { useI18n } from '@/i18n/useI18n';
-import type { PageId } from '@/data/demo';
+import type { PageId } from '@/types';
 
 function App() {
   const { t, lang } = useI18n();

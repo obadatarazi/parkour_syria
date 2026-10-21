@@ -1,14 +1,15 @@
 import { MapPin, MessageCircle } from 'lucide-react';
 import { useNav } from '@/components/nav';
-import type { DirectoryItem } from '@/data/demo';
-import { useDemo } from '@/data/useDemo';
+import { useSiteMeta } from '@/hooks/useSiteMeta';
 import { useI18n } from '@/i18n/useI18n';
 import { photo, photoSet } from '@/lib/photo';
 import { whatsappLink } from '@/config/site';
+import type { DirectoryItem } from '@/types';
 
 export function DirectoryCard({ item }: { item: DirectoryItem }) {
   const { navigate } = useNav();
-  const { dirCategoryLabels } = useDemo();
+  const { data: meta } = useSiteMeta();
+  const { dirCategoryLabels } = meta;
   const { t } = useI18n();
 
   return (

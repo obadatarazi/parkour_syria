@@ -10,14 +10,20 @@ import { Button, Container, SectionHeading } from '@/components/ui';
 import { btnSize, btnVariant } from '@/components/ui/variants';
 import { cn } from '@/lib/cn';
 import { site, whatsappLink } from '@/config/site';
-import { useDemo } from '@/data/useDemo';
+import { useDirectory } from '@/hooks/useDirectory';
+import { useEvents } from '@/hooks/useEvents';
+import { useGallery } from '@/hooks/useGallery';
+import { usePosts } from '@/hooks/usePosts';
 import { useI18n } from '@/i18n/useI18n';
 import { photo, photoSet } from '@/lib/photo';
 
 export function HomePage() {
   const { navigate } = useNav();
   const { t } = useI18n();
-  const { directoryItems, events, blogPosts, galleryImages } = useDemo();
+  const { data: directoryItems } = useDirectory();
+  const { data: events } = useEvents();
+  const { data: blogPosts } = usePosts();
+  const { data: galleryImages } = useGallery();
   const featuredDir = directoryItems.slice(0, 3);
   const upcomingEvents = events.slice(0, 2);
   const recentPosts = blogPosts.slice(0, 3);

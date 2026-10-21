@@ -2,15 +2,14 @@ import { ChevronLeft } from 'lucide-react';
 import { Reveal } from '@/components/motion/Reveal';
 import { useNav } from '@/components/nav';
 import { BackButton, Container, Tag } from '@/components/ui';
-import { useDemo } from '@/data/useDemo';
+import { usePost } from '@/hooks/usePosts';
 import { useI18n } from '@/i18n/useI18n';
 import { photo, photoSet } from '@/lib/photo';
 
 export function ArticlePage() {
   const { navigate, id } = useNav();
   const { t } = useI18n();
-  const { blogPosts } = useDemo();
-  const post = blogPosts.find((p) => p.id === id) ?? blogPosts[0];
+  const { data: post } = usePost(id);
 
   return (
     <div>

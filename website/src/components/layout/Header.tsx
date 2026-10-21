@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useNav, useLink } from '@/components/nav';
 import { LanguageToggle } from '@/components/layout/LanguageToggle';
-import { navLinks, type NavPageId } from '@/data/demo';
+import { navLinks, type NavPageId } from '@/types';
 import { useI18n } from '@/i18n/useI18n';
 
 const extraLinks: NavPageId[] = ['suggest', 'about', 'contact', 'disclaimer'];

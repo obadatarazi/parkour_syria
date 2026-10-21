@@ -3,13 +3,13 @@ import { Reveal } from '@/components/motion/Reveal';
 import { useNav } from '@/components/nav';
 import { BackButton, Button, Container, PageHero, Safety } from '@/components/ui';
 import { btnVariant } from '@/components/ui/variants';
-import { useDemo } from '@/data/useDemo';
+import { useLessons } from '@/hooks/useLessons';
 import { useI18n } from '@/i18n/useI18n';
 
 export function LessonPage() {
   const { navigate, id } = useNav();
   const { t } = useI18n();
-  const { lessons } = useDemo();
+  const { data: lessons } = useLessons();
   const lesson = lessons.find((l) => String(l.num) === id) ?? lessons[0];
   const next = lessons.find((l) => l.num === lesson.num + 1);
 

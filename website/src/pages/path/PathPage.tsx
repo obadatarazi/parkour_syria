@@ -2,13 +2,13 @@ import { ArrowRight } from 'lucide-react';
 import { Reveal } from '@/components/motion/Reveal';
 import { useNav } from '@/components/nav';
 import { Container, PageHero, Safety } from '@/components/ui';
-import { useDemo } from '@/data/useDemo';
+import { useLessons } from '@/hooks/useLessons';
 import { useI18n } from '@/i18n/useI18n';
 
 export function PathPage() {
   const { navigate } = useNav();
   const { t } = useI18n();
-  const { lessons } = useDemo();
+  const { data: lessons } = useLessons();
 
   return (
     <div>

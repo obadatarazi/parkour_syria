@@ -5,15 +5,17 @@ import { BackButton, Container, Tag } from '@/components/ui';
 import { tagVariant } from '@/components/ui/variants';
 import { cn } from '@/lib/cn';
 import { whatsappLink } from '@/config/site';
-import { useDemo } from '@/data/useDemo';
+import { useDirectoryItem } from '@/hooks/useDirectory';
+import { useSiteMeta } from '@/hooks/useSiteMeta';
 import { useI18n } from '@/i18n/useI18n';
 import { photo, photoSet } from '@/lib/photo';
 
 export function DirDetailPage() {
   const { navigate, id } = useNav();
   const { t } = useI18n();
-  const { directoryItems, dirCategoryLabels, city } = useDemo();
-  const item = directoryItems.find((d) => d.id === id) ?? directoryItems[0];
+  const { data: item } = useDirectoryItem(id);
+  const { data: meta } = useSiteMeta();
+  const { dirCategoryLabels, city } = meta;
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${item.name} ${item.area} ${city}`)}`;
 
   return (
