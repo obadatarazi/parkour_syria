@@ -22,6 +22,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Dashboard refresh tokens
+    |--------------------------------------------------------------------------
+    |
+    | How many days a dashboard refresh token stays valid. Each refresh rotates it, so this is the
+    | longest an idle session survives, and the longest a stolen one does too.
+    |
+    */
+
+    'refresh_token_ttl_days' => (int) env('REFRESH_TOKEN_TTL_DAYS', 7),
+
+    /*
+    |--------------------------------------------------------------------------
     | Authentication Guards
     |--------------------------------------------------------------------------
     |

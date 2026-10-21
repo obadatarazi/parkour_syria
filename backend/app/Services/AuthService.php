@@ -63,7 +63,7 @@ class AuthService
         $refreshToken->id = (string) Str::uuid();
         $refreshToken->access_token_id = $accessToken->id;
         $refreshToken->revoked = false;
-        $refreshToken->expires_at = now()->addDays(30);
+        $refreshToken->expires_at = now()->addDays((int) config('auth.refresh_token_ttl_days'));
         $refreshToken->save();
 
         return $refreshToken->id;
@@ -126,7 +126,7 @@ class AuthService
                 $newRefreshToken->id = (string) Str::uuid();
                 $newRefreshToken->access_token_id = $newAccessTokenId;
                 $newRefreshToken->revoked = false;
-                $newRefreshToken->expires_at = now()->addDays(30);
+                $newRefreshToken->expires_at = now()->addDays((int) config('auth.refresh_token_ttl_days'));
                 $newRefreshToken->save();
 
                 $pair = [
