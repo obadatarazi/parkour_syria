@@ -24,6 +24,7 @@ use App\Models\SliderTranslation;
 use App\Services\HomeCmsService;
 use App\Services\SeoService;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Validation\Rules\Password;
 use Laravel\Passport\Passport;
 
 class AppServiceProvider extends ServiceProvider
@@ -45,6 +46,9 @@ class AppServiceProvider extends ServiceProvider
     {
         // Short-lived access tokens; the dashboard refreshes proactively before expiry.
         Passport::personalAccessTokensExpireIn(now()->addHour());
+
+        // Every password a dashboard account chooses: at least 8 characters, letters and numbers.
+        Password::defaults(fn () => Password::min(8)->letters()->numbers());
 
         // GET /api/home is cached per locale. Anything one of its rails draws drops that cache when
         // it is written, so an admin sees their edit on the next home load. Areas and blog

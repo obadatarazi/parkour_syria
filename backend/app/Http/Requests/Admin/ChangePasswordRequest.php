@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\CustomFormRequest;
+use Illuminate\Validation\Rules\Password;
 
 class ChangePasswordRequest extends CustomFormRequest
 {
@@ -15,7 +16,7 @@ class ChangePasswordRequest extends CustomFormRequest
     {
         return [
             'current_password' => ['required', 'min:6'],
-            'new_password' => ['required','confirmed','min:6'],
+            'new_password' => ['required', 'confirmed', Password::defaults()],
         ];
     }
 }

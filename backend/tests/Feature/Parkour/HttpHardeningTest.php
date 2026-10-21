@@ -48,11 +48,11 @@ it('keeps the spaces of a new password', function () {
 
     $this->withHeader('Authorization', "Bearer {$token}")->postJson('/api/admin/me/password/change', [
         'currentPassword' => $password,
-        'newPassword' => '  spaced pass  ',
-        'newPasswordConfirmation' => '  spaced pass  ',
+        'newPassword' => '  spaced pass 1  ',
+        'newPasswordConfirmation' => '  spaced pass 1  ',
     ])->assertOk();
 
-    expect(Hash::check('  spaced pass  ', User::query()->where('email', $email)->value('password')))->toBeTrue();
+    expect(Hash::check('  spaced pass 1  ', User::query()->where('email', $email)->value('password')))->toBeTrue();
 });
 
 it('trims ordinary text fields', function () {

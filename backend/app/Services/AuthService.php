@@ -26,7 +26,11 @@ class AuthService
         if (auth()->attempt($credentials)) {
             $user = auth()->user();
 
-            // Checked only once the password is right, so it reveals nothing about other accounts.
+            // Checked only once the password is right, so they reveal nothing about other accounts.
+            if ($user->type !== UserType::ADMIN->value) {
+                throw new UnauthorizedException(__('exceptions.only_admin'), null, 403);
+            }
+
             if (!$user->active) {
                 throw new UnauthorizedException(__('exceptions.account_inactive'), null, 403);
             }

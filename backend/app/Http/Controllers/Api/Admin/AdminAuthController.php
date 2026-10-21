@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Constant\SerializedGroup;
-use App\Enum\UserType;
 use App\Exceptions\Custom\UnauthorizedException;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\Admin\LoginRequest;
@@ -63,19 +62,9 @@ class AdminAuthController extends ApiController
     public function login(LoginRequest $request): JsonResponse
     {
         try {
-            $userData = $request->validated();
-
-            $user = $this->authService->findUserByEmail($userData['email']);
-
-            if ($user === null) {
-                throw new UnauthorizedException(__('exceptions.email_password_invalid'), null, 401);
-            }
-
-            if ($user->type !== UserType::ADMIN->value) {
-                throw new UnauthorizedException(__('exceptions.only_admin'), null, 403);
-            }
-
-            $data = $this->authService->login($userData);
+            // Unknown email, wrong password and non-admin account answer alike until the password
+            // is right; AuthService::login() checks the account type after that.
+            $data = $this->authService->login($request->validated());
 
             return $this
                 ->setSerializedGroup(SerializedGroup::Details->value)

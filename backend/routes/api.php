@@ -68,7 +68,7 @@ Route::prefix('/admin')->middleware(['auth:api', 'active'])->group(function () {
     Route::get('/me/profile', [AdminAuthController::class, 'me']);
     Route::put('/me/profile/update', [AdminAuthController::class, 'updateProfileAdmin']);
     Route::get('/me/roles', [AdminAuthController::class, 'getMyRoles']);
-    Route::post('/me/password/change', [AdminAuthController::class, 'changePassword']);
+    Route::post('/me/password/change', [AdminAuthController::class, 'changePassword'])->middleware('throttle:5,1');
 
     // Csv exports and bulk deletes. Declared before the resources so `/export` and `/bulk-delete`
     // are never read as the id of a record. See ApiController::baseExport() / baseBulkDestroy().

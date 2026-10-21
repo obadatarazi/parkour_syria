@@ -16,7 +16,7 @@ return [
     'suggestion_already_reviewed' => 'تمت مراجعة هذا الاقتراح مسبقاً.',
     'suggestion_event_needs_date' => 'تحتاج الفعالية إلى تاريخ بدء قبل قبولها.',
     'tag_has_products' => 'لا يمكن حذف الوسم «:name» لأنه مرتبط بـ :count منتج. أزل هذا الوسم من هذه المنتجات أولاً.',
-    'unauthenticated' => 'JWT Token not found',
+    'unauthenticated' => 'يجب تسجيل الدخول أولاً.',
 
     'own_role_permissions_forbidden' => 'لا يمكنك تعديل صلاحيات دور تملكه.',
     'own_roles_change_forbidden' => 'لا يمكنك تعديل أدوار الحساب الذي سجّلت الدخول به.',

@@ -78,7 +78,10 @@ class UserService extends BaseService
         $wasActive = (bool) $user->active;
         $rolesBefore = $user->roles()->pluck('roles.id')->sort()->values()->all();
 
-        if (isset($data['password'])) {
+        // A blank password field on an edit means "keep the current one", never an empty password.
+        if (empty($data['password'])) {
+            unset($data['password']);
+        } else {
             $data['password'] = bcrypt($data['password']);
         }
 

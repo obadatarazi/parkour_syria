@@ -16,6 +16,9 @@ class AdminRolesController extends ApiController
         $this->permissionPrefix = PermissionType::PermissionManageRole->getSection();
         $this->service = $roleService;
         parent::__construct();
+
+        // The permission catalogue feeds the role screens, so it needs a role permission too.
+        $this->middleware(["permission:MANAGE_$this->permissionPrefix|PERMISSION_SHOW_$this->permissionPrefix|PERMISSION_CREATE_$this->permissionPrefix|PERMISSION_UPDATE_$this->permissionPrefix"], ['only' => ['findAll', 'getBySection']]);
     }
 
     #[OA\Get(
