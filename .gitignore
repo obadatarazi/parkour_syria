@@ -11,6 +11,13 @@ dist
 dist-ssr
 *.local
 
+# Playwright (keep website/tests/visual/baseline PNGs)
+test-results
+playwright-report
+blob-report
+website/test-results
+website/playwright-report
+
 .vscode/*
 !.vscode/extensions.json
 .idea
