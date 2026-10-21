@@ -8,6 +8,10 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class FileSystemService
 {
+    public function __construct(protected ImageOptimizer $imageOptimizer)
+    {
+    }
+
     /**
      * Get the relative path for the upload.
      *
@@ -34,6 +38,12 @@ class FileSystemService
         $extension = $this->resolveUploadExtension($uploadedFile);
         $fileSize = $uploadedFile->getSize();
         $relativePath = $this->getUploadRelativePath($entityPath);
+        $optimized = $this->imageOptimizer->optimize((string) $uploadedFile->getRealPath(), $extension);
+
+        if ($optimized !== null) {
+            $extension = $optimized['extension'];
+            $fileSize = strlen($optimized['contents']);
+        }
 
         if ($extension !== '') {
             $fileName = "{$fileName}.{$extension}";
@@ -42,7 +52,11 @@ class FileSystemService
         Storage::disk('public')->makeDirectory($relativePath);
 
         $filePath = '/storage' . '/' . $relativePath . $fileName;
-        Storage::disk('public')->putFileAs($relativePath, $uploadedFile, $fileName);
+        if ($optimized !== null) {
+            Storage::disk('public')->put($relativePath . $fileName, $optimized['contents']);
+        } else {
+            Storage::disk('public')->putFileAs($relativePath, $uploadedFile, $fileName);
+        }
         return [
             "fileName" => $fileName,
             "fileSize" => $fileSize,
@@ -119,6 +133,32 @@ class FileSystemService
         }
 
         return null;
+    }
+
+    /**
+     * Copy one of our stored files into another entity's folder, so each record owns its file and
+     * deleting one never breaks the other. Returns null for anything that is not ours to copy.
+     */
+    public function copyFile(?string $fileUrl, string $entityPath): ?string
+    {
+        if (empty($fileUrl) || preg_match('#^https?://#i', $fileUrl)) {
+            return $fileUrl ?: null;
+        }
+
+        $source = Str::after($fileUrl, '/storage/');
+        $disk = Storage::disk('public');
+        if (!$disk->exists($source)) {
+            return null;
+        }
+
+        $relativePath = $this->getUploadRelativePath($entityPath);
+        $extension = pathinfo($source, PATHINFO_EXTENSION);
+        $fileName = (string) Str::uuid() . ($extension !== '' ? ".{$extension}" : '');
+
+        $disk->makeDirectory($relativePath);
+        $disk->copy($source, $relativePath . $fileName);
+
+        return '/storage/' . $relativePath . $fileName;
     }
 
     /**

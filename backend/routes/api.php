@@ -179,6 +179,7 @@ Route::get('/events/{slug}', [EventController::class, 'show']);
 Route::get('/blog-categories', [BlogCategoryController::class, 'index']);
 Route::get('/blog-categories/{slug}', [BlogCategoryController::class, 'show']);
 Route::get('/blog-posts', [BlogPostController::class, 'index']);
+Route::get('/blog-posts/{slug}/related', [BlogPostController::class, 'related']);
 Route::get('/blog-posts/{slug}', [BlogPostController::class, 'show']);
 
 Route::get('/gallery-images', [GalleryImageController::class, 'index']);

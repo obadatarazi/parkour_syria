@@ -5,7 +5,8 @@ export const parkourEn = {
 
   // Shared form copy
   uploadImage: "Upload an image",
-  uploadImageHint: "JPG, PNG, WebP, GIF or SVG",
+  uploadImageHint: "JPG, PNG, WebP, GIF or SVG, up to 2 MB",
+  uploadImageTooLarge: "The image is larger than 2 MB. Choose a smaller one.",
   sortOrder: "Sort order",
   sortOrderHelper: "Lower numbers come first.",
   createdAt: "Created",
@@ -20,6 +21,7 @@ export const parkourEn = {
   fieldBody: "Body",
   fieldSummary: "Summary",
   fieldExcerpt: "Excerpt",
+  fieldAuthor: "Author",
   fieldDescription: "Description",
   fieldSeoTitle: "SEO title",
   fieldSeoDescription: "SEO description",

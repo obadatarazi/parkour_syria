@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Constant\Upload;
 use App\Http\Requests\CustomFormRequest;
 use App\Http\Rules\BooleanValidationRule;
 use App\Http\Rules\NoLineBreaksRule;
@@ -27,7 +28,7 @@ class UserRequest extends CustomFormRequest
                     'email' => ['required', 'email', new NoLineBreaksRule(), 'unique:users,email'],
                     'phone_number' => ['nullable', 'string', 'max:30', 'unique:users,phone_number'],
                     'password' => 'required|confirmed|min:6',
-                    'avatar' => ['nullable', 'file', 'mimes:jpg,jpeg,png,gif,webp,svg', 'max:2048000', new SafeSvg()],
+                    'avatar' => ['nullable', 'file', 'mimes:jpg,jpeg,png,gif,webp,svg', 'max:' . Upload::MAX_IMAGE_KB, new SafeSvg()],
                     'gender' => 'nullable|string|in:MALE,FEMALE',
                     'type' => 'required|string|in:ADMIN',
                     'active' => ['nullable', new BooleanValidationRule()],
@@ -40,7 +41,7 @@ class UserRequest extends CustomFormRequest
                     'email' => ['nullable', 'email', new NoLineBreaksRule(), Rule::unique('users', 'email')->ignore($this->userId())],
                     'phone_number' => ['nullable', 'string', 'max:30', Rule::unique('users', 'phone_number')->ignore($this->userId())],
                     'password' => 'confirmed|min:6',
-                    'avatar' => ['nullable', 'file', 'mimes:jpg,jpeg,png,gif,webp,svg', 'max:2048000', new SafeSvg()],
+                    'avatar' => ['nullable', 'file', 'mimes:jpg,jpeg,png,gif,webp,svg', 'max:' . Upload::MAX_IMAGE_KB, new SafeSvg()],
                     'gender' => 'nullable|string|in:MALE,FEMALE',
                     'type' => 'nullable|string|in:ADMIN',
                     'active' => ['nullable', new BooleanValidationRule()],

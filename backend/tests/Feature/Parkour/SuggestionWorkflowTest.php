@@ -4,7 +4,9 @@ use App\Models\Area;
 use App\Models\DirectoryEntry;
 use App\Models\Event;
 use App\Models\Suggestion;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Routing\Middleware\ThrottleRequests;
+use Illuminate\Support\Facades\Storage;
 
 // The public form is limited to a few posts a minute, more than these tests send together.
 beforeEach(fn () => $this->withoutMiddleware(ThrottleRequests::class));
@@ -73,4 +75,34 @@ it('needs a reason to reject', function () {
         ->assertOk()
         ->assertJsonPath('data.status', 'rejected')
         ->assertJsonPath('data.rejectReason', 'مكان غير آمن');
+});
+
+it('keeps the visitor photo and gives the accepted entry its own copy', function () {
+    Storage::fake('public');
+
+    $id = $this->post('/api/suggestions', [
+        'type' => 'place',
+        'name' => 'ساحة الأمويين',
+        'safetyAccepted' => '1',
+        'image' => UploadedFile::fake()->image('spot.jpg', 800, 600),
+    ], ['Accept' => 'application/json'])->assertCreated()->json('data.id');
+
+    $suggestionImage = Suggestion::find($id)->image_file_url;
+    expect($suggestionImage)->not->toBeNull();
+
+    $this->actingAsSupervisor();
+    $this->postJson("/api/admin/suggestions/{$id}/accept", ['slug' => 'umayyad-square'])->assertOk();
+
+    $entryImage = DirectoryEntry::query()->where('slug', 'umayyad-square')->value('image_file_url');
+    expect($entryImage)->not->toBeNull()->not->toBe($suggestionImage)->toContain('/directory-entries/');
+    Storage::disk('public')->assertExists(str($entryImage)->after('/storage/'));
+});
+
+it('refuses an svg from the public form', function () {
+    $this->post('/api/suggestions', [
+        'type' => 'place',
+        'name' => 'x',
+        'safetyAccepted' => '1',
+        'image' => UploadedFile::fake()->createWithContent('x.svg', '<svg xmlns="http://www.w3.org/2000/svg"/>'),
+    ], ['Accept' => 'application/json'])->assertUnprocessable();
 });

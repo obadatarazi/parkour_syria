@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Cache;
 
 /**
  * What crawlers read: the sitemap of every published url, robots.txt and the llms.txt stub.
+ * The pages themselves are rendered by WebsitePageService.
  */
 class SeoService
 {
@@ -52,9 +53,18 @@ class SeoService
         });
     }
 
+    public const GENERATION_CACHE_KEY = 'seo:generation';
+
     public static function flushCache(): void
     {
         Cache::forget(self::SITEMAP_CACHE_KEY);
+        // The website's rendered HTML is cached per path; a new generation retires every one at once.
+        Cache::forever(self::GENERATION_CACHE_KEY, self::generation() + 1);
+    }
+
+    public static function generation(): int
+    {
+        return (int) Cache::get(self::GENERATION_CACHE_KEY, 0);
     }
 
     public function sitemapXml(): string

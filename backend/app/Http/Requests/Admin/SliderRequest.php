@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Constant\Upload;
 use App\Http\Requests\TranslationFormRequest;
 use App\Http\Rules\BooleanValidationRule;
 use App\Rules\SafeSvg;
@@ -14,7 +15,7 @@ class SliderRequest extends TranslationFormRequest
 
         if ($this->method() === 'POST') {
             $rules = [
-                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:2048000', new SafeSvg()],
+                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:' . Upload::MAX_IMAGE_KB, new SafeSvg()],
                 'sort_order' => ['nullable', 'integer', 'min:0'],
                 'publish' => ['nullable', new BooleanValidationRule()],
                 'primary_page' => ['nullable', 'string', 'max:50'],
@@ -34,7 +35,7 @@ class SliderRequest extends TranslationFormRequest
 
         if ($this->method() === 'PUT' || $this->method() === 'PATCH') {
             $rules = [
-                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:2048000', new SafeSvg()],
+                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:' . Upload::MAX_IMAGE_KB, new SafeSvg()],
                 'sort_order' => ['nullable', 'integer', 'min:0'],
                 'publish' => ['nullable', new BooleanValidationRule()],
                 'primary_page' => ['nullable', 'string', 'max:50'],

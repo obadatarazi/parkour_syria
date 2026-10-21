@@ -77,3 +77,12 @@ it('loads every piece of the current website content', function () {
     $this->getJson('/api/gallery-images')->assertJsonPath('pagination.totalItems', 8);
     $this->getJson('/api/site-settings')->assertJsonPath('data.instagram_handle', '@parkoursyria');
 });
+
+it('lists related posts from the same category without the post itself', function () {
+    $post = \App\Models\BlogPost::query()->where('publish', true)->whereNotNull('blog_category_id')->firstOrFail();
+
+    $related = $this->getJson('/api/blog-posts/' . rawurlencode($post->slug) . '/related')->assertOk()->json('data');
+
+    expect($related)->not->toBeEmpty()->toHaveCount(min(3, \App\Models\BlogPost::query()->where('publish', true)->count() - 1))
+        ->and(array_column($related, 'slug'))->not->toContain($post->slug);
+});

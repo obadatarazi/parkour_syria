@@ -58,6 +58,7 @@ export function BlogPostForm({
 
   const contentFields: LocaleFieldDefinition<BlogPostLocaleField>[] = [
     { key: "title", label: t.fieldTitle, required: true, maxLength: 255 },
+    { key: "author", label: t.fieldAuthor, maxLength: 120 },
     { key: "excerpt", label: t.fieldExcerpt, multiline: true, rows: 2 },
     { key: "body", label: t.fieldBody, multiline: true, rows: 14 },
   ];

@@ -22,6 +22,8 @@ export type Suggestion = {
   area?: AreaRef | null;
   description?: string | null;
   contact?: string | null;
+  /** The visitor's optional photo; it is copied onto the entry or event when accepted. */
+  imageFileUrl?: string | null;
   startsAt?: string | null;
   proposerName?: string | null;
   proposerContact?: string | null;

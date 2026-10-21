@@ -15,6 +15,8 @@ use App\Models\GalleryImage;
 use App\Models\GalleryImageTranslation;
 use App\Models\EventTranslation;
 use App\Models\Lesson;
+use App\Models\LessonTranslation;
+use App\Models\MultiTypeSetting;
 use App\Models\Page;
 use App\Models\PageTranslation;
 use App\Models\Slider;
@@ -69,10 +71,27 @@ class AppServiceProvider extends ServiceProvider
             $model::deleted($flushHomeCms);
         }
 
-        // The sitemap lists every published lesson, directory entry and blog post.
+        // The sitemap lists every published lesson, directory entry and blog post, and the website's
+        // server-rendered HTML prints those plus the pages, events, areas and settings.
         $flushSitemap = static fn () => SeoService::flushCache();
 
-        foreach ([Lesson::class, DirectoryEntry::class, BlogPost::class] as $model) {
+        foreach ([
+            Lesson::class,
+            LessonTranslation::class,
+            DirectoryEntry::class,
+            DirectoryEntryTranslation::class,
+            BlogPost::class,
+            BlogPostTranslation::class,
+            BlogCategory::class,
+            BlogCategoryTranslation::class,
+            Event::class,
+            EventTranslation::class,
+            Page::class,
+            PageTranslation::class,
+            Area::class,
+            AreaTranslation::class,
+            MultiTypeSetting::class,
+        ] as $model) {
             $model::saved($flushSitemap);
             $model::deleted($flushSitemap);
         }

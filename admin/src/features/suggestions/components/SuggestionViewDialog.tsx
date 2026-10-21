@@ -9,7 +9,7 @@ import {
   suggestionStatusVariant,
   suggestionTypeLabel,
 } from "@/features/suggestions/types/suggestions.types";
-import { AppButton, StatusBadge } from "@/shared/components";
+import { AppButton, MediaImage, StatusBadge } from "@/shared/components";
 import { CrudDetailField, CrudViewDialog, useCrudQuery } from "@/shared/crud";
 import {
   useLocalization,
@@ -128,6 +128,17 @@ export function SuggestionViewDialog({
               <CrudDetailField label={t.fieldContact}>
                 <Value value={suggestion.contact} empty={t.notSet} />
               </CrudDetailField>
+              {suggestion.imageFileUrl ? (
+                <CrudDetailField label={t.sectionImage}>
+                  <a href={suggestion.imageFileUrl} target="_blank" rel="noreferrer">
+                    <MediaImage
+                      src={suggestion.imageFileUrl}
+                      alt=""
+                      className="h-32 w-full rounded-xl border border-border object-cover"
+                    />
+                  </a>
+                </CrudDetailField>
+              ) : null}
             </div>
           ),
         },

@@ -4,7 +4,8 @@ export const parkourAr: typeof parkourEn = {
   parkourBrand: "باركور سوريا",
 
   uploadImage: "ارفع صورة",
-  uploadImageHint: "JPG أو PNG أو WebP أو GIF أو SVG",
+  uploadImageHint: "JPG أو PNG أو WebP أو GIF أو SVG، حتى 2 ميغابايت",
+  uploadImageTooLarge: "حجم الصورة أكبر من 2 ميغابايت. اختر صورة أصغر.",
   sortOrder: "الترتيب",
   sortOrderHelper: "الرقم الأصغر يظهر أولاً.",
   createdAt: "أُضيف",
@@ -19,6 +20,7 @@ export const parkourAr: typeof parkourEn = {
   fieldBody: "النص",
   fieldSummary: "الملخص",
   fieldExcerpt: "مقتطف",
+  fieldAuthor: "الكاتب",
   fieldDescription: "الوصف",
   fieldSeoTitle: "عنوان محركات البحث",
   fieldSeoDescription: "وصف محركات البحث",

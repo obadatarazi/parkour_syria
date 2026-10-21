@@ -29,6 +29,7 @@ class BlogPost extends BaseModel implements TranslatableContract
         'title',
         'excerpt',
         'body',
+        'author',
         'seo_title',
         'seo_description',
     ];

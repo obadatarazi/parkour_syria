@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Constant\Upload;
 use App\Http\Requests\TranslationFormRequest;
 use App\Http\Rules\BooleanValidationRule;
 use App\Rules\SafeSvg;
@@ -15,7 +16,7 @@ class EventRequest extends TranslationFormRequest
 
         if ($this->method() === 'POST') {
             $rules = [
-                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:2048000', new SafeSvg()],
+                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:' . Upload::MAX_IMAGE_KB, new SafeSvg()],
                 'slug' => ['nullable', 'string', 'max:140', 'regex:/^[\\p{L}\\p{N}-]+$/u', Rule::unique('events', 'slug')->ignore($this->routeKey())],
                 'type' => ['required', 'string', 'in:workshop,gathering'],
                 'starts_at' => ['required', 'date'],
@@ -35,7 +36,7 @@ class EventRequest extends TranslationFormRequest
 
         if ($this->method() === 'PUT' || $this->method() === 'PATCH') {
             $rules = [
-                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:2048000', new SafeSvg()],
+                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:' . Upload::MAX_IMAGE_KB, new SafeSvg()],
                 'slug' => ['nullable', 'string', 'max:140', 'regex:/^[\\p{L}\\p{N}-]+$/u', Rule::unique('events', 'slug')->ignore($this->routeKey())],
                 'type' => ['nullable', 'string', 'in:workshop,gathering'],
                 'starts_at' => ['nullable', 'date'],

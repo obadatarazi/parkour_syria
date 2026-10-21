@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Constant\SerializedGroup;
 use App\Http\QueryFilter\BlogPostFilter;
 use App\Http\Resources\Website\BlogPostResource;
 use App\Services\BlogPostService;
@@ -120,5 +121,42 @@ class BlogPostController extends ApiController
         $object = $this->service->findPublishedBy('slug', $slug);
 
         return parent::baseShow($object);
+    }
+
+    #[OA\Get(
+        path: '/api/blog-posts/{slug}/related',
+        description: 'Up to three other published posts for the end of an article: the same category first, then the latest',
+        summary: 'Related blog posts',
+        tags: ['Blog Post'],
+    )]
+    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(
+        name: 'slug',
+        description: 'the blog post slug',
+        in: 'path',
+        required: true,
+        schema: new OA\Schema(type: 'string'),
+        example: 'safety-rules'
+    )]
+    #[OA\Response(
+        response: 200,
+        description: 'Returns the related posts',
+        content: new OA\MediaType(
+            mediaType: 'application/json',
+            schema: new OA\Schema(
+                properties: [
+                    new OA\Property(property: 'success', type: 'boolean', example: true),
+                    new OA\Property(property: 'data', type: 'array', items: new OA\Items(ref: '#/components/schemas/BlogPost')),
+                ]
+            )
+        )
+    )]
+    public function related(string $slug): JsonResponse
+    {
+        $post = $this->service->findPublishedBy('slug', $slug);
+
+        return $this
+            ->setSerializedGroup(SerializedGroup::List->value)
+            ->successResponse(BlogPostResource::collection($this->blogPostService->related($post)));
     }
 }

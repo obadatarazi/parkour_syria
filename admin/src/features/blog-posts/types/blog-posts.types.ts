@@ -12,6 +12,7 @@ export const BLOG_POST_LOCALE_FIELDS = [
   "title",
   "excerpt",
   "body",
+  "author",
   "seo_title",
   "seo_description",
 ] as const;
@@ -26,6 +27,7 @@ export type BlogPost = {
   publishedAt?: string | null;
   title?: string | null;
   excerpt?: string | null;
+  author?: string | null;
   imageFileUrl?: string | null;
   translations?: LocaleFieldValues<BlogPostLocaleField>;
   createdAt?: string;

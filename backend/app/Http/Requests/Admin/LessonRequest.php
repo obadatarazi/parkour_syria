@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Constant\Upload;
 use App\Http\Requests\TranslationFormRequest;
 use App\Http\Rules\BooleanValidationRule;
 use App\Rules\SafeSvg;
@@ -15,7 +16,7 @@ class LessonRequest extends TranslationFormRequest
 
         if ($this->method() === 'POST') {
             $rules = [
-                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:2048000', new SafeSvg()],
+                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:' . Upload::MAX_IMAGE_KB, new SafeSvg()],
                 'slug' => ['nullable', 'string', 'max:140', 'regex:/^[\\p{L}\\p{N}-]+$/u', Rule::unique('lessons', 'slug')->ignore($this->routeKey())],
                 'sort_order' => ['nullable', 'integer', 'min:0'],
                 'youtube_url' => ['nullable', 'url', 'max:2000'],
@@ -34,7 +35,7 @@ class LessonRequest extends TranslationFormRequest
 
         if ($this->method() === 'PUT' || $this->method() === 'PATCH') {
             $rules = [
-                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:2048000', new SafeSvg()],
+                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:' . Upload::MAX_IMAGE_KB, new SafeSvg()],
                 'slug' => ['nullable', 'string', 'max:140', 'regex:/^[\\p{L}\\p{N}-]+$/u', Rule::unique('lessons', 'slug')->ignore($this->routeKey())],
                 'sort_order' => ['nullable', 'integer', 'min:0'],
                 'youtube_url' => ['nullable', 'url', 'max:2000'],
