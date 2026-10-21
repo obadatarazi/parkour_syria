@@ -1,10 +1,10 @@
 import { useCallback, useEffect } from "react";
 
+import { getRouteNavAccess } from "@/app/router/route-permissions";
 import { ROUTES } from "@/app/router/routes";
 import { canAccessNavItem, useAbility } from "@/features/auth";
 import { ordersService } from "@/features/orders/services/orders.service";
 import type { OrderStats } from "@/features/orders/types/orders.types";
-import { getRouteNavAccess } from "@/shared/constants/routePermissions";
 import {
   subscribeQueryCacheInvalidation,
   useCrudQuery,

@@ -22,8 +22,8 @@ class DirectoryEntryController extends ApiController
         summary: 'get all directory entries',
         tags: ['Directory Entry'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
-    #[OA\Parameter(ref: "#/components/parameters/direction")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
+    #[OA\Parameter(ref: '#/components/parameters/direction')]
     #[OA\Parameter(
         name: 'sort',
         description: 'Specify sorting order.',
@@ -32,8 +32,8 @@ class DirectoryEntryController extends ApiController
         schema: new OA\Schema(type: 'string', enum: ['id', 'sort_order', 'created_at']),
         example: 'sort_order'
     )]
-    #[OA\Parameter(ref: "#/components/parameters/page")]
-    #[OA\Parameter(ref: "#/components/parameters/limit")]
+    #[OA\Parameter(ref: '#/components/parameters/page')]
+    #[OA\Parameter(ref: '#/components/parameters/limit')]
     #[OA\Parameter(
         name: 'search',
         description: 'Free text search on name / description.',
@@ -107,7 +107,7 @@ class DirectoryEntryController extends ApiController
         summary: 'Get one directory entry',
         tags: ['Directory Entry'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'slug',
         description: 'the directory entry slug',

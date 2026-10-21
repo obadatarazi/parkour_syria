@@ -12,9 +12,9 @@ import {
   pickNotificationFormChanges,
 } from "@/features/notifications/types/notifications.types";
 import {
+  type CrudSaveResult,
   invalidateQueryCache,
   useCrudMutation,
-  type CrudSaveResult,
 } from "@/shared/crud";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 

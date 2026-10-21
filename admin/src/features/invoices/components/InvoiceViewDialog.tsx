@@ -1,13 +1,13 @@
 import { Download, ExternalLink } from "lucide-react";
 import { Link } from "react-router";
 
-import { mapInvoiceCustomerToParty } from "@/features/invoices/components/InvoiceRelationCells";
 import { useInvoicePdfDownload } from "@/features/invoices/hooks/use-invoice-pdf-download";
 import type { Invoice } from "@/features/invoices/types/invoices.types";
 import {
   invoiceOrderSearchHref,
   invoiceProductSearchHref,
 } from "@/features/invoices/utils/invoice-links";
+import { mapInvoiceCustomerToParty } from "@/features/invoices/utils/invoice-party.utils";
 import { getInvoicePaymentLabel } from "@/features/invoices/utils/map-invoice-from-api";
 import {
   orderCreatedByBadge,

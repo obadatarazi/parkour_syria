@@ -9,6 +9,7 @@ class AreaTranslation extends BaseModel
     use HasFactory;
 
     public $timestamps = false;
+
     protected $fillable = [
         'name',
     ];

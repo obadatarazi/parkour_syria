@@ -1,11 +1,11 @@
 import { Check, Loader2, Search, X } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
 
+import type { DeliveryZonesPrice } from "@/features/delivery-zones-prices/types/delivery-zones-prices.types";
 import {
   getOrderDeliveryZoneLabel,
   useOrderDeliveryZonePicker,
 } from "@/features/orders/hooks/use-order-delivery-zone-picker";
-import type { DeliveryZonesPrice } from "@/features/delivery-zones-prices/types/delivery-zones-prices.types";
 import { AppButton, FormField } from "@/shared/components";
 import { Button } from "@/shared/design-system/components/ui/button";
 import { Input } from "@/shared/design-system/components/ui/input";

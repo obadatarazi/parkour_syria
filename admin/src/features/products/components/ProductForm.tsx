@@ -16,8 +16,8 @@ import { ProductDiscountFields } from "@/features/products/components/ProductDis
 import { ProductFormPreviewCard } from "@/features/products/components/ProductFormPreviewCard";
 import { ProductImageGalleryFields } from "@/features/products/components/ProductImageGalleryFields";
 import { ProductSeoFields } from "@/features/products/components/ProductSeoFields";
-import { ProductStorefrontUrlCopyButton } from "@/features/products/components/ProductStorefrontUrlCopyButton";
 import { ProductSlugUpdateDialog } from "@/features/products/components/ProductSlugUpdateDialog";
+import { ProductStorefrontUrlCopyButton } from "@/features/products/components/ProductStorefrontUrlCopyButton";
 import { ProductTranslationFields } from "@/features/products/components/ProductTranslationFields";
 import { ProductVariantFields } from "@/features/products/components/ProductVariantFields";
 import { TagMultiPicker } from "@/features/products/components/TagMultiPicker";
@@ -32,15 +32,15 @@ import {
 import { buildAttributeSeedsFromProduct } from "@/features/products/utils/build-attribute-seeds-from-product";
 import { describeProductFormEdits } from "@/features/products/utils/describe-product-form-edits";
 import {
-  getLocalesNeedingSlugUpdatePrompt,
-  type ProductSlugUpdatePrompt,
-} from "@/features/products/utils/product-slug.utils";
-import {
   getFormFeaturedImageUrl,
   getProductFormCompleteness,
   type ProductFormSectionId,
 } from "@/features/products/utils/product-form-completeness";
 import { replaceProductImageSlot } from "@/features/products/utils/product-image-slot.utils";
+import {
+  getLocalesNeedingSlugUpdatePrompt,
+  type ProductSlugUpdatePrompt,
+} from "@/features/products/utils/product-slug.utils";
 import {
   AppButton,
   ConfirmDialog,

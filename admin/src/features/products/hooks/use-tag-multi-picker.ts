@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 
-import type { RelationPickerSeed } from "@/features/products/types/products.types";
 import {
   getMissingRelationPickerIds,
   resolveRelationPickerItems,
   useRelationPickerKnownItems,
 } from "@/features/products/hooks/relation-picker.utils";
+import type { RelationPickerSeed } from "@/features/products/types/products.types";
 import { tagsService } from "@/features/tags/services/tags.service";
 import type { Tag } from "@/features/tags/types/tags.types";
 import { useCrudQuery } from "@/shared/crud";

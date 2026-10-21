@@ -12,11 +12,11 @@ import {
 import { inventoryService } from "@/features/inventory/services/inventory.service";
 import type { InventoryListParams } from "@/features/inventory/services/inventory.service.types";
 import type { InventorySummary, StockStatus } from "@/features/inventory/types/inventory.types";
-import type { Product } from "@/features/products/types/products.types";
 import {
   filterInventoryRows,
   flattenProductVariants,
 } from "@/features/inventory/utils/flatten-product-variants";
+import type { Product } from "@/features/products/types/products.types";
 import {
   type CrudFilterDefinition,
   mapBooleanFilterValue,
@@ -155,12 +155,14 @@ export function useInventoryList(limit = 12) {
     return summaryQuery.data ?? EMPTY_INVENTORY_SUMMARY;
   }, [list.page, pageOneSummary, summaryQuery.data]);
 
+  const { page: listPage, refetch: refetchList } = list;
+  const { refetch: refetchSummary } = summaryQuery;
   const refetch = useCallback(async () => {
-    await list.refetch();
-    if (list.page > 1) {
-      await summaryQuery.refetch();
+    await refetchList();
+    if (listPage > 1) {
+      await refetchSummary();
     }
-  }, [list.page, list.refetch, summaryQuery.refetch]);
+  }, [listPage, refetchList, refetchSummary]);
 
   return {
     ...list,

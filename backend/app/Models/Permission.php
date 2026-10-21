@@ -7,7 +7,6 @@ use App\Http\Traits\Filterable;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Permission as abstractPermission;
 
-
 #[PermissionSchema]
 class Permission extends abstractPermission
 {
@@ -27,6 +26,7 @@ class Permission extends abstractPermission
         foreach ($attributes as $key => $value) {
             $camelCaseAttributes[Str::camel($key)] = $value;
         }
+
         return $camelCaseAttributes;
     }
 }

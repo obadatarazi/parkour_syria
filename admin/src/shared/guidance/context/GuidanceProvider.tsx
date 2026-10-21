@@ -8,8 +8,8 @@ import {
 } from "@/shared/guidance/context/GuidanceContext";
 import { resolveGuidanceConfig } from "@/shared/guidance/registry";
 import {
-  type RunTourOptions,
   destroyActiveTour,
+  type RunTourOptions,
   startCoachMarks,
   startTour,
 } from "@/shared/guidance/tours/run-tour";

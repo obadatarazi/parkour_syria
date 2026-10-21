@@ -22,8 +22,8 @@ class EventController extends ApiController
         summary: 'get all events',
         tags: ['Event'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
-    #[OA\Parameter(ref: "#/components/parameters/direction")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
+    #[OA\Parameter(ref: '#/components/parameters/direction')]
     #[OA\Parameter(
         name: 'sort',
         description: 'Specify sorting order.',
@@ -32,8 +32,8 @@ class EventController extends ApiController
         schema: new OA\Schema(type: 'string', enum: ['id', 'starts_at', 'created_at']),
         example: 'starts_at'
     )]
-    #[OA\Parameter(ref: "#/components/parameters/page")]
-    #[OA\Parameter(ref: "#/components/parameters/limit")]
+    #[OA\Parameter(ref: '#/components/parameters/page')]
+    #[OA\Parameter(ref: '#/components/parameters/limit')]
     #[OA\Parameter(
         name: 'search',
         description: 'Free text search on title / location_label.',
@@ -103,7 +103,7 @@ class EventController extends ApiController
         summary: 'Get one event',
         tags: ['Event'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'slug',
         description: 'the event slug',

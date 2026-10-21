@@ -7,9 +7,9 @@ import { mapLoyaltyRedemptionFromApi } from "@/features/loyalty-redemptions/util
 import {
   apiRequest,
   buildLaravelListParams,
-  mapPaginatedFromApi,
   type LaravelPaginatedResponse,
   type LaravelSuccessResponse,
+  mapPaginatedFromApi,
 } from "@/shared/lib/api";
 
 function createApiLoyaltyRedemptionsService(): LoyaltyRedemptionsService {

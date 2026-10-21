@@ -18,5 +18,4 @@ class UnauthorizedException extends Exception
     {
         return $this->details;
     }
-
 }

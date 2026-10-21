@@ -1,12 +1,12 @@
 import type { Product } from "@/features/products/types/products.types";
 import {
-  getProductStorefrontUrlForLocale,
-  formatProductStorefrontUrlForCopy,
-  type StorefrontLocale,
-} from "@/features/products/utils/product-storefront-url.utils";
-import {
   getFeaturedProductImage,
 } from "@/features/products/utils/product-display.utils";
+import {
+  formatProductStorefrontUrlForCopy,
+  getProductStorefrontUrlForLocale,
+  type StorefrontLocale,
+} from "@/features/products/utils/product-storefront-url.utils";
 import { BilingualText, MediaImage } from "@/shared/components";
 import {
   WpRowActionButton,
@@ -14,11 +14,11 @@ import {
   WpRowActionSeparator,
 } from "@/shared/crud/components/WpRowActions";
 import { useLocalization, useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
+import { notify } from "@/shared/lib/notifications";
 import {
   formatBilingualLabel,
   getBilingualTitle,
 } from "@/shared/lib/translation-display.utils";
-import { notify } from "@/shared/lib/notifications";
 
 type ProductRowTitleCellProps = {
   product: Product;

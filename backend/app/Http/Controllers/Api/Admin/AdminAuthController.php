@@ -3,18 +3,17 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Constant\SerializedGroup;
-use App\Enum\UserType;
 use App\Exceptions\Custom\UnauthorizedException;
 use App\Http\Controllers\Api\ApiController;
-use App\Http\Requests\Admin\LoginRequest;
-use App\Http\Requests\Admin\UpdateProfileRequest;
 use App\Http\Requests\Admin\ChangePasswordRequest;
+use App\Http\Requests\Admin\LoginRequest;
+use App\Http\Requests\Admin\RefreshTokenRequest;
+use App\Http\Requests\Admin\UpdateProfileRequest;
 use App\Http\Resources\UserResource;
 use App\Services\AuthService;
 use App\Services\UserService;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
@@ -59,23 +58,13 @@ class AdminAuthController extends ApiController
             ),
         ]
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     public function login(LoginRequest $request): JsonResponse
     {
         try {
-            $userData = $request->validated();
-
-            $user = $this->authService->findUserByEmail($userData['email']);
-
-            if ($user === null) {
-                throw new UnauthorizedException(__('exceptions.email_password_invalid'), null, 401);
-            }
-
-            if ($user->type !== UserType::ADMIN->value) {
-                throw new UnauthorizedException(__('exceptions.only_admin'), null, 403);
-            }
-
-            $data = $this->authService->login($userData);
+            // Unknown email, wrong password and non-admin account answer alike until the password
+            // is right; AuthService::login() checks the account type after that.
+            $data = $this->authService->login($request->validated());
 
             return $this
                 ->setSerializedGroup(SerializedGroup::Details->value)
@@ -123,11 +112,11 @@ class AdminAuthController extends ApiController
             ),
         ]
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
-    public function refreshToken(Request $request): JsonResponse
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
+    public function refreshToken(RefreshTokenRequest $request): JsonResponse
     {
         try {
-            $data = $this->authService->refreshToken($request->request->get('refreshToken'));
+            $data = $this->authService->refreshToken($request->validated()['refresh_token']);
 
             return $this->successResponse($data);
         } catch (AuthenticationException $e) {
@@ -158,7 +147,7 @@ class AdminAuthController extends ApiController
             ),
         ]
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     public function getAccountStatus(): JsonResponse
     {
         $user = auth()->user();
@@ -168,7 +157,7 @@ class AdminAuthController extends ApiController
         return $this
             ->setSerializedGroup(SerializedGroup::Details->value)
             ->successResponse([
-                'status'    => $isActive,
+                'status' => $isActive,
                 'message' => $isActive ? 'Your Account is Active.' : 'Your Account is Inactive. Please Contact Super Admin For Support And Assistance.',
             ]);
     }
@@ -196,7 +185,7 @@ class AdminAuthController extends ApiController
             ),
         ]
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     public function logout(): JsonResponse
     {
         $user = auth()->user();
@@ -214,7 +203,7 @@ class AdminAuthController extends ApiController
         summary: 'Get admin profile',
         security: [['Bearer' => []]],
         tags: ['Admin Auth'],
-        parameters: [new OA\Parameter(ref: "#/components/parameters/x-locale")],
+        parameters: [new OA\Parameter(ref: '#/components/parameters/x-locale')],
         responses: [
             new OA\Response(
                 response: 200,
@@ -234,6 +223,7 @@ class AdminAuthController extends ApiController
     public function me(): JsonResponse
     {
         $data = $this->authService->me();
+
         return $this
             ->setSerializedGroup(SerializedGroup::Details->value)
             ->successResponse([
@@ -280,7 +270,7 @@ class AdminAuthController extends ApiController
             ),
         ]
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     public function updateProfileAdmin(UpdateProfileRequest $updateProfileRequest): JsonResponse
     {
         $user = auth()->user();
@@ -373,7 +363,7 @@ class AdminAuthController extends ApiController
             ),
         ]
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     public function changePassword(ChangePasswordRequest $changePasswordRequest): JsonResponse
     {
         $user = auth()->user();

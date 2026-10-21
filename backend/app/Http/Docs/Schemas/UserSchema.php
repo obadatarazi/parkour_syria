@@ -40,6 +40,5 @@ use OpenApi\Attributes as OA;
 #[Attribute(Attribute::TARGET_CLASS)]
 class UserSchema
 {
-    public function __construct()
-    {}
+    public function __construct() {}
 }

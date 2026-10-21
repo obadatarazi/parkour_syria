@@ -1,0 +1,100 @@
+/* Admin rich text: the editor surface and read-only previews share one look. */
+
+.rich-text {
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+
+.rich-text > * + * {
+  margin-top: 0.75em;
+}
+
+.rich-text h2 {
+  font-size: 1.5em;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-top: 1.25em;
+}
+
+.rich-text h3 {
+  font-size: 1.25em;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-top: 1.1em;
+}
+
+.rich-text h4 {
+  font-size: 1.05em;
+  font-weight: 700;
+  margin-top: 1em;
+}
+
+.rich-text > :first-child {
+  margin-top: 0;
+}
+
+.rich-text ul,
+.rich-text ol {
+  padding-inline-start: 1.5em;
+}
+
+.rich-text ul {
+  list-style: disc;
+}
+
+.rich-text ol {
+  list-style: decimal;
+}
+
+.rich-text li + li {
+  margin-top: 0.25em;
+}
+
+.rich-text li > p {
+  margin: 0;
+}
+
+.rich-text blockquote {
+  border-inline-start: 3px solid var(--primary);
+  padding-inline-start: 1em;
+  color: var(--muted-foreground);
+  font-style: italic;
+}
+
+.rich-text a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.rich-text hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin-block: 1.5em;
+}
+
+.rich-text mark {
+  border-radius: 0.2em;
+  padding-inline: 0.15em;
+  color: inherit;
+}
+
+.rich-text code {
+  border-radius: 0.3em;
+  background: var(--muted);
+  padding: 0.1em 0.35em;
+  font-size: 0.9em;
+}
+
+/* Editor-only: the empty-state hint and the caret area. */
+.rich-text.ProseMirror {
+  outline: none;
+}
+
+.rich-text p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: var(--muted-foreground);
+  float: inline-start;
+  height: 0;
+  pointer-events: none;
+}

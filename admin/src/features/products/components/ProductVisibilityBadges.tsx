@@ -1,4 +1,4 @@
-import { Award, Heart, Loader2, PackagePlus, Star, type LucideIcon } from "lucide-react";
+import { Award, Heart, Loader2, type LucideIcon,PackagePlus, Star } from "lucide-react";
 
 import type { ProductQuickToggleField } from "@/features/products/hooks/use-product-mutations";
 import type { Product } from "@/features/products/types/products.types";

@@ -1,6 +1,10 @@
 /.phpunit.cache
 /node_modules
 /public/build
+# Copied in by `php artisan website:install`.
+/public/assets
+/public/favicon.svg
+/public/parkour
 /public/hot
 /public/storage
 /storage/*.key

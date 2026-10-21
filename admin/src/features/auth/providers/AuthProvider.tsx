@@ -12,7 +12,6 @@ import { useNavigate } from "react-router";
 
 import { ROUTES } from "@/app/router/routes";
 import { authService } from "@/features/auth/services/auth.service";
-import { registerAuthSessionRecoveryHandlers } from "@/shared/lib/api/auth-session-recovery-bridge";
 import { subscribeSessionEnded } from "@/features/auth/session/auth-session-events";
 import { subscribeAuthTabMessages } from "@/features/auth/session/auth-tab-sync";
 import type {
@@ -22,6 +21,7 @@ import type {
   ProfileUpdateInput,
 } from "@/features/auth/types/auth.types";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
+import { registerAuthSessionRecoveryHandlers } from "@/shared/lib/api/auth-session-recovery-bridge";
 import { notify } from "@/shared/lib/notifications";
 
 type AuthContextValue = {

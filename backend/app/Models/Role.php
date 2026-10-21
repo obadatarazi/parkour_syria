@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Constant\RoleCode;
 use App\Http\Docs\Schemas\RoleSchema;
 use App\Http\Traits\Filterable;
 use Illuminate\Support\Str;
@@ -11,6 +12,21 @@ use Spatie\Permission\Models\Role as abstractRole;
 class Role extends abstractRole
 {
     use Filterable;
+
+    /**
+     * The roles the platform itself relies on. They are never deleted and their code never changes,
+     * `app:update-admin-roles` and the role checks look them up by it.
+     */
+    public const SYSTEM_CODES = [
+        RoleCode::SuperAdmin->value,
+        RoleCode::Supervisor->value,
+        RoleCode::Customer->value,
+    ];
+
+    public function isSystemRole(): bool
+    {
+        return in_array($this->code, self::SYSTEM_CODES, true);
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -37,7 +53,7 @@ class Role extends abstractRole
 
     protected $filterable = [
         'name' => 'like',
-        'code' => '='
+        'code' => '=',
     ];
 
     protected $sorterable = ['id', 'name', 'guard_name', 'created_at'];
@@ -50,6 +66,7 @@ class Role extends abstractRole
         foreach ($attributes as $key => $value) {
             $camelCaseAttributes[Str::camel($key)] = $value;
         }
+
         return $camelCaseAttributes;
     }
 }

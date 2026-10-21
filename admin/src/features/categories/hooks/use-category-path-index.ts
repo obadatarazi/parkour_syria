@@ -41,7 +41,7 @@ export function useCategoryPathIndex(enabled = true) {
     enabled,
   });
 
-  const allCategoryRoots = query.data ?? [];
+  const allCategoryRoots = useMemo(() => query.data ?? [], [query.data]);
 
   const allCategoriesFlat = useMemo(
     () => flattenCategoryTree(allCategoryRoots),

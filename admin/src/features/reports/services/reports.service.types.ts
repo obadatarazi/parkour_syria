@@ -1,5 +1,5 @@
-import type { ReportPayload, ReportPeriodParams } from "@/features/reports/types/reports.types";
 import type { DashboardSnapshot } from "@/features/dashboard/types/dashboard.types";
+import type { ReportPayload, ReportPeriodParams } from "@/features/reports/types/reports.types";
 
 export interface ReportsService {
   getDashboard(params: ReportPeriodParams, signal?: AbortSignal): Promise<DashboardSnapshot>;

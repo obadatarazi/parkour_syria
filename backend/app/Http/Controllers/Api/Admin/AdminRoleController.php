@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Constant\PermissionType;
-use App\Constant\RoleCode;
 use App\Constant\SerializedGroup;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\QueryFilter\RoleFilter;
@@ -33,9 +32,9 @@ class AdminRoleController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Role'],
         parameters: [
-            new OA\Parameter(ref: "#/components/parameters/direction"),
-            new OA\Parameter(ref: "#/components/parameters/page"),
-            new OA\Parameter(ref: "#/components/parameters/limit"),
+            new OA\Parameter(ref: '#/components/parameters/direction'),
+            new OA\Parameter(ref: '#/components/parameters/page'),
+            new OA\Parameter(ref: '#/components/parameters/limit'),
             new OA\Parameter(
                 name: 'sort',
                 description: 'Specify sorting order.',
@@ -109,7 +108,7 @@ class AdminRoleController extends ApiController
             )
         ),
         tags: ['Admin Role'],
-        parameters: [new OA\Parameter(ref: "#/components/parameters/x-locale")],
+        parameters: [new OA\Parameter(ref: '#/components/parameters/x-locale')],
         responses: [
             new OA\Response(
                 response: 200,
@@ -143,7 +142,7 @@ class AdminRoleController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Role'],
         parameters: [
-            new OA\Parameter(ref: "#/components/parameters/x-locale"),
+            new OA\Parameter(ref: '#/components/parameters/x-locale'),
             new OA\Parameter(
                 name: 'role',
                 description: 'the role to retrieve',
@@ -193,7 +192,7 @@ class AdminRoleController extends ApiController
         ),
         tags: ['Admin Role'],
         parameters: [
-            new OA\Parameter(ref: "#/components/parameters/x-locale"),
+            new OA\Parameter(ref: '#/components/parameters/x-locale'),
             new OA\Parameter(
                 name: 'role',
                 description: 'role to retrieve',
@@ -238,7 +237,7 @@ class AdminRoleController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Role'],
         parameters: [
-            new OA\Parameter(ref: "#/components/parameters/x-locale"),
+            new OA\Parameter(ref: '#/components/parameters/x-locale'),
             new OA\Parameter(
                 name: 'role',
                 description: 'role to retrieve',
@@ -266,10 +265,7 @@ class AdminRoleController extends ApiController
     )]
     public function destroy(Role $role): JsonResponse
     {
-        if (in_array($role->code, [RoleCode::SuperAdmin->value, RoleCode::Supervisor->value, RoleCode::Customer->value], true)) {
-            return $this->errorResponse(__('exceptions.can_not_delete_system_role'), 422);
-        }
-
+        // RoleService::delete() refuses the system roles, for this route and for bulk-delete alike.
         return parent::baseDestroy($role);
     }
 
@@ -280,7 +276,7 @@ class AdminRoleController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Role'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\RequestBody(
         content: new OA\MediaType(
             mediaType: 'application/json',
@@ -303,14 +299,14 @@ class AdminRoleController extends ApiController
     #[OA\Get(
         path: '/api/admin/roles/export',
         description: 'download every roles the current filters select as a csv file. The file carries all '
-            . 'the columns of the record, its translated fields written in the language the x-locale header '
-            . 'asks for, and the names behind its relations — a brand, a category, a product, never a bare '
-            . 'id. It takes the same filters index() takes, without the paging.',
+            .'the columns of the record, its translated fields written in the language the x-locale header '
+            .'asks for, and the names behind its relations — a brand, a category, a product, never a bare '
+            .'id. It takes the same filters index() takes, without the paging.',
         summary: 'export roles as csv',
         security: [['Bearer' => []]],
         tags: ['Admin Role'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Response(
         response: 200,
         description: 'The csv file, as a download',

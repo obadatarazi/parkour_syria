@@ -1,7 +1,3 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('welcome');
-});
+// The website's pages are in routes/website.php, registered after the API so they never shadow it.

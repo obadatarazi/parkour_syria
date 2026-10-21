@@ -19,7 +19,7 @@ class PassportClientSeeder extends Seeder
             ->get()
             ->contains(fn (Client $client) => $client->hasGrantType('personal_access'));
 
-        if (!$exists) {
+        if (! $exists) {
             app(ClientRepository::class)->createPersonalAccessGrantClient('Parkour Syria Personal Access Client', 'users');
         }
     }

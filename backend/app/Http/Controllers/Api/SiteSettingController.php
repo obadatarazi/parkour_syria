@@ -8,15 +8,13 @@ use OpenApi\Attributes as OA;
 
 class SiteSettingController extends ApiController
 {
-    public function __construct(protected MultiTypeSettingService $multiTypeSettingService)
-    {
-    }
+    public function __construct(protected MultiTypeSettingService $multiTypeSettingService) {}
 
     #[OA\Get(
         path: '/api/site-settings',
         description: 'The settings the website reads (WhatsApp number and book message, social links, safety notices, '
-            . 'site name), keyed by setting key. Only the keys allowlisted in config/site.php are ever returned, a '
-            . 'listed key with no value yet is null.',
+            .'site name), keyed by setting key. Only the keys allowlisted in config/site.php are ever returned, a '
+            .'listed key with no value yet is null.',
         summary: 'public site settings',
         tags: ['Site Settings'],
     )]

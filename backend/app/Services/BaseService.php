@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Services;
 
 use App\Http\QueryFilter\QueryFilter;
@@ -8,9 +9,13 @@ use Illuminate\Support\Facades\DB;
 abstract class BaseService
 {
     const UPLOAD_FOLDER = 'others';
+
     protected $model;
+
     protected $keyFileMaps = [];
+
     protected $uploadFileService;
+
     protected $withRelations = [];
 
     /**
@@ -46,14 +51,12 @@ abstract class BaseService
      */
     public const MAX_PAGE_LIMIT = 200;
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     /**
      * The page number asked for, never below the first page.
      *
-     * @param array<string, mixed> $filters
+     * @param  array<string, mixed>  $filters
      */
     protected function resolvePage(array $filters): int
     {
@@ -65,8 +68,8 @@ abstract class BaseService
      * asking for more is served the maximum rather than refused: the page is smaller than it asked
      * for, and the pagination block it reads back says so.
      *
-     * @param array<string, mixed> $filters
-     * @param int|null $max Null uses this service's ceiling.
+     * @param  array<string, mixed>  $filters
+     * @param  int|null  $max  Null uses this service's ceiling.
      */
     protected function resolveLimit(array $filters, ?int $max = null): int
     {
@@ -83,7 +86,7 @@ abstract class BaseService
 
         $query = $this->model::query()->with($this->getListRelations())->filter($modelFilter);
 
-        if (!empty($this->listCounts)) {
+        if (! empty($this->listCounts)) {
             $query->withCount($this->listCounts);
         }
 
@@ -134,7 +137,7 @@ abstract class BaseService
     {
         $object = new $this->model($data);
 
-        if (!empty($this->keyFileMaps)) {
+        if (! empty($this->keyFileMaps)) {
             $this->uploadFileService->uploadFiles(
                 $data,
                 $this->keyFileMaps,
@@ -152,7 +155,7 @@ abstract class BaseService
     {
         $object->update($data);
 
-        if (!empty($this->keyFileMaps)) {
+        if (! empty($this->keyFileMaps)) {
             $this->uploadFileService->updateFiles(
                 $data,
                 $this->keyFileMaps,
@@ -171,12 +174,12 @@ abstract class BaseService
      * filters, but carrying the relations the csv has columns for instead of the ones a table row
      * draws, and unpaginated.
      *
-     * @see \App\Services\CsvExportService
+     * @see CsvExportService
      */
     public function exportQuery(QueryFilter $modelFilter)
     {
         return $this->model::query()
-            ->with(app(CsvExportService::class)->relations(new $this->model()))
+            ->with(app(CsvExportService::class)->relations(new $this->model))
             ->filter($modelFilter);
     }
 
@@ -190,9 +193,9 @@ abstract class BaseService
      * not an error, they are reported back in `notFoundIds` — the row a second admin deleted a
      * moment earlier should not fail the rest of the selection.
      *
-     * @param array<int, int|string> $ids
-     * @param array<string, mixed> $scope Extra column constraints, used by the nested resources to
-     *                                    keep a bulk delete inside its parent.
+     * @param  array<int, int|string>  $ids
+     * @param  array<string, mixed>  $scope  Extra column constraints, used by the nested resources to
+     *                                       keep a bulk delete inside its parent.
      * @return array{deletedCount: int, deletedIds: list<int>, notFoundIds: list<int>}
      */
     public function bulkDelete(array $ids, array $scope = []): array
@@ -205,7 +208,7 @@ abstract class BaseService
 
         $query = $this->model::query()
             ->with($this->getWithRelations())
-            ->whereIn((new $this->model())->getQualifiedKeyName(), $ids);
+            ->whereIn((new $this->model)->getQualifiedKeyName(), $ids);
 
         foreach ($scope as $column => $value) {
             $query->where($column, $value);
@@ -229,11 +232,11 @@ abstract class BaseService
 
     public function delete(Model $object): void
     {
-        if (!empty($this->keyFileMaps)) {
+        if (! empty($this->keyFileMaps)) {
             $paths = [];
             foreach ($this->keyFileMaps as $fileModelKey => $fileRequestKey) {
 
-                if (!is_null($object->$fileModelKey)) {
+                if (! is_null($object->$fileModelKey)) {
                     $paths[] = $object->$fileModelKey;
                 }
 
@@ -244,5 +247,4 @@ abstract class BaseService
 
         $object->delete();
     }
-
 }

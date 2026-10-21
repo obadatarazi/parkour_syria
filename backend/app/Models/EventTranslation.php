@@ -9,6 +9,7 @@ class EventTranslation extends BaseModel
     use HasFactory;
 
     public $timestamps = false;
+
     protected $fillable = [
         'title',
         'location_label',

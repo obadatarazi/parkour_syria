@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 class BrandService extends BaseService
 {
     const UPLOAD_FOLDER = 'brands';
+
     public function __construct(UploadFileService $uploadFileService)
     {
         $this->model = Brand::class;
@@ -20,9 +21,9 @@ class BrandService extends BaseService
         parent::__construct();
     }
 
-    public function create($data) : Brand
+    public function create($data): Brand
     {
-        $brand = new Brand();
+        $brand = new Brand;
 
         $brand->fill($data);
 
@@ -52,7 +53,7 @@ class BrandService extends BaseService
         return $brand;
     }
 
-    public function update($data, Model | Brand $brand) : Brand
+    public function update($data, Model|Brand $brand): Brand
     {
         $brand->update($data);
 

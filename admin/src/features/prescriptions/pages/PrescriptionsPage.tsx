@@ -289,7 +289,6 @@ export function PrescriptionsPage() {
       openAddProducts,
       openPrescription,
       openViewFile,
-      openViewer,
       rowActions,
       statusOptions,
       t,

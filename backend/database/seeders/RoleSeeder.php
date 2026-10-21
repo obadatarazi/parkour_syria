@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Constant\RoleCode;
-use Spatie\Permission\Models\Role;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class RoleSeeder extends Seeder
 {

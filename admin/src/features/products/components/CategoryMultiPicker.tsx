@@ -1,20 +1,20 @@
 import { Check, ChevronDown, X } from "lucide-react";
 import { useEffect, useId, useState } from "react";
 
+import type { Category } from "@/features/categories/types/categories.types";
+import { CATEGORY_TREE_INDENT_REM } from "@/features/categories/utils/category-tree.utils";
+import { RelationPickerPanel } from "@/features/products/components/RelationPickerPanel";
 import {
   getCategoryMultiLabel,
   useCategoryMultiPicker,
 } from "@/features/products/hooks/use-category-multi-picker";
-import { RelationPickerPanel } from "@/features/products/components/RelationPickerPanel";
 import type { RelationPickerSeed } from "@/features/products/types/products.types";
-import type { Category } from "@/features/categories/types/categories.types";
-import { CATEGORY_TREE_INDENT_REM } from "@/features/categories/utils/category-tree.utils";
 import { FormField } from "@/shared/components";
 import { Button } from "@/shared/design-system/components/ui/button";
 import { Input } from "@/shared/design-system/components/ui/input";
+import { cn } from "@/shared/design-system/components/ui/utils";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import { resolveServiceErrorMessage } from "@/shared/errors";
-import { cn } from "@/shared/design-system/components/ui/utils";
 
 type CategoryMultiPickerProps = {
   value: number[];

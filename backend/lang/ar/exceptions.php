@@ -2,6 +2,7 @@
 
 return [
 
+    'account_inactive' => 'هذا الحساب غير مفعّل. يرجى التواصل مع المشرف الرئيسي.',
     'brand_has_products' => 'لا يمكن حذف الماركة «:name» لأنها مرتبطة بـ :count منتج. انقل هذه المنتجات إلى ماركة أخرى أو احذفها أولاً.',
     'can_not_delete_default_currency' => 'لا يمكنك حذف العملة الافتراضية. يرجى تعيين عملة أخرى كافتراضية أولًا.',
     'can_not_delete_system_role' => 'لا يمكنك حذف هذا الدور لأنه من أدوار النظام الأساسية.',
@@ -11,9 +12,18 @@ return [
     'email_password_invalid' => 'بريد إلكتروني أو كلمة مرور غير صحيحة. يرجى المحاولة مرة أخرى.',
     'not_found' => 'العنصر غير موجود',
     'only_admin' => 'عذراً، الوصول مقيد، يلزم وجود صلاحيات مستخدم مشرف رئيسي.',
+    'server_error' => 'حدث خطأ من جهتنا. يرجى المحاولة مرة أخرى.',
     'suggestion_already_reviewed' => 'تمت مراجعة هذا الاقتراح مسبقاً.',
     'suggestion_event_needs_date' => 'تحتاج الفعالية إلى تاريخ بدء قبل قبولها.',
     'tag_has_products' => 'لا يمكن حذف الوسم «:name» لأنه مرتبط بـ :count منتج. أزل هذا الوسم من هذه المنتجات أولاً.',
-    'unauthenticated' => 'JWT Token not found',
+    'unauthenticated' => 'يجب تسجيل الدخول أولاً.',
+
+    'own_role_permissions_forbidden' => 'لا يمكنك تعديل صلاحيات دور تملكه.',
+    'own_roles_change_forbidden' => 'لا يمكنك تعديل أدوار الحساب الذي سجّلت الدخول به.',
+    'permission_escalation_forbidden' => 'لا يمكنك منح صلاحية لا تملكها.',
+    'role_change_forbidden' => 'تعديل أدوار المستخدم يتطلب صلاحية إدارة الأدوار.',
+    'super_admin_grant_forbidden' => 'وحده المشرف الرئيسي يمكنه منح دور المشرف الرئيسي.',
+    'super_admin_permissions_locked' => 'دور المشرف الرئيسي يملك كل الصلاحيات دائماً ولا يمكن تعديله.',
+    'user_outranks_actor' => 'لا يمكنك تعديل حساب يملك صلاحيات لا تملكها.',
 
 ];

@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+
 return [
 
     /*
@@ -17,6 +19,18 @@ return [
         'guard' => env('AUTH_GUARD', 'web'),
         'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Dashboard refresh tokens
+    |--------------------------------------------------------------------------
+    |
+    | How many days a dashboard refresh token stays valid. Each refresh rotates it, so this is the
+    | longest an idle session survives, and the longest a stolen one does too.
+    |
+    */
+
+    'refresh_token_ttl_days' => (int) env('REFRESH_TOKEN_TTL_DAYS', 7),
 
     /*
     |--------------------------------------------------------------------------
@@ -66,7 +80,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => env('AUTH_MODEL', User::class),
         ],
 
         // 'users' => [

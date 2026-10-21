@@ -1,6 +1,20 @@
 <?php
 
+use App\Http\Middleware\GateApiDocs;
+use L5Swagger\Generator;
+use OpenApi\scan;
+
 return [
+    /*
+     * Who reaches the documentation outside the local environment, see GateApiDocs. Public is for a
+     * throwaway environment only; elsewhere set a user and password, or leave both empty to hide it.
+    */
+    'access' => [
+        'public' => (bool) env('L5_SWAGGER_PUBLIC', false),
+        'user' => env('L5_SWAGGER_USER'),
+        'password' => env('L5_SWAGGER_PASSWORD'),
+    ],
+
     'default' => 'default',
     'documentations' => [
         'default' => [
@@ -61,10 +75,10 @@ return [
              * Middleware allows to prevent unexpected access to API documentation
             */
             'middleware' => [
-                'api' => [],
-                'asset' => [],
-                'docs' => [],
-                'oauth2_callback' => [],
+                'api' => [GateApiDocs::class],
+                'asset' => [GateApiDocs::class],
+                'docs' => [GateApiDocs::class],
+                'oauth2_callback' => [GateApiDocs::class],
             ],
 
             /*
@@ -106,14 +120,14 @@ return [
             /**
              * analyser: defaults to \OpenApi\StaticAnalyser .
              *
-             * @see \OpenApi\scan
+             * @see scan
              */
             'analyser' => null,
 
             /**
              * analysis: defaults to a new \OpenApi\Analysis .
              *
-             * @see \OpenApi\scan
+             * @see scan
              */
             'analysis' => null,
 
@@ -121,7 +135,7 @@ return [
              * Custom query path processors classes.
              *
              * @link https://github.com/zircote/swagger-php/tree/master/Examples/processors/schema-query-parameter
-             * @see \OpenApi\scan
+             * @see scan
              */
             'processors' => [
                 // new \App\SwaggerProcessors\SchemaQueryParameter(),
@@ -130,7 +144,7 @@ return [
             /**
              * pattern: string       $pattern File pattern(s) to scan (default: *.php) .
              *
-             * @see \OpenApi\scan
+             * @see scan
              */
             'pattern' => null,
 
@@ -145,7 +159,7 @@ return [
              * Allows to generate specs either for OpenAPI 3.0.0 or OpenAPI 3.1.0.
              * By default the spec will be in version 3.0.0
              */
-            'open_api_spec_version' => env('L5_SWAGGER_OPEN_API_SPEC_VERSION', \L5Swagger\Generator::OPEN_API_DEFAULT_SPEC_VERSION),
+            'open_api_spec_version' => env('L5_SWAGGER_OPEN_API_SPEC_VERSION', Generator::OPEN_API_DEFAULT_SPEC_VERSION),
         ],
 
         /*

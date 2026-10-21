@@ -1,10 +1,10 @@
+import type { TranslationsInput } from "@/shared/lib/api/form-data.utils";
+import type { EnumLabelValue } from "@/shared/lib/api/normalize-enum.utils";
 import {
   hasFormChanges,
   pickChangedScalar,
   pickChangedTranslations,
 } from "@/shared/lib/form/pick-changed-fields";
-import type { TranslationsInput } from "@/shared/lib/api/form-data.utils";
-import type { EnumLabelValue } from "@/shared/lib/api/normalize-enum.utils";
 import type { PaginatedResult } from "@/shared/types";
 
 export type TrendingSearchTargetTypeValue =

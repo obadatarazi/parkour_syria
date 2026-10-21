@@ -1,6 +1,7 @@
 import { type TextareaHTMLAttributes, useId } from "react";
 
-import { FormField, getFormFieldDescribedBy } from "@/shared/components/forms/FormField";
+import { getFormFieldDescribedBy } from "@/shared/components/forms/form-field.utils";
+import { FormField } from "@/shared/components/forms/FormField";
 import { Textarea } from "@/shared/design-system/components/ui/textarea";
 import { cn } from "@/shared/design-system/components/ui/utils";
 

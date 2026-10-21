@@ -1,9 +1,10 @@
 <?php
+
 namespace App\Enum;
 
 use App\Http\Traits\EnumTrait;
 
-enum UserGender:string
+enum UserGender: string
 {
     use EnumTrait;
 

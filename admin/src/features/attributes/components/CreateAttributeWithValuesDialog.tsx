@@ -1,11 +1,11 @@
 import { Plus, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
+import { attributeValuesService } from "@/features/attribute-values/services/attribute-values.service";
+import type { AttributeValue } from "@/features/attribute-values/types/attribute-values.types";
 import { attributesService } from "@/features/attributes/services/attributes.service";
 import type { Attribute } from "@/features/attributes/types/attributes.types";
 import { createEmptyAttributeForm } from "@/features/attributes/types/attributes.types";
-import { attributeValuesService } from "@/features/attribute-values/services/attribute-values.service";
-import type { AttributeValue } from "@/features/attribute-values/types/attribute-values.types";
 import { AppButton, AppDialog, ToggleField } from "@/shared/components";
 import { TitleTranslationFields } from "@/shared/components/forms/TitleTranslationFields";
 import { invalidateQueryCache, useCrudMutation } from "@/shared/crud";

@@ -21,17 +21,17 @@ class SetLocale
      * only until FEATURE_PUBLIC_EN_LOCALE is switched on, whatever X-Locale it sends, so English
      * content can be filled in ahead of time without leaking to visitors.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  Closure(Request): (Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
         $locale = strtolower(trim((string) $request->header('X-Locale', '')));
 
-        if (!in_array($locale, self::SUPPORTED, true)) {
+        if (! in_array($locale, self::SUPPORTED, true)) {
             $locale = config('app.locale', self::PUBLIC_DEFAULT);
         }
 
-        if (!$this->isAdminRequest($request) && !Features::publicEnLocale()) {
+        if (! $this->isAdminRequest($request) && ! Features::publicEnLocale()) {
             $locale = self::PUBLIC_DEFAULT;
         }
 

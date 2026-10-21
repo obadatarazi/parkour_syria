@@ -1,11 +1,11 @@
+import type { LocaleCode } from "@/shared/lib/api/form-data.utils";
+import type { EnumLabelValue } from "@/shared/lib/api/normalize-enum.utils";
 import {
   areNumberArraysEqual,
   hasFormChanges,
   normalizedStringEqual,
   pickChangedScalar,
 } from "@/shared/lib/form/pick-changed-fields";
-import type { EnumLabelValue } from "@/shared/lib/api/normalize-enum.utils";
-import type { LocaleCode } from "@/shared/lib/api/form-data.utils";
 import type { PaginatedResult } from "@/shared/types";
 
 export type NotificationTypeValue =

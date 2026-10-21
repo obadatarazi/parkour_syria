@@ -1,6 +1,7 @@
 import { type InputHTMLAttributes, type ReactNode, useId } from "react";
 
-import { FormField, getFormFieldDescribedBy } from "@/shared/components/forms/FormField";
+import { getFormFieldDescribedBy } from "@/shared/components/forms/form-field.utils";
+import { FormField } from "@/shared/components/forms/FormField";
 import { Input } from "@/shared/design-system/components/ui/input";
 import { cn } from "@/shared/design-system/components/ui/utils";
 

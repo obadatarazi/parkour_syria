@@ -29,7 +29,7 @@ export function useRolePicker({ selectedIds, enabled = true }: UseRolePickerOpti
     enabled,
   });
 
-  const pageRoles = listQuery.data?.data ?? [];
+  const pageRoles = useMemo(() => listQuery.data?.data ?? [], [listQuery.data?.data]);
   const totalPages = listQuery.data
     ? Math.max(1, Math.ceil(listQuery.data.total / listQuery.data.pageSize))
     : 1;

@@ -9,7 +9,6 @@ use Illuminate\Support\Str;
 
 class CustomFormRequest extends FormRequest
 {
-
     protected function prepareForValidation(): void
     {
         if ($this->has('publish')) {
@@ -28,6 +27,7 @@ class CustomFormRequest extends FormRequest
     public function all($keys = null)
     {
         $data = parent::all($keys);
+
         return $this->convertKeysToSnakeCase($data);
     }
 
@@ -69,5 +69,4 @@ class CustomFormRequest extends FormRequest
 
         return $snakeCaseData;
     }
-
 }

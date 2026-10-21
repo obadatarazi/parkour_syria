@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Order extends BaseModel
 {
-    use HasFactory, Filterable;
+    use Filterable, HasFactory;
 
     protected $fillable = [
         'order_ref_number',

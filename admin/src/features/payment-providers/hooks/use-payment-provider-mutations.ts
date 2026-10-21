@@ -10,7 +10,7 @@ import {
   paymentProviderToFormData,
   pickPaymentProviderFormChanges,
 } from "@/features/payment-providers/types/payment-providers.types";
-import { useCrudMutation, useCrudQuickBooleanMutation, type CrudSaveResult } from "@/shared/crud";
+import { type CrudSaveResult,useCrudMutation, useCrudQuickBooleanMutation } from "@/shared/crud";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 
 type UsePaymentProviderMutationsOptions = {

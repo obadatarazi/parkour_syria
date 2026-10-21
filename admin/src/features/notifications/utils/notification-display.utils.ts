@@ -3,9 +3,9 @@ import {
   ClipboardList,
   FileText,
   Gift,
-  Package,
   type LucideIcon,
   MessageSquareWarning,
+  Package,
   ShieldAlert,
   Sparkles,
   Star,
@@ -16,7 +16,7 @@ import {
 import type { NotificationTypeValue } from "@/features/notifications/types/notifications.types";
 import { formatKwd } from "@/features/products/utils/product-display.utils";
 import { resolveStaticEnumLabel } from "@/shared/constants/static-enum-options";
-import { enumLabel, enumValue, type EnumLabelValue } from "@/shared/lib/api/normalize-enum.utils";
+import { enumLabel, type EnumLabelValue,enumValue } from "@/shared/lib/api/normalize-enum.utils";
 
 type NotificationVisual = {
   icon: LucideIcon;

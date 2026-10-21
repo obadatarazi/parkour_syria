@@ -27,7 +27,7 @@ export function BlogPostFormDrawer({
       open={open}
       mode={mode}
       title={mode === "create" ? t.addBlogPost : t.editBlogPost}
-      size="xl"
+      size="full"
       isLoading={isSaving}
       onOpenChange={onOpenChange}
     >

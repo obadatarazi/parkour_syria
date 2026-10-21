@@ -37,8 +37,8 @@ class AdminSuggestionController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Suggestion'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
-    #[OA\Parameter(ref: "#/components/parameters/direction")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
+    #[OA\Parameter(ref: '#/components/parameters/direction')]
     #[OA\Parameter(
         name: 'sort',
         description: 'Specify sorting order.',
@@ -47,8 +47,8 @@ class AdminSuggestionController extends ApiController
         schema: new OA\Schema(type: 'string', enum: ['id', 'status', 'created_at']),
         example: 'created_at'
     )]
-    #[OA\Parameter(ref: "#/components/parameters/page")]
-    #[OA\Parameter(ref: "#/components/parameters/limit")]
+    #[OA\Parameter(ref: '#/components/parameters/page')]
+    #[OA\Parameter(ref: '#/components/parameters/limit')]
     #[OA\Parameter(name: 'search', description: 'Free text search on name / description / proposer name.', in: 'query', required: false, schema: new OA\Schema(type: 'string'))]
     #[OA\Parameter(name: 'type', in: 'query', required: false, schema: new OA\Schema(type: 'string', enum: ['place', 'coach', 'team', 'event']))]
     #[OA\Parameter(name: 'status', in: 'query', required: false, schema: new OA\Schema(type: 'string', enum: ['pending', 'accepted', 'rejected']))]
@@ -138,8 +138,8 @@ class AdminSuggestionController extends ApiController
     #[OA\Post(
         path: '/api/admin/suggestions/{suggestion}/accept',
         description: 'Accept a pending suggestion. A place / coach / team becomes a directory entry, an event '
-            . 'becomes an event, built from the suggestion plus whatever overrides are sent. The new record id is '
-            . 'returned as promotedType / promotedId.',
+            .'becomes an event, built from the suggestion plus whatever overrides are sent. The new record id is '
+            .'returned as promotedType / promotedId.',
         summary: 'Accept suggestion',
         security: [['Bearer' => []]],
         tags: ['Admin Suggestion'],

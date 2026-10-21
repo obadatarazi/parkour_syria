@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\BlogPost;
 use App\Models\Event;
+use App\Models\Page;
 use App\Models\Slider;
 
 it('answers the home page in one payload', function () {
@@ -43,7 +45,7 @@ it('filters the directory by type and area slug, and searches arabic', function 
         ->assertJsonPath('pagination.totalItems', 1)
         ->assertJsonPath('pagination.items.0.slug', 'sara-dimashqi');
 
-    $slugs = collect($this->getJson('/api/directory-entries?search=' . urlencode('حديقة'))->json('pagination.items'))->pluck('slug');
+    $slugs = collect($this->getJson('/api/directory-entries?search='.urlencode('حديقة'))->json('pagination.items'))->pluck('slug');
     expect($slugs)->toContain('tishreen-park', 'jalaa-park');
 });
 
@@ -68,7 +70,7 @@ it('lists every published detail page in the sitemap', function () {
 });
 
 it('loads every piece of the current website content', function () {
-    expect(\App\Models\Page::query()->pluck('key')->all())
+    expect(Page::query()->pluck('key')->all())
         ->toEqualCanonicalizing(['home', 'what', 'path', 'directory', 'events', 'blog', 'suggest', 'book', 'about', 'contact', 'disclaimer']);
 
     $this->getJson('/api/lessons')->assertJsonPath('pagination.totalItems', 7);
@@ -76,4 +78,13 @@ it('loads every piece of the current website content', function () {
     $this->getJson('/api/blog-posts')->assertJsonPath('pagination.totalItems', 3);
     $this->getJson('/api/gallery-images')->assertJsonPath('pagination.totalItems', 8);
     $this->getJson('/api/site-settings')->assertJsonPath('data.instagram_handle', '@parkoursyria');
+});
+
+it('lists related posts from the same category without the post itself', function () {
+    $post = BlogPost::query()->where('publish', true)->whereNotNull('blog_category_id')->firstOrFail();
+
+    $related = $this->getJson('/api/blog-posts/'.rawurlencode($post->slug).'/related')->assertOk()->json('data');
+
+    expect($related)->not->toBeEmpty()->toHaveCount(min(3, BlogPost::query()->where('publish', true)->count() - 1))
+        ->and(array_column($related, 'slug'))->not->toContain($post->slug);
 });

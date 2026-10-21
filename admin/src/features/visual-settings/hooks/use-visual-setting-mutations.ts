@@ -10,7 +10,7 @@ import {
   pickVisualSettingFormChanges,
   visualSettingToFormData,
 } from "@/features/visual-settings/types/visual-settings.types";
-import { useCrudMutation, type CrudSaveResult } from "@/shared/crud";
+import { type CrudSaveResult,useCrudMutation } from "@/shared/crud";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 
 type UseVisualSettingMutationsOptions = {

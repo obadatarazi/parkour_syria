@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class UserFilter extends QueryFilter
 {
     protected $searchColumns = ['full_name'];
+
     public function __construct(Request $request)
     {
         $this->validationArray = [
@@ -23,7 +24,7 @@ class UserFilter extends QueryFilter
 
     public function email($value)
     {
-        return $this->query->where('email', 'like', '%' . $value . '%');
+        return $this->query->where('email', 'like', '%'.$value.'%');
     }
 
     public function role($value)

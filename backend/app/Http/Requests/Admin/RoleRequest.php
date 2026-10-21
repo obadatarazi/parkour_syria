@@ -18,8 +18,6 @@ class RoleRequest extends CustomFormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array
      */
     public function rules(): array
     {
@@ -29,21 +27,23 @@ class RoleRequest extends CustomFormRequest
                 return [];
             case 'PATCH':
             case 'PUT':
-            $role = $this->route('role');
-            return [
-                    'name' => 'max:100|unique:roles,name,' . $role->id,
+                $role = $this->route('role');
+
+                return [
+                    'name' => 'max:100|unique:roles,name,'.$role->id,
                     'standard' => 'boolean',
-                    'permissions.*' => 'exists:permissions,id'
+                    'permissions.*' => 'exists:permissions,id',
                 ];
             case 'POST':
                 return [
                     'name' => 'required|max:100|unique:roles',
                     'standard' => 'boolean',
-                    'permissions.*' => 'required|exists:permissions,id'
+                    'permissions.*' => 'required|exists:permissions,id',
                 ];
             default:
                 break;
         }
+
         return [];
     }
 }

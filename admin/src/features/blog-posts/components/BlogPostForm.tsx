@@ -19,7 +19,13 @@ import {
   ToggleField,
   validateLocaleFields,
 } from "@/shared/components";
-import { CrudFormFooter, CrudFormSection, CrudFormShell, useCrudFormState } from "@/shared/crud";
+import {
+  CrudEditorLayout,
+  CrudFormFooter,
+  CrudFormSection,
+  CrudFormShell,
+  useCrudFormState,
+} from "@/shared/crud";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 
 type BlogPostFormProps = {
@@ -58,8 +64,9 @@ export function BlogPostForm({
 
   const contentFields: LocaleFieldDefinition<BlogPostLocaleField>[] = [
     { key: "title", label: t.fieldTitle, required: true, maxLength: 255 },
+    { key: "author", label: t.fieldAuthor, maxLength: 120 },
     { key: "excerpt", label: t.fieldExcerpt, multiline: true, rows: 2 },
-    { key: "body", label: t.fieldBody, multiline: true, rows: 14 },
+    { key: "body", label: t.fieldBody, richText: true, rows: 16 },
   ];
   const seoFields: LocaleFieldDefinition<BlogPostLocaleField>[] = [
     { key: "seo_title", label: t.fieldSeoTitle, maxLength: 255 },
@@ -79,63 +86,70 @@ export function BlogPostForm({
         );
       }}
     >
-      <CrudFormSection title={t.sectionContent}>
-        <LocaleFieldsTabs
-          fields={contentFields}
-          value={form.translations}
-          onChange={(translations) => update({ translations })}
-          errors={errors}
-          autoFocusFirstField
-        />
-      </CrudFormSection>
+      <CrudEditorLayout
+        main={
+          <CrudFormSection title={t.sectionContent}>
+            <LocaleFieldsTabs
+              fields={contentFields}
+              value={form.translations}
+              onChange={(translations) => update({ translations })}
+              errors={errors}
+              autoFocusFirstField
+            />
+          </CrudFormSection>
+        }
+        aside={
+          <>
+            <CrudFormSection title={t.sectionDetails}>
+              <ToggleField
+                label={t.publish}
+                checked={form.publish}
+                onCheckedChange={(publish) => update({ publish })}
+              />
+              <TextField
+                label={t.fieldPublishedAt}
+                type="datetime-local"
+                value={form.publishedAt}
+                onChange={(event) => update({ publishedAt: event.target.value })}
+                dir="ltr"
+              />
+              <SelectField
+                label={t.fieldCategory}
+                value={form.blogCategoryId || NO_CATEGORY}
+                onValueChange={(value) =>
+                  update({ blogCategoryId: value === NO_CATEGORY ? "" : value })
+                }
+                options={[{ value: NO_CATEGORY, label: t.noCategory }, ...categoryOptions]}
+              />
+              <TextField
+                label={t.slug}
+                value={form.slug}
+                onChange={(event) => update({ slug: event.target.value })}
+                helperText={t.slugHelper}
+                maxLength={140}
+                dir="ltr"
+              />
+            </CrudFormSection>
 
-      <CrudFormSection title={t.sectionImage}>
-        <ImageField
-          label={t.image}
-          currentUrl={post?.imageFileUrl}
-          value={form.image}
-          onChange={(image) => update({ image })}
-        />
-      </CrudFormSection>
+            <CrudFormSection title={t.sectionImage}>
+              <ImageField
+                label={t.image}
+                currentUrl={post?.imageFileUrl}
+                value={form.image}
+                onChange={(image) => update({ image })}
+              />
+            </CrudFormSection>
 
-      <CrudFormSection title={t.sectionSeo}>
-        <LocaleFieldsTabs
-          fields={seoFields}
-          value={form.translations}
-          onChange={(translations) => update({ translations })}
-        />
-      </CrudFormSection>
-
-      <CrudFormSection title={t.sectionDetails}>
-        <SelectField
-          label={t.fieldCategory}
-          value={form.blogCategoryId || NO_CATEGORY}
-          onValueChange={(value) =>
-            update({ blogCategoryId: value === NO_CATEGORY ? "" : value })
-          }
-          options={[{ value: NO_CATEGORY, label: t.noCategory }, ...categoryOptions]}
-        />
-        <TextField
-          label={t.slug}
-          value={form.slug}
-          onChange={(event) => update({ slug: event.target.value })}
-          helperText={t.slugHelper}
-          maxLength={140}
-          dir="ltr"
-        />
-        <TextField
-          label={t.fieldPublishedAt}
-          type="datetime-local"
-          value={form.publishedAt}
-          onChange={(event) => update({ publishedAt: event.target.value })}
-          dir="ltr"
-        />
-        <ToggleField
-          label={t.publish}
-          checked={form.publish}
-          onCheckedChange={(publish) => update({ publish })}
-        />
-      </CrudFormSection>
+            <CrudFormSection title={t.sectionSeo}>
+              <LocaleFieldsTabs
+                fields={seoFields}
+                value={form.translations}
+                onChange={(translations) => update({ translations })}
+              />
+            </CrudFormSection>
+          </>
+        }
+      />
 
       <CrudFormFooter
         submitLabel={mode === "create" ? t.addBlogPost : t.save}

@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-
 abstract class TranslationFormRequest extends CustomFormRequest
 {
     public function __construct() {}
@@ -21,7 +20,7 @@ abstract class TranslationFormRequest extends CustomFormRequest
 
         $rules['translations'] = function ($attribute, $value, $fail) use ($allowedLocales) {
             foreach ($value as $locale => $translation) {
-                if (!in_array($locale, $allowedLocales)) {
+                if (! in_array($locale, $allowedLocales)) {
                     $fail("The locale '{$locale}' is not supported.");
                 }
             }
@@ -34,14 +33,14 @@ abstract class TranslationFormRequest extends CustomFormRequest
     {
         parent::prepareForValidation();
 
-        if (!$this->has('translations') || !is_array($this->translations)) {
+        if (! $this->has('translations') || ! is_array($this->translations)) {
             return;
         }
 
         $translations = $this->translations;
 
         foreach ($translations as $locale => $translation) {
-            if (!is_array($translation)) {
+            if (! is_array($translation)) {
                 continue;
             }
 

@@ -17,9 +17,9 @@ import { formatKwd } from "@/features/products/utils/product-display.utils";
 import type { AdminUser } from "@/features/users/types/users.types";
 import { AppButton, PhoneField, SelectField, TextAreaField, TextField } from "@/shared/components";
 import { CrudRecordSection, CrudRecordWorkspace } from "@/shared/crud";
+import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import { CRUD_FORM_FIELD_ANCHORS, ORDER_FORM_ANCHORS } from "@/shared/guidance/constants/guidance.constants";
 import { useOrderSourceOptions, useOrderStatusOptions } from "@/shared/hooks/use-options";
-import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 
 type OrderFormSectionId = "status" | "items" | "coupons" | "customer" | "delivery";
 

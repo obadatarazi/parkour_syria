@@ -16,8 +16,8 @@ import type { Category } from "@/features/categories/types/categories.types";
 import { getCategoryDepthLabel } from "@/features/categories/utils/category-display.utils";
 import {
   buildVisibleCategoryTreeRows,
-  categoryCanExpand,
   CATEGORY_TREE_INDENT_REM,
+  categoryCanExpand,
   type CategoryTreeRow,
   getCategoryTreeRowClassName,
   patchCategoryInTree,

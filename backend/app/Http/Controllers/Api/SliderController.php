@@ -22,8 +22,8 @@ class SliderController extends ApiController
         summary: 'get all sliders',
         tags: ['Slider'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
-    #[OA\Parameter(ref: "#/components/parameters/direction")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
+    #[OA\Parameter(ref: '#/components/parameters/direction')]
     #[OA\Parameter(
         name: 'sort',
         description: 'Specify sorting order.',
@@ -32,8 +32,8 @@ class SliderController extends ApiController
         schema: new OA\Schema(type: 'string', enum: ['id', 'sort_order', 'created_at']),
         example: 'sort_order'
     )]
-    #[OA\Parameter(ref: "#/components/parameters/page")]
-    #[OA\Parameter(ref: "#/components/parameters/limit")]
+    #[OA\Parameter(ref: '#/components/parameters/page')]
+    #[OA\Parameter(ref: '#/components/parameters/limit')]
     #[OA\Parameter(
         name: 'search',
         description: 'Free text search on badge / title.',
@@ -79,7 +79,7 @@ class SliderController extends ApiController
         summary: 'Get one slider',
         tags: ['Slider'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'id',
         description: 'the slider to retrieve',

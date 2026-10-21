@@ -12,6 +12,7 @@ export { CrudDeleteDialog } from "@/shared/crud/components/CrudDeleteDialog";
 export { CrudDetailField } from "@/shared/crud/components/CrudDetailField";
 export { CrudDetailPage, CrudDetailSection } from "@/shared/crud/components/CrudDetailPage";
 export { CrudDirtyFormDrawer } from "@/shared/crud/components/CrudDirtyFormDrawer";
+export { CrudEditorLayout } from "@/shared/crud/components/CrudEditorLayout";
 export { CrudEmptyState } from "@/shared/crud/components/CrudEmptyState";
 export { CrudEntityDialog } from "@/shared/crud/components/CrudEntityDialog";
 export { CrudEntityDrawer } from "@/shared/crud/components/CrudEntityDrawer";

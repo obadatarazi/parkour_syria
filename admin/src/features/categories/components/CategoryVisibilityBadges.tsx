@@ -1,4 +1,4 @@
-import { Home, Loader2, Menu, Star, type LucideIcon } from "lucide-react";
+import { Home, Loader2, type LucideIcon,Menu, Star } from "lucide-react";
 
 import type { CategoryQuickToggleField } from "@/features/categories/hooks/use-category-mutations";
 import type { Category } from "@/features/categories/types/categories.types";

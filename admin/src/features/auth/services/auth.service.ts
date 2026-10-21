@@ -16,7 +16,6 @@ import {
   readStoredUser,
   writeStoredSession,
 } from "@/features/auth/utils/auth-storage";
-import { isAccessTokenNearingExpiry } from "@/features/auth/utils/access-token-expiry";
 import { mapApiRolesToAuthRoles, mapApiUserToAuthUser } from "@/features/auth/utils/map-api-user";
 import { invalidateQueryCache } from "@/shared/crud/query-cache";
 import { getServiceErrorCode, ServiceError } from "@/shared/errors";
@@ -27,6 +26,7 @@ import {
   type ApiRoleData,
   type LaravelSuccessResponse,
 } from "@/shared/lib/api";
+import { isAccessTokenNearingExpiry } from "@/shared/lib/api/access-token-expiry";
 import {
   appendFile,
   appendOptional,

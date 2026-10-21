@@ -27,9 +27,9 @@ import {
   Zap,
 } from "lucide-react";
 
+import { getRouteNavAccess } from "@/app/router/route-permissions";
 import { ROUTES } from "@/app/router/routes";
 import type { Permission } from "@/shared/constants/permissions";
-import { getRouteNavAccess } from "@/shared/constants/routePermissions";
 import type { Translation } from "@/shared/design-system/localization/locales/en";
 import { env } from "@/shared/lib/env";
 

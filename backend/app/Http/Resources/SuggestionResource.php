@@ -26,6 +26,7 @@ class SuggestionResource extends JsonResource
             ] : null),
             'description' => $this->when($isListOrDetails, $this->description),
             'contact' => $this->when($isListOrDetails, $this->contact),
+            'imageFileUrl' => $this->when($isListOrDetails, $this->image_file_url),
             'startsAt' => $this->when($isListOrDetails, $this->starts_at),
             'proposerName' => $this->when($isListOrDetails, $this->proposer_name),
             'proposerContact' => $this->when($isListOrDetails, $this->proposer_contact),

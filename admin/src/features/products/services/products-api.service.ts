@@ -5,8 +5,8 @@ import type {
   ProductBulkAdjustPriceResult,
   ProductBulkUpdateEntry,
   ProductBulkUpdateVariantEntry,
-  ProductTrashBulkApiResult,
   ProductsService,
+  ProductTrashBulkApiResult,
 } from "@/features/products/services/products.service.types";
 import type { ProductImportSummary } from "@/features/products/types/product-import.types";
 import type {
@@ -21,6 +21,7 @@ import { fromDatetimeLocalValue } from "@/features/products/types/products.types
 import { mapProductFromApi } from "@/features/products/utils/map-product-from-api";
 import { mapProductImportFromApi } from "@/features/products/utils/map-product-import-from-api";
 import { uniqueNumberIds } from "@/features/products/utils/variant-attribute.utils";
+import { ServiceError } from "@/shared/errors";
 import {
   apiRequest,
   appendBoolean,
@@ -30,15 +31,14 @@ import {
   appendOptionalDecimal,
   appendProductTranslations,
   buildLaravelListParams,
+  type BulkDeleteApiResult,
   type LaravelPaginatedResponse,
   type LaravelSuccessResponse,
   mapPaginatedFromApi,
   postBulkDelete,
-  toBulkDeleteIds,
   submitMultipartFormData,
-  type BulkDeleteApiResult,
+  toBulkDeleteIds,
 } from "@/shared/lib/api";
-import { ServiceError } from "@/shared/errors";
 import {
   decodeAdminRouteKey,
   isNumericAdminRouteKey,

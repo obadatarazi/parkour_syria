@@ -1,19 +1,19 @@
 import { Check, ChevronDown, X } from "lucide-react";
 import { useEffect, useId, useState } from "react";
 
+import type { Brand } from "@/features/brands/types/brands.types";
 import {
   getBrandMultiLabel,
   useBrandMultiPicker,
 } from "@/features/coupons/hooks/use-brand-multi-picker";
 import { RelationPickerPanel } from "@/features/products/components/RelationPickerPanel";
 import type { RelationPickerSeed } from "@/features/products/types/products.types";
-import type { Brand } from "@/features/brands/types/brands.types";
 import { FormField } from "@/shared/components";
 import { Button } from "@/shared/design-system/components/ui/button";
 import { Input } from "@/shared/design-system/components/ui/input";
+import { cn } from "@/shared/design-system/components/ui/utils";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import { resolveServiceErrorMessage } from "@/shared/errors";
-import { cn } from "@/shared/design-system/components/ui/utils";
 
 type BrandMultiPickerProps = {
   value: number[];

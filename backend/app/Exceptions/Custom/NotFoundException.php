@@ -18,5 +18,4 @@ class NotFoundException extends Exception
     {
         return $this->details;
     }
-
 }

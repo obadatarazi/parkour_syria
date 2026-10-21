@@ -10,9 +10,6 @@ class UserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
-     *
-     * @param Request $request
-     * @return array
      */
     public function toArray(Request $request): array
     {
@@ -43,28 +40,19 @@ class UserResource extends JsonResource
         }
 
         return [
-            'id' =>
-                $this->when($serializedGroup === SerializedGroup::List->value || $serializedGroup === SerializedGroup::Details->value, $this->id),
-            'fullName' =>
-                $this->when($serializedGroup === SerializedGroup::List->value || $serializedGroup === SerializedGroup::Details->value, $this->full_name),
-            'email' =>
-                $this->when($serializedGroup === SerializedGroup::List->value || $serializedGroup === SerializedGroup::Details->value, $this->email),
-            'gender' =>
-                $this->when($serializedGroup === SerializedGroup::List->value || $serializedGroup === SerializedGroup::Details->value, $this->custom_gender),
-            'type' =>
-                $this->when($serializedGroup === SerializedGroup::List->value || $serializedGroup === SerializedGroup::Details->value, $this->custom_type),
+            'id' => $this->when($serializedGroup === SerializedGroup::List->value || $serializedGroup === SerializedGroup::Details->value, $this->id),
+            'fullName' => $this->when($serializedGroup === SerializedGroup::List->value || $serializedGroup === SerializedGroup::Details->value, $this->full_name),
+            'email' => $this->when($serializedGroup === SerializedGroup::List->value || $serializedGroup === SerializedGroup::Details->value, $this->email),
+            'gender' => $this->when($serializedGroup === SerializedGroup::List->value || $serializedGroup === SerializedGroup::Details->value, $this->custom_gender),
+            'type' => $this->when($serializedGroup === SerializedGroup::List->value || $serializedGroup === SerializedGroup::Details->value, $this->custom_type),
             'phoneNumber' => $this->when($serializedGroup === SerializedGroup::Details->value || $serializedGroup === SerializedGroup::List->value,
                 $this->phone_number),
             'avatarFileUrl' => $this->when($serializedGroup === SerializedGroup::Details->value || $serializedGroup === SerializedGroup::List->value,
                 $this->avatar_file_url),
-            'active' =>
-                $this->when($serializedGroup === SerializedGroup::List->value || $serializedGroup === SerializedGroup::Details->value, (bool)$this->active),
-            'verifiedAt' =>
-                $this->when($serializedGroup === SerializedGroup::List->value || $serializedGroup === SerializedGroup::Details->value, $this->verified_at),
-            'createdAt' =>
-                $this->when($serializedGroup === SerializedGroup::List->value || $serializedGroup === SerializedGroup::Details->value, $this->created_at),
-            'updatedAt' =>
-                $this->when($serializedGroup === SerializedGroup::List->value || $serializedGroup === SerializedGroup::Details->value, $this->updated_at),
+            'active' => $this->when($serializedGroup === SerializedGroup::List->value || $serializedGroup === SerializedGroup::Details->value, (bool) $this->active),
+            'verifiedAt' => $this->when($serializedGroup === SerializedGroup::List->value || $serializedGroup === SerializedGroup::Details->value, $this->verified_at),
+            'createdAt' => $this->when($serializedGroup === SerializedGroup::List->value || $serializedGroup === SerializedGroup::Details->value, $this->created_at),
+            'updatedAt' => $this->when($serializedGroup === SerializedGroup::List->value || $serializedGroup === SerializedGroup::Details->value, $this->updated_at),
             'roles' => RoleResource::collection($this->when(
                 $serializedGroup === SerializedGroup::Details->value || $serializedGroup === SerializedGroup::List->value, $this->roles)),
         ];

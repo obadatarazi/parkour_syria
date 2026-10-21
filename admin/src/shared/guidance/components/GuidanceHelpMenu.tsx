@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import "@/shared/guidance/styles/guidance.css";
+
 import { CircleHelp, ListTodo, Map, MousePointerClick, Route, Sparkles } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 
 import { Button } from "@/shared/design-system/components/ui/button";
@@ -14,7 +16,6 @@ import {
 import { cn } from "@/shared/design-system/components/ui/utils";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import { useOptionalGuidanceContext } from "@/shared/guidance/context/GuidanceContext";
-import "@/shared/guidance/styles/guidance.css";
 
 const SHINE_MS = 4200;
 

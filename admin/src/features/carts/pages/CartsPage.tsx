@@ -7,7 +7,6 @@ import { useCartsList } from "@/features/carts/hooks/use-carts-list";
 import { cartsService } from "@/features/carts/services/carts.service";
 import type { AdminCart, CartConversionStatus } from "@/features/carts/types/carts.types";
 import { StatusBadge } from "@/shared/components";
-import { CRUD_FILTER_ALL_VALUE } from "@/shared/crud/constants/crud.constants";
 import {
   CrudListPage,
   CrudListSection,
@@ -15,6 +14,7 @@ import {
   useCrudDialog,
   useCrudQuery,
 } from "@/shared/crud";
+import { CRUD_FILTER_ALL_VALUE } from "@/shared/crud/constants/crud.constants";
 import {
   useLocalization,
   useTranslation,

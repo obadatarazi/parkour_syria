@@ -14,12 +14,19 @@ use Illuminate\Support\Facades\DB;
 
 class SuggestionService extends BaseService
 {
+    const UPLOAD_FOLDER = 'suggestions';
+
     public function __construct(
         protected DirectoryEntryService $directoryEntryService,
         protected EventService $eventService,
+        protected FileSystemService $fileSystemService,
+        UploadFileService $uploadFileService,
     ) {
         $this->model = Suggestion::class;
         $this->withRelations = ['area.translations', 'reviewer'];
+        // Only read by delete(): the visitor's photo goes with the suggestion.
+        $this->keyFileMaps = ['image_file_url' => 'image'];
+        $this->uploadFileService = $uploadFileService;
         parent::__construct();
     }
 
@@ -28,7 +35,13 @@ class SuggestionService extends BaseService
      */
     public function submit(array $data, ?string $ipAddress): Suggestion
     {
+        $image = $data['image'] ?? null;
+        unset($data['image']);
+
         $suggestion = new Suggestion($data);
+        if (is_object($image)) {
+            $suggestion->image_file_url = $this->fileSystemService->uploadFile($image, self::UPLOAD_FOLDER)['fileUrl'];
+        }
         $suggestion->status = SuggestionStatus::PENDING->value;
         $suggestion->ip_address = $ipAddress;
         $suggestion->save();
@@ -53,7 +66,7 @@ class SuggestionService extends BaseService
      * Promotes the suggestion into the directory (place / coach / team) or the events, in one
      * transaction with the status change so a failure leaves the suggestion pending.
      *
-     * @param array<string, mixed> $overrides validated SuggestionAcceptRequest
+     * @param  array<string, mixed>  $overrides  validated SuggestionAcceptRequest
      */
     public function accept(Suggestion $suggestion, array $overrides, User $reviewer): Suggestion
     {
@@ -65,6 +78,12 @@ class SuggestionService extends BaseService
             $promoted = $type->isEvent()
                 ? $this->promoteToEvent($suggestion, $overrides)
                 : $this->promoteToDirectoryEntry($suggestion, $type, $overrides);
+
+            if ($suggestion->image_file_url) {
+                $folder = $type->isEvent() ? EventService::UPLOAD_FOLDER : DirectoryEntryService::UPLOAD_FOLDER;
+                $promoted->image_file_url = $this->fileSystemService->copyFile($suggestion->image_file_url, $folder);
+                $promoted->save();
+            }
 
             $suggestion->status = SuggestionStatus::ACCEPTED->value;
             $suggestion->reject_reason = null;

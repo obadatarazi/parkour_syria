@@ -31,8 +31,8 @@ class AdminMultiTypeSettingController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Multi Type Setting'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
-    #[OA\Parameter(ref: "#/components/parameters/direction")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
+    #[OA\Parameter(ref: '#/components/parameters/direction')]
     #[OA\Parameter(
         name: 'sort',
         description: 'Specify sorting order.',
@@ -41,8 +41,8 @@ class AdminMultiTypeSettingController extends ApiController
         schema: new OA\Schema(type: 'string', enum: ['id', 'created_at', 'type', 'setting_key']),
         example: 'created_at'
     )]
-    #[OA\Parameter(ref: "#/components/parameters/page")]
-    #[OA\Parameter(ref: "#/components/parameters/limit")]
+    #[OA\Parameter(ref: '#/components/parameters/page')]
+    #[OA\Parameter(ref: '#/components/parameters/limit')]
     #[OA\Parameter(
         name: 'sort',
         description: 'Specify sorting order.',
@@ -104,7 +104,7 @@ class AdminMultiTypeSettingController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Multi Type Setting'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'settingKey',
         description: 'the multi type setting to retrieve',
@@ -143,7 +143,7 @@ class AdminMultiTypeSettingController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Multi Type Setting'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'multi_type_setting',
         description: 'the multi type setting to update',
@@ -195,14 +195,14 @@ class AdminMultiTypeSettingController extends ApiController
     #[OA\Get(
         path: '/api/admin/multi-type-settings/export',
         description: 'download every multi type settings the current filters select as a csv file. The file carries all '
-            . 'the columns of the record, its translated fields written in the language the x-locale header '
-            . 'asks for, and the names behind its relations — a brand, a category, a product, never a bare '
-            . 'id. It takes the same filters index() takes, without the paging.',
+            .'the columns of the record, its translated fields written in the language the x-locale header '
+            .'asks for, and the names behind its relations — a brand, a category, a product, never a bare '
+            .'id. It takes the same filters index() takes, without the paging.',
         summary: 'export multi type settings as csv',
         security: [['Bearer' => []]],
         tags: ['Admin Multi Type Setting'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Response(
         response: 200,
         description: 'The csv file, as a download',

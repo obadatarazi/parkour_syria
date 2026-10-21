@@ -31,8 +31,8 @@ class AdminCategoryController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Category'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
-    #[OA\Parameter(ref: "#/components/parameters/direction")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
+    #[OA\Parameter(ref: '#/components/parameters/direction')]
     #[OA\Parameter(
         name: 'sort',
         description: 'Specify sorting order.',
@@ -41,8 +41,8 @@ class AdminCategoryController extends ApiController
         schema: new OA\Schema(type: 'string', enum: ['id', 'created_at', 'title', 'depth']),
         example: 'created_at'
     )]
-    #[OA\Parameter(ref: "#/components/parameters/page")]
-    #[OA\Parameter(ref: "#/components/parameters/limit")]
+    #[OA\Parameter(ref: '#/components/parameters/page')]
+    #[OA\Parameter(ref: '#/components/parameters/limit')]
     #[OA\Parameter(
         name: 'search',
         description: 'Apply filter by title.',
@@ -140,7 +140,7 @@ class AdminCategoryController extends ApiController
         summary: 'create category',
         security: [['Bearer' => []]],
         tags: ['Admin Category'],
-        parameters: [new OA\Parameter(ref: "#/components/parameters/x-locale")],
+        parameters: [new OA\Parameter(ref: '#/components/parameters/x-locale')],
     )]
     #[OA\RequestBody(
         content: new OA\MediaType(
@@ -173,7 +173,7 @@ class AdminCategoryController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Category'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'category',
         description: 'the category to retrieve',
@@ -207,7 +207,7 @@ class AdminCategoryController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Category'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'category',
         description: 'the category to update',
@@ -247,7 +247,7 @@ class AdminCategoryController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Category'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Parameter(
         name: 'category',
         description: 'the category to delete',
@@ -281,7 +281,7 @@ class AdminCategoryController extends ApiController
         security: [['Bearer' => []]],
         tags: ['Admin Category'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\RequestBody(
         content: new OA\MediaType(
             mediaType: 'application/json',
@@ -304,14 +304,14 @@ class AdminCategoryController extends ApiController
     #[OA\Get(
         path: '/api/admin/categories/export',
         description: 'download every categories the current filters select as a csv file. The file carries all '
-            . 'the columns of the record, its translated fields written in the language the x-locale header '
-            . 'asks for, and the names behind its relations — a brand, a category, a product, never a bare '
-            . 'id. It takes the same filters index() takes, without the paging.',
+            .'the columns of the record, its translated fields written in the language the x-locale header '
+            .'asks for, and the names behind its relations — a brand, a category, a product, never a bare '
+            .'id. It takes the same filters index() takes, without the paging.',
         summary: 'export categories as csv',
         security: [['Bearer' => []]],
         tags: ['Admin Category'],
     )]
-    #[OA\Parameter(ref: "#/components/parameters/x-locale")]
+    #[OA\Parameter(ref: '#/components/parameters/x-locale')]
     #[OA\Response(
         response: 200,
         description: 'The csv file, as a download',

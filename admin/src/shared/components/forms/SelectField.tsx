@@ -1,6 +1,7 @@
 import { type ReactNode, useId } from "react";
 
-import { FormField, getFormFieldDescribedBy } from "@/shared/components/forms/FormField";
+import { getFormFieldDescribedBy } from "@/shared/components/forms/form-field.utils";
+import { FormField } from "@/shared/components/forms/FormField";
 import {
   Select,
   SelectContent,

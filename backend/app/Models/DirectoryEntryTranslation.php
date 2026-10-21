@@ -9,6 +9,7 @@ class DirectoryEntryTranslation extends BaseModel
     use HasFactory;
 
     public $timestamps = false;
+
     protected $fillable = [
         'name',
         'description',

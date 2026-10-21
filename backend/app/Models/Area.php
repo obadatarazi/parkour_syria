@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 #[AreaSchema]
 class Area extends BaseModel implements TranslatableContract
 {
-    use HasFactory, Filterable, Translatable, HasTranslatedOptions;
+    use Filterable, HasFactory, HasTranslatedOptions, Translatable;
 
     protected string $optionLabel = 'name';
 

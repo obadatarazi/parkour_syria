@@ -1,5 +1,7 @@
 <?php
 
+use Astrotomic\Translatable\Validation\RuleFactory;
+
 return [
 
     /*
@@ -39,7 +41,7 @@ return [
     | and never fallback to the translator one.
     |
      */
-#   'locale' => 'ar',
+    //   'locale' => 'ar',
 
     /*
     |--------------------------------------------------------------------------
@@ -138,7 +140,7 @@ return [
      *
      */
     'rule_factory' => [
-        'format' => \Astrotomic\Translatable\Validation\RuleFactory::FORMAT_KEY,
+        'format' => RuleFactory::FORMAT_KEY,
         'prefix' => '%',
         'suffix' => '%',
     ],

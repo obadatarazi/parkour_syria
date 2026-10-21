@@ -8,11 +8,11 @@ import { CRUD_FILTER_ALL_VALUE, CrudEntityDialog, useCrudQuery } from "@/shared/
 import { Checkbox } from "@/shared/design-system/components/ui/checkbox";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import { resolveServiceErrorMessage } from "@/shared/errors";
-import {
-  downloadCsvExport,
-  type CsvExportParams,
-} from "@/shared/lib/api/csv-export";
 import { fetchEnumOptions, OPTIONS_ENDPOINTS } from "@/shared/lib/api";
+import {
+  type CsvExportParams,
+  downloadCsvExport,
+} from "@/shared/lib/api/csv-export";
 import { notify } from "@/shared/lib/notifications";
 
 const PRODUCT_EXPORT_PATH = "/admin/products/export";
@@ -105,7 +105,7 @@ export function ProductExportDialog({
   const [isExporting, setIsExporting] = useState(false);
   const [columnsError, setColumnsError] = useState<string | undefined>();
 
-  const columnOptions = columnsQuery.data ?? [];
+  const columnOptions = useMemo(() => columnsQuery.data ?? [], [columnsQuery.data]);
 
   const scopeOptions = useMemo(
     () => [

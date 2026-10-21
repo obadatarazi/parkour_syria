@@ -1,10 +1,10 @@
+import { FILTER_ALL_VALUE } from "@/shared/constants/pagination";
 import { ServiceError } from "@/shared/errors";
 import { isUnsafeErrorMessage } from "@/shared/errors/is-unsafe-error-message";
 import type { PaginatedResult } from "@/shared/types";
-import { FILTER_ALL_VALUE } from "@/shared/constants/pagination";
 
-import { readLaravelApiErrorMessage } from "./read-laravel-api-error";
 import type { LaravelPaginatedResponse } from "./laravel.types";
+import { readLaravelApiErrorMessage } from "./read-laravel-api-error";
 
 export function mapLaravelPagination<T>(
   response: LaravelPaginatedResponse<T>,

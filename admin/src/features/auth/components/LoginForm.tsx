@@ -1,5 +1,7 @@
 import { Shield } from "lucide-react";
+import { Link } from "react-router";
 
+import { ROUTES } from "@/app/router/routes";
 import { useLogin } from "@/features/auth/hooks/use-login";
 import {
   AppButton,
@@ -30,8 +32,6 @@ export function LoginForm() {
         required
       />
 
-      {/* No forgot-password link: the Parkour backend has no reset endpoints yet, a SuperAdmin
-          resets a password from the users screen. */}
       <PasswordField
         label={t.password}
         value={credentials.password}
@@ -40,11 +40,16 @@ export function LoginForm() {
         required
       />
 
-      <CheckboxField
-        label={t.rememberMe}
-        checked={credentials.rememberMe}
-        onCheckedChange={(checked) => updateField("rememberMe", checked)}
-      />
+      <div className="flex items-center justify-between gap-3">
+        <CheckboxField
+          label={t.rememberMe}
+          checked={credentials.rememberMe}
+          onCheckedChange={(checked) => updateField("rememberMe", checked)}
+        />
+        <Link to={ROUTES.forgotPassword} className="text-sm font-medium text-brand hover:underline">
+          {t.forgotPassword}
+        </Link>
+      </div>
 
       <p className="flex items-center justify-center gap-1.5 pt-1 text-xs text-muted-foreground">
         <Shield className="size-3.5 shrink-0" aria-hidden="true" />

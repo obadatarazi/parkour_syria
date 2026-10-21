@@ -1,4 +1,4 @@
-import { ShoppingBag, ShoppingCart, Percent } from "lucide-react";
+import { Percent,ShoppingBag, ShoppingCart } from "lucide-react";
 
 import type { CartConversionStatus, CartStats } from "@/features/carts/types/carts.types";
 import { StatCard, StatCardGrid } from "@/shared/components";

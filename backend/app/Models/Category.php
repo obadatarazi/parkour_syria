@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 #[CategorySchema]
 class Category extends BaseModel implements TranslatableContract
 {
-    use HasFactory, Filterable, Translatable;
+    use Filterable, HasFactory, Translatable;
 
     protected $fillable = [
         'parent_category_id',
@@ -29,7 +29,7 @@ class Category extends BaseModel implements TranslatableContract
     protected $casts = [
         'publish' => 'boolean',
         'created_at' => 'datetime:Y-m-d H:i:s',
-        'updated_at' => 'datetime:Y-m-d H:i:s'
+        'updated_at' => 'datetime:Y-m-d H:i:s',
     ];
 
     protected $sorterable = ['id', 'title', 'created_at'];

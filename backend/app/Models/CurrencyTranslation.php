@@ -9,5 +9,6 @@ class CurrencyTranslation extends BaseModel
     use HasFactory;
 
     public $timestamps = false;
+
     protected $fillable = ['title'];
 }

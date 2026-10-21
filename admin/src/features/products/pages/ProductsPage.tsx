@@ -53,9 +53,9 @@ import {
 } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import { resolveServiceErrorMessage } from "@/shared/errors";
 import { useCrudPageGuidance } from "@/shared/guidance";
+import { toBulkDeleteIds } from "@/shared/lib/api";
 import { formatDateTime } from "@/shared/lib/datetime.utils";
 import { notify } from "@/shared/lib/notifications";
-import { toBulkDeleteIds } from "@/shared/lib/api";
 import {
   formatBilingualLabel,
   getBilingualTitle,

@@ -19,7 +19,7 @@ class TagService extends BaseService
 
     public function create($data): Tag
     {
-        $tag = new Tag();
+        $tag = new Tag;
         $tag->fill($data);
 
         $translations = $tag->getTranslationsArray();
@@ -39,7 +39,7 @@ class TagService extends BaseService
         return $tag;
     }
 
-    public function update($data, Model | Tag $tag): Tag
+    public function update($data, Model|Tag $tag): Tag
     {
         $tag->update($data);
 

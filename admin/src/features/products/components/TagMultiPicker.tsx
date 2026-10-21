@@ -1,16 +1,16 @@
 import { Check, ChevronDown, X } from "lucide-react";
 import { useEffect, useId, useState } from "react";
 
-import { getTagMultiLabel, useTagMultiPicker } from "@/features/products/hooks/use-tag-multi-picker";
 import { RelationPickerPanel } from "@/features/products/components/RelationPickerPanel";
+import { getTagMultiLabel, useTagMultiPicker } from "@/features/products/hooks/use-tag-multi-picker";
 import type { RelationPickerSeed } from "@/features/products/types/products.types";
 import type { Tag } from "@/features/tags/types/tags.types";
 import { FormField } from "@/shared/components";
 import { Button } from "@/shared/design-system/components/ui/button";
 import { Input } from "@/shared/design-system/components/ui/input";
+import { cn } from "@/shared/design-system/components/ui/utils";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import { resolveServiceErrorMessage } from "@/shared/errors";
-import { cn } from "@/shared/design-system/components/ui/utils";
 
 type TagMultiPickerProps = {
   value: number[];

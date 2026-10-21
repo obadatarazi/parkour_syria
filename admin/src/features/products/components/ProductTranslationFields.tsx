@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import { TextAreaField, TextField } from "@/shared/components";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shared/design-system/components/ui/tabs";
-import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
-import type { ProductTranslationsInput } from "@/shared/lib/api/form-data.utils";
 import {
   getPredictedProductSlug,
   shouldAutoSuggestProductSlug,
 } from "@/features/products/utils/product-slug.utils";
+import { TextAreaField, TextField } from "@/shared/components";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shared/design-system/components/ui/tabs";
+import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
+import type { ProductTranslationsInput } from "@/shared/lib/api/form-data.utils";
 
 type ProductTranslationFieldsProps = {
   value: ProductTranslationsInput;
@@ -111,31 +111,37 @@ export function ProductTranslationFields({
     });
   };
 
+  // The slug fill only reacts to the titles and slugs below, but writes back the whole value. The ref
+  // hands it the latest value without making every keystroke in another field re-run it.
+  const valueRef = useRef(value);
+  valueRef.current = value;
+
   useEffect(() => {
     if (!autoFillEmptySlugs) return;
+    const latest = valueRef.current;
 
     let nextValue: ProductTranslationsInput | null = null;
 
     for (const locale of ["en", "ar"] as const) {
-      const title = value[locale]?.title?.trim() ?? "";
-      const slug = value[locale]?.slug?.trim() ?? "";
+      const title = latest[locale]?.title?.trim() ?? "";
+      const slug = latest[locale]?.slug?.trim() ?? "";
       if (!title || slug) continue;
 
       const predictedSlug = getPredictedProductSlug(locale, title);
       if (!predictedSlug) continue;
 
-      nextValue ??= { ...value };
+      nextValue ??= { ...latest };
       nextValue[locale] = {
-        title: value[locale]?.title ?? "",
+        title: latest[locale]?.title ?? "",
         slug: predictedSlug,
-        description: value[locale]?.description ?? "",
-        metaTitle: value[locale]?.metaTitle ?? "",
-        metaDescription: value[locale]?.metaDescription ?? "",
-        benefits: value[locale]?.benefits ?? "",
-        ingredients: value[locale]?.ingredients ?? "",
-        usageMethod: value[locale]?.usageMethod ?? "",
-        warnings: value[locale]?.warnings ?? "",
-        countryOfOrigin: value[locale]?.countryOfOrigin ?? "",
+        description: latest[locale]?.description ?? "",
+        metaTitle: latest[locale]?.metaTitle ?? "",
+        metaDescription: latest[locale]?.metaDescription ?? "",
+        benefits: latest[locale]?.benefits ?? "",
+        ingredients: latest[locale]?.ingredients ?? "",
+        usageMethod: latest[locale]?.usageMethod ?? "",
+        warnings: latest[locale]?.warnings ?? "",
+        countryOfOrigin: latest[locale]?.countryOfOrigin ?? "",
       };
     }
 

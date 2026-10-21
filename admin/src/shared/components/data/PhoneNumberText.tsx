@@ -1,18 +1,13 @@
 import { type ReactNode } from "react";
 
 import { cn } from "@/shared/design-system/components/ui/utils";
+import { looksLikePhoneNumber } from "@/shared/lib/phone-number.utils";
 
 type PhoneNumberTextProps = {
   value?: string | null;
   fallback?: ReactNode;
   className?: string;
 };
-
-/** True for E.164 / local digit strings (optional +, spaces, dashes, parentheses). */
-export function looksLikePhoneNumber(value: string): boolean {
-  const compact = value.replace(/[\s-().]/g, "");
-  return /^\+?\d{6,15}$/.test(compact);
-}
 
 /**
  * Keeps `+965…` in visual LTR order inside an RTL page.

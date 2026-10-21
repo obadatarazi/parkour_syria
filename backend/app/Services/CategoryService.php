@@ -53,7 +53,7 @@ class CategoryService extends BaseService
     }
 
     /**
-     * @param array<string, mixed> $data
+     * @param  array<string, mixed>  $data
      * @return array<string, mixed>
      */
     private function withTranslatedSlugs(array $data): array

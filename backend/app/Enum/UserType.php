@@ -1,9 +1,10 @@
 <?php
+
 namespace App\Enum;
 
 use App\Http\Traits\EnumTrait;
 
-enum UserType:string
+enum UserType: string
 {
     use EnumTrait;
 

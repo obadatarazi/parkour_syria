@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 #[BlogPostSchema]
 class BlogPost extends BaseModel implements TranslatableContract
 {
-    use HasFactory, Filterable, Translatable;
+    use Filterable, HasFactory, Translatable;
 
     protected $fillable = [
         'slug',
@@ -29,6 +29,7 @@ class BlogPost extends BaseModel implements TranslatableContract
         'title',
         'excerpt',
         'body',
+        'author',
         'seo_title',
         'seo_description',
     ];

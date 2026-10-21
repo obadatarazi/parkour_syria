@@ -1,53 +1,49 @@
 <?php
 
+use App\Http\Controllers\Api\Admin\AdminAreaController;
+use App\Http\Controllers\Api\Admin\AdminAuthController;
+use App\Http\Controllers\Api\Admin\AdminBlogCategoryController;
+use App\Http\Controllers\Api\Admin\AdminBlogPostController;
+use App\Http\Controllers\Api\Admin\AdminBrandController;
+use App\Http\Controllers\Api\Admin\AdminCategoryController;
+use App\Http\Controllers\Api\Admin\AdminCouponController;
+use App\Http\Controllers\Api\Admin\AdminCurrencyController;
+use App\Http\Controllers\Api\Admin\AdminDirectoryEntryController;
+use App\Http\Controllers\Api\Admin\AdminEventController;
+use App\Http\Controllers\Api\Admin\AdminGalleryImageController;
+use App\Http\Controllers\Api\Admin\AdminLessonController;
+use App\Http\Controllers\Api\Admin\AdminMultiTypeSettingController;
+use App\Http\Controllers\Api\Admin\AdminOrderController;
+use App\Http\Controllers\Api\Admin\AdminPageController;
+use App\Http\Controllers\Api\Admin\AdminPasswordResetController;
+use App\Http\Controllers\Api\Admin\AdminPermissionController;
+use App\Http\Controllers\Api\Admin\AdminProductController;
+use App\Http\Controllers\Api\Admin\AdminRoleController;
+use App\Http\Controllers\Api\Admin\AdminRolesController;
+use App\Http\Controllers\Api\Admin\AdminSliderController;
+use App\Http\Controllers\Api\Admin\AdminSuggestionController;
+use App\Http\Controllers\Api\Admin\AdminTagController;
+use App\Http\Controllers\Api\Admin\AdminUserController;
+use App\Http\Controllers\Api\AreaController;
+use App\Http\Controllers\Api\BlogCategoryController;
+use App\Http\Controllers\Api\BlogPostController;
+use App\Http\Controllers\Api\BrandController;
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\DirectoryEntryController;
+use App\Http\Controllers\Api\EventController;
+use App\Http\Controllers\Api\GalleryImageController;
+use App\Http\Controllers\Api\HomeController;
+use App\Http\Controllers\Api\LessonController;
+use App\Http\Controllers\Api\OptionController;
+use App\Http\Controllers\Api\PageController;
+use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\SeoController;
+use App\Http\Controllers\Api\SiteSettingController;
+use App\Http\Controllers\Api\SliderController;
+use App\Http\Controllers\Api\SuggestionController;
+use App\Http\Controllers\Api\TagController;
 use App\Support\Features;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\{
-    AreaController,
-    BlogCategoryController,
-    BlogPostController,
-    BrandController,
-    CategoryController,
-    DirectoryEntryController,
-    EventController,
-    GalleryImageController,
-    HomeController,
-    LessonController,
-    OptionController,
-    PageController,
-    ProductController,
-    SeoController,
-    SiteSettingController,
-    SliderController,
-    SuggestionController,
-    TagController
-};
-
-use App\Http\Controllers\Api\Admin\{
-    AdminAreaController,
-    AdminAuthController,
-    AdminBlogCategoryController,
-    AdminBlogPostController,
-    AdminBrandController,
-    AdminCategoryController,
-    AdminCouponController,
-    AdminCurrencyController,
-    AdminDirectoryEntryController,
-    AdminEventController,
-    AdminGalleryImageController,
-    AdminLessonController,
-    AdminMultiTypeSettingController,
-    AdminOrderController,
-    AdminPageController,
-    AdminPermissionController,
-    AdminProductController,
-    AdminRoleController,
-    AdminRolesController,
-    AdminSliderController,
-    AdminSuggestionController,
-    AdminTagController,
-    AdminUserController
-};
 
 /*
 |--------------------------------------------------------------------------
@@ -59,15 +55,23 @@ Route::prefix('/admin/auth')->group(function () {
     Route::post('/login', [AdminAuthController::class, 'login'])->middleware('throttle:10,1');
     Route::get('/logout', [AdminAuthController::class, 'logout'])->middleware(['auth:api']);
     Route::post('/refresh-token', [AdminAuthController::class, 'refreshToken'])->middleware('throttle:30,1');
-    Route::get('/me/profile', [AdminAuthController::class, 'me'])->middleware('auth:api');
+    Route::get('/me/profile', [AdminAuthController::class, 'me'])->middleware(['auth:api', 'active']);
+    // Left open to a deactivated account on purpose: it is how the dashboard tells them why.
     Route::get('/account/status', [AdminAuthController::class, 'getAccountStatus'])->middleware(['auth:api']);
 });
 
-Route::prefix('/admin')->middleware('auth:api')->group(function () {
+// Password reset by email. Public, so held to a handful of attempts a minute; the broker also keeps
+// one email to one link a minute.
+Route::prefix('/admin/me/password')->middleware('throttle:5,1')->group(function () {
+    Route::post('/forgot', [AdminPasswordResetController::class, 'forgot']);
+    Route::post('/reset', [AdminPasswordResetController::class, 'reset']);
+});
+
+Route::prefix('/admin')->middleware(['auth:api', 'active'])->group(function () {
     Route::get('/me/profile', [AdminAuthController::class, 'me']);
     Route::put('/me/profile/update', [AdminAuthController::class, 'updateProfileAdmin']);
     Route::get('/me/roles', [AdminAuthController::class, 'getMyRoles']);
-    Route::post('/me/password/change', [AdminAuthController::class, 'changePassword']);
+    Route::post('/me/password/change', [AdminAuthController::class, 'changePassword'])->middleware('throttle:5,1');
 
     // Csv exports and bulk deletes. Declared before the resources so `/export` and `/bulk-delete`
     // are never read as the id of a record. See ApiController::baseExport() / baseBulkDestroy().
@@ -179,6 +183,7 @@ Route::get('/events/{slug}', [EventController::class, 'show']);
 Route::get('/blog-categories', [BlogCategoryController::class, 'index']);
 Route::get('/blog-categories/{slug}', [BlogCategoryController::class, 'show']);
 Route::get('/blog-posts', [BlogPostController::class, 'index']);
+Route::get('/blog-posts/{slug}/related', [BlogPostController::class, 'related']);
 Route::get('/blog-posts/{slug}', [BlogPostController::class, 'show']);
 
 Route::get('/gallery-images', [GalleryImageController::class, 'index']);

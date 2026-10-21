@@ -9,6 +9,7 @@ class SliderTranslation extends BaseModel
     use HasFactory;
 
     public $timestamps = false;
+
     protected $fillable = [
         'badge',
         'title',

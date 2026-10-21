@@ -1,10 +1,10 @@
+import type { LocaleImageUploadValue } from "@/shared/components/forms/LocaleImageUploadFields";
+import type { PromotionTypeOption, PromotionTypeValue } from "@/shared/constants/promotion-type";
 import {
   areNumberArraysEqual,
   hasFormChanges,
   pickChangedScalar,
 } from "@/shared/lib/form/pick-changed-fields";
-import type { PromotionTypeOption, PromotionTypeValue } from "@/shared/constants/promotion-type";
-import type { LocaleImageUploadValue } from "@/shared/components/forms/LocaleImageUploadFields";
 import type { PaginatedResult } from "@/shared/types";
 
 export type SliderPromotionImage = {

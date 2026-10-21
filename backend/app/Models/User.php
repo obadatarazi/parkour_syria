@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Http\Docs\Schemas\UserSchema;
 use App\Http\Traits\Filterable;
+use App\Notifications\AdminResetPasswordNotification;
 use Carbon\Carbon;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,7 +19,7 @@ use Spatie\Permission\Traits\HasRoles;
 #[UserSchema]
 class User extends Authenticatable implements OAuthenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens, Filterable, HasRoles;
+    use Filterable, HasApiTokens, HasFactory, HasRoles, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -63,7 +64,7 @@ class User extends Authenticatable implements OAuthenticatable
         'email' => 'like',
         'type' => '=',
         'gender' => '=',
-        'active' => '='
+        'active' => '=',
     ];
 
     protected $sorterable = ['id', 'full_name', 'email', 'created_at', 'gender'];
@@ -80,7 +81,6 @@ class User extends Authenticatable implements OAuthenticatable
             ->format('Y-m-d H:i:s');
     }
 
-
     public function getGenderValueAttribute(): ?string
     {
         $gender = $this->attributes['gender'] ?? null;
@@ -96,6 +96,14 @@ class User extends Authenticatable implements OAuthenticatable
         };
     }
 
+    /**
+     * The broker's reset link points at the dashboard's reset page, not at a web route of the API.
+     */
+    public function sendPasswordResetNotification($token): void
+    {
+        $this->notify(new AdminResetPasswordNotification($token));
+    }
+
     public function getMyRoles()
     {
         return $this->roles->load('permissions');
@@ -109,6 +117,7 @@ class User extends Authenticatable implements OAuthenticatable
         foreach ($attributes as $key => $value) {
             $camelCaseAttributes[Str::camel($key)] = $value;
         }
+
         return $camelCaseAttributes;
     }
 

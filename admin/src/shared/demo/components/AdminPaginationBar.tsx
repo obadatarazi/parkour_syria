@@ -1,7 +1,7 @@
+import { ChevronBack, ChevronForward } from "@/shared/demo/components/DirectionalChevrons";
 import { Button } from "@/shared/design-system/components/ui/button";
 import { cn } from "@/shared/design-system/components/ui/utils";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
-import { ChevronBack, ChevronForward } from "@/shared/demo/components/DirectionalChevrons";
 
 type AdminPaginationBarProps = {
   page: number;

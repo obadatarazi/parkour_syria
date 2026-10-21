@@ -1,16 +1,16 @@
 import { Check, X } from "lucide-react";
 import { useEffect, useId, useRef } from "react";
 
-import { getProductMultiLabel } from "@/features/coupons/hooks/use-product-multi-picker";
 import { useCouponProductVariants } from "@/features/coupons/hooks/use-coupon-product-variants";
+import { getProductMultiLabel } from "@/features/coupons/hooks/use-product-multi-picker";
 import type { CouponRelationItem } from "@/features/coupons/types/coupons.types";
 import type { ProductVariant } from "@/features/products/types/products.types";
 import { getVariantDisplayLabel } from "@/features/products/utils/variant-attribute.utils";
 import { FormField } from "@/shared/components";
 import { Button } from "@/shared/design-system/components/ui/button";
+import { cn } from "@/shared/design-system/components/ui/utils";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import { resolveServiceErrorMessage } from "@/shared/errors";
-import { cn } from "@/shared/design-system/components/ui/utils";
 
 type CouponProductVariantPickerProps = {
   productIds: number[];

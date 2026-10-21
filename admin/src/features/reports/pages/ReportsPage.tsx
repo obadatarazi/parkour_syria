@@ -1,13 +1,13 @@
 import { useCrudPermissions } from "@/features/auth";
+import { CrmReportsSection } from "@/features/customers/components/CrmReportsSection";
 import { CategoryPieChartSection } from "@/features/dashboard/components/CategoryPieChartSection";
 import { RevenueChartSection } from "@/features/dashboard/components/RevenueChartSection";
-import { CrmReportsSection } from "@/features/customers/components/CrmReportsSection";
+import { formatKwd } from "@/features/products/utils/product-display.utils";
 import { ReportOrdersSeriesCard } from "@/features/reports/components/ReportOrdersSeriesCard";
 import { ReportPeriodToolbar } from "@/features/reports/components/ReportPeriodToolbar";
 import { ReportSlicePieCard } from "@/features/reports/components/ReportSlicePieCard";
 import { useReports } from "@/features/reports/hooks/use-reports";
 import { formatReportRangeLabel } from "@/features/reports/utils/report-period.utils";
-import { formatKwd } from "@/features/products/utils/product-display.utils";
 import {
   AppButton,
   AppCard,

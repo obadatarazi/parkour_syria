@@ -32,6 +32,5 @@ use OpenApi\Attributes as OA;
 #[Attribute(Attribute::TARGET_CLASS)]
 class CategorySchema
 {
-    public function __construct()
-    {}
+    public function __construct() {}
 }

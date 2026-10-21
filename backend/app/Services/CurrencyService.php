@@ -17,13 +17,13 @@ class CurrencyService extends BaseService
     public function create($data)
     {
         return DB::transaction(function () use ($data) {
-            $isFirstCurrency = !Currency::query()->exists();
+            $isFirstCurrency = ! Currency::query()->exists();
 
             if ($isFirstCurrency) {
                 $data['is_default'] = true;
             }
 
-            if (!empty($data['is_default'])) {
+            if (! empty($data['is_default'])) {
                 $this->unsetOtherDefaults();
             }
 
@@ -34,7 +34,7 @@ class CurrencyService extends BaseService
     public function update($data, Model $object)
     {
         return DB::transaction(function () use ($data, $object) {
-            if (!empty($data['is_default'])) {
+            if (! empty($data['is_default'])) {
                 $this->unsetOtherDefaults($object->id);
             }
 
@@ -54,7 +54,7 @@ class CurrencyService extends BaseService
     private function unsetOtherDefaults(?int $exceptId = null): void
     {
         Currency::query()
-            ->when($exceptId, fn($query) => $query->where('id', '!=', $exceptId))
+            ->when($exceptId, fn ($query) => $query->where('id', '!=', $exceptId))
             ->update(['is_default' => false]);
     }
 }

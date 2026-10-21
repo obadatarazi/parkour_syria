@@ -1,10 +1,10 @@
+import type { TranslationsInput } from "@/shared/lib/api/form-data.utils";
 import {
   areNumberArraysEqual,
   hasFormChanges,
   pickChangedScalar,
   pickChangedTranslations,
 } from "@/shared/lib/form/pick-changed-fields";
-import type { TranslationsInput } from "@/shared/lib/api/form-data.utils";
 import type { PaginatedResult } from "@/shared/types";
 
 export type CategoryTranslation = {

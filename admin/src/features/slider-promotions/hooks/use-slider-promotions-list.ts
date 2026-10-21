@@ -11,8 +11,8 @@ import {
   mapIntegerFilterValue,
   useServerPaginatedList,
 } from "@/shared/crud";
-import { useSliderPromotionTypeOptions } from "@/shared/hooks/use-options";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
+import { useSliderPromotionTypeOptions } from "@/shared/hooks/use-options";
 
 const SLIDER_PROMOTION_FILTER_IDS = ["publish", "type", "position"] as const;
 

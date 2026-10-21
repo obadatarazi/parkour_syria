@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Builder;
 trait Filterable
 {
     /**
-     * @param $query
-     * @param QueryFilter $filter
      * @return Builder|mixed|void
      */
     public function scopeFilter($query, QueryFilter $filter)
@@ -19,7 +17,7 @@ trait Filterable
 
         // A listing nobody asked to sort comes back in the model's own order (`$defaultSort`, e.g.
         // lessons by sort_order) instead of whatever order the database happens to return.
-        if (empty($filter->getSortField()) && !empty($this->defaultSort)) {
+        if (empty($filter->getSortField()) && ! empty($this->defaultSort)) {
             foreach ($this->defaultSort as $column => $direction) {
                 $query->orderBy($this->qualifyColumn($column), $direction);
             }

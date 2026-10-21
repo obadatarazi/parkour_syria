@@ -17,7 +17,13 @@ import {
   ToggleField,
   validateLocaleFields,
 } from "@/shared/components";
-import { CrudFormFooter, CrudFormSection, CrudFormShell, useCrudFormState } from "@/shared/crud";
+import {
+  CrudEditorLayout,
+  CrudFormFooter,
+  CrudFormSection,
+  CrudFormShell,
+  useCrudFormState,
+} from "@/shared/crud";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 
 type LessonFormProps = {
@@ -47,8 +53,8 @@ export function LessonForm({
   const fields: LocaleFieldDefinition<LessonLocaleField>[] = [
     { key: "title", label: t.fieldTitle, required: true, maxLength: 255 },
     { key: "summary", label: t.fieldSummary, multiline: true, rows: 2, maxLength: 500 },
-    { key: "body", label: t.fieldBody, multiline: true, rows: 8 },
-    { key: "safety_note", label: t.fieldSafetyNote, multiline: true, rows: 3 },
+    { key: "body", label: t.fieldBody, richText: true, rows: 14 },
+    { key: "safety_note", label: t.fieldSafetyNote, richText: true, rows: 3 },
   ];
 
   return (
@@ -62,56 +68,63 @@ export function LessonForm({
         void onSubmit(form);
       }}
     >
-      <CrudFormSection title={t.sectionContent}>
-        <LocaleFieldsTabs
-          fields={fields}
-          value={form.translations}
-          onChange={(translations) => update({ translations })}
-          errors={errors}
-          autoFocusFirstField
-        />
-      </CrudFormSection>
+      <CrudEditorLayout
+        main={
+          <CrudFormSection title={t.sectionContent}>
+            <LocaleFieldsTabs
+              fields={fields}
+              value={form.translations}
+              onChange={(translations) => update({ translations })}
+              errors={errors}
+              autoFocusFirstField
+            />
+          </CrudFormSection>
+        }
+        aside={
+          <>
+            <CrudFormSection title={t.sectionDetails}>
+              <ToggleField
+                label={t.publish}
+                checked={form.publish}
+                onCheckedChange={(publish) => update({ publish })}
+              />
+              <TextField
+                label={t.slug}
+                value={form.slug}
+                onChange={(event) => update({ slug: event.target.value })}
+                helperText={t.slugHelper}
+                maxLength={140}
+                dir="ltr"
+              />
+              <TextField
+                label={t.sortOrder}
+                type="number"
+                min={0}
+                value={form.sortOrder}
+                onChange={(event) => update({ sortOrder: event.target.value })}
+                helperText={t.sortOrderHelper}
+              />
+            </CrudFormSection>
 
-      <CrudFormSection title={t.sectionImage}>
-        <ImageField
-          label={t.image}
-          currentUrl={lesson?.imageFileUrl}
-          value={form.image}
-          onChange={(image) => update({ image })}
-        />
-        <TextField
-          label={t.fieldYoutubeUrl}
-          type="url"
-          value={form.youtubeUrl}
-          onChange={(event) => update({ youtubeUrl: event.target.value })}
-          placeholder="https://www.youtube.com/watch?v=…"
-          dir="ltr"
-        />
-      </CrudFormSection>
-
-      <CrudFormSection title={t.sectionDetails}>
-        <TextField
-          label={t.slug}
-          value={form.slug}
-          onChange={(event) => update({ slug: event.target.value })}
-          helperText={t.slugHelper}
-          maxLength={140}
-          dir="ltr"
-        />
-        <TextField
-          label={t.sortOrder}
-          type="number"
-          min={0}
-          value={form.sortOrder}
-          onChange={(event) => update({ sortOrder: event.target.value })}
-          helperText={t.sortOrderHelper}
-        />
-        <ToggleField
-          label={t.publish}
-          checked={form.publish}
-          onCheckedChange={(publish) => update({ publish })}
-        />
-      </CrudFormSection>
+            <CrudFormSection title={t.sectionImage}>
+              <ImageField
+                label={t.image}
+                currentUrl={lesson?.imageFileUrl}
+                value={form.image}
+                onChange={(image) => update({ image })}
+              />
+              <TextField
+                label={t.fieldYoutubeUrl}
+                type="url"
+                value={form.youtubeUrl}
+                onChange={(event) => update({ youtubeUrl: event.target.value })}
+                placeholder="https://www.youtube.com/watch?v=…"
+                dir="ltr"
+              />
+            </CrudFormSection>
+          </>
+        }
+      />
 
       <CrudFormFooter
         submitLabel={mode === "create" ? t.addLesson : t.save}

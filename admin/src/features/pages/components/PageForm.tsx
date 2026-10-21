@@ -15,7 +15,13 @@ import {
   ToggleField,
   validateLocaleFields,
 } from "@/shared/components";
-import { CrudFormFooter, CrudFormSection, CrudFormShell, useCrudFormState } from "@/shared/crud";
+import {
+  CrudEditorLayout,
+  CrudFormFooter,
+  CrudFormSection,
+  CrudFormShell,
+  useCrudFormState,
+} from "@/shared/crud";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 
 type PageFormProps = {
@@ -36,7 +42,7 @@ export function PageForm({ page, isLoading, onSubmit, onCancel, onDirtyChange }:
 
   const contentFields: LocaleFieldDefinition<PageLocaleField>[] = [
     { key: "title", label: t.fieldTitle, required: true, maxLength: 255 },
-    { key: "body", label: t.fieldBody, multiline: true, rows: 14 },
+    { key: "body", label: t.fieldBody, richText: true, rows: 16 },
   ];
   const seoFields: LocaleFieldDefinition<PageLocaleField>[] = [
     { key: "seo_title", label: t.fieldSeoTitle, maxLength: 255 },
@@ -60,40 +66,47 @@ export function PageForm({ page, isLoading, onSubmit, onCancel, onDirtyChange }:
         </p>
       ) : null}
 
-      <CrudFormSection title={t.sectionContent}>
-        <LocaleFieldsTabs
-          fields={contentFields}
-          value={form.translations}
-          onChange={(translations) => update({ translations })}
-          errors={errors}
-          autoFocusFirstField
-        />
-      </CrudFormSection>
+      <CrudEditorLayout
+        main={
+          <CrudFormSection title={t.sectionContent}>
+            <LocaleFieldsTabs
+              fields={contentFields}
+              value={form.translations}
+              onChange={(translations) => update({ translations })}
+              errors={errors}
+              autoFocusFirstField
+            />
+          </CrudFormSection>
+        }
+        aside={
+          <>
+            <CrudFormSection title={t.sectionDetails}>
+              <ToggleField
+                label={t.publish}
+                checked={form.publish}
+                onCheckedChange={(publish) => update({ publish })}
+              />
+            </CrudFormSection>
 
-      <CrudFormSection title={t.sectionImage}>
-        <ImageField
-          label={t.image}
-          currentUrl={page.imageFileUrl}
-          value={form.image}
-          onChange={(image) => update({ image })}
-        />
-      </CrudFormSection>
+            <CrudFormSection title={t.sectionImage}>
+              <ImageField
+                label={t.image}
+                currentUrl={page.imageFileUrl}
+                value={form.image}
+                onChange={(image) => update({ image })}
+              />
+            </CrudFormSection>
 
-      <CrudFormSection title={t.sectionSeo}>
-        <LocaleFieldsTabs
-          fields={seoFields}
-          value={form.translations}
-          onChange={(translations) => update({ translations })}
-        />
-      </CrudFormSection>
-
-      <CrudFormSection title={t.sectionDetails}>
-        <ToggleField
-          label={t.publish}
-          checked={form.publish}
-          onCheckedChange={(publish) => update({ publish })}
-        />
-      </CrudFormSection>
+            <CrudFormSection title={t.sectionSeo}>
+              <LocaleFieldsTabs
+                fields={seoFields}
+                value={form.translations}
+                onChange={(translations) => update({ translations })}
+              />
+            </CrudFormSection>
+          </>
+        }
+      />
 
       <CrudFormFooter
         submitLabel={t.save}

@@ -52,7 +52,7 @@ class HomeCmsService
 
     public static function cacheKey(string $locale): string
     {
-        return 'home:cms:' . $locale . ':v' . self::CACHE_SCHEMA_VERSION;
+        return 'home:cms:'.$locale.':v'.self::CACHE_SCHEMA_VERSION;
     }
 
     /**
@@ -119,7 +119,8 @@ class HomeCmsService
      * One rail failing leaves it empty instead of taking the whole home page down.
      *
      * @template T
-     * @param callable(): T $query
+     *
+     * @param  callable(): T  $query
      * @return T|Collection|null
      */
     private function safeRail(string $rail, callable $query)

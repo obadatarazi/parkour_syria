@@ -16,7 +16,7 @@ class BlogCategoryRequest extends TranslationFormRequest
             $rules = [
                 'slug' => ['nullable', 'string', 'max:140', 'regex:/^[\\p{L}\\p{N}-]+$/u', Rule::unique('blog_categories', 'slug')->ignore($this->routeKey())],
                 'sort_order' => ['nullable', 'integer', 'min:0'],
-                'publish' => ['nullable', new BooleanValidationRule()],
+                'publish' => ['nullable', new BooleanValidationRule],
                 'translations' => ['required', 'array'],
                 // Arabic is the live language and is required, English is optional until it goes public.
                 'translations.ar' => ['required', 'array'],
@@ -30,7 +30,7 @@ class BlogCategoryRequest extends TranslationFormRequest
             $rules = [
                 'slug' => ['nullable', 'string', 'max:140', 'regex:/^[\\p{L}\\p{N}-]+$/u', Rule::unique('blog_categories', 'slug')->ignore($this->routeKey())],
                 'sort_order' => ['nullable', 'integer', 'min:0'],
-                'publish' => ['nullable', new BooleanValidationRule()],
+                'publish' => ['nullable', new BooleanValidationRule],
                 'translations' => ['nullable', 'array'],
                 'translations.ar' => ['nullable', 'array'],
                 'translations.en' => ['nullable', 'array'],

@@ -27,7 +27,7 @@ export function usePermissionsList() {
     queryFn,
   });
 
-  const permissions: PermissionRecord[] = query.data?.data ?? [];
+  const permissions = useMemo<PermissionRecord[]>(() => query.data?.data ?? [], [query.data?.data]);
   const total = query.data?.total ?? 0;
 
   const isComplete =

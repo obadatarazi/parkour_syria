@@ -7,7 +7,7 @@ import {
   hasCurrencyFormChanges,
   pickCurrencyFormChanges,
 } from "@/features/currencies/types/currencies.types";
-import { useCrudMutation, useCrudQuickBooleanMutation, type CrudSaveResult } from "@/shared/crud";
+import { type CrudSaveResult,useCrudMutation, useCrudQuickBooleanMutation } from "@/shared/crud";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 
 type UseCurrencyMutationsOptions = {

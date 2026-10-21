@@ -19,8 +19,8 @@ import {
   CrudListPage,
   CrudListSection,
   CrudListTable,
-  CrudTableActions,
   type CrudRowAction,
+  CrudTableActions,
 } from "@/shared/crud";
 import {
   useLocalization,

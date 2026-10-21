@@ -25,7 +25,7 @@ class CouponRequest extends CustomFormRequest
             'starts_at' => ['nullable', 'date'],
             'ends_at' => ['nullable', 'date', 'after_or_equal:starts_at'],
             'usage_limit' => ['nullable', 'integer', 'min:1'],
-            'publish' => ['nullable', new BooleanValidationRule()],
+            'publish' => ['nullable', new BooleanValidationRule],
         ];
     }
 }

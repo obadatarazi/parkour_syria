@@ -41,6 +41,5 @@ use OpenApi\Attributes as OA;
 #[Attribute(Attribute::TARGET_CLASS)]
 class BlogCategorySchema
 {
-    public function __construct()
-    {}
+    public function __construct() {}
 }

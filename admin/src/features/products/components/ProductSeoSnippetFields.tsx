@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { ImageIcon, Pencil, Search } from "lucide-react";
+import { useState } from "react";
 
 import { buildProductStorefrontUrl } from "@/features/products/utils/product-storefront-url.utils";
 import {
@@ -9,8 +9,8 @@ import {
   type SeoScoreTone,
 } from "@/features/products/utils/seo-score.utils";
 import { AppButton, MediaImage, TextAreaField, TextField } from "@/shared/components";
-import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import { cn } from "@/shared/design-system/components/ui/utils";
+import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 import { slugifyArabicTitle, slugifyEnglishTitle } from "@/shared/lib/slug.utils";
 
 const META_TITLE_SOFT_LIMIT = 60;

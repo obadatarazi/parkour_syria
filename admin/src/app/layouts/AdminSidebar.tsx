@@ -12,7 +12,7 @@ import { adminNavigationSections, type NavItem } from "@/app/config/navigation";
 import { preloadAdminRoute } from "@/app/router/route-preload";
 import { ROUTES } from "@/app/router/routes";
 import { canAccessNavItem, useAbility } from "@/features/auth";
-import { useOrderNeedsActionCount } from "@/features/orders/hooks/use-order-needs-action-count";
+import { useOrderNeedsActionCount } from "@/features/orders";
 import { CaptionText, CardTitleText } from "@/shared/components";
 import { Button } from "@/shared/design-system/components/ui/button";
 import {

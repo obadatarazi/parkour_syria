@@ -1,3 +1,3 @@
-export { OrdersPage } from "@/features/orders/pages/OrdersPage";
-export { OrderFormPage } from "@/features/orders/pages/OrderFormPage";
-export { OrderViewPage } from "@/features/orders/pages/OrderViewPage";
+// The pages are not re-exported: the router loads them lazily (app/router/lazy-pages.ts), and a
+// static export here would pull them, Leaflet included, into every chunk that imports this file.
+export { useOrderNeedsActionCount } from "@/features/orders/hooks/use-order-needs-action-count";

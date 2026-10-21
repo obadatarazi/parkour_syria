@@ -6,6 +6,7 @@ import type {
 } from "@/features/promotions/types/promotions.types";
 import { fromDatetimeLocalValue } from "@/features/promotions/types/promotions.types";
 import { mapPromotionFromApi } from "@/features/promotions/utils/map-promotion-from-api";
+import { isServiceError, ServiceError } from "@/shared/errors";
 import {
   apiRequest,
   buildLaravelListParams,
@@ -14,9 +15,8 @@ import {
   mapPaginatedFromApi,
   postBulkDelete,
 } from "@/shared/lib/api";
-import { isServiceError, ServiceError } from "@/shared/errors";
-import { decodeAdminRouteKey } from "@/shared/lib/routing/admin-route-keys.utils";
 import type { TranslationsInput } from "@/shared/lib/api/form-data.utils";
+import { decodeAdminRouteKey } from "@/shared/lib/routing/admin-route-keys.utils";
 
 /** Admin forms use `title`; promotion API expects `name`. */
 function toApiTranslations(translations: TranslationsInput): Record<string, unknown> {

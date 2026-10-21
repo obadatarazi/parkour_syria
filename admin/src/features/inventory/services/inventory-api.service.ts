@@ -10,9 +10,9 @@ import { mapProductFromApi } from "@/features/products/utils/map-product-from-ap
 import {
   apiRequest,
   buildLaravelListParams,
-  mapPaginatedFromApi,
   type LaravelPaginatedResponse,
   type LaravelSuccessResponse,
+  mapPaginatedFromApi,
 } from "@/shared/lib/api";
 
 type InventoryListApiResponse = LaravelPaginatedResponse<Product> & {

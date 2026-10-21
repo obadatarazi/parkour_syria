@@ -16,6 +16,9 @@ class AdminRolesController extends ApiController
         $this->permissionPrefix = PermissionType::PermissionManageRole->getSection();
         $this->service = $roleService;
         parent::__construct();
+
+        // The permission catalogue feeds the role screens, so it needs a role permission too.
+        $this->middleware(["permission:MANAGE_$this->permissionPrefix|PERMISSION_SHOW_$this->permissionPrefix|PERMISSION_CREATE_$this->permissionPrefix|PERMISSION_UPDATE_$this->permissionPrefix"], ['only' => ['findAll', 'getBySection']]);
     }
 
     #[OA\Get(
@@ -24,7 +27,7 @@ class AdminRolesController extends ApiController
         summary: 'get all roles',
         security: [['Bearer' => []]],
         tags: ['Admin Roles Section'],
-        parameters: [new OA\Parameter(ref: "#/components/parameters/x-locale")],
+        parameters: [new OA\Parameter(ref: '#/components/parameters/x-locale')],
         responses: [
             new OA\Response(
                 response: 200,
@@ -68,7 +71,7 @@ class AdminRolesController extends ApiController
         summary: 'Get role  by section',
         security: [['Bearer' => []]],
         tags: ['Admin Roles Section'],
-        parameters: [new OA\Parameter(ref: "#/components/parameters/x-locale")],
+        parameters: [new OA\Parameter(ref: '#/components/parameters/x-locale')],
         responses: [
             new OA\Response(
                 response: 200,

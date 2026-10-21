@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Constant\Upload;
 use App\Http\Requests\TranslationFormRequest;
 use App\Http\Rules\BooleanValidationRule;
 use App\Rules\SafeSvg;
@@ -15,10 +16,10 @@ class BlogPostRequest extends TranslationFormRequest
 
         if ($this->method() === 'POST') {
             $rules = [
-                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:2048000', new SafeSvg()],
+                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:'.Upload::MAX_IMAGE_KB, new SafeSvg],
                 'slug' => ['nullable', 'string', 'max:140', 'regex:/^[\\p{L}\\p{N}-]+$/u', Rule::unique('blog_posts', 'slug')->ignore($this->routeKey())],
                 'blog_category_id' => ['nullable', 'integer', 'exists:blog_categories,id'],
-                'publish' => ['nullable', new BooleanValidationRule()],
+                'publish' => ['nullable', new BooleanValidationRule],
                 'published_at' => ['nullable', 'date'],
                 'translations' => ['required', 'array'],
                 // Arabic is the live language and is required, English is optional until it goes public.
@@ -28,6 +29,7 @@ class BlogPostRequest extends TranslationFormRequest
                 'translations.en.title' => ['required_with:translations.en', 'nullable', 'string', 'max:255'],
                 'translations.*.excerpt' => ['nullable', 'string'],
                 'translations.*.body' => ['nullable', 'string'],
+                'translations.*.author' => ['nullable', 'string', 'max:120'],
                 'translations.*.seo_title' => ['nullable', 'string', 'max:255'],
                 'translations.*.seo_description' => ['nullable', 'string', 'max:500'],
             ];
@@ -35,10 +37,10 @@ class BlogPostRequest extends TranslationFormRequest
 
         if ($this->method() === 'PUT' || $this->method() === 'PATCH') {
             $rules = [
-                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:2048000', new SafeSvg()],
+                'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png,gif,webp,svg', 'max:'.Upload::MAX_IMAGE_KB, new SafeSvg],
                 'slug' => ['nullable', 'string', 'max:140', 'regex:/^[\\p{L}\\p{N}-]+$/u', Rule::unique('blog_posts', 'slug')->ignore($this->routeKey())],
                 'blog_category_id' => ['nullable', 'integer', 'exists:blog_categories,id'],
-                'publish' => ['nullable', new BooleanValidationRule()],
+                'publish' => ['nullable', new BooleanValidationRule],
                 'published_at' => ['nullable', 'date'],
                 'translations' => ['nullable', 'array'],
                 'translations.ar' => ['nullable', 'array'],
@@ -47,6 +49,7 @@ class BlogPostRequest extends TranslationFormRequest
                 'translations.en.title' => ['required_with:translations.en', 'nullable', 'string', 'max:255'],
                 'translations.*.excerpt' => ['nullable', 'string'],
                 'translations.*.body' => ['nullable', 'string'],
+                'translations.*.author' => ['nullable', 'string', 'max:120'],
                 'translations.*.seo_title' => ['nullable', 'string', 'max:255'],
                 'translations.*.seo_description' => ['nullable', 'string', 'max:500'],
             ];

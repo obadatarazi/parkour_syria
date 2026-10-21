@@ -2,13 +2,13 @@ import { CheckCheck } from "lucide-react";
 import { useCallback, useMemo, useState } from "react";
 import { Link } from "react-router";
 
+import { ROUTES } from "@/app/router/routes";
 import { NotificationInboxItem } from "@/features/notifications/components/NotificationInboxItem";
 import { NotificationViewDialog } from "@/features/notifications/components/NotificationViewDialog";
 import { useNotificationMutations } from "@/features/notifications/hooks/use-notification-mutations";
 import { useNotificationsList } from "@/features/notifications/hooks/use-notifications-list";
 import { meNotificationsService } from "@/features/notifications/services/me-notifications.service";
 import type { Notification } from "@/features/notifications/types/notifications.types";
-import { ROUTES } from "@/app/router/routes";
 import {
   AppButton,
   AppCard,

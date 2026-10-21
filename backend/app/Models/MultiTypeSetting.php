@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 #[MultiTypeSettingSchema]
 class MultiTypeSetting extends BaseModel
 {
-    use HasFactory, Filterable;
+    use Filterable, HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -28,7 +28,7 @@ class MultiTypeSetting extends BaseModel
 
     protected $filterable = [
         'setting_key' => 'like',
-        'type' => '='
+        'type' => '=',
     ];
 
     protected $sorterable = ['id', 'setting_key', 'type', 'created_at'];

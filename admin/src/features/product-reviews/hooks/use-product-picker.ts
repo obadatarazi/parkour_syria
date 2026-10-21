@@ -57,7 +57,7 @@ export function useProductPicker({
     enabled: enabled && isOpen,
   });
 
-  const pageProducts = listQuery.data?.data ?? [];
+  const pageProducts = useMemo(() => listQuery.data?.data ?? [], [listQuery.data?.data]);
   const selectedOnPage = useMemo(() => {
     if (selectedId == null) return null;
     return pageProducts.find((product) => product.id === selectedId) ?? null;

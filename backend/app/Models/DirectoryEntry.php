@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 #[DirectoryEntrySchema]
 class DirectoryEntry extends BaseModel implements TranslatableContract
 {
-    use HasFactory, Filterable, Translatable;
+    use Filterable, HasFactory, Translatable;
 
     protected $fillable = [
         'slug',

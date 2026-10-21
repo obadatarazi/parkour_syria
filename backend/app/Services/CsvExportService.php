@@ -76,14 +76,14 @@ class CsvExportService
     ];
 
     /**
-     * @param list<string>|null $only Column keys to keep, in the order they were asked for.
-     *                                Null or an empty list keeps every column.
+     * @param  list<string>|null  $only  Column keys to keep, in the order they were asked for.
+     *                                   Null or an empty list keeps every column.
      */
     public function download(Builder $query, string $name, ?array $only = null): StreamedResponse
     {
         $model = $query->getModel();
         $columns = $this->columns($model, $only);
-        $fileName = $name . '-' . Carbon::now()->format('Y-m-d-His') . '.csv';
+        $fileName = $name.'-'.Carbon::now()->format('Y-m-d-His').'.csv';
 
         return response()->streamDownload(function () use ($query, $columns) {
             $handle = fopen('php://output', 'w');
@@ -134,7 +134,7 @@ class CsvExportService
      */
     protected function relationWithLabelSource(string $name, Model $related): array
     {
-        return $this->isTranslatable($related) ? [$name, $name . '.translations'] : [$name];
+        return $this->isTranslatable($related) ? [$name, $name.'.translations'] : [$name];
     }
 
     /**
@@ -181,7 +181,7 @@ class CsvExportService
     /**
      * The header of the file, mapped to how each cell of it is read off a row.
      *
-     * @param list<string>|null $only
+     * @param  list<string>|null  $only
      * @return array<string, callable(Model): string>
      */
     protected function columns(Model $model, ?array $only = null): array
@@ -202,7 +202,7 @@ class CsvExportService
             ['attributes' => $only],
             [
                 'attributes' => 'required|array|min:1',
-                'attributes.*' => 'required|string|in:' . implode(',', array_keys($all)),
+                'attributes.*' => 'required|string|in:'.implode(',', array_keys($all)),
             ]
         );
 
@@ -266,12 +266,12 @@ class CsvExportService
      */
     protected function translationColumns(Model $model, array $taken = []): array
     {
-        if (!$this->isTranslatable($model)) {
+        if (! $this->isTranslatable($model)) {
             return [];
         }
 
         $translationClass = $model->getTranslationModelName();
-        $translation = new $translationClass();
+        $translation = new $translationClass;
         $skipped = [
             $translation->getKeyName(),
             $model->getLocaleKey() ?: 'locale',
@@ -290,7 +290,7 @@ class CsvExportService
             // A model that carries a column of its own under the same name — an untranslated
             // `slug` beside a translated one — keeps both, told apart by the language of the one
             // that is translated.
-            $header = in_array($column, $taken, true) ? $column . '_' . app()->getLocale() : $column;
+            $header = in_array($column, $taken, true) ? $column.'_'.app()->getLocale() : $column;
 
             $columns[$header] = fn (Model $row) => $this->cell($this->translated($row, $column));
         }
@@ -378,7 +378,7 @@ class CsvExportService
      */
     protected function label(?Model $related): string
     {
-        if (!$related) {
+        if (! $related) {
             return '';
         }
 
@@ -439,7 +439,7 @@ class CsvExportService
      * A relation the model does not type is invisible here, which is the price of not keeping a
      * hand written list of them per model.
      *
-     * @param class-string $kind
+     * @param  class-string  $kind
      * @return array<string, mixed> Relation name to the relation instance.
      */
     protected function declaredRelations(Model $model, string $kind): array
@@ -452,7 +452,7 @@ class CsvExportService
             if (
                 $method->getNumberOfParameters() > 0
                 || $method->isStatic()
-                || !$type instanceof ReflectionNamedType
+                || ! $type instanceof ReflectionNamedType
                 || $type->getName() !== $kind
             ) {
                 continue;

@@ -26,6 +26,7 @@ class BlogPostResource extends JsonResource
             'title' => $this->when($isListOrDetails, $this->title),
             'excerpt' => $this->when($isListOrDetails, $this->excerpt),
             'body' => $this->when($isDetails, $this->body),
+            'author' => $this->when($isListOrDetails, $this->author),
             'seoTitle' => $this->when($isListOrDetails, $this->seo_title),
             'seoDescription' => $this->when($isListOrDetails, $this->seo_description),
             'imageFileUrl' => $this->when($isListOrDetails, $this->image_file_url),
