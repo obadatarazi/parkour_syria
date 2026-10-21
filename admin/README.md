@@ -57,7 +57,7 @@ src/
 ├── features/            # Feature modules
 ├── shared/
 │   ├── components/      # Reusable UI (LocaleFieldsTabs, ImageField, …)
-│   ├── constants/       # permissions.ts, routePermissions.ts, …
+│   ├── constants/       # permissions.ts, …
 │   ├── crud/            # CRUD kit (CrudListPage, CrudDirtyFormDrawer, useEntityCrudMutations, …)
 │   ├── design-system/   # shadcn primitives, localization (parkour.en.ts / parkour.ar.ts)
 │   └── lib/             # apiRequest, env, locale-fields utils

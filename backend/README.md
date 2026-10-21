@@ -49,8 +49,8 @@ Accounts:
 ## Content (`database/sql/parkour_content.sql`)
 
 The seeders only create the platform (accounts, roles, permissions). The website content is a
-plain SQL file, taken from the current SPA (`src/locales/*.json`, `src/data/demo.ts`,
-`src/config/site.ts`, `src/pages/HomePage.tsx`) in Arabic and English:
+plain SQL file, taken from the current SPA (`website/src/locales/*.json`, `website/src/data/demo.ts`,
+`website/src/config/site.ts`, `website/src/pages/HomePage.tsx`) in Arabic and English:
 
 | Table | Rows |
 |---|---|
