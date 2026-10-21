@@ -1,6 +1,16 @@
 <?php
 
 return [
+    /*
+     * Who reaches the documentation outside the local environment, see GateApiDocs. Public is for a
+     * throwaway environment only; elsewhere set a user and password, or leave both empty to hide it.
+    */
+    'access' => [
+        'public' => (bool) env('L5_SWAGGER_PUBLIC', false),
+        'user' => env('L5_SWAGGER_USER'),
+        'password' => env('L5_SWAGGER_PASSWORD'),
+    ],
+
     'default' => 'default',
     'documentations' => [
         'default' => [
@@ -61,10 +71,10 @@ return [
              * Middleware allows to prevent unexpected access to API documentation
             */
             'middleware' => [
-                'api' => [],
-                'asset' => [],
-                'docs' => [],
-                'oauth2_callback' => [],
+                'api' => [\App\Http\Middleware\GateApiDocs::class],
+                'asset' => [\App\Http\Middleware\GateApiDocs::class],
+                'docs' => [\App\Http\Middleware\GateApiDocs::class],
+                'oauth2_callback' => [\App\Http\Middleware\GateApiDocs::class],
             ],
 
             /*

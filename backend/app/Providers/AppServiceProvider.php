@@ -33,7 +33,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // The dashboard signs in through /api/admin/auth with personal access tokens. Passport's
+        // OAuth server routes (/oauth/token, /oauth/authorize, the device flow) are not used.
+        Passport::ignoreRoutes();
     }
 
     /**
