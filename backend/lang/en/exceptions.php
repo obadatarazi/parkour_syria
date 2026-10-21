@@ -12,6 +12,7 @@ return [
     'email_password_invalid' => 'Invalid Email or password Please try again',
     'not_found' => 'Resource not found',
     'only_admin' => 'Sorry, Access restricted Super Admin User Type rights required.',
+    'server_error' => 'Something went wrong on our side. Please try again.',
     'suggestion_already_reviewed' => 'This suggestion was already reviewed.',
     'suggestion_event_needs_date' => 'An event needs a start date before it can be accepted.',
     'tag_has_products' => 'The tag ":name" cannot be deleted because it is assigned to :count product(s). Remove it from these products first.',

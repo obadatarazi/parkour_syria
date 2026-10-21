@@ -7,6 +7,7 @@ use App\Enum\UserType;
 use App\Exceptions\Custom\UnauthorizedException;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\Admin\LoginRequest;
+use App\Http\Requests\Admin\RefreshTokenRequest;
 use App\Http\Requests\Admin\UpdateProfileRequest;
 use App\Http\Requests\Admin\ChangePasswordRequest;
 use App\Http\Resources\UserResource;
@@ -14,7 +15,6 @@ use App\Services\AuthService;
 use App\Services\UserService;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
@@ -124,10 +124,10 @@ class AdminAuthController extends ApiController
         ]
     )]
     #[OA\Parameter(ref: "#/components/parameters/x-locale")]
-    public function refreshToken(Request $request): JsonResponse
+    public function refreshToken(RefreshTokenRequest $request): JsonResponse
     {
         try {
-            $data = $this->authService->refreshToken($request->request->get('refreshToken'));
+            $data = $this->authService->refreshToken($request->validated()['refresh_token']);
 
             return $this->successResponse($data);
         } catch (AuthenticationException $e) {

@@ -90,6 +90,8 @@ class RoleService extends BaseService
         }
 
         $role = new Role($data);
+        // Optional in the request, while the column has no default.
+        $role->standard ??= false;
         $role->guard_name = 'api';
         $role->code = strtoupper(str_replace(' ', '_', $data['name']));
 

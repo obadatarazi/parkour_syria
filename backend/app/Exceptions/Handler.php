@@ -46,6 +46,12 @@ class Handler extends ExceptionHandler
                     return $this->errorResponse($exception->getMessage(), 422);
                 }
             }
+            // An unexpected error's message carries SQL, file paths and hosts. It goes to the log
+            // (report() still runs), the client only reads it while debugging.
+            if ($statusCode === 500 && !config('app.debug')) {
+                return $this->errorResponse(__('exceptions.server_error'), 500);
+            }
+
             return $this->errorResponse(__($exception->getMessage()), $statusCode);
 
         }
