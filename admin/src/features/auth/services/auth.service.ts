@@ -9,7 +9,6 @@ import type {
   ProfileUpdateInput,
   ResetPasswordInput,
 } from "@/features/auth/types/auth.types";
-import { isAccessTokenNearingExpiry } from "@/features/auth/utils/access-token-expiry";
 import {
   clearStoredSession,
   readStoredSession,
@@ -27,6 +26,7 @@ import {
   type ApiRoleData,
   type LaravelSuccessResponse,
 } from "@/shared/lib/api";
+import { isAccessTokenNearingExpiry } from "@/shared/lib/api/access-token-expiry";
 import {
   appendFile,
   appendOptional,

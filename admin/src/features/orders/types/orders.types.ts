@@ -1,3 +1,4 @@
+import type { PaginatedResult } from "@/shared/types";
 export type EnumLabelValue = {
   label: string | null;
   value: string | null;
@@ -230,7 +231,7 @@ export function getOrderAmountDue(order: Pick<
   return order.totalPrice;
 }
 
-export type OrderListResult = import("@/shared/types").PaginatedResult<Order>;
+export type OrderListResult = PaginatedResult<Order>;
 
 let lineItemKey = 0;
 

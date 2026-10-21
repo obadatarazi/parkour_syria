@@ -9,4 +9,4 @@ export { TierBadge } from "@/shared/demo/components/TierBadge";
 export { usePaged } from "@/shared/demo/hooks/usePaged";
 export * from "@/shared/demo/mocks/admin-demo.mocks";
 export * from "@/shared/demo/types/admin-demo.types";
-export { formatKwd, stockBarColor } from "@/shared/demo/utils/format";
+export { stockBarColor } from "@/shared/demo/utils/format";

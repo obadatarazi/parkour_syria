@@ -4,14 +4,12 @@ import { Link, useNavigate } from "react-router";
 
 import { ROUTES } from "@/app/router/routes";
 import {
+  getLocalizedNotificationCopy,
+  getNotificationTargetHref,
+  getNotificationVisual,
   useMyNotificationMutations,
   useMyNotifications,
-} from "@/features/notifications/hooks/use-my-notifications";
-import {
-  getLocalizedNotificationCopy,
-  getNotificationVisual,
-} from "@/features/notifications/utils/notification-display.utils";
-import { getNotificationTargetHref } from "@/features/notifications/utils/notification-target.utils";
+} from "@/features/notifications";
 import { AppButton, CaptionText, CardTitleText } from "@/shared/components";
 import {
   DropdownMenu,

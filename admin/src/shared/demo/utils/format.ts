@@ -1,4 +1,3 @@
-export { formatKwd } from "@/features/products/utils/product-display.utils";
 
 export function stockBarColor(stock: number, reorder: number) {
   if (stock === 0) return "bg-destructive";

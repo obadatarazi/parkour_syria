@@ -1,8 +1,7 @@
-import { isAccessTokenNearingExpiry } from "@/features/auth/utils/access-token-expiry";
-import { readStoredSession } from "@/features/auth/utils/auth-storage";
 import { ServiceError } from "@/shared/errors";
+import { isAccessTokenNearingExpiry } from "@/shared/lib/api/access-token-expiry";
 import { getAuthSessionRecoveryHandlers } from "@/shared/lib/api/auth-session-recovery-bridge";
-import { readAccessToken } from "@/shared/lib/api/token";
+import { readAccessToken, readTokenIssuedAt } from "@/shared/lib/api/token";
 import { env } from "@/shared/lib/env";
 
 import { type ApiLocale,resolveApiLocale } from "./api-locale";
@@ -116,7 +115,6 @@ function composeRequestSignal(
   const onCallerAbort = () => {
     controller.abort(callerSignal?.reason);
   };
-  let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
   if (callerSignal) {
     if (callerSignal.aborted) {
@@ -142,14 +140,14 @@ function composeRequestSignal(
     };
   }
 
-  timeoutId = setTimeout(() => {
+  const timeoutId = setTimeout(() => {
     controller.abort(new DOMException("TimeoutError", "TimeoutError"));
   }, timeoutMs);
 
   return {
     signal: controller.signal,
     cleanup: () => {
-      if (timeoutId !== undefined) clearTimeout(timeoutId);
+      clearTimeout(timeoutId);
       callerSignal?.removeEventListener("abort", onCallerAbort);
     },
   };
@@ -187,11 +185,10 @@ export async function apiRequest<T>(path: string, options: ApiRequestOptions = {
   // Rotate the access token before the request when it is inside the skew window.
   if (shouldAttemptSessionRecovery(path, options)) {
     const pendingToken = resolveToken({ ...options, skipAuth });
-    const session = readStoredSession();
     if (
       pendingToken &&
       isAccessTokenNearingExpiry(pendingToken, {
-        issuedAtMs: session?.tokenIssuedAt,
+        issuedAtMs: readTokenIssuedAt(),
       })
     ) {
       const recovery = getAuthSessionRecoveryHandlers();

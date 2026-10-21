@@ -1,3 +1,4 @@
+import type * as DriverModule from "driver.js";
 import type { Config, Driver, PopoverDOM } from "driver.js";
 
 import { GUIDANCE_POPOVER_CLASS } from "@/shared/guidance/constants/guidance.constants";
@@ -18,7 +19,7 @@ export type RunTourOptions = {
 let activeDriver: Driver | null = null;
 /** Bumped on destroy/start so in-flight dynamic imports cannot revive a cancelled tour. */
 let tourGeneration = 0;
-let driverLoadPromise: Promise<typeof import("driver.js")> | null = null;
+let driverLoadPromise: Promise<typeof DriverModule> | null = null;
 
 async function ensureDriverModule() {
   if (!driverLoadPromise) {

@@ -1,10 +1,10 @@
 import { type ReactNode } from "react";
 import { Navigate, useLocation } from "react-router";
 
+import { resolveRoutePermission } from "@/app/router/route-permissions";
 import { ROUTES } from "@/app/router/routes";
 import { canAccessAnyRoute, canAccessRoute, useAbility, useAuth } from "@/features/auth";
 import { LoadingState } from "@/shared/components";
-import { resolveRoutePermission } from "@/shared/constants/routePermissions";
 import { useTranslation } from "@/shared/design-system/localization/contexts/LocalizationContext";
 
 type ProtectedRouteProps = {
