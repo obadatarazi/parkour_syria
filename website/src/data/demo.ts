@@ -1,23 +1,16 @@
-export type DirCategory = 'place' | 'coach' | 'team';
-export type EventTypeId = 'workshop' | 'gathering';
-export type BlogCategoryId = 'safety' | 'training' | 'damascus';
-export type AreaId = 'mazzeh' | 'abu-rummaneh' | 'kafr-sousa' | 'other';
+import type { AreaId, BlogCategoryId, DirCategory, EventTypeId, PageId } from '@/types';
 
-export type PageId =
-  | 'home'
-  | 'what'
-  | 'path'
-  | 'lesson'
-  | 'directory'
-  | 'dir-detail'
-  | 'events'
-  | 'suggest'
-  | 'blog'
-  | 'article'
-  | 'book'
-  | 'about'
-  | 'contact'
-  | 'disclaimer';
+export type { AreaId, BlogCategoryId, DirCategory, EventTypeId, PageId };
+export type {
+  DirectoryItem,
+  ParkourEvent,
+  BlogPost,
+  GalleryImage,
+  Lesson,
+  Slide,
+  NavPageId,
+} from '@/types';
+export { navLinks } from '@/types';
 
 export interface DirectoryItemNeutral {
   id: string;
@@ -241,71 +234,9 @@ export const slidesNeutral: SlideNeutral[] = [
   },
 ];
 
-/** Pages that have labels under `nav.*` in locales. */
-export type NavPageId =
-  | 'home'
-  | 'what'
-  | 'path'
-  | 'directory'
-  | 'events'
-  | 'blog'
-  | 'book'
-  | 'suggest'
-  | 'about'
-  | 'contact'
-  | 'disclaimer';
-
-export const navLinks: NavPageId[] = [
-  'home',
-  'what',
-  'path',
-  'directory',
-  'events',
-  'blog',
-  'book',
-];
-
 export const areas: AreaId[] = [
   'mazzeh',
   'abu-rummaneh',
   'kafr-sousa',
   'other',
 ];
-
-/** @deprecated Prefer localized types from useDemo(). Kept for gradual migration. */
-export type DirectoryItem = DirectoryItemNeutral & {
-  name: string;
-  area: string;
-  description: string;
-};
-
-export type ParkourEvent = ParkourEventNeutral & {
-  type: string;
-  date: string;
-  title: string;
-  location: string;
-};
-
-export type BlogPost = BlogPostNeutral & {
-  category: string;
-  date: string;
-  title: string;
-  excerpt: string;
-  body?: { heading: string; text: string }[];
-};
-
-export type GalleryImage = GalleryImageNeutral & { caption: string };
-
-export type Lesson = LessonNeutral & {
-  title: string;
-  desc: string;
-  body?: { heading: string; text: string; list?: string[] }[];
-};
-
-export type Slide = SlideNeutral & {
-  cat: string;
-  title: string;
-  text: string;
-  primary: { label: string; page: PageId };
-  secondary: { label: string; page: PageId };
-};
